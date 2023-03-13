@@ -3,16 +3,13 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import { Layout } from "../components";
 import { HomePage } from "../pages";
 //import { LoginPage, RegisterPage } from "../pages/Auth";
 
 const route = (
-  <Route path="/">
-    <Route index element={<HomePage />} />
-    {/* <Route path="auth">
-      <Route path="login" element={<LoginPage />} />
-      <Route path="register" element={<RegisterPage />} />
-    </Route> */}
+  <Route element={<Layout />}>
+    <Route path="/" element={<HomePage />} />
   </Route>
 );
 
