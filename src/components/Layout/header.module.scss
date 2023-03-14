@@ -1,5 +1,68 @@
 .headerBody{
     display: flex;
     column-gap: 10px;
-    background-color: antiquewhite;
 }
+.header{
+    width: 100%;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    >.title{
+        color: white;
+        font-size: 30px;
+       margin-left: 10px;
+    }
+    >.subTitle{
+        color:  white;
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+    >.inputContainer{
+        width: calc(100vw - 250px);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        >button{
+            border-radius: 15px;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            background-color: white;
+            border: 0px;
+            &:hover{
+                transform: translate(-2px, -2px);
+                background-color: aliceblue;
+                transition: 0.2s;
+              }
+            &:active{
+              transform: translate(0px, 0px);
+              transition: 0.2s;
+            }
+        }
+        >input{
+            width: calc(100% - 170px);
+            height: 35px;
+            font-size: 20px;
+            margin: 0;
+        }
+    }
+}
+.loginButton{
+  border-radius: 25px;
+  width: 60px;
+  height: 30px;
+  padding: 0;
+  margin-left: 10px;
+  background-color: white;
+  border: 0px;
+  &:hover{
+      transform: translate(-2px, -2px);
+      background-color: aliceblue;
+      transition: 0.2s;
+    }
+  &:active{
+    transform: translate(0px, 0px);
+    transition: 0.2s;
+  }
+}
+
