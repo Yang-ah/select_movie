@@ -14,10 +14,9 @@ const Header = () => {
   };
   return (
     <section className={styles.headerBody} >
-        <div>로고</div>
-        <div>카테고리</div>
+        <div>무비셀렉터</div>
         <div>북마크</div>
-        <div>liked</div>
+        <div>이미봄</div>
         <div>검색</div>
         <div>로그인</div>
         <div>회원가입</div>

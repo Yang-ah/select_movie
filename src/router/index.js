@@ -21,4 +21,3 @@ const route = (
 
 const rootRouter = createBrowserRouter(createRoutesFromElements(route));
 export default rootRouter;
-
