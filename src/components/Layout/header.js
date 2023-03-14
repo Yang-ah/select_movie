@@ -18,6 +18,9 @@ const Header = () => {
         <div>카테고리</div>
         <div>북마크</div>
         <div>liked</div>
+        <div>검색</div>
+        <div>로그인</div>
+        <div>회원가입</div>
     </section>
   );
 };

@@ -5,7 +5,8 @@ import styles from "./home.module.scss";
 const Home = () => {
   return (
     <section className={styles.wrapper}>
-      메인페이지
+      <div>순위</div>
+      <div>카테고리</div>
     </section>
   );
 };
