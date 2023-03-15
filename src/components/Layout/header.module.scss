@@ -1,65 +1,40 @@
+@use "../../styles/constants" as c;
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Lato:wght@300&display=swap');
 
-.header{
-    width: 100%;
-    background-color: gray;
+
+.headerBody{
     display: flex;
-    align-items: center;
-    >.title{
-        color: white;
-        font-size: 30px;
-       margin-left: 10px;
-    }
-    >.subTitle{
-        color:  white;
-        margin-top: 10px;
-        margin-left: 5px;
-    }
-    >.inputContainer{
-        width: calc(100vw - 250px);
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        >button{
-            border-radius: 15px;
-            width: 30px;
-            height: 30px;
-            padding: 0;
-            background-color: white;
-            border: 0px;
-            &:hover{
-                transform: translate(-2px, -2px);
-                background-color: aliceblue;
-                transition: 0.2s;
-              }
-            &:active{
-              transform: translate(0px, 0px);
-              transition: 0.2s;
-            }
-        }
-        >input{
-            width: calc(100% - 170px);
-            height: 35px;
-            font-size: 20px;
-            margin: 0;
-        }
-    }
-}
-.loginButton{
-  border-radius: 25px;
-  width: 60px;
-  height: 30px;
-  padding: 0;
-  margin-left: 10px;
-  background-color: white;
-  border: 0px;
-  &:hover{
-      transform: translate(-2px, -2px);
-      background-color: aliceblue;
-      transition: 0.2s;
-    }
-  &:active{
-    transform: translate(0px, 0px);
-    transition: 0.2s;
-  }
-}
+    column-gap: 10px;
+    background-color: black;
+    opacity: 80%;
+    justify-content: space-between;
+    height: 70px;
 
+    >.headerLogo{
+        padding: 13px;
+        color : c.$C_ORANGE;
+        font-size: 50px;
+        font-family: 'Black Han Sans', sans-serif;
+    }
+    >.headerLogin{
+        display: flex;
+        padding: 5px;
+
+    }
+
+}
+.headerSign{
+    width: 80px;
+    height: 40px;
+    background-color : c.$C_ORANGE;
+    text-align: center;
+    line-height: 40px;
+    color : c.$C_WHITE;
+    justify-content: center;
+    align-items: center;
+    margin : 10px;
+    border-radius: 15%;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
