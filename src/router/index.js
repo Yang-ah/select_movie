@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import { Layout } from "../components";
-import { DetailPage, HomePage, MyPage } from "../pages";
+import { DetailPage, HomePage, MyPage, SearchPage, OBPage } from "../pages";
 import { LoginPage, RegisterPage } from "../pages/Auth";
 
 const route = (
@@ -16,6 +16,8 @@ const route = (
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
     </Route>
+    <Route path="search" element={<SearchPage />} />
+    <Route path="OB" element={<OBPage />} />
   </Route>
 );
 

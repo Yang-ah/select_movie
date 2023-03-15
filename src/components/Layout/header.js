@@ -1,13 +1,9 @@
 import React from "react";
 import styles from "./header.module.scss";
 
-import { useNavigate, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 
 const Header = () => {
-  //MEMO: 경로를 이동할 때 사용
-
-
-
   return (
     <section className={styles.headerBody} >
         <Link to='/' style={{ textDecoration: "none" }}><div className={styles.headerLogo}>무비셀렉터</div></Link>

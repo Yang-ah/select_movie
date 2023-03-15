@@ -1,0 +1,19 @@
+@use "../../styles/constants" as c;
+
+.footerBody{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    row-gap: 5px;
+    background-color: c.$C_FOOTER;
+    color: c.$C_WHITE;
+    >h1{
+        font-size: 40px;
+    }
+    >a{
+        color: c.$C_WHITE;
+        text-decoration-line: none ;
+    }
+}
