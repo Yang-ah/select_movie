@@ -9,13 +9,6 @@
     opacity: 80%;
     justify-content: space-between;
     height: 70px;
-
-    >.headerLogo{
-        padding: 13px;
-        color : c.$C_ORANGE;
-        font-size: 50px;
-        font-family: 'Black Han Sans', sans-serif;
-    }
     >.headerLogin{
         display: flex;
         padding: 5px;
@@ -23,6 +16,13 @@
     }
 
 }
+.headerLogo{
+    padding: 13px;
+    color : c.$C_ORANGE;
+    font-size: 50px;
+    font-family: 'Black Han Sans', sans-serif;
+}
+
 .headerSign{
     width: 80px;
     height: 40px;

@@ -10,11 +10,12 @@ const Header = () => {
 
   return (
     <section className={styles.headerBody} >
-        <div className={styles.headerLogo}>무비셀렉터</div>
+        <Link to='/' style={{ textDecoration: "none" }}><div className={styles.headerLogo}>무비셀렉터</div></Link>
+        {/* <input type="text"  /> */}
         <div>검색</div>
         <div className={styles.headerLogin}>
-        <p className={styles.headerSign}>로그인</p>
-        <p className={styles.headerSign}>회원가입</p>
+        <Link to='/auth/login' style={{ textDecoration: "none" }}><p className={styles.headerSign}>로그인</p></Link>
+        <Link to='/auth/register' style={{ textDecoration: "none" }}><p className={styles.headerSign}>회원가입</p></Link>
         </div>
     </section>
   );
