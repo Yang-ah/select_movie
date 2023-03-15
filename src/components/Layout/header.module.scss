@@ -1,5 +1,40 @@
+@use "../../styles/constants" as c;
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Lato:wght@300&display=swap');
+
+
 .headerBody{
     display: flex;
     column-gap: 10px;
-    background-color: antiquewhite;
+    background-color: black;
+    opacity: 80%;
+    justify-content: space-between;
+    height: 70px;
+
+    >.headerLogo{
+        padding: 13px;
+        color : c.$C_ORANGE;
+        font-size: 50px;
+        font-family: 'Black Han Sans', sans-serif;
+    }
+    >.headerLogin{
+        display: flex;
+        padding: 5px;
+
+    }
+
+}
+.headerSign{
+    width: 80px;
+    height: 40px;
+    background-color : c.$C_ORANGE;
+    text-align: center;
+    line-height: 40px;
+    color : c.$C_WHITE;
+    justify-content: center;
+    align-items: center;
+    margin : 10px;
+    border-radius: 15%;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
 }
