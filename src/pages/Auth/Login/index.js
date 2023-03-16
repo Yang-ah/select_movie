@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./login.module.scss";
+import {Link } from "react-router-dom";
 
 const Login = () => {
 
@@ -45,6 +46,8 @@ const Login = () => {
               onChange={onChange}
             />
           </label>
+          <Link to='/auth/register' style={{ textDecoration: "none" }}>
+            <p className={styles.registerLink}>회원가입</p></Link>
           <button
             className={styles.submitButton}
             type="submit"

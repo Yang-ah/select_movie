@@ -6,6 +6,7 @@ const Register = () => {
         userName: "",
         userId: "",
         password: "",
+        passwordCheck : "",
       });
     
       const onChange = (e) => {
@@ -51,6 +52,16 @@ const Register = () => {
                   placeholder="비밀번호를 입력해주세요."
                   name="password"
                   value={form.password}
+                  onChange={onChange}
+                />
+              </label>
+              <label className={styles.inputWrapper}>
+                <p>비밀번호 확인</p>
+                <input
+                  type="passworCheck"
+                  placeholder="비밀번호를 입력해주세요."
+                  name="passwordCheck"
+                  value={form.passwordCheck}
                   onChange={onChange}
                 />
               </label>

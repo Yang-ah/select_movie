@@ -11,7 +11,7 @@ const Header = () => {
         <div>검색</div>
         <div className={styles.headerLogin}>
         <Link to='/auth/login' style={{ textDecoration: "none" }}><p className={styles.headerSign}>로그인</p></Link>
-        <Link to='/auth/register' style={{ textDecoration: "none" }}><p className={styles.headerSign}>회원가입</p></Link>
+        
         </div>
     </section>
   );
