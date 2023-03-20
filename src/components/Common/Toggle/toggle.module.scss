@@ -1,0 +1,29 @@
+@use "../../../styles/constants" as c;
+
+.wrapper {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+  background-color: #cccccc;
+  border-radius: 40px;
+
+  .button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    left: 2px;
+    background-color: red;
+    transition: left 0.3s ease-in;
+  }
+
+  &:has(input:checked) {
+    .button {
+      left: calc(100% - 2px - 16px);
+    }
+  }
+}

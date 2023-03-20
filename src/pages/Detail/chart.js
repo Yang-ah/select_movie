@@ -20,7 +20,7 @@ const data = [
     amt: 1
   },
   {
-    name: "5",
+    name: "ㅇㅁㄴ",
     amt: 4
   },
 ];
@@ -30,7 +30,7 @@ const Chart=()=> {
     <BarChart width={500} height={200} data={data}
     margin={{top: 25, right: 10, bottom: 15, left: 20}}>
       <XAxis dataKey='name'/>
-      <YAxis/>
+
       <Tooltip wrapperStyle={{width:100, backgroundColor:'#000000'}}/>
       <Bar dataKey="amt" fill="#635985" />
     </BarChart>
