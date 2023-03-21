@@ -1,3 +1,7 @@
+// 캐러셀 방향 버튼
+export { ReactComponent as CaretRightIcon } from "./caret-right.svg";
+export { ReactComponent as CaretLeftIcon } from "./caret-left.svg";
+
 // 체크
 export { ReactComponent as CheckIcon } from "./check.svg";
 
