@@ -1,0 +1,36 @@
+.starRateContainer {
+  display: flex;
+  align-items: center;
+  width: 160px;
+  height: 32px;
+  padding-bottom: 24px;
+}
+
+.wrapper {
+  height: 32px;
+  width: 32px;
+  background: none;
+  border: none;
+  position: relative;
+
+  > .star {
+    height: 32px;
+    width: 32px;
+  }
+  > .right {
+    transform: scaleX(-1);
+    position: absolute;
+    left: -32px;
+    bottom: 0px;
+  }
+
+  /* &:hover {
+    > .star {
+      transform: scale(1.2);
+    }
+  }
+
+ > .star {
+    transition: all 0.2s ease-out;
+  }*/
+}
