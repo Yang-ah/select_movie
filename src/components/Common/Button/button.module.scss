@@ -1,0 +1,51 @@
+@use "../../../styles/constants" as c;
+@use "../../../styles/mixins" as m;
+
+.button {
+  @include m.flex();
+  width: 60px;
+  height: 32px;
+  background-color: c.$C_ORANGE;
+  color: c.$C_WHITE;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    background-color: c.$C_WHITE;
+    color: c.$C_ORANGE;
+  }
+
+  &.secondary,
+  &.secondaryLong {
+    background-color: c.$C_WHITE;
+    color: c.$C_ORANGE;
+
+    > svg {
+      width: 18px;
+      fill: c.$C_ORANGE;
+      padding: 4px;
+    }
+
+    &:hover {
+      background-color: c.$C_ORANGE;
+      color: c.$C_WHITE;
+      > svg {
+        fill: c.$C_WHITE;
+      }
+    }
+  }
+
+  &.long,
+  &.secondaryLong {
+    width: 80px;
+  }
+
+  &.comment {
+    width: 72px;
+    height: 100%;
+    background-color: #232c4d;
+    padding: 8px 16px;
+  }
+}

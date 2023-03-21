@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import styles from "./home.module.scss";
 
 const Home = () => {
