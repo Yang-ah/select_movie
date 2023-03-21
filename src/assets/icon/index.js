@@ -1,10 +1,5 @@
-// 비어있는 체크박스
-export { ReactComponent as SquareIcon } from "./square.svg";
-export { ReactComponent as SquareCheckIcon } from "./square-check.svg";
-
-// 채워져있는 체크박스
-export { ReactComponent as SolidSquareIcon } from "./solid-square.svg";
-export { ReactComponent as SolidSquareCheckIcon } from "./solid-square-check.svg";
+// 체크
+export { ReactComponent as CheckIcon } from "./check.svg";
 
 // 돋보기 (search)
 export { ReactComponent as SearchIcon } from "./magnifying-glass.svg";
