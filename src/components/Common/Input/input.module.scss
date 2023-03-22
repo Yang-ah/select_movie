@@ -1,0 +1,31 @@
+@use "../../../styles/constants" as c;
+
+.label {
+  .labelText {
+    font-size: 12px;
+    color: c.$C_BLUE;
+  }
+
+  .errorText {
+    font-size: 12px;
+    color: c.$C_RED;
+  }
+
+  &.error {
+    .labelText {
+      color: c.$C_RED;
+    }
+    .input {
+      border: 1px solid c.$C_RED;
+      background-color: c.$C_WHITE;
+    }
+  }
+}
+
+.input {
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  background-color: #cccccc;
+  margin: 4px 0px;
+}

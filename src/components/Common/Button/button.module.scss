@@ -3,29 +3,29 @@
 
 .button {
   @include m.flex();
-  width: 60px;
-  height: 32px;
+  min-width: 60px;
+  min-height: 32px;
   background-color: c.$C_ORANGE;
   color: c.$C_WHITE;
-  border-radius: 8px;
-  font-size: 16px;
+  padding: 0 12px;
+  border-radius: c.$S_RADIUS;
+  border: 1px solid c.$C_WHITE;
   cursor: pointer;
   border: none;
 
   &:hover {
     background-color: c.$C_WHITE;
+    border: 1px solid c.$C_ORANGE;
     color: c.$C_ORANGE;
   }
 
-  &.secondary,
-  &.secondaryLong {
+  &.secondary {
     background-color: c.$C_WHITE;
     color: c.$C_ORANGE;
+    border: 1px solid c.$C_ORANGE;
 
     > svg {
-      width: 18px;
       fill: c.$C_ORANGE;
-      padding: 4px;
     }
 
     &:hover {
@@ -37,15 +37,13 @@
     }
   }
 
-  &.long,
-  &.secondaryLong {
-    width: 80px;
-  }
-
   &.comment {
-    width: 72px;
-    height: 100%;
     background-color: #232c4d;
-    padding: 8px 16px;
+
+    &:hover {
+      border: none;
+      background-color: #232c4d;
+      color: c.$C_WHITE;
+    }
   }
 }
