@@ -1,11 +1,8 @@
 .starRateContainer {
     display: flex;
     align-items: center;
-    width: 160px;
-    height: 32px;
-    padding-bottom: 24px;
   }
-  
+
   .wrapper {
     height: 32px;
     width: 32px;
@@ -14,6 +11,8 @@
     justify-content: center;
     background: none;
     border: none;
+
+
   
     &:hover {
       .wrapper__star {

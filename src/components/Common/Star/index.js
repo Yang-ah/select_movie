@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Star.module.scss";
-//import { ReactComponent as Star } from "./star.svg";
-import { SolidStarIcon } from "../../../assets/icon";
+//SolidStarHalfIcon
+import { SolidStarIcon, SolidStarHalfIcon } from "../../../assets/icon";
 
 
 const Star = ({ onClick}) => {
@@ -9,10 +9,10 @@ const Star = ({ onClick}) => {
   const [clickedStarIndex, setClickedStarIndex] = useState(0);
   const fillStarOfIndex = (num, event) => {
     if (event === "enter" && hoveredStarIndex >= num) {
-      return "#ff7f23";
+      return "#ffD400";
     }
     if (event === "leave" && clickedStarIndex >= num) {
-      return "#ff7f23";
+      return "#ffD400";
     }
     return "#eeeeee";
   };
@@ -30,6 +30,14 @@ const Star = ({ onClick}) => {
             onClick?.();
           }}
         >
+          {/* <SolidStarIcon
+            key={num}
+            className={styles.wrapper__star}
+            fill={fillStarOfIndex(
+              num,
+              hoveredStarIndex === 0 ? "leave" : "enter"
+            )}
+          /> */}
           <SolidStarIcon
             key={num}
             className={styles.wrapper__star}
@@ -38,6 +46,7 @@ const Star = ({ onClick}) => {
               hoveredStarIndex === 0 ? "leave" : "enter"
             )}
           />
+
         </button>
       ))}
     </div>
