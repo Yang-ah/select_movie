@@ -1,6 +1,6 @@
 import React from "react";
 //yarn add recharts
-import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
+import { BarChart, Bar, XAxis,  Tooltip } from "recharts";
 
 const data = [
   {

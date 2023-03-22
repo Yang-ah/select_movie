@@ -3,3 +3,4 @@ export { default as Input } from "./Input";
 export { default as Toggle } from "./Toggle";
 export { default as CheckBox } from "./CheckBox";
 export { default as Star } from "./Star";
+export { default as Chart } from "./Chart";
