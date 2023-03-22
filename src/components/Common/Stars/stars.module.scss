@@ -8,29 +8,24 @@
 
 .wrapper {
   height: 32px;
-  width: 32px;
+  width: 16px;
   background: none;
   border: none;
-  position: relative;
+  overflow: hidden;
 
   > .star {
     height: 32px;
     width: 32px;
-  }
-  > .right {
-    transform: scaleX(-1);
-    position: absolute;
-    left: -32px;
-    bottom: 0px;
+    transition: transform 0.2s ease-in;
   }
 
-  /* &:hover {
+  &.right {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover {
     > .star {
       transform: scale(1.2);
     }
   }
-
- > .star {
-    transition: all 0.2s ease-out;
-  }*/
 }

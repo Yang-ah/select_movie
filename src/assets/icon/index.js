@@ -1,3 +1,11 @@
+// 비어있는 체크박스
+export { ReactComponent as SquareIcon } from "./square.svg";
+export { ReactComponent as SquareCheckIcon } from "./square-check.svg";
+
+// 채워져있는 체크박스
+export { ReactComponent as SolidSquareIcon } from "./solid-square.svg";
+export { ReactComponent as SolidSquareCheckIcon } from "./solid-square-check.svg";
+
 // 캐러셀 방향 버튼
 export { ReactComponent as CaretRightIcon } from "./caret-right.svg";
 export { ReactComponent as CaretLeftIcon } from "./caret-left.svg";

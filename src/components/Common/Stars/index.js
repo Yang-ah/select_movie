@@ -3,9 +3,10 @@ import styles from "./stars.module.scss";
 import { SolidStarHalfIcon } from "../../../assets/icon";
 import cx from "classnames";
 
-const Stars = ({ onClick }) => {
+const Stars = ({ onClick: onClickProps }) => {
   const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
   const [clickedStarIndex, setClickedStarIndex] = useState(0);
+
   const fillStarOfIndex = (num, event) => {
     if (event === "enter" && hoveredStarIndex >= num) {
       return "#ff9900";
@@ -15,23 +16,28 @@ const Stars = ({ onClick }) => {
     }
     return "#eeeeee";
   };
+
+  const onClick = (num) => {
+    return () => {
+      setClickedStarIndex(num);
+      onClickProps?.();
+    };
+  };
+
   return (
     <div className={styles.starRateContainer}>
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
         <button
           key={num}
           type="button"
-          className={styles.wrapper}
+          className={cx(styles.wrapper, num % 2 || styles.right)}
           onMouseEnter={() => setHoveredStarIndex(num)}
           onMouseLeave={() => setHoveredStarIndex(0)}
-          onClick={() => {
-            setClickedStarIndex(num);
-            onClick?.();
-          }}
+          onClick={onClick(num)}
         >
           <SolidStarHalfIcon
+            className={styles.star}
             key={num}
-            className={cx(styles.star, num % 2 || styles.right)}
             fill={fillStarOfIndex(
               num,
               hoveredStarIndex === 0 ? "leave" : "enter"

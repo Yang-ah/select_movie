@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 import styles from "./home.module.scss";
 
+
 const Home = () => {
+
   return (
     <section className={styles.wrapper}>
       <div>순위</div>
