@@ -5,6 +5,9 @@ export { ReactComponent as CaretLeftIcon } from "./caret-left.svg";
 // 체크
 export { ReactComponent as CheckIcon } from "./check.svg";
 
+//드롭다운
+export { ReactComponent as ChevronDown } from "./chevron-down.svg";
+
 // 돋보기 (search)
 export { ReactComponent as SearchIcon } from "./magnifying-glass.svg";
 
