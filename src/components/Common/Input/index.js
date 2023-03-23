@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import cx from "classnames";
 import styles from "./input.module.scss";
 
@@ -14,4 +14,4 @@ const Input = ({ className, label, errorText, ...props }) => {
   );
 };
 
-export default Input;
+export default memo(Input);

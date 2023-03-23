@@ -1,28 +1,57 @@
 @use "../../../styles/constants" as c;
+@use "../../../styles/mixins" as m;
 
 .button {
-  background-color: c.$C_LOGO;
+  @include m.flex();
+  min-width: 60px;
+  min-height: 32px;
+  background-color: c.$C_ORANGE;
   color: c.$C_WHITE;
-  border-radius: 8px;
-  border: 1px solid c.$C_LOGO;
-  padding: 8px 12px;
+  padding: 0 12px;
+  border-radius: c.$S_RADIUS;
+  border: 1px solid c.$C_WHITE;
   cursor: pointer;
+  border: none;
 
   &:hover {
     background-color: c.$C_WHITE;
-    color: c.$C_LOGO;
-    border: 1px solid c.$C_LOGO;
+    border: 1px solid c.$C_ORANGE;
+    color: c.$C_ORANGE;
   }
 
   &.secondary {
-    background-color: c.$C_PURPLE1;
-    color: c.$C_WHITE;
-    border: 1px solid c.$C_PURPLE1;
+    background-color: c.$C_WHITE;
+    color: c.$C_ORANGE;
+    border: 1px solid c.$C_ORANGE;
+
+    > svg {
+      fill: c.$C_ORANGE;
+    }
+
+    &:hover {
+      background-color: c.$C_ORANGE;
+      color: c.$C_WHITE;
+      > svg {
+        fill: c.$C_WHITE;
+      }
+    }
+  }
+
+  &.comment {
+    background-color: #232c4d;
+
+    &:hover {
+      border: none;
+      background-color: #232c4d;
+      color: c.$C_WHITE;
+    }
+  }
+
 
     &:hover {
       background-color: c.$C_WHITE;
       color: c.$C_PURPLE1;
       border: 1px solid c.$C_PURPLE1;
     }
-  }
+  
 }
