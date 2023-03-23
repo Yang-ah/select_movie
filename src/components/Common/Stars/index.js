@@ -1,56 +1,52 @@
 import { useState } from "react";
-import styles from "./Star.module.scss";
-//SolidStarHalfIcon
-import { SolidStarIcon, SolidStarHalfIcon } from "../../../assets/icon";
+import styles from "./stars.module.scss";
+import { SolidStarHalfIcon } from "../../../assets/icon";
+import cx from "classnames";
 
-
-const Star = ({ onClick}) => {
+const Stars = ({ onClick: onClickProps }) => {
   const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
   const [clickedStarIndex, setClickedStarIndex] = useState(0);
+
   const fillStarOfIndex = (num, event) => {
     if (event === "enter" && hoveredStarIndex >= num) {
-      return "#ffD400";
+      return "#ff9900";
     }
     if (event === "leave" && clickedStarIndex >= num) {
-      return "#ffD400";
+      return "#ff9900";
     }
     return "#eeeeee";
   };
+
+  const onClick = (num) => {
+    return () => {
+      setClickedStarIndex(num);
+      onClickProps?.();
+    };
+  };
+
   return (
     <div className={styles.starRateContainer}>
-      {[1, 2, 3, 4, 5].map((num) => (
+      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
         <button
           key={num}
           type="button"
-          className={styles.wrapper}
+          className={cx(styles.wrapper, num % 2 || styles.right)}
           onMouseEnter={() => setHoveredStarIndex(num)}
           onMouseLeave={() => setHoveredStarIndex(0)}
-          onClick={() => {
-            setClickedStarIndex(num);
-            onClick?.();
-          }}
+          onClick={onClick(num)}
         >
-          {/* <SolidStarIcon
+          <SolidStarHalfIcon
+            className={styles.star}
             key={num}
-            className={styles.wrapper__star}
-            fill={fillStarOfIndex(
-              num,
-              hoveredStarIndex === 0 ? "leave" : "enter"
-            )}
-          /> */}
-          <SolidStarIcon
-            key={num}
-            className={styles.wrapper__star}
             fill={fillStarOfIndex(
               num,
               hoveredStarIndex === 0 ? "leave" : "enter"
             )}
           />
-
         </button>
       ))}
     </div>
   );
 };
 
-export default Star;
+export default Stars;
