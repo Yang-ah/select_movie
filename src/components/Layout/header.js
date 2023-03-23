@@ -13,9 +13,10 @@ const Header = () => {
       </Link>
 
       <div className={styles.right}>
-        <p>TODO : searchInput</p>
+        {<p className={styles.todo}>TODO : searchInput</p>}
+
         <Link to="/auth/login">
-          <Button children={"로그인"} className={styles.headerSign} />
+          <Button children={"로그아웃"} className={styles.headerSign} />
         </Link>
       </div>
     </header>

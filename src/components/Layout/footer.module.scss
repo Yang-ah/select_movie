@@ -6,10 +6,11 @@
   position: fixed;
   width: 100%;
   bottom: 0;
-  padding: 12px;
+  padding: c.$S_LAYOUT_PADDING;
   font-size: 12px;
   background-color: c.$C_FOOTER;
   color: c.$C_WHITE;
+  border-radius: none;
 
   > div {
     > p:first-of-type {
