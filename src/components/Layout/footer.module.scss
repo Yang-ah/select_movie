@@ -1,45 +1,30 @@
-@use "../../styles/constants/" as c;
+@use "../../styles/constants" as c;
+@use "../../styles/mixins" as m;
 
-.footerBody {
+.wrap {
+  @include m.flex(space-between);
   position: fixed;
-  bottom: 0px;
   width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  padding: 10px;
-  height: auto;
+  bottom: 0;
+  padding: 12px;
+  font-size: 12px;
   background-color: c.$C_FOOTER;
   color: c.$C_WHITE;
 
-  .footerName {
-    flex-grow: 1;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 10px;
-    height: auto;
-
-    > h1 {
-      font-size: 24px;
-    }
-    > h2 {
-      font-size: 12px;
+  > div {
+    > p:first-of-type {
+      margin-bottom: 4px;
     }
   }
 
-  .footerInfo {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 10px;
-    height: auto;
+  .left {
+    > p:first-of-type {
+      font-size: 24px;
+      font-family: "Black Han Sans";
+    }
+  }
 
-    > p {
-      font-size: 12px;
-    }
-    > a {
-      font-size: 12px;
-      text-decoration-line: none;
-    }
+  a {
+    color: white;
   }
 }
