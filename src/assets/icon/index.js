@@ -1,6 +1,10 @@
-// 캐러셀 방향 버튼
+// HOME CAROUSEL
 export { ReactComponent as CaretRightIcon } from "./caret-right.svg";
 export { ReactComponent as CaretLeftIcon } from "./caret-left.svg";
+
+// MYPAGE CAROUSEL
+export { ReactComponent as ChevronLeftIcon } from "./chevron-left.svg";
+export { ReactComponent as ChevronRightIcon } from "./chevron-right.svg";
 
 // 체크
 export { ReactComponent as CheckIcon } from "./check.svg";
@@ -26,10 +30,6 @@ export { ReactComponent as SolidHeartIcon } from "./solid-heart.svg";
 
 // 북마크
 export { ReactComponent as SolidBookmarkIcon } from "./solid-bookmark.svg";
-
-// chevron
-export { ReactComponent as ChevronLeftIcon } from "./chevron-left.svg";
-export { ReactComponent as ChevronRightIcon } from "./chevron-right.svg";
 
 // angles-right  (더보기)
 export { ReactComponent as DoubleChevronRightIcon } from "./angles-right.svg";

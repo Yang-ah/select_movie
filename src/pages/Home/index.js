@@ -7,10 +7,10 @@ import Category from "./Category";
 const Home = () => {
   return (
     <section className={styles.wrapper}>
-      <div> [순위] </div>
+      <h1>순위</h1>
       <MovieRanking />
       <hr />
-      <div className={styles.categoryWrapper}> [카테고리] </div>
+      <h1>카테고리:home carousel</h1>
       <Category />
     </section>
   );

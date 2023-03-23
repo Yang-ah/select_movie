@@ -1,37 +1,21 @@
-import { sliderClasses } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Slider from "react-slick";
 
+import { CaretLeftIcon, CaretRightIcon } from "../../assets/icon";
 import data from "../../mock.json";
 import Poster from "../Poster";
 
 export const PrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return <div className={className} style={{ ...style }} onClick={onClick} />;
+  const { className, onClick } = props;
+  return <div className={className} onClick={onClick} />;
 };
 
 export const NextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
+  const { className, onClick } = props;
+  return <div className={className} onClick={onClick} />;
 };
 
-const Carousel = () => {
-  const [position, setPosition] = useState(false);
-  const slider = useRef();
-
-  useEffect(() => {
-    if (sliderClasses.current && !position) {
-      sliderClasses.current.slickGoTo();
-      setPosition(true);
-    }
-  }, [position, slider]);
-
+export const HomeCarousel = () => {
   const settings = {
     dot: false,
     arrow: false,
@@ -39,9 +23,8 @@ const Carousel = () => {
     speed: 600, //다음 스피드
     slidesToShow: 8, //몇개씩 보여줌?
     slidesToScroll: 6, //몇개씩 넘어감?
-
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+    prevArrow: <CaretLeftIcon />,
+    nextArrow: <CaretRightIcon />,
   };
 
   return (
@@ -52,5 +35,3 @@ const Carousel = () => {
     </Slider>
   );
 };
-
-export default Carousel;

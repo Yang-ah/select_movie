@@ -1,8 +1,8 @@
-@use "../../styles/constants" as c;
+@use "../../styles/constants/" as c;
 
 .wrapper {
-  background-color: #18122b;
-  color: white;
+  background-color: c.$C_BACKGROUND;
+  color: c.$C_WHITE;
   font-weight: 800;
   font-size: 24px;
   padding: 40px;
