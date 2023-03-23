@@ -1,4 +1,5 @@
-import { Chart } from "../../components";
+import Chart from "./Chart";
+
 
 const Detail = () => {
     return (
