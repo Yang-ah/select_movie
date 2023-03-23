@@ -1,6 +1,18 @@
 @use "../../styles/constants" as c;
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Lato:wght@300&display=swap");
 
+.temp {
+  height: 500vh;
+}
+.wrapper {
+  background-color: #18122b;
+  color: white;
+  font-weight: 800;
+  font-size: 24px;
+  padding: 50px;
+}
+.categoryWrapper {
+  margin: 80px;
+}
 .sectionBody {
   width: 500px;
 }
