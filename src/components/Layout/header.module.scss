@@ -1,43 +1,30 @@
 @use "../../styles/constants" as c;
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Lato:wght@300&display=swap");
+@use "../../styles/mixins" as m;
 
-.headerBody {
-  display: flex;
+.wrap {
+  @include m.flex(space-between);
+  height: 60px;
+  padding: 0 12px;
   column-gap: 10px;
-  background-color: black;
-  opacity: 80%;
-  justify-content: space-between;
-  height: 70px;
-  > .headerLogin {
-    display: flex;
-    padding: 5px;
+  background-color: c.$C_WHITE_10;
+
+  > .right {
+    @include m.flex();
   }
 }
-.headerLogo {
-  padding: 13px;
-  color: c.$C_ORANGE;
-  font-size: 50px;
-  font-family: "Black Han Sans", sans-serif;
-  text-decoration: none;
+
+.logo {
+  height: 100%;
+  font-size: 42px;
+  color: c.$C_LOGO;
+  font-family: "Black Han Sans";
+  padding-top: 5px; // 로고가 정 중앙에 안와서, padding-top 넣음
 }
 
 .headerSign {
-  width: 80px;
-  height: 40px;
-  background-color: c.$C_ORANGE;
-  text-align: center;
-  line-height: 40px;
+  width: 68px;
+  height: 32px;
   color: c.$C_WHITE;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-
-  border-radius: c.$S_RADIUS;
-  font-family: "Lato", sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
-}
-
-.link {
-  text-decoration-line: none;
 }
