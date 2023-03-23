@@ -2,7 +2,7 @@ import Carousel from "../../components/Carousel";
 import React from "react";
 import styles from "./home.module.scss";
 
-function Category() {
+const Category = () => {
   return (
     <div className={styles.categoryWrapper}>
       <div>🔥 개봉 예정 🔥</div>
@@ -11,6 +11,6 @@ function Category() {
       <Carousel />
     </div>
   );
-}
+};
 
 export default Category;

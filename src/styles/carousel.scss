@@ -2,11 +2,12 @@
 
 /* Slider */
 .slider {
-  margin: 10px 300px;
+  margin: 10px 20px;
   font-size: 24px;
 }
 
 .slick-slider {
+  background-color: blue; //삭제 가능!
   position: relative;
   display: block;
   box-sizing: border-box;
@@ -17,8 +18,6 @@
   display: block;
   overflow: hidden;
 
-  margin: 0;
-  padding: 0;
   &:focus {
     outline: none;
   }
@@ -88,7 +87,7 @@ $slick-next-character: url(../assets/icon/caret-right.svg);
 }
 
 .slick-prev {
-  left: -55px;
+  left: -55px; //왜 저기있는지 모르겠습니다..
 
   &:before {
     content: $slick-prev-character;
@@ -96,7 +95,7 @@ $slick-next-character: url(../assets/icon/caret-right.svg);
 }
 
 .slick-next {
-  right: -20px;
+  right: -55px;
 
   &:before {
     content: $slick-next-character;
