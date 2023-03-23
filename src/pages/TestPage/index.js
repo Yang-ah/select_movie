@@ -16,7 +16,7 @@ function Modaltest() {
         <div>
             <div>모달테스트</div>
             <button onClick={showModal}>모달 띄우기</button>
-            {modalOpen && <Modal setModalOpen={setModalOpen} />}
+            {modalOpen && <Modal setModalOpen={setModalOpen} children='1' buttonChildren='2' />}
         </div>
     );
 }

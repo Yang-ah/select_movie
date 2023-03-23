@@ -2,8 +2,7 @@ import { useEffect, useRef } from 'react';
 import styles from './modal.module.scss';
 import Button from '../Button';
 
-function Modal({ setModalOpen, id, title, content, writer }) {
-
+const Modal = ({ setModalOpen, children, buttonChildren })=>{
     const closeModal = () => {
         setModalOpen(false);
     };
@@ -31,12 +30,12 @@ function Modal({ setModalOpen, id, title, content, writer }) {
     return (
         <div ref={modalRef} className={styles.container}>
             <div className={styles.title}>안내</div>
-            <div className={styles.content}>정말로 삭제하시겠습니까?</div>
+            <div className={styles.content}>{children}</div>
             <div className={styles.buttonBox}>
                 <Button className={styles.cancleButton}
                  children={'취소'}
                  onClick={closeModal}/>
-                <Button className={styles.deleteButton} children={'삭제'}/>
+                <Button className={styles.deleteButton} children={buttonChildren}/>
             </div>
         </div>
     );
