@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 import { Layout } from "../components";
-import { DetailPage, HomePage, MyPage, SearchPage, BOPage } from "../pages";
+import { DetailPage, HomePage, MyPage, SearchPage, BOPage, TestPage } from "../pages";
 import { LoginPage, RegisterPage } from "../pages/Auth";
 
 const route = (
@@ -18,6 +18,7 @@ const route = (
     </Route>
     <Route path="search" element={<SearchPage />} />
     <Route path="bo" element={<BOPage />} />
+    <Route path="test" element={<TestPage />} />
   </Route>
 );
 
