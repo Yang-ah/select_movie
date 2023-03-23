@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./header.module.scss";
 
 import { Link } from "react-router-dom";
-import { Button } from "../Common";
+import { Button, SearchInput } from "../Common";
 
 // 인라인 스타일링 지양! 유지보수 어렵.
 const Header = () => {
@@ -13,10 +13,9 @@ const Header = () => {
       </Link>
 
       <div className={styles.right}>
-        {<p className={styles.todo}>TODO : searchInput</p>}
-
+        <SearchInput option="reverse" className={styles.searchInput} />
         <Link to="/auth/login">
-          <Button children={"로그아웃"} className={styles.headerSign} />
+          <Button children={"로그인"} className={styles.headerSign} />
         </Link>
       </div>
     </header>

@@ -11,7 +11,7 @@
   border-radius: c.$S_RADIUS;
   border: 1px solid c.$C_WHITE;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
 
   &:hover {
     background-color: c.$C_WHITE;
@@ -47,11 +47,9 @@
     }
   }
 
-
-    &:hover {
-      background-color: c.$C_WHITE;
-      color: c.$C_PURPLE1;
-      border: 1px solid c.$C_PURPLE1;
-    }
-  
+  &:hover {
+    background-color: c.$C_WHITE;
+    color: c.$C_PURPLE1;
+    border: 1px solid c.$C_PURPLE1;
+  }
 }

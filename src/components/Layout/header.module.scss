@@ -1,13 +1,6 @@
 @use "../../styles/constants" as c;
 @use "../../styles/mixins" as m;
 
-// 다하면 삭제하기
-.todo {
-  color: red;
-  font-weight: 600;
-  padding-right: 20px;
-}
-
 .wrap {
   @include m.flex(space-between);
   height: 60px;
@@ -17,6 +10,20 @@
 
   > .right {
     @include m.flex();
+  }
+}
+
+.searchInput {
+  margin-right: 8px;
+  width: 300px;
+
+  input {
+    border: none;
+    background-color: c.$C_WHITE_10;
+    color: white;
+  }
+  svg {
+    fill: c.$C_WHITE;
   }
 }
 

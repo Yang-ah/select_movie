@@ -1,0 +1,45 @@
+@use "../../../styles/mixins" as m;
+
+.wrap {
+  @include m.flex(space-between);
+  position: relative;
+
+  &.reverse {
+    > button {
+      right: 8px;
+    }
+
+    input {
+      padding-right: 32px;
+      box-sizing: border-box;
+    }
+  }
+  &:not(.reverse) {
+    > button {
+      left: 8px;
+    }
+    input {
+      padding-left: 32px;
+    }
+  }
+
+  label {
+    width: 100%;
+    > input {
+      width: 100%;
+    }
+  }
+
+  > button {
+    @include m.flex();
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: 16px;
+    position: absolute;
+    z-index: 99;
+    cursor: pointer;
+  }
+}
