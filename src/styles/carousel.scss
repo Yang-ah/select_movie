@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* Slider */
 .slider {
   margin: 10px 20px;
@@ -7,13 +5,15 @@
 }
 
 .slick-slider {
-  background-color: blue; //삭제 가능!
   position: relative;
   display: block;
   box-sizing: border-box;
 }
 
 .slick-list {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
   position: relative;
   display: block;
   overflow: hidden;
@@ -48,21 +48,16 @@
 }
 
 /* Arrow */
-$slick-loader-path: "./";
-$slick-prev-character: url(../assets/icon/caret-left.svg);
-$slick-next-character: url(../assets/icon/caret-right.svg);
-
 .slick-prev,
 .slick-next {
   position: absolute;
-  height: 20px;
-  width: 20px;
+
   line-height: 0px;
   cursor: pointer;
   background: transparent;
   color: transparent;
 
-  top: 50%;
+  top: 45%;
 
   padding: 0;
   border: none;
@@ -87,17 +82,9 @@ $slick-next-character: url(../assets/icon/caret-right.svg);
 }
 
 .slick-prev {
-  left: -55px; //왜 저기있는지 모르겠습니다..
-
-  &:before {
-    content: $slick-prev-character;
-  }
+  left: -40px;
 }
 
 .slick-next {
-  right: -55px;
-
-  &:before {
-    content: $slick-next-character;
-  }
+  right: -40px;
 }

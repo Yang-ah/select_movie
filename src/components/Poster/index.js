@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./poster.module.scss";
+
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import styles from "./poster.module.scss";
 
 const Poster = ({ movie }) => {
   return (
