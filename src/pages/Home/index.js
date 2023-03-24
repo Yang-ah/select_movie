@@ -3,17 +3,10 @@ import styles from "./home.module.scss";
 
 import MovieRanking from "../../components/Ranking";
 import Category from "./Category";
+import Comment from "../Detail/Comment";
 
 const Home = () => {
-  return (
-    <section className={styles.wrapper}>
-      <h1>순위</h1>
-      <MovieRanking />
-      <hr />
-      <h1>카테고리:home carousel</h1>
-      <Category />
-    </section>
-  );
+  return <section className={styles.wrapper}></section>;
 };
 
 export default Home;

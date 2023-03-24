@@ -1,3 +1,7 @@
+@use "../../styles/mixins" as m;
+
 .wrapper {
+  @include m.flex(center, center, column);
+
   padding: 100px;
 }

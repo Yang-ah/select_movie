@@ -1,0 +1,68 @@
+@use "../../../styles/mixins" as m;
+@use "../../../styles/constants" as c;
+
+.wrap {
+  width: 80%;
+  color: c.$C_WHITE;
+  padding: 16px;
+  background-color: black;
+  border: 1px solid white;
+
+  > header {
+    @include m.flex(space-between);
+  }
+}
+
+.left {
+  @include m.flex();
+
+  > .profileIcon {
+    background-color: c.$C_WHITE_10;
+    padding: 12px;
+    font-size: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  > div {
+    height: 100%;
+
+    .userName {
+      font-size: 24px;
+    }
+
+    .date {
+      font-size: 12px;
+    }
+  }
+}
+
+.right {
+  @include m.flex();
+
+  > .rating {
+    @include m.flex();
+    margin-right: 8px;
+
+    > svg {
+      width: 20px;
+      fill: c.$C_STAR;
+    }
+  }
+}
+
+.child {
+  padding-left: 40px;
+
+  .IShare {
+    width: 16px;
+    fill: white;
+    transform: rotate(180deg) rotateY(180deg);
+    margin-right: 8px;
+  }
+
+  .profileIcon {
+    padding: 8px;
+    font-size: 20px;
+  }
+}
