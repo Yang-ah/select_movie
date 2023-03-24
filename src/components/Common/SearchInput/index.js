@@ -6,7 +6,7 @@ import Input from "../Input";
 const SearchInput = ({ className, option, onChange, onClick, ...props }) => {
   return (
     <div className={cx(styles.wrap, className, styles[option])}>
-      <Input onChange={onChange} {...props} />
+      <Input onChange={onChange} {...props} className={styles.inputWrapper} />
 
       <button type="submit" onClick={onClick} className={cx(styles.button)}>
         <SearchIcon />

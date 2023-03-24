@@ -13,7 +13,7 @@ const Header = () => {
       </Link>
 
       <div className={styles.right}>
-        <SearchInput option="reverse" className={styles.searchInput} />
+        <SearchInput option="iconLocation" className={styles.searchInput} />
         <Link to="/auth/login">
           <Button children={"로그인"} className={styles.headerSign} />
         </Link>
