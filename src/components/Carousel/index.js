@@ -22,7 +22,7 @@ export const HomeCarousel = () => {
     infinite: false,
     speed: 600, //다음 스피드
     slidesToShow: 8, //몇개씩 보여줌?
-    slidesToScroll: 6, //몇개씩 넘어감?
+    slidesToScroll: 7, //몇개씩 넘어감?
     prevArrow: <CaretLeftIcon />,
     nextArrow: <CaretRightIcon />,
   };

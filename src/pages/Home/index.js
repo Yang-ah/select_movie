@@ -10,7 +10,7 @@ const Home = () => {
       <h1>순위</h1>
       <MovieRanking />
       <hr />
-      <h1>카테고리:home carousel</h1>
+      <h1>카테고리 / home carousel : 마지막 포스터가 맨앞에 위치</h1>
       <Category />
     </section>
   );
