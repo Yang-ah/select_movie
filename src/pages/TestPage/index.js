@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Modal } from '../../components';
 
-
 // 모달을 노출하는 페이지
 function Modaltest() {
     // 모달창 노출 여부 state
@@ -16,7 +15,11 @@ function Modaltest() {
         <div>
             <div>모달테스트</div>
             <button onClick={showModal}>모달 띄우기</button>
-            {modalOpen && <Modal setModalOpen={setModalOpen} children='1' buttonChildren='2' />}
+            <Modal
+            view={modalOpen}
+            setModalOpen={setModalOpen} 
+            children='1' 
+            buttonChildren='2' />
         </div>
     );
 }
