@@ -6,14 +6,10 @@ import styles from "./layout.module.scss";
 
 const Layout = () => {
   return (
-    <div>
-      <main className={styles.wrap}>
-        <Header />
-        <section>
-          <Outlet />
-        </section>
-        <Footer />
-      </main>
+    <div className={styles.wrap}>
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
   );
 };

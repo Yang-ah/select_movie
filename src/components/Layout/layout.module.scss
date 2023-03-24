@@ -3,9 +3,9 @@
 .wrap {
   height: 100vh;
   background-color: c.$C_BACKGROUND;
+  overflow-y: scroll;
+
   > section {
-    overflow-y: scroll;
-    max-height: calc(100vh - 60px);
-    padding: 12px;
+    padding: c.$S_LAYOUT_PADDING;
   }
 }

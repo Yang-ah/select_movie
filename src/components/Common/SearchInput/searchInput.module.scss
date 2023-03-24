@@ -4,7 +4,7 @@
   @include m.flex(space-between);
   position: relative;
 
-  &.reverse {
+  &.iconLocation {
     > button {
       right: 8px;
     }
@@ -14,7 +14,7 @@
       box-sizing: border-box;
     }
   }
-  &:not(.reverse) {
+  &:not(.iconLocation) {
     > button {
       left: 8px;
     }
@@ -23,8 +23,8 @@
     }
   }
 
-  label {
-    width: 100%;
+  .inputWrapper {
+    flex-grow: 1;
     > input {
       width: 100%;
     }

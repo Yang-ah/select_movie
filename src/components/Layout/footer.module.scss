@@ -3,14 +3,11 @@
 
 .wrap {
   @include m.flex(space-between);
-  position: fixed;
   width: 100%;
-  bottom: 0;
   padding: c.$S_LAYOUT_PADDING;
   font-size: 12px;
   background-color: c.$C_FOOTER;
   color: c.$C_WHITE;
-  border-radius: none;
 
   > div {
     > p:first-of-type {
@@ -19,13 +16,24 @@
   }
 
   .left {
-    > p:first-of-type {
+    > .logo {
       font-size: 24px;
       font-family: "Black Han Sans";
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-use-select: none;
+      user-select: none;
+      margin-bottom: 4px;
+      cursor: pointer;
     }
   }
 
   a {
     color: white;
+  }
+
+  a:focus {
+    color: white;
+    background-color: transparent;
   }
 }

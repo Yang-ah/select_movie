@@ -1,6 +1,7 @@
+@use "../../../styles/mixins" as m;
+
 .starRateContainer {
-  display: flex;
-  align-items: center;
+  @include m.flex();
   width: 160px;
   height: 32px;
   padding-bottom: 24px;
@@ -23,9 +24,5 @@
     transform: rotateY(-180deg);
   }
 
-  &:hover {
-    > .star {
-      transform: scale(1.2);
-    }
-  }
+  //scale 제거
 }

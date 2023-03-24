@@ -3,8 +3,8 @@
 
 .wrap {
   @include m.flex(space-between);
-  height: 60px;
-  padding: 0 c.$S_LAYOUT_PADDING;
+  min-height: 60px;
+  padding: 10px c.$S_LAYOUT_PADDING;
   column-gap: 10px;
   background-color: c.$C_WHITE_10;
 
@@ -33,6 +33,10 @@
   color: c.$C_LOGO;
   font-family: "Black Han Sans";
   padding-top: 5px; // 로고가 정 중앙에 안와서, padding-top 넣음
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-use-select: none;
+  user-select: none;
 }
 
 .headerSign {
