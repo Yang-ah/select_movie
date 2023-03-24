@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styles from './modal.module.scss';
+import './modal.scss';
+
 import Button from '../Button';
 import { CSSTransition } from 'react-transition-group';
 
@@ -30,10 +32,11 @@ const Modal = ({ view, setModalOpen, children, buttonChildren })=>{
     }
     return (
         <CSSTransition
-
-        classNames={styles.modal}
+        in={view}
+        nodeRef={modalRef}
+        classNames='modal'
         timeout={3000}
-        nodeRef={modalRef}>
+        >
         <div className={styles.overlay}>
             <section ref={modalRef} className={styles.container}>
                 <header className={styles.title}>안내</header>
