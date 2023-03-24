@@ -51,7 +51,6 @@
 .slick-prev,
 .slick-next {
   position: absolute;
-
   line-height: 0px;
   cursor: pointer;
   background: transparent;
@@ -66,18 +65,11 @@
   &:before {
     line-height: 1;
     opacity: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   &:hover,
   &:focus {
-    outline: none;
-    background: transparent;
-    color: transparent;
-    &:before {
-      opacity: 0.5;
-    }
+    opacity: 0.5;
   }
 }
 

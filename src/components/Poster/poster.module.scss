@@ -1,6 +1,42 @@
 @use "../../styles/constants" as c;
 
 .wrapper {
-  padding: 10px;
+  width: 100%;
+
+  padding: 12px;
+  position: relative;
   color: white;
+
+  .box {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card {
+    padding: 4px;
+    position: relative;
+  }
+  //카드
+  .media {
+    text-align: center;
+    position: relative;
+    max-width: 100%;
+    border-radius: 4px;
+
+    &:before {
+      line-height: 1;
+      opacity: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    &:hover,
+    &:focus {
+      outline: none;
+      background: transparent;
+      color: transparent;
+      &:before {
+        opacity: 0.5;
+      }
+    }
+  }
 }
