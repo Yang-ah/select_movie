@@ -12,6 +12,7 @@ export { ReactComponent as ChevronRightIcon } from "./chevron-right.svg";
 export { ReactComponent as CheckIcon } from "./check.svg";
 
 //드롭다운
+export { ReactComponent as ChevronUp } from "./chevron-up.svg";
 export { ReactComponent as ChevronDown } from "./chevron-down.svg";
 
 // 돋보기 (search)

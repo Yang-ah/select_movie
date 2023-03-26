@@ -1,66 +1,29 @@
-import React, { useCallback, useState } from "react";
-import { Dropdown } from "../../components";
-import { dropdownItems } from "./dropdownitem";
-import styles from "./detail.module.scss";
+import React from "react";
 
+import styles from "./detail.module.scss";
+import dummy from "../../mock_comment.json";
 import Comment from "./Comment";
+import Accordion from "./Accordion";
 
 const Detail = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const onClickDropdown = useCallback((item) => {
-    return () => {
-      setSelectedItem((prev) => (prev?.id === item.id ? null : item));
-    };
-  }, []);
-
-  const dummy = [
-    {
-      userName: "hihi",
-      comment:
-        "너무 재밌어요. 너무 재밌어요.너무 재밌어요.너무 재밌어요.너무 재밌어요.너무 재밌어요.너무 재밌어요.",
-      rating: 4,
-      date: "2022-03-22",
-      up: 12,
-      down: 1,
-      children: [
-        {
-          userName: "byebye",
-          comment:
-            "전 별로던데용 전 별로던데용 전 별로던데용 전 별로던데용 전 별로던데용",
-          date: "2022-03-22",
-          up: 123,
-          down: 12,
-        },
-        {
-          userName: "good",
-          comment: "전 좋던데용 전 좋던데용 전 좋던데용 전 좋던데용",
-          date: "2022-03-22",
-        },
-      ],
-    },
-    {
-      userName: "hihi2",
-      comment:
-        "너무 재밌어요. 너무 재밌어요.너무 재밌어요.너무 재밌어요.너무 재밌어요.너무 재밌어요.너무 재밌어요.",
-      rating: 3.5,
-      date: "2022-03-22",
-      children: [
-        {
-          userName: "byebye2",
-          comment:
-            "전 별로던데용 전 별로던데용 전 별로던데용 전 별로던데용 전 별로던데용",
-          date: "2022-03-22",
-        },
-        {
-          userName: "good2",
-          comment: "전 좋던데용 전 좋던데용 전 좋던데용 전 좋던데용",
-          date: "2022-03-22",
-        },
-      ],
-    },
-  ];
 
   return (
+  <section>
+      <header className={styles.header}>
+        <h1 className={styles.poster}>1.POSTER</h1>
+        <h1 className={styles.movieinfo}>2 MOVIE_INFO</h1>
+        <p>제목</p>
+        <p>장르</p>
+        <p>출판/배급사</p>
+      
+        <p>출연진</p>
+        <p>줄거리</p>
+        <p>별점</p>
+      </header>
+      <main className={styles.main}>
+        <h2 className={styles.comment}>Comment</h2>
+    <Accordion/>
+    </main>
     <section className={styles.wrapper}>
       <h2>type=preview</h2>
       <Comment
@@ -128,6 +91,7 @@ const Detail = () => {
           </>
         );
       })}
+    </section>
     </section>
   );
 };

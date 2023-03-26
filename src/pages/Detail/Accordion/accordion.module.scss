@@ -1,0 +1,70 @@
+@use "../../../styles/mixins" as m;
+@use "../../../styles/constants" as c;
+
+//index
+.wrapper {
+  height: auto;
+  margin: auto;
+
+  align-items: center;
+  @include m.flex(center, center, column);
+
+  line-height: 150%;
+}
+
+.accordionItem {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+
+  color: c.$C_WHITE;
+  
+}
+
+.button {
+  background-color: c.$C_BACKGROUND;
+  border: 1px outset c.$C_BACKGROUND;
+
+  border-radius: 4px;
+  margin: 0px 0px 8px 8px;
+  padding: 0px 0px 0px 5px;
+  align-items: center;
+  @include m.flex(center, column);
+
+  font-size: 20px;
+  color: c.$C_WHITE;
+  &:hover,
+  &:active {
+    border: 1px inset c.$C_BACKGROUND;
+  }
+}
+
+.review_wrapper {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  transition: height ease 0.1s;
+  color: c.$C_WHITE;
+
+}
+
+//comment
+.child {
+  padding-left: 40px;
+  background-color: c.$C_RECOMMENT;
+
+  color: c.$C_WHITE;
+  margin-bottom: 8px;
+
+  .IShare {
+    width: 16px;
+    fill: c.$C_WHITE;
+    transform: rotate(180deg) rotateY(180deg);
+    margin-right: 8px;
+  }
+
+  .profileIcon {
+    padding: 8px;
+    font-size: 20px;
+  }
+}

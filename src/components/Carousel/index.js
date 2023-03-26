@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 
 import { CaretLeftIcon, CaretRightIcon } from "../../assets/icon";
-import data from "../../mock.json";
+import data from "../../mock_movie.json";
 import Poster from "../Poster";
 
 export const PrevArrow = (props) => {

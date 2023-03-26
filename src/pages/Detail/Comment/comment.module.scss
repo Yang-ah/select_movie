@@ -2,11 +2,11 @@
 @use "../../../styles/constants" as c;
 
 .wrap {
-  width: 80%;
+  width: 100%;
   color: c.$C_WHITE;
   padding: 16px;
   background-color: transparent;
-  // border: 1px solid white;
+  margin-bottom:10px;
 
   svg {
     margin-right: 2px;
@@ -16,7 +16,7 @@
     border: none;
     outline: none;
     background-color: transparent;
-    color: white;
+    color: c.$C_WHITE;
     cursor: pointer;
   }
 
@@ -34,9 +34,10 @@
   @include m.flex();
 
   > .profileIcon {
-    background-color: c.$C_WHITE_10;
+    background-color: pink;
+//    background-color: c.$C_WHITE_10;
     padding: 12px;
-    font-size: 32px;
+    font-size: 24px;
     border-radius: 50%;
     margin-right: 8px;
   }
@@ -45,7 +46,7 @@
     height: 100%;
 
     > .userName {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
       padding-bottom: 4px;
     }
@@ -74,8 +75,8 @@
     @include m.flex();
     column-gap: 8px;
     padding: 0 8px;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
+    border-left: 1px solid c.$C_WHITE;
+    border-right: 1px solid c.$C_WHITE;
 
     > button:hover {
       > svg {
@@ -89,7 +90,7 @@
 
     > svg {
       width: 16px;
-      fill: white;
+      fill: c.$C_WHITE;
       transition: 0.1s transform ease-in;
     }
   }
@@ -118,7 +119,7 @@
   // 대댓 icon
   .IShare {
     width: 16px;
-    fill: white;
+    fill: c.$C_WHITE;
     transform: rotate(180deg) rotateY(180deg);
     margin-right: 8px;
   }
@@ -146,10 +147,10 @@
 
 .preview {
   max-width: 420px;
-  background-color: white;
+  background-color: c.$C_WHITE;
   border-radius: c.$S_RADIUS;
   box-shadow: 2px 2px 4px 1px #333;
-  color: black;
+  color:c.$C_BLACK;
   .profileIcon {
     background-color: rgba(1, 1, 1, 0.1);
   }

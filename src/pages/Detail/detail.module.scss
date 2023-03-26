@@ -1,4 +1,32 @@
+@use "../../styles/constants/" as c;
 @use "../../styles/mixins" as m;
+
+.header {
+  background: url("../../mock.png") no-repeat local;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  padding: 10% 10%;
+
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.main {
+  width: 50%;
+  height: auto;
+  padding: 20px 4px;
+  margin: auto;
+  color: white;
+  line-height: 170%;
+}
+
+.comment {
+  font-size: 24px;
+  font-weight: 600;
+}
 
 .wrapper {
   @include m.flex(center, center, column);
