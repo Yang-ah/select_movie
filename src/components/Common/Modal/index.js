@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react';
 import styles from './modal.module.scss';
-import './modal.scss';
 
 import Button from '../Button';
-import { CSSTransition } from 'react-transition-group';
 
-const Modal = ({ view, setModalOpen, children, buttonChildren })=>{
+const Modal = ({ view,modalOpen, setModalOpen, children, buttonChildren })=>{
     // Modal 창을 useRef로 취득
     const modalRef = useRef(null);
     
@@ -31,12 +29,6 @@ const Modal = ({ view, setModalOpen, children, buttonChildren })=>{
         return null;
     }
     return (
-        <CSSTransition
-        in={view}
-        nodeRef={modalRef}
-        classNames='modal'
-        timeout={3000}
-        >
         <div className={styles.overlay}>
             <section ref={modalRef} className={styles.container}>
                 <header className={styles.title}>안내</header>
@@ -52,7 +44,6 @@ const Modal = ({ view, setModalOpen, children, buttonChildren })=>{
                 </footer>
             </section>
         </div>
-        </CSSTransition>
     );
 }
 export default Modal;
