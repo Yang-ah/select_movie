@@ -2,6 +2,14 @@
 
 .wrapper {
   @include m.flex(center, center, column);
-
   padding: 100px;
+  // test => 나중에 삭제 !!!
+  > h2 {
+    width: 100%;
+    color: white;
+    background-color: black;
+    font-size: 24px;
+    padding: 12px 0;
+    margin: 20px 0;
+  }
 }

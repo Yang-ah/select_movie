@@ -5,11 +5,28 @@
   width: 80%;
   color: c.$C_WHITE;
   padding: 16px;
-  background-color: black;
-  border: 1px solid white;
+  background-color: transparent;
+  // border: 1px solid white;
+
+  svg {
+    margin-right: 2px;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+  }
 
   > header {
-    @include m.flex(space-between);
+    @include m.flex(space-between, flex-start);
+    padding-bottom: 12px;
+  }
+
+  > .comment {
+    font-size: 16px;
   }
 }
 
@@ -24,14 +41,16 @@
     margin-right: 8px;
   }
 
-  > div {
+  > .profileText {
     height: 100%;
 
-    .userName {
+    > .userName {
       font-size: 24px;
+      font-weight: 600;
+      padding-bottom: 4px;
     }
 
-    .date {
+    > .date {
       font-size: 12px;
     }
   }
@@ -39,21 +58,64 @@
 
 .right {
   @include m.flex();
+  column-gap: 12px;
 
   > .rating {
     @include m.flex();
-    margin-right: 8px;
+    font-size: 20px;
+    font-weight: 600;
 
     > svg {
       width: 20px;
       fill: c.$C_STAR;
     }
   }
+  > .upDown {
+    @include m.flex();
+    column-gap: 8px;
+    padding: 0 8px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+
+    > button:hover {
+      > svg {
+        transform: translateY(-2px) scale(1.1);
+      }
+    }
+  }
+
+  button {
+    @include m.flex();
+
+    > svg {
+      width: 16px;
+      fill: white;
+      transition: 0.1s transform ease-in;
+    }
+  }
 }
 
-.child {
-  padding-left: 40px;
+.child,
+.preview {
+  button {
+    font-size: 12px;
+  }
 
+  .right {
+    > .upDown {
+      border-left: none;
+
+      svg {
+        width: 12px;
+      }
+    }
+  }
+
+  > .comment {
+    font-size: 14px;
+  }
+
+  // 대댓 icon
   .IShare {
     width: 16px;
     fill: white;
@@ -65,4 +127,35 @@
     padding: 8px;
     font-size: 20px;
   }
+
+  .profileText {
+    @include m.flex();
+
+    > .userName {
+      font-size: 20px;
+      font-weight: 600;
+      padding: 0;
+    }
+
+    .date {
+      font-size: 10px;
+      padding-left: 4px;
+    }
+  }
+}
+
+.preview {
+  max-width: 420px;
+  background-color: white;
+  border-radius: c.$S_RADIUS;
+  box-shadow: 2px 2px 4px 1px #333;
+  color: black;
+  .profileIcon {
+    background-color: rgba(1, 1, 1, 0.1);
+  }
+}
+
+.child {
+  background-color: c.$C_WHITE_10;
+  padding-left: 40px;
 }
