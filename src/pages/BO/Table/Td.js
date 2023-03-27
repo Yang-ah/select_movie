@@ -1,4 +1,5 @@
 import React from "react"
+import styles from './td.module.scss'
 
 const Td = ({item , handleRemove , handleEdit}) => {
     const onRemove = () =>{
@@ -11,7 +12,7 @@ const Td = ({item , handleRemove , handleEdit}) => {
 
     return(
         <>
-        <tr>
+        <tr className={styles.tdbody}>
             <td>{item.id}</td>
             <td>{item.name}</td>
             <td>{item.email}</td>

@@ -12,3 +12,4 @@ const CheckBox = ({ ...props }) => {
 };
 
 export default memo(CheckBox);
+

@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
+import styles from './br_modal.module.scss'
+
 
 const Br_Modal =({ selectedData , handleCancel , handleEditSubmit }) =>{
    
@@ -19,15 +21,15 @@ const Br_Modal =({ selectedData , handleCancel , handleEditSubmit }) =>{
         handleEditSubmit(edited);
     }
 
+
     return(
-        <div>
-            <div>
-                <div>
-                    <h3>고객 정보 수정하기</h3>
-                    <h3 onClick={onCancel}>cancel</h3>
+        <div >
+            <div className={styles.br_modal}>
+                <div className={styles.br_head}>
+                    <h3 className={styles.br_headText}>고객 정보 수정하기</h3>
                 </div>
                 <form onSubmit={onSubmitEdit}>
-                    <div>
+                    <div className={styles.br_content}>
                         <div>{edited.name}</div>
                         <div>Name : <input 
                         type='text'
@@ -50,9 +52,9 @@ const Br_Modal =({ selectedData , handleCancel , handleEditSubmit }) =>{
                         name='website'
                         value={edited.website}
                         onChange={onEditChange}/></div>
-                        <div>
-                            <button onClick={onCancel}>취소</button>
-                            <button type='submit'>수정</button>
+                        <div className={styles.br_buttonBox}>
+                            <button className={styles.br_cancelButton} onClick={onCancel}>취소</button>
+                            <button className={styles.br_deleteButton} type='submit'>수정</button>
                         </div>
                     </div>
                 </form>

@@ -3,6 +3,7 @@ import axios from 'axios'
 import Tr from './Tr'
 import Br_Modal from './Br_Modal'
 import styles from './board.module.scss'
+import MealChooseCard from "./MealChooseCard"
 
 
 const Board = ({bh_1,bh_2,bh_3,bh_4,bh_5,bh_6,bh_7}) =>{
@@ -72,9 +73,9 @@ const Board = ({bh_1,bh_2,bh_3,bh_4,bh_5,bh_6,bh_7}) =>{
         setModalOn(false);
     }
 
+
     return(
-        <div className={styles.br_container}>
-            <div></div>
+        <section className={styles.br_container}>
             <table className={styles.br_body}>
                 <thead className={styles.br_head}>
                     <tr>
@@ -91,7 +92,7 @@ const Board = ({bh_1,bh_2,bh_3,bh_4,bh_5,bh_6,bh_7}) =>{
             {modalOn && <Br_Modal selectedData={selected} handleCancel={handleCancel} handleEditSubmit={handleEditSubmit} />}
             </table>
 
-        </div>
+        </section>
     )
 
 }

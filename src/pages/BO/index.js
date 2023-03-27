@@ -1,3 +1,4 @@
+import CheckBox from './CheckBox';
 import Board from './Table'
 
 const BOPage = () => {
@@ -12,6 +13,7 @@ const BOPage = () => {
       bh_6={'평균평점'}
       bh_7={'좋아요수'}
       />
+      <CheckBox />
     </section>
   );
 };

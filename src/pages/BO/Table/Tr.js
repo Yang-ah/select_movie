@@ -1,4 +1,5 @@
 import React from "react";
+import MealChooseCard from "./MealChooseCard";
 import Td from "./Td"
 import styles from './tr.module.scss'
 
@@ -6,13 +7,16 @@ import styles from './tr.module.scss'
     
 const Tr = ({info, handleRemove , handleEdit}) =>{
     return(
-        <tbody className={styles.tr_content}>
+        <tbody>
             {
                 info.map(item =>{
                     return (
-                        <Td key={item.id} item={item} handleRemove={handleRemove}
+                        <>
+                        <div className={styles.tableBody}><Td key={item.id} item={item} handleRemove={handleRemove}
                         handleEdit={handleEdit} />
-                    )
+                        </div>
+                        </>
+                 )
                 })
             }
         </tbody>
