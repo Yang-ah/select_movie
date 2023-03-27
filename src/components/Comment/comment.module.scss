@@ -1,6 +1,8 @@
 @use "../../styles/mixins" as m;
 @use "../../styles/constants" as c;
 
+// width는 각 page에서 조절
+
 .wrap {
   min-width: 500px;
   color: c.$C_WHITE;
