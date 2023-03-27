@@ -3,7 +3,7 @@ import styles from './modal.module.scss';
 
 import Button from '../Button';
 
-const Modal = ({ view,modalOpen, setModalOpen, children, buttonChildren })=>{
+const Modal = ({ view,  setModalOpen, children, buttonChildren })=>{
     // Modal 창을 useRef로 취득
     const modalRef = useRef(null);
     
