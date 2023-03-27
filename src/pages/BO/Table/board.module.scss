@@ -1,0 +1,31 @@
+@use "../../../styles/constants" as c;
+@use "../../../styles/mixins" as m;
+
+.br_container{
+    @include m.flex();
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    color: white;
+}
+
+.br_head{
+    background-color: c.$C_ORANGE;
+    width : 100%;
+    color: c.$C_WHITE;
+}
+
+.br_body{
+    @include m.flex();
+    flex-direction: column;
+    background-color: c.$C_WHITE;
+    color: black;
+    height: 500px;
+    font-size: 20px;
+    
+}
+
+.br_content{
+    border : 1px solid black;
+    height: 100vh;
+}
