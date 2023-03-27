@@ -1,23 +1,15 @@
-@use "../../../styles/mixins" as m;
-@use "../../../styles/constants" as c;
+@use "../../styles/mixins" as m;
+@use "../../styles/constants" as c;
 
 .wrap {
-  width: 100%;
+  min-width: 500px;
   color: c.$C_WHITE;
   padding: 16px;
   background-color: transparent;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 
   svg {
     margin-right: 2px;
-  }
-
-  button {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: c.$C_WHITE;
-    cursor: pointer;
   }
 
   > header {
@@ -35,7 +27,7 @@
 
   > .profileIcon {
     background-color: pink;
-//    background-color: c.$C_WHITE_10;
+    //    background-color: c.$C_WHITE_10;
     padding: 12px;
     font-size: 24px;
     border-radius: 50%;
@@ -61,6 +53,20 @@
   @include m.flex();
   column-gap: 12px;
 
+  > .stars {
+    height: 60px;
+    padding: 20px 0;
+  }
+
+  &:not(.starsWrap) {
+    button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: c.$C_WHITE;
+      cursor: pointer;
+    }
+  }
   > .rating {
     @include m.flex();
     font-size: 20px;
@@ -77,21 +83,20 @@
     padding: 0 8px;
     border-left: 1px solid c.$C_WHITE;
     border-right: 1px solid c.$C_WHITE;
+    > button {
+      @include m.flex();
+
+      > svg {
+        width: 16px;
+        fill: c.$C_WHITE;
+        transition: 0.1s transform ease-in;
+      }
+    }
 
     > button:hover {
       > svg {
         transform: translateY(-2px) scale(1.1);
       }
-    }
-  }
-
-  button {
-    @include m.flex();
-
-    > svg {
-      width: 16px;
-      fill: c.$C_WHITE;
-      transition: 0.1s transform ease-in;
     }
   }
 }
@@ -146,11 +151,10 @@
 }
 
 .preview {
-  max-width: 420px;
   background-color: c.$C_WHITE;
   border-radius: c.$S_RADIUS;
   box-shadow: 2px 2px 4px 1px #333;
-  color:c.$C_BLACK;
+  color: c.$C_BLACK;
   .profileIcon {
     background-color: rgba(1, 1, 1, 0.1);
   }
@@ -159,4 +163,29 @@
 .child {
   background-color: c.$C_WHITE_10;
   padding-left: 40px;
+}
+
+// type = commentInput
+.commentInput {
+  .comment {
+    @include m.flex();
+    height: 160px;
+
+    > .inputWrap {
+      flex-grow: 1;
+      height: 100%;
+      @include m.flex();
+      padding: 12px;
+      font-size: 16px;
+    }
+    > button {
+      margin-left: 8px;
+      width: 120px;
+      height: 100%;
+      border-radius: 4px;
+      font-size: 20px;
+      padding: 32px;
+      font-weight: 600;
+    }
+  }
 }
