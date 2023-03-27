@@ -3,7 +3,7 @@ import styles from "./stars.module.scss";
 import { SolidStarHalfIcon } from "../../../assets/icon";
 import cx from "classnames";
 
-const Stars = ({ onClick: onClickProps }) => {
+const Stars = ({ onClick: onClickProps, className }) => {
   const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
   const [clickedStarIndex, setClickedStarIndex] = useState(0);
 
@@ -25,7 +25,7 @@ const Stars = ({ onClick: onClickProps }) => {
   };
 
   return (
-    <div className={styles.starRateContainer}>
+    <div className={cx(styles.starRateContainer, className)}>
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
         <button
           key={num}
