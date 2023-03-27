@@ -1,0 +1,82 @@
+/* Slider */
+.slider {
+  margin: 10px 20px;
+  font-size: 24px;
+}
+
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  &:focus {
+    outline: none;
+  }
+  &.dragging {
+    cursor: pointer;
+    cursor: hand;
+  }
+}
+
+.slick-track {
+  position: relative;
+  display: block;
+  margin: auto;
+
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+.slick-slide {
+  float: left;
+  min-height: 1px;
+}
+
+/* Arrow */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  line-height: 0px;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+
+  top: 45%;
+
+  padding: 0;
+  border: none;
+  outline: none;
+
+  &:before {
+    line-height: 1;
+    opacity: 1;
+  }
+
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+  }
+}
+
+.slick-prev {
+  left: -40px;
+}
+
+.slick-next {
+  right: -40px;
+}

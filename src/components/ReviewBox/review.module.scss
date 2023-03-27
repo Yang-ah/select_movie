@@ -1,0 +1,76 @@
+@use "../../styles/constants" as c;
+@use "../../styles/mixins" as m;
+.wrapper {
+  width: 100%;
+
+  margin: auto;
+  padding: 12px;
+
+  position: relative;
+  color: white;
+}
+
+.box {
+  background-color: c.$C_REVIEWBOX;
+  padding: 12px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card {
+  padding: 4px;
+
+  position: relative;
+}
+
+//카드
+.top {
+  @include m.flex(space-between, flex-start);
+  margin-bottom: 4px;
+}
+.left {
+  line-height: 24px;
+  .title {
+    font-size: 24px;
+  }
+  .date {
+    font-size: 12px;
+  }
+}
+.rating {
+  @include m.flex();
+  font-size: 20px;
+  .star {
+    background-color: none;
+    fill: c.$C_STAR;
+    height: 20px;
+  }
+}
+
+.comment {
+  font-size: 16px;
+  max-height: 120px;
+  overflow-y: hidden;
+  margin-bottom: 16px;
+}
+
+.bottom {
+  > .upDown {
+    @include m.flex();
+    float: right;
+    column-gap: 16px;
+    padding: 0 12px;
+  }
+
+  .up,
+  .down {
+    @include m.flex();
+    font-size: 16px;
+    > svg {
+      width: 16px;
+      fill: white;
+      transition: 0.1s transform ease-in;
+    }
+  }
+}
