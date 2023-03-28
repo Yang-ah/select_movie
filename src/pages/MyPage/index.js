@@ -5,6 +5,7 @@ import Info from "./InfoBox";
 import { MyCarousel } from "../../components/Carousel";
 import Comment from "./CommentBox";
 
+
 const MyPage = () => {
   return (
     <section className={styles.wrap}>
