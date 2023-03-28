@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-
+import "./carousel.scss";
 import {
   CaretLeftIcon,
   CaretRightIcon,
@@ -8,6 +8,7 @@ import {
   ChevronRightIcon,
 } from "../../assets/icon";
 import mdata from "../../mock_movie.json";
+
 import PosterH from "../PosterH";
 import PosterM from "../PosterM";
 
