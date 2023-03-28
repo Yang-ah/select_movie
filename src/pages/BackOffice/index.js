@@ -1,4 +1,4 @@
-const BOPage = () => {
+const BackOffice = () => {
   return (
     <section>
       <div>관리자화면</div>
@@ -6,4 +6,4 @@ const BOPage = () => {
   );
 };
 
-export default BOPage;
+export default BackOffice;
