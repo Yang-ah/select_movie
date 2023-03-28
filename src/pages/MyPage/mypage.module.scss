@@ -1,14 +1,18 @@
 @use "../../styles/constants/" as c;
 
-.wrapper {
+.wrap {
   background-color: c.$C_BACKGROUND;
+  margin: 20px 160px;
+
   color: c.$C_WHITE;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 32px;
+
+  .logo {
+    font-size: 30px;
+  }
 }
-.contents {
-  padding: 20px 80px;
-}
+
 .sectionBody {
   width: 500px;
 }
