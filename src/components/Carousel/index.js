@@ -8,9 +8,8 @@ import {
   ChevronRightIcon,
 } from "../../assets/icon";
 import mdata from "../../mock_movie.json";
-import cdata from "../ReviewBox/mock_comment.json";
-import Poster from "../Poster";
-import Review from "../ReviewBox";
+import PosterH from "../PosterH";
+import PosterM from "../PosterM";
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -22,6 +21,26 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
+export const RankingCarousel = () => {
+  const settings = {
+    dot: false,
+    arrow: false,
+    infinite: false,
+    speed: 600, //다음 스피드
+    slidesToShow: 8, //몇개씩 보여줌?
+    slidesToScroll: 7, //몇개씩 넘어감?
+    prevArrow: <CaretLeftIcon />,
+    nextArrow: <CaretRightIcon />,
+  };
+
+  return (
+    <Slider {...settings}>
+      {mdata.map((movie) => (
+        <PosterH movie={movie} />
+      ))}
+    </Slider>
+  );
+};
 export const HomeCarousel = () => {
   const settings = {
     dot: false,
@@ -37,7 +56,7 @@ export const HomeCarousel = () => {
   return (
     <Slider {...settings}>
       {mdata.map((movie) => (
-        <Poster movie={movie} />
+        <PosterH movie={movie} />
       ))}
     </Slider>
   );
@@ -48,16 +67,16 @@ export const MyCarousel = () => {
     arrow: false,
     infinite: false,
     speed: 600, //다음 스피드
-    slidesToShow: 8, //몇개씩 보여줌?
-    slidesToScroll: 7, //몇개씩 넘어감?
+    slidesToShow: 6, //몇개씩 보여줌?
+    slidesToScroll: 4, //몇개씩 넘어감?
     prevArrow: <ChevronLeftIcon />,
     nextArrow: <ChevronRightIcon />,
   };
 
   return (
     <Slider {...settings}>
-      {cdata.map((review) => (
-        <Review review={review} />
+      {mdata.map((movie) => (
+        <PosterM movie={movie} />
       ))}
     </Slider>
   );
