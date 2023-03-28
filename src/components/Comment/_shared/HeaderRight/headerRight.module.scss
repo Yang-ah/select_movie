@@ -1,0 +1,12 @@
+@use "../../../../styles/mixins" as m;
+@use "../../../../styles/constants" as c;
+
+.right {
+  @include m.flex();
+  column-gap: 12px;
+
+  > .stars {
+    height: 60px;
+    padding: 20px 0;
+  }
+}
