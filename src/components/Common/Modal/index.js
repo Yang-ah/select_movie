@@ -36,7 +36,8 @@ const Modal = ( {modalOpen1, setModalOpen, children, buttonChildren, ...props} )
             enterDone: styles.modalEnterDone,
             exitActive: styles.modalExit,
             exitDone: styles.modalExitActive
-            }}>
+            }}
+            unmountOnExit>
         <div className={styles.overlay}>
             <section ref={modalRef} className={styles.container}>
                 <header className={styles.title}>안내</header>
