@@ -13,7 +13,11 @@ const Header = () => {
       </Link>
 
       <div className={styles.right}>
-        <SearchInput option="iconLocation" className={styles.searchInput} />
+        <SearchInput
+          option="iconLocation"
+          className={styles.searchInput}
+          placeholder="검색어를 입력하세요."
+        />
         <Link to="/auth/login">
           <Button children={"로그인"} className={styles.headerSign} />
         </Link>
