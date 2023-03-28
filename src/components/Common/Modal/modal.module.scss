@@ -53,7 +53,7 @@
     margin-bottom: 10px;
 }
 
-  .cancleButton{
+  .cancelButton{
     background-color: c.$C_WHITE;
     color: black;
     box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
@@ -62,3 +62,22 @@
     box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
   }
 
+  //CSSTransition
+.modalEnterActive {
+  opacity: 0;
+  transform: scale(1.1);
+}
+.modalEnterDone {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.modalExit {
+  opacity: 1;
+  transform: scale(1);
+}
+.modalExitActive {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
