@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "./login.module.scss";
 import {Link } from "react-router-dom";
-
+import Input from "../../../components/Common/Input";
+import Button from "../../../components/Common/Button";
 const Login = () => {
 
   const [form, setForm] = useState({
@@ -27,34 +28,32 @@ const Login = () => {
           className={styles.loginForm}
           onSubmit={onSubmit}
         >
-          <label className={styles.inputWrapper}>
-            <p>아이디</p>
-            <input
-              placeholder="아이디를 입력해주세요."
-              name="userId"
-              value={form.userId}
-              onChange={onChange}
+          <Input
+            //className={styles.inputClass}
+            label='이메일'
+            //errorText='아이디에러시메세지'
+            onChange={onChange}
+            placeholder="이메일을 입력해주세요."
+            name="userId"
+            value={form.userId}
             />
-          </label>
-          <label className={styles.inputWrapper}>
-            <p>비밀번호</p>
-            <input
-              type="password"
-              placeholder="비밀번호를 입력해주세요."
-              name="password"
-              value={form.password}
-              onChange={onChange}
+            <Input
+            label='비밀번호'
+            //errorText='아이디에러시메세지'
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            name="password"
+            value={form.password}
+            onChange={onChange}
             />
-          </label>
           <Link to='/auth/register' style={{ textDecoration: "none" }}>
             <p className={styles.registerLink}>회원가입</p></Link>
-          <button
+          <Button
             className={styles.submitButton}
+            children={'로그인'}
             type="submit"
             form="loginForm"
-          >
-            로그인
-          </button>
+            />
         </form>
       </section>
     </main>
