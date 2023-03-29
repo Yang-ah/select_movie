@@ -62,6 +62,7 @@ export const HomeCarousel = () => {
     </Slider>
   );
 };
+
 export const MyCarousel = () => {
   const settings = {
     dot: false,

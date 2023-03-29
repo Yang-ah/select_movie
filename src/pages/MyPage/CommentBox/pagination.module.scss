@@ -12,22 +12,27 @@
 
 //comment
 .main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // flex-direction: row;
+  //NOTE: display flex -> grid => 바둑판식으로 디자인
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
 
   line-height: 160%;
   animation-delay: 0.3ms;
 }
 .box {
-  margin: 12px;
+  // margin: 12px;
   padding: 20px;
+  height: 360px;
 
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   background-color: c.$C_REVIEWBOX;
-  max-width: 16%;
+  // max-width: 16%;
   border-radius: 12px;
 }
 //comment
