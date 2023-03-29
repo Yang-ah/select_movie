@@ -3,7 +3,8 @@ import cx from "classnames";
 import { ChevronDown } from "../../../assets/icon";
 import styles from "./dropdown.module.scss";
 
-const Dropdown = ({ className, items, valueKey, value, onClick }) => {
+// items: string[]
+const Dropdown = ({ className, items, value, onClick }) => {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -39,8 +40,8 @@ const Dropdown = ({ className, items, valueKey, value, onClick }) => {
       <menu className={cx(styles.itemsWrapper, { [styles.isOpen]: isOpen })}>
         {items.map((item) => {
           return (
-            <li className={styles.item} onClick={onClick(item)}>
-              {item[valueKey]}
+            <li className={styles.item} onClick={() => onClick(item)}>
+              {item}
             </li>
           );
         })}

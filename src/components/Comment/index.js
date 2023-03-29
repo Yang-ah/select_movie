@@ -4,6 +4,7 @@ import Button from "../Common/Button";
 
 import { HeaderLeft, HeaderRight } from "./_shared";
 
+// type : commentInput(디테일 리뷰 입력), comment(리뷰), child(댓글), preview(미리보기)
 const Comment = ({
   comment,
   userName,
