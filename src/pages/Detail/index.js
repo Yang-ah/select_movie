@@ -8,7 +8,6 @@ import { getMoviesTop } from "../../api/Movies";
 
 const Detail = () => {
   const [movies, setMovies] = useState([]);
-
   const setMovieData = async () => {
     const response = await getMoviesTop();
     console.log({ response });
