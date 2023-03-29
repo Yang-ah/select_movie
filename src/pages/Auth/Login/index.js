@@ -6,6 +6,7 @@ import Input from "../../../components/Common/Input";
 
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../api/Auth";
+import { isValidateEmail } from "../../../utils";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,6 +23,14 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if(!form.userId){return alert('이메일을 입력하세요')}
+    if (!isValidateEmail(form.userId)) {
+      alert("이메일 형식이 올바르지 않습니다.");
+      return;
+    }//이메일 양식 확인
+    if(!form.password){return alert('비밀번호를 입력하세요')}
+
     const { userId, password } = form;
     //NOTE: 로그인 API 호출
     const response = await login({
@@ -37,6 +46,7 @@ const Login = () => {
 
       navigate("/");
     }
+    
   };
 
   return (

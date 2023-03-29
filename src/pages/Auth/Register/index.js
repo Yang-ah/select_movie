@@ -30,11 +30,18 @@ const Register = () => {
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-
+    if(!form.userId){return alert('이메일을 입력하세요')}
     if (!isValidateEmail(form.userId)) {
       alert("이메일 형식이 올바르지 않습니다.");
       return;
     }
+    if(!form.password){return alert('비밀번호를 입력하세요')}
+    if(form.password !== form.passwordCheck){return alert('비밀번호가 다릅니다')}
+    if(!form.userName){return alert('이름을 입력하세요')}
+    if(!form.userBirth){return alert('생일을 입력하세요')}
+    if(form.userBirth.length !== 6 ){return alert('생년월일을 입력해주세요')}
+    if(!form.userNickName){return alert('닉네임을 입력하세요')}
+
 
     const registerApi = onGetRegisterApi();
     let body = {
@@ -49,7 +56,11 @@ const Register = () => {
     if (response.status === 200) {
       const data = response.data;
       saveTokens(data);
-      navigate("/");
+      navigate("/auth/login");
+    }
+    if (response.statusCode === 409){
+      console.log('err409')
+      alert('이미 존재하는 이메일입니다.');
     }
   };
 
@@ -107,7 +118,7 @@ const Register = () => {
           label='생일'
           //errorText='아이디에러시메세지'
           onChange={onChange}
-          placeholder="생일을 입력해주세요."
+          placeholder="YYMMDD"
           name="userBirth"
           value={form.userBirth}
           />
