@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Slider from "react-slick";
-import styles from "./ranking.module.scss";
-import "./ranking.module.scss";
-import mdata from "../../mock_movie.json";
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import styles from './ranking.module.scss';
+import './ranking.module.scss';
+import mdata from '../../mock_movie.json';
 
 export const RankingCarousel = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const settings = {
-    className: "center",
+    className: 'center',
     centerMode: true,
-    centerPadding: "0px",
+    centerPadding: '0px',
     dot: false,
     arrow: false,
     infinite: true,
@@ -28,7 +28,7 @@ export const RankingCarousel = () => {
         <Slider {...settings}>
           {mdata.map((movie, i) => (
             <div
-              className={i === slideIndex ? "slide slide:active" : "slide"}
+              className={i === slideIndex ? 'slide slide:active' : 'slide'}
               key={i}
             >
               <div className={styles.box}>
