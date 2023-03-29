@@ -4,6 +4,7 @@ import MovieList from "./MovieList";
 import Modal from "./Modal";
 import mdata from './movie.json'
 import styles from './preview.module.scss'
+import { HomeCarousel } from "../../components/Carousel";
 
 const Preview = () => {
 
@@ -24,7 +25,8 @@ const Preview = () => {
     }
 
   return (
-    <>
+    <main>
+        <HomeCarousel onOpen={onOpen} />
     <div className={styles.previewBody}>
         <MovieView movieInfo={movieInfo} onOpen={onOpen} />
         <MovieList data={data} onOver={onOver}/>
@@ -32,7 +34,7 @@ const Preview = () => {
         {
             isShow && <Modal onClose={onClose} movieInfo={movieInfo}/>
         }
-    </>
+    </main>
   );
 };
 

@@ -8,11 +8,11 @@ const Modal = ({onClose,movieInfo}) => {
     const {thumbUrl,movieNm,endYearDate,watchGradeNm,showTs,
         repNationCd,genre,synop} = movieInfo;
 
-
     return (
-        <div style={{backgroundImage : {thumbUrl}}} className={styles.modal}>
+        <div className={styles.modal}>
             <div className={styles.bg}></div>
             <div className={styles.popup}>
+                <img className={styles.popupBackground} src={thumbUrl} alt={movieNm} />
                 <div 
                 className={styles.popupBody}>
                     <div>
@@ -33,10 +33,11 @@ const Modal = ({onClose,movieInfo}) => {
                          </div>
                     </div>
                 <p className={styles.close} onClick={onClose}>
-                    X
-                </p> 
+                x
+                </p>
+                <div className={styles.commentHead}>c o m m e n t</div>
                 <Comment
-                    className={styles.Comment}
+                    className={styles.comment}
                     type="preview"
                     key={dummy[0].userName + "2"}
                     userName={dummy[0].userName}
@@ -44,6 +45,16 @@ const Modal = ({onClose,movieInfo}) => {
                     // date={dummy[0].date} TODO : 넣을지 상의
                     rating={dummy[0].rating}
                     />
+                    <Comment
+                    className={styles.comment}
+                    type="preview"
+                    key={dummy[0].userName + "2"}
+                    userName={dummy[0].userName}
+                    comment={dummy[0].comment}
+                    // date={dummy[0].date} TODO : 넣을지 상의
+                    rating={dummy[0].rating}
+                    />
+                
             </div>
         </div>
     );
