@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./detail.module.scss";
-
 import mdata from "../../mock_movie.json";
 import Button from "../../components/Common/Button";
 import { HeartIcon, SolidBookmarkIcon } from "../../assets/icon";
