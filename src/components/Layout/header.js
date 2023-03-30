@@ -6,12 +6,12 @@ import { Button, SearchInput } from "../Common";
 
 //recoil
 import { useRecoilState } from 'recoil';
-import { isLogin } from "../../atom";
+import { isLoginAtom } from "../../atom";
 
 // 인라인 스타일링 지양! 유지보수 어렵.
 const Header = () => {
-
-const [isLogin, setIsLogin] = useRecoilState(isLogin);
+//recoil
+const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
 
   return (
     <header className={styles.wrap}>
@@ -21,9 +21,16 @@ const [isLogin, setIsLogin] = useRecoilState(isLogin);
 
       <div className={styles.right}>
         <SearchInput option="iconLocation" className={styles.searchInput} />
+        {!isLogin &&
         <Link to="/auth/login">
           <Button children={"로그인"} className={styles.headerSign} />
         </Link>
+        }
+        {isLogin &&
+        <Link to="/my">
+          <Button children={"마이페이지"} className={styles.headerSign} />
+        </Link>
+        }
       </div>
     </header>
   );

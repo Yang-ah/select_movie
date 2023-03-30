@@ -10,10 +10,13 @@ import { isValidateEmail } from "../../../utils";
 
 //recoil
 import { useRecoilState } from 'recoil';
-import { isLogin } from "../../atom";
+import { isLoginAtom } from '../../../atom';
 
 const Login = () => {
   const navigate = useNavigate();
+  
+  //recoil
+  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
 
   const [form, setForm] = useState({
     userId: "",
@@ -24,8 +27,6 @@ const Login = () => {
     userId: '',
     password: '',
   });
-
-  const [isLogin, setIsLogin] = useState(false);
 
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -57,7 +58,7 @@ const Login = () => {
 
       //TODO: header 로그인 버튼 마이페이지 버튼으로 바꾸기
       //state 상태를 넘겨 줘야함
-      
+      setIsLogin(true);
       navigate("/");
     }
     
