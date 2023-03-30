@@ -18,6 +18,15 @@ const Register = () => {
     userNickName: "",
   });
 
+  const [err, setErr] = useState({
+    userId: '',
+    password: '',
+    passwordCheck : '',
+    userName: '',
+    userBirth: '',
+    userNickName: '',
+  });
+
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
@@ -30,28 +39,47 @@ const Register = () => {
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-
+    if(!form.userId){
+      return setErr({...err,userId:'이메일을 입력해주세요'})}
     if (!isValidateEmail(form.userId)) {
-      alert("이메일 형식이 올바르지 않습니다.");
-      return;
-    }
-
-    const registerApi = onGetRegisterApi();
-    const body = {
-      email: form.userId,
-      password: form.password,
-      name: form.userName,
-      birth: form.userBirth,
-      nickname: form.userNickName,
+      return setErr({...err,userId:'이메일 양식이 틀립니다'})}
+    if(!form.password){ 
+      return setErr({...err,userId:'', password:'비밀번호를 입력해주세요'})}
+    if(form.password !== form.passwordCheck){
+      return setErr({...err,password:'', passwordCheck:'비밀번호가 다릅니다'})}
+    if(!form.userName){
+      return setErr({...err,passwordCheck:'', userName:'이름을 입력해주세요'})}
+    if(!form.userBirth){
+      return setErr({...err,userName:'', userBirth:'생년월일을 입력해주세요'})}
+    if(form.userBirth.length !== 6 ){
+      return setErr({...err, userBirth:'6자리로 입력해주세요'})}
+    if(!form.userNickName){
+      return setErr({...err,userBirth:'', userNickName:'닉네임을 입력해주세요'})}
+    
+    let body = {
+      email : form.userId,
+      password : form.password,
+      name : form.userName,
+      birth : form.userBirth,
+      nickname : form.userNickName,
     };
 
+    const registerApi = onGetRegisterApi();
     const response = await registerApi(body);
     if (response.status === 200) {
       const data = response.data;
       saveTokens(data);
-      navigate("/");
+      navigate("/auth/login");
     }
+    //TODO: 서버에서 주는 에러 메세지 띄우기 
+    /*{
+    "statusCode": 409,
+    "timestamp": "2023-03-29T05:54:14.480Z",
+    "path": "/auth/register",
+    "message": "이미 존재하는 이메일입니다."
+    }*/
   };
+  
 
   return (
     <main className={styles.wrapper}>
@@ -63,63 +91,63 @@ const Register = () => {
           onSubmit={onSubmit}
         >
           <Input
-            className={styles.inputClass}
-            label="이메일"
-            //errorText='아이디에러시메세지'
-            onChange={onChange}
-            placeholder="이메일을 입력해주세요."
-            name="userId"
-            value={form.userId}
-            autoComplete="off"
+          className={styles.inputClass}
+          label='이메일'
+          errorText={!!err.userId && err.userId}
+          onChange={onChange}
+          placeholder="이메일을 입력해주세요."
+          name="userId"
+          value={form.userId}
+          autoComplete="off"
           />
           <Input
-            className={styles.inputClass}
-            label="비밀번호"
-            //errorText='아이디에러시메세지'
-            type="password"
-            placeholder="비밀번호를 입력해주세요."
-            name="password"
-            value={form.password}
-            onChange={onChange}
-            autoComplete="off"
+          className={styles.inputClass}
+          label='비밀번호'
+          errorText={!!err.password && err.password}
+          type="password"
+          placeholder="비밀번호를 입력해주세요."
+          name="password"
+          value={form.password}
+          onChange={onChange}
+          autoComplete="off"
           />
           <Input
-            className={styles.inputClass}
-            label="비밀번호 확인"
-            //errorText='아이디에러시메세지'
-            type="password"
-            placeholder="비밀번호를 다시 입력해주세요."
-            name="passwordCheck"
-            value={form.passwordCheck}
-            onChange={onChange}
-            autoComplete="off"
+          className={styles.inputClass}
+          label='비밀번호 확인'
+          errorText={!!err.passwordCheck && err.passwordCheck}
+          type="password"
+          placeholder="비밀번호를 다시 입력해주세요."
+          name="passwordCheck"
+          value={form.passwordCheck}
+          onChange={onChange}
+          autoComplete="off"
           />
           <Input
-            className={styles.inputClass}
-            label="이름"
-            //errorText='아이디에러시메세지'
-            onChange={onChange}
-            placeholder="이름을 입력해주세요."
-            name="userName"
-            value={form.userName}
+          className={styles.inputClass}
+          label='이름'
+          errorText={!!err.userName && err.userName}
+          onChange={onChange}
+          placeholder="이름을 입력해주세요."
+          name="userName"
+          value={form.userName}
           />
           <Input
-            className={styles.inputClass}
-            label="생일"
-            //errorText='아이디에러시메세지'
-            onChange={onChange}
-            placeholder="생일을 입력해주세요."
-            name="userBirth"
-            value={form.userBirth}
+          className={styles.inputClass}
+          label='생일'
+          errorText={!!err.userBirth && err.userBirth}
+          onChange={onChange}
+          placeholder="YYMMDD"
+          name="userBirth"
+          value={form.userBirth}
           />
           <Input
-            className={styles.inputClass}
-            label="닉네임"
-            //errorText='아이디에러시메세지'
-            onChange={onChange}
-            placeholder="닉네임을 입력해주세요."
-            name="userNickName"
-            value={form.userNickName}
+          className={styles.inputClass}
+          label='닉네임'
+          errorText={!!err.userNickName && err.userNickName}
+          onChange={onChange}
+          placeholder="닉네임을 입력해주세요."
+          name="userNickName"
+          value={form.userNickName}
           />
 
           <button
@@ -132,6 +160,7 @@ const Register = () => {
       </section>
     </main>
   );
+
 };
 
 export default Register;
