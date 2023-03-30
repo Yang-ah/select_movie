@@ -5,18 +5,17 @@ import dummy from "../../mock_comment.json";
 
 import styles from './modal.module.scss'
 
+import { CSSTransition } from 'react-transition-group';
  
-const Modal = ({movieInfo , onModalClose}) => {
+const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow}) => {
 
-    const modalRef = useRef(null);
-
-
+    const modalRef1 = useRef(null);
 
     useEffect(() => {
         const handler = (event) => {
             // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
-                onModalClose();
+            if (modalRef1.current && !modalRef1.current.contains(event.target)) {
+                setIsShow(false);
             }
         };
         // 이벤트 핸들러 등록
@@ -26,10 +25,20 @@ const Modal = ({movieInfo , onModalClose}) => {
         document.removeEventListener('mousedown', handler);
         };
     });
- 
+    
     return (
+        <CSSTransition
+            in={isShow}
+            timeout={300}
+            classNames={{
+            enterActive: styles.modalEnterActive,
+            enterDone: styles.modalEnterDone,
+            exitActive: styles.modalExit,
+            exitDone: styles.modalExitActive
+            }}
+            unmountOnExit>
         <div
-        ref={modalRef} 
+        ref={modalRef1} 
         className={styles.modal}>
             <div className={styles.bg}></div>
             <div className={styles.popup}>
@@ -74,7 +83,8 @@ const Modal = ({movieInfo , onModalClose}) => {
                 
             </div>
         </div>
+        </CSSTransition>
     );
 };
  
-export default Modal;
+export default Modal1;
