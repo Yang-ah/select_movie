@@ -1,41 +1,58 @@
-import React from 'react';
-import Comment from '../../components/Comment';
-import styles from './modal.module.scss'
-import dummy from "../../mock_comment.json";
- 
-const Modal = ({onClose,movieInfo}) => {
- 
-    const {thumbUrl,movieNm,endYearDate,watchGradeNm,showTs,
-        repNationCd,genre,synop} = movieInfo;
+import React, { useEffect, useRef } from 'react';
 
+import Comment from '../../components/Comment';
+import dummy from "../../mock_comment.json";
+
+import styles from './modal.module.scss'
+
+ 
+const Modal = ({movieInfo , onModalClose}) => {
+
+    const modalRef = useRef(null);
+
+
+
+    useEffect(() => {
+        const handler = (event) => {
+            // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                onModalClose();
+            }
+        };
+        // 이벤트 핸들러 등록
+        document.addEventListener('mousedown', handler);
+        return () => {
+        // 이벤트 핸들러 해제
+        document.removeEventListener('mousedown', handler);
+        };
+    });
+ 
     return (
-        <div className={styles.modal}>
+        <div
+        ref={modalRef} 
+        className={styles.modal}>
             <div className={styles.bg}></div>
             <div className={styles.popup}>
-                <img className={styles.popupBackground} src={thumbUrl} alt={movieNm} />
+                <img className={styles.popupBackground} src={movieInfo.postImage} alt={movieInfo.title} />
                 <div 
                 className={styles.popupBody}>
                     <div>
-                     <img className={styles.thumbUrl} src={thumbUrl} alt={movieNm}/>
+                     <img className={styles.thumbUrl} src={movieInfo.postImage} alt={movieInfo.title} />
                     </div>
                         <div>
                              <ul>
                                 <div className={styles.popupMainContent}>
-                                <li><h1 className={styles.popupMainHead}>{movieNm}</h1></li>
-                                <li>{endYearDate} {genre} {repNationCd}</li>
+                                <li><h1 className={styles.popupMainHead}>{movieInfo.title}</h1></li>
                                 </div>
                                 <div className={styles.popupSubHead }>
-                                <p className={styles.popupSubContent}>{synop}</p>
-                                <br/>#{showTs} #{genre} #{watchGradeNm}
-                                 #{genre} #{endYearDate}
                                 </div>
                             </ul>
                          </div>
-                    </div>
-                <p className={styles.close} onClick={onClose}>
+                    </div>   
+                <div className={styles.commentHead}>c o m m e n t</div>
+                <p className={styles.close} onClick={onModalClose}>
                 x
                 </p>
-                <div className={styles.commentHead}>c o m m e n t</div>
                 <Comment
                     className={styles.comment}
                     type="preview"
