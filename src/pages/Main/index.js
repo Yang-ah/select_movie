@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MainCarousel from "./MainCarousel";
 import hdata from '../../mock_movie.json';
-import Modal from "./Modal";
+import Modal1 from "./Modal";
 
 const Main = () =>{
 
@@ -26,11 +26,12 @@ const Main = () =>{
         <div>
           <MainCarousel movieInfo={movieInfo} movies={movies} onModalClick={onModalClick} onOver={onOver} />
         </div>
-              {isShow &&(
-                <Modal onModalClose={onModalClose} movieInfo={movieInfo} 
-                modalOpen1={isShow} setIsShow={setIsShow}>
-                </Modal>
-              )} 
+                <Modal1 
+                setIsShow={setIsShow} isShow={isShow}
+                onModalClose={onModalClose} movieInfo={movieInfo}>
+                </Modal1>
+              
+
       </main>
     )
 }

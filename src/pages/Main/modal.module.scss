@@ -101,7 +101,7 @@
   .modalEnterDone {
     opacity: 1;
     transform: scale(1);
-    transition: opacity 3300ms, transform 3300ms;
+    transition: opacity 300ms, transform 300ms;
   }
   .modalExit {
     opacity: 1;
@@ -110,5 +110,5 @@
   .modalExitActive {
     opacity: 0;
     transform: scale(0.9);
-    transition: opacity 3300ms, transform 3300ms;
+    transition: opacity 300ms, transform 300ms;
   }
