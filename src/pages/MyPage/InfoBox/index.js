@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./info.module.scss";
 
-import cdata from "../../../mock_review.json";
-import gdata from "../../../mock_grade.json";
 import Stars from "../../../components/Common/Stars";
 import { SettingIcon } from "../../../assets/icon";
 
