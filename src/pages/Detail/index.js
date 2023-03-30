@@ -33,7 +33,6 @@ const Detail = () => {
             <div className={styles.leftWrap}>
               <img src={mdata[0].postImage} alt="headerPoster" />
               <div className={styles.buttonWrap}>
-                {/* // TODO: 비어있는 북마크 아이콘 구해오기 => state에 따라 아이콘 변경*/}
                 {/* // TODO: mouse event 추가(hover) */}
 
                 <Button
