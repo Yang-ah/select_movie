@@ -11,6 +11,7 @@ const Poster = ({movie , onModalClick , onOver}) => {
       <div className={styles.box} >
         <div className={styles.card} onClick={onModalClick} onMouseOver={()=>onOver(id)}>
           <img className={styles.media} src={postImage} alt={title} />
+          <p className={styles.aver}>평점 6.0</p>
         </div>
       </div>
     </div>

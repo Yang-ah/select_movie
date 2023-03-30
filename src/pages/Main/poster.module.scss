@@ -15,6 +15,21 @@
   .card {
     padding: 4px;
     position: relative;
+    
+    &:hover .aver{
+      font-size: 40px;
+      transition: .5s;
+      transform: translateY(-50px);
+    }
+
+    .aver{
+      position: absolute;
+      font-size: 25px;
+      margin-top : -35px;
+      margin-left: 10px;
+      z-index: 999;
+      cursor: pointer;
+    }
   }
   //카드
   .media {
@@ -45,5 +60,7 @@
         opacity: 0.5;
       }
     }
+
+
   }
 }

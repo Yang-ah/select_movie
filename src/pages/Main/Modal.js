@@ -4,13 +4,12 @@ import Comment from '../../components/Comment';
 import dummy from "../../mock_comment.json";
 
 import styles from './modal.module.scss'
+import { CSSTransition } from 'react-transition-group';
 
  
-const Modal = ({movieInfo , onModalClose}) => {
+const Modal = ({ modalOpen1 , movieInfo , onModalClose}) => {
 
     const modalRef = useRef(null);
-
-
 
     useEffect(() => {
         const handler = (event) => {
@@ -28,10 +27,19 @@ const Modal = ({movieInfo , onModalClose}) => {
     });
  
     return (
+        <CSSTransition
+            in={modalOpen1}
+            timeout={3300}
+            classNames={{
+            enterActive: styles.modalEnterActive,
+            enterDone: styles.modalEnterDone,
+            exitActive: styles.modalExit,
+            exitDone: styles.modalExitActive
+            }}
+            unmountOnExit>
         <div
         ref={modalRef} 
         className={styles.modal}>
-            <div className={styles.bg}></div>
             <div className={styles.popup}>
                 <img className={styles.popupBackground} src={movieInfo.postImage} alt={movieInfo.title} />
                 <div 
@@ -53,6 +61,7 @@ const Modal = ({movieInfo , onModalClose}) => {
                 <p className={styles.close} onClick={onModalClose}>
                 x
                 </p>
+                
                 <Comment
                     className={styles.comment}
                     type="preview"
@@ -74,6 +83,7 @@ const Modal = ({movieInfo , onModalClose}) => {
                 
             </div>
         </div>
+        </CSSTransition>
     );
 };
  
