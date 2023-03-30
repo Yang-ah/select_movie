@@ -1,0 +1,26 @@
+@use "../../../styles/constants" as c;
+@use "../../../styles/mixins" as m;
+
+.header {
+  @include m.flex(space-between);
+  margin-bottom: 20px;
+  > .mainTitle {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .searchInput {
+    width: 400px;
+  }
+  > button {
+    @include m.flex(space-between);
+    width: 76px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+
+    > svg {
+      width: 18px;
+      fill: white;
+    }
+  }
+}
