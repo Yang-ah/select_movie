@@ -4,8 +4,15 @@ import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
 import { Button, SearchInput } from "../Common";
 
+//recoil
+import { useRecoilState } from 'recoil';
+import { isLogin } from "../../atom";
+
 // 인라인 스타일링 지양! 유지보수 어렵.
 const Header = () => {
+
+const [isLogin, setIsLogin] = useRecoilState(isLogin);
+
   return (
     <header className={styles.wrap}>
       <Link to="/">
