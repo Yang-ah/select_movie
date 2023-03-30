@@ -16,6 +16,11 @@ const Login = () => {
     password: "",
   });
 
+  const [err, setErr] = useState({
+    userId: '',
+    password: '',
+  });
+
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
@@ -24,12 +29,12 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if(!form.userId){return alert('이메일을 입력하세요')}
+    if(!form.userId){
+      return setErr({...err,userId:'이메일을 입력해주세요'})}
     if (!isValidateEmail(form.userId)) {
-      alert("이메일 형식이 올바르지 않습니다.");
-      return;
-    }//이메일 양식 확인
-    if(!form.password){return alert('비밀번호를 입력하세요')}
+      return setErr({...err,userId:'이메일 양식이 틀립니다'})}
+    if(!form.password){ 
+      return setErr({...err,userId:'', password:'비밀번호를 입력해주세요'})}
 
     const { userId, password } = form;
     //NOTE: 로그인 API 호출
@@ -44,6 +49,7 @@ const Login = () => {
       localStorage.setItem("ACCESS_TOKEN", accessToken);
       localStorage.setItem("REFRESH_TOKEN", refreshToken);
 
+      //TODO: header 로그인 버튼 마이페이지 버튼으로 바꾸기
       navigate("/");
     }
     
@@ -59,25 +65,24 @@ const Login = () => {
           onSubmit={onSubmit}
         >
           <Input
-          
-            className={styles.inputClass}
-            label='이메일'
-            //errorText='아이디에러시메세지'
-            onChange={onChange}
-            placeholder="이메일을 입력해주세요."
-            name="userId"
-            value={form.userId}
-            />
-            <Input
-            className={styles.inputClass}
-            label='비밀번호'
-            //errorText='아이디에러시메세지'
-            type="password"
-            placeholder="비밀번호를 입력해주세요."
-            name="password"
-            value={form.password}
-            onChange={onChange}
-            />
+          className={styles.inputClass}
+          label='이메일'
+          errorText={!!err.userId && err.userId}
+          onChange={onChange}
+          placeholder="이메일을 입력해주세요."
+          name="userId"
+          value={form.userId}
+          />
+          <Input
+          className={styles.inputClass}
+          label='비밀번호'
+          errorText={!!err.password && err.password}
+          type="password"
+          placeholder="비밀번호를 입력해주세요."
+          name="password"
+          value={form.password}
+          onChange={onChange}
+          />
           <Link to='/auth/register' style={{ textDecoration: "none" }}>
           <p className={styles.registerLink}>회원가입</p></Link>
             <button
