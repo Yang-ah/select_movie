@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "./carousel.scss";
 import {
@@ -8,9 +8,6 @@ import {
   ChevronRightIcon,
 } from "../../assets/icon";
 import mdata from "../../mock_movie.json";
-
-import { getMovie } from "../../api/Movies";
-
 import PosterH from "../PosterH";
 import PosterM from "../PosterM";
 
@@ -29,9 +26,9 @@ export const HomeCarousel = () => {
     dot: false,
     arrow: false,
     infinite: false,
-    speed: 600, //다음 스피드
-    slidesToShow: 8, //몇개씩 보여줌?
-    slidesToScroll: 7, //몇개씩 넘어감?
+    speed: 600,
+    slidesToShow: 8,
+    slidesToScroll: 7,
     prevArrow: <CaretLeftIcon />,
     nextArrow: <CaretRightIcon />,
   };
@@ -50,9 +47,9 @@ export const MyCarousel = () => {
     dot: false,
     arrow: false,
     infinite: false,
-    speed: 600, //다음 스피드
-    slidesToShow: 6, //몇개씩 보여줌?
-    slidesToScroll: 4, //몇개씩 넘어감?
+    speed: 600,
+    slidesToShow: 6,
+    slidesToScroll: 4,
     prevArrow: <ChevronLeftIcon />,
     nextArrow: <ChevronRightIcon />,
   };
