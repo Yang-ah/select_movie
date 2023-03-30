@@ -1,0 +1,35 @@
+@use "../../../styles/constants/" as c;
+@use "../../../styles/mixins" as m;
+
+.cardWrap {
+  width: 100%;
+  height: 120px;
+  margin: 20px 0;
+  position: relative;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+
+  > .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: c.$C_BLACK_30;
+
+    > h3 {
+      position: absolute;
+      color: white;
+      font-family: "Black Han Sans";
+      bottom: 0;
+    }
+  }
+}

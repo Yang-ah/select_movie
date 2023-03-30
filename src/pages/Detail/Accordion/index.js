@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styles from "./accordion.module.scss";
-import data from "../../../mock_comment.json";
 import { ChevronUp, ChevronDown } from "../../../assets/icon";
 import Comment from "../../../components/Comment";
 
 // review:리뷰(object), childArr:리뷰에 달린 댓글들[]
+// TODO : 애니메이션 추가, 리뷰버튼 수정
+// chevron은 down만 사용해서 애니메이션
 const Accordion = ({ review, childArr }) => {
   const [clicked, setClicked] = useState(false);
 
@@ -18,28 +19,34 @@ const Accordion = ({ review, childArr }) => {
         date={""}
         rating={""}
       />
+      {/* 댓글이 없는 리뷰는 ⬆comment만 리턴 */}
 
       {childArr && (
-        <button className={styles.button} onClick={() => setClicked(!clicked)}>
-          리뷰
-          {clicked ? <ChevronUp /> : <ChevronDown />}
-        </button>
-      )}
+        <>
+          <button
+            className={styles.button}
+            onClick={() => setClicked(!clicked)}
+          >
+            리뷰
+            {clicked ? <ChevronUp /> : <ChevronDown />}
+          </button>
 
-      {childArr && clicked && (
-        <div className={styles.recomment}>
-          {childArr.map((child) => {
-            return (
-              <Comment
-                type="child"
-                key={""}
-                comment={""}
-                userName={""}
-                date={""}
-              />
-            );
-          })}
-        </div>
+          {clicked && (
+            <div className={styles.recomment}>
+              {childArr.map((child) => {
+                return (
+                  <Comment
+                    type="child"
+                    key={""}
+                    comment={""}
+                    userName={""}
+                    date={""}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
     </li>
   );

@@ -40,7 +40,11 @@ const Dropdown = ({ className, items, value, onClick }) => {
       <menu className={cx(styles.itemsWrapper, { [styles.isOpen]: isOpen })}>
         {items.map((item) => {
           return (
-            <li className={styles.item} onClick={() => onClick(item)}>
+            <li
+              key={item}
+              className={styles.item}
+              onClick={() => onClick(item)}
+            >
               {item}
             </li>
           );

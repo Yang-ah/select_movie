@@ -7,8 +7,8 @@
   position: relative;
   font-size: 20px;
   color: c.$C_WHITE;
-  // background-color: c.$C_INDIGO1;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .dropdownWrapper {
@@ -54,10 +54,11 @@
     height: 36px;
     padding: 4px 12px;
     color: c.$C_WHITE;
+    background-color: c.$C_PURPLE2;
     //    border: 1px solid c.$C_INDIGO2;
 
     &:hover {
-      //     background-color: c.$C_INDIGO3;
+      background-color: c.$C_PURPLE1;
     }
   }
 }

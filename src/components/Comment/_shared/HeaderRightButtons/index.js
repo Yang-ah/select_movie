@@ -3,7 +3,6 @@ import cx from "classnames";
 import { ThumbsUpIcon, ThumbsDownIcon } from "../../../../assets/icon";
 
 const HeaderRightButtons = ({ up, down, type }) => {
-  console.log(type);
   return (
     <>
       <div className={cx(styles.upDown, styles[type])}>

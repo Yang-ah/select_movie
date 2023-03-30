@@ -19,7 +19,10 @@ export const getMoviesMeLike = (id) => {
   return apiClient.get(`/movies/me/like`);
 };
 
-/* ==========아직 안됨 ㅠ_ㅠ ==============*/
+// 연관된 영화 불러오기
+export const getMoviesRelated = (id) => {
+  return apiClient.get(`/movies/${id}/related`);
+};
 
 // 영화목록 불러오기
 export const getMovies = () => {

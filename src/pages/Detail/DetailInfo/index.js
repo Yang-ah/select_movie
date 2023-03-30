@@ -16,6 +16,7 @@ const DetailInfo = ({ id }) => {
   const [movieDetail, setMovieDetail] = useState();
 
   // api 연동 후 array.filter() id 동일한 영화 있는지, 있으면 liked 인지 확인 후 setState
+  // 계속 필요하니까 hooks에 만들까? id만 넣으면 좋아요,북마크한 영화인지 아닌지 ? (boolean)
   const [isMyState, setMyState] = useState({
     isLiked: false,
     isBookmarked: false,
