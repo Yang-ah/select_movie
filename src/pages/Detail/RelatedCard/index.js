@@ -24,10 +24,12 @@ const RelatedCard = ({ title, id, postImage }) => {
       <img src={postImage} alt={title} />
       <div className={styles.overlay}>
         <h3>
-          {title}
-          <button>
-            <HeartIcon />
-          </button>
+          <div className={styles.leftWrap}>
+            <button>
+              <HeartIcon />
+            </button>
+            {title}
+          </div>
           <button>
             <BookmarkIcon />
           </button>

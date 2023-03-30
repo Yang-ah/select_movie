@@ -24,7 +24,7 @@ const Comment = ({
         <HeaderRight type={type} rating={rating} up={up} down={down} />
       </header>
 
-      <main className={styles.comment}>
+      <main>
         {isCommentInput && (
           <>
             <textarea className={styles.inputWrap} />

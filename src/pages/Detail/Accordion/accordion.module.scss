@@ -1,24 +1,12 @@
 @use "../../../styles/mixins" as m;
 @use "../../../styles/constants" as c;
 
-//index
-.wrapper {
-  height: auto;
-  margin: auto;
-
-  align-items: center;
-  @include m.flex(center, center, column);
-
-  line-height: 150%;
-}
-
 .accordionItem {
   width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-
+  margin-bottom: 20px;
   color: c.$C_WHITE;
-  
+  border: 1px solid c.$C_WHITE_10;
+  border-radius: 4px;
 }
 
 .button {
@@ -45,7 +33,6 @@
   overflow: hidden;
   transition: height ease 0.1s;
   color: c.$C_WHITE;
-
 }
 
 //comment

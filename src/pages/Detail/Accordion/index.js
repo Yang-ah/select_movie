@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./accordion.module.scss";
 import { ChevronUp, ChevronDown } from "../../../assets/icon";
 import Comment from "../../../components/Comment";
+import cx from "classnames";
 
 // review:리뷰(object), childArr:리뷰에 달린 댓글들[]
 // TODO : 애니메이션 추가, 리뷰버튼 수정
@@ -10,7 +11,7 @@ const Accordion = ({ review, childArr }) => {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <li className={styles.accordionItem}>
+    <li className={cx(styles.accordionItem, styles.noChild)}>
       <Comment
         type="comment"
         key={""}

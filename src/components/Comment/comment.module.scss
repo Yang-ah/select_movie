@@ -8,14 +8,13 @@
   padding: 16px;
   background-color: transparent;
   margin-bottom: 10px;
-  border-radius: c.$S_RADIUS;
 
   > header {
     @include m.flex(space-between, flex-start);
     padding-bottom: 12px;
   }
 
-  > .comment {
+  > main {
     font-size: 16px;
   }
 }
@@ -33,6 +32,7 @@
   background-color: c.$C_WHITE;
   box-shadow: 2px 2px 4px 1px #333;
   color: c.$C_BLACK;
+  border-radius: 4px;
 }
 
 // type = child
@@ -43,7 +43,7 @@
 
 // type = commentInput
 .commentInput {
-  .comment {
+  > main {
     @include m.flex();
     height: 160px;
 

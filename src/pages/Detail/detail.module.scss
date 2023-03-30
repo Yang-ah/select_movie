@@ -1,13 +1,21 @@
 @use "../../styles/constants/" as c;
 @use "../../styles/mixins" as m;
 
+// 나중에 지우기
+.test {
+  border: 1px solid c.$C_WHITE_10;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+//////
+
 .sectionWrap {
+  @include m.flex(center, flex-start);
   width: 100%;
   min-height: 100vh;
   max-height: 1200vh;
-  @include m.flex(center, flex-start);
-  overflow: scroll;
   margin: 80px 0 100px;
+  overflow: scroll;
 }
 
 .commentsWrap {
@@ -29,10 +37,24 @@
   }
 }
 
+// aside
 .relatedWrap {
   width: 280px;
-  min-height: 400px;
   margin-left: 20px;
-  max-height: 100vh;
+  max-height: 200vh;
   overflow: scroll;
+  position: relative;
+  border-radius: 4px;
+
+  > h3 {
+    @include m.flex();
+    height: 40px;
+    position: sticky;
+    top: 0;
+    color: white;
+    z-index: 99;
+    background-color: c.$C_PURPLE1;
+    font-weight: 600;
+    font-size: 14px;
+  }
 }

@@ -35,7 +35,7 @@ const Dropdown = ({ className, items, value, onClick }) => {
         onClick={onClickDropdown}
       >
         {value ?? "정렬"}
-        <ChevronDown />
+        <ChevronDown className={styles.chevronDown} />
       </div>
       <menu className={cx(styles.itemsWrapper, { [styles.isOpen]: isOpen })}>
         {items.map((item) => {

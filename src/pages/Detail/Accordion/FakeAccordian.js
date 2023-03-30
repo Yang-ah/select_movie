@@ -3,12 +3,13 @@ import styles from "./accordion.module.scss";
 import data from "../../../mock_comment.json";
 import { ChevronUp, ChevronDown } from "../../../assets/icon";
 import Comment from "../../../components/Comment";
+import cx from "classnames";
 
 const FakeAccordion = () => {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <li className={styles.accordionItem}>
+    <li className={cx(styles.accordionItem)}>
       {data.map((commentObj, id) => (
         <li className={styles.comment}>
           <Comment
