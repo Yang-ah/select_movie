@@ -13,6 +13,10 @@ const Header = () => {
 //recoil
 const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
 
+const logout =()=>{
+  setIsLogin(false)
+  alert('로그아웃 되었습니다')
+};
   return (
     <header className={styles.wrap}>
       <Link to="/">
@@ -27,9 +31,14 @@ const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
         </Link>
         }
         {isLogin &&
+        <>
         <Link to="/my">
           <Button children={"마이페이지"} className={styles.headerSign} />
         </Link>
+        <Button children={"로그아웃"} className={styles.headerSign} 
+          onClick={logout}
+          />
+        </>
         }
       </div>
     </header>
