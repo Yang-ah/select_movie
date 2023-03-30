@@ -13,13 +13,13 @@ import {
   TestPage,
 } from "../pages";
 import { LoginPage, RegisterPage } from "../pages/Auth";
-import Preview from "../pages/Preview";
+import Main from "../pages/Main";
 
 const route = (
   <Route element={<Layout />}>
     <Route path="/" element={<HomePage />} />
     <Route path="detail" element={<DetailPage />} />
-    <Route path="preview" element={<Preview />} />
+    <Route path="main" element={<Main />} />
     <Route path="my" element={<MyPage />} />
     <Route path="auth">
       <Route path="login" element={<LoginPage />} />
