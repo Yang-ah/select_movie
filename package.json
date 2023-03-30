@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "3d-react-carousal": "^5.0.0",
+    "3d-react-carousel": "^1.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -24,7 +26,9 @@
     "recharts": "^2.5.0",
     "sass": "^1.59.2",
     "scss": "^0.2.4",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.9",
+    "swiper": "^9.1.1",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"
   },

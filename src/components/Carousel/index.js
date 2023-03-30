@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "./carousel.scss";
 import {
@@ -8,6 +8,8 @@ import {
   ChevronRightIcon,
 } from "../../assets/icon";
 import mdata from "../../mock_movie.json";
+
+import { getMovie } from "../../api/Movies";
 
 import PosterH from "../PosterH";
 import PosterM from "../PosterM";
@@ -22,26 +24,6 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-export const RankingCarousel = () => {
-  const settings = {
-    dot: false,
-    arrow: false,
-    infinite: false,
-    speed: 600, //다음 스피드
-    slidesToShow: 8, //몇개씩 보여줌?
-    slidesToScroll: 7, //몇개씩 넘어감?
-    prevArrow: <CaretLeftIcon />,
-    nextArrow: <CaretRightIcon />,
-  };
-
-  return (
-    <Slider {...settings}>
-      {mdata.map((movie) => (
-        <PosterH movie={movie} />
-      ))}
-    </Slider>
-  );
-};
 export const HomeCarousel = () => {
   const settings = {
     dot: false,
