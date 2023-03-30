@@ -1,7 +1,7 @@
 const BackOffice = () => {
   return (
     <section>
-      <div>관리자화면</div>
+      <div></div>
     </section>
   );
 };
