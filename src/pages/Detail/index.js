@@ -18,15 +18,7 @@ const Detail = () => {
   // TODO : 정렬(별점순, 댓글 많은 순), comment 가 없다면 ? "첫 리뷰를 남겨보세용"
 
   const { id } = useParams();
-
   const navigate = useNavigate();
-  /*
-  const [{ movieId, setMovieId }] = useState();
-  useEffect(() => {
-    setMovieId(id);
-    console.log(movieId);
-  }, [{ id }]);
-  */
 
   const [relatedMovies, setRelatedMovies] = useState();
 
@@ -97,7 +89,9 @@ const Detail = () => {
                   id={movie.id}
                   postImage={movie.postImage}
                   onClick={() => {
-                    navigate(`/detail/${movie.id}`);
+                    navigate(`/detail/${movie.id}`, {
+                      preventScrollReset: true,
+                    });
                   }}
                 />
               );
