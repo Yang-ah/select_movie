@@ -9,20 +9,19 @@ const Home = () => {
   const [movieInfo, setMovieInfo] = useState(movies[0]);
   const [isShow, setIsShow] = useState(false);
 
-  const onOver = (id) => {
-    const num = movies.findIndex((item) => item.id === id);
-    setMovieInfo(movies[num]);
-  };
-
   const onModalClick = (id) => {
     const num = movies.findIndex((item) => item.id === id);
     setMovieInfo(movies[num]);
     setIsShow(true);
+    document.body.classList.add('modal_overlay');
+    document.body.classList.add('modal-open');
   };
   const onModalClose = () => {
     setIsShow(false);
+    document.body.classList.remove('modal_overlay');
+    document.body.classList.remove('modal-open');
   };
-
+ 
   return (
     <section className={styles.wrapper}>
       <article className={styles.ranking}>
@@ -40,14 +39,12 @@ const Home = () => {
           movieInfo={movieInfo}
           movies={movies}
           onModalClick={onModalClick}
-          onOver={onOver}
         />
         <h2>👀 오늘 이거 볼래? 👀</h2>
         <HomeCarousel
           movieInfo={movieInfo}
           movies={movies}
           onModalClick={onModalClick}
-          onOver={onOver}
         />
       </article>
       <MovieModal
