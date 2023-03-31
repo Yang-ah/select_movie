@@ -3,8 +3,9 @@ import { CSSTransition } from "react-transition-group";
 import styles from "./modal.module.scss";
 import Comment from "../../components/Comment";
 import dummy from "../../mock_comment.json";
+import { Link } from "react-router-dom";
 
-const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
+const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow , moveDetail }) => {
   const modalRef1 = useRef(null);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
       }}
       unmountOnExit
     >
+      <div className={styles.modal_overlay}>
       <div ref={modalRef1} className={styles.modal}>
         <div className={styles.popup}>
           <img
@@ -64,7 +66,10 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
           <p className={styles.close} onClick={onModalClose}>
             x
           </p>
-
+          <Link to="detail/{id}" ><p className={styles.moveDetail}>
+            {'>>'}
+          </p>
+          </Link>
           <Comment
             className={styles.comment}
             type="preview"
@@ -84,6 +89,7 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
             rating={dummy[0].rating}
           />
         </div>
+      </div>
       </div>
     </CSSTransition>
   );
