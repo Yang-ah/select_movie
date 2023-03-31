@@ -1,0 +1,83 @@
+@use "../../../../styles/constants/" as c;
+@use "../../../../styles/mixins" as m;
+
+.overlay{
+  @include m.flex();
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.46);
+  z-index: 999;
+}
+.container {
+
+    /* 모달창 크기 */
+    width: 280px;
+    height: 220px;
+  
+    /* 모달창 디자인 */
+    background-color: c.$C_WHITE;
+    border-radius: c.$S_RADIUS;
+
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+
+    >.title{
+        height: 40px;
+        width: 100%;
+        background-color: c.$C_ORANGE;
+        color: c.$C_WHITE;
+        border-radius: c.$S_RADIUS c.$S_RADIUS 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    >.content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% - 70px);
+    }
+  }
+.buttonBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    width: 160px;
+    margin-bottom: 10px;
+}
+
+  .cancelButton{
+    background-color: c.$C_WHITE;
+    color: black;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
+  }
+  .deleteButton{
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
+  }
+
+  //CSSTransition
+.modalEnterActive {
+  opacity: 0;
+  transform: scale(1.1);
+}
+.modalEnterDone {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.modalExit {
+  opacity: 1;
+  transform: scale(1);
+}
+.modalExitActive {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
