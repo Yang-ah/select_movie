@@ -6,6 +6,7 @@ import dummy from "../../mock_comment.json";
 import styles from './modal.module.scss'
 import { CSSTransition } from 'react-transition-group';
 
+
 const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow}) => {
 
     const modalRef1 = useRef(null);
