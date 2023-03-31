@@ -1,34 +1,33 @@
-.wrapper {
-  height: 100%;
-
-  padding: 12px 10%;
+@use "../../styles/constants/" as c;
+.ranking {
+  padding: 10px 12%;
   text-align: center;
   position: relative;
-  color: rgba(255, 255, 255, 0.685);
-
-  .header {
-    width: 100%;
-    margin: 10px auto;
-    font-size: 32px;
-  }
-
-  > img {
-    padding: 20px 10%;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-  }
 }
-.img {
+.header {
+  padding-bottom: 20px;
+  font-size: 28px;
+  color: c.$C_WHITE;
+}
+
+.media {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
   border-radius: 8px;
   display: flex;
   text-align: center;
   justify-content: center;
 }
 .slideBefore {
-  opacity: 0.7;
-  transform: scale(0.7);
+  opacity: 0.5;
+  transform: scale(0.8);
   transition: 0.5s;
+  z-index: -999;
+  width: 10%;
 }
 
 .slideActive {

@@ -20,8 +20,8 @@ export const RankingCarousel = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <h2 className={styles.header}>최근 1~5위 영화를 살펴보세요</h2>
+    <div className={styles.ranking}>
+      <h2 className={styles.header}>💪최근 1~5위 영화를 살펴보세요💪</h2>
       <div className={styles.slider}>
         <Slider {...settings}>
           {mdata.map((movie, id) => (
@@ -31,7 +31,7 @@ export const RankingCarousel = () => {
               }
             >
               <img
-                className={styles.img}
+                className={styles.media}
                 src={movie.postImage}
                 alt={movie.title}
               />
