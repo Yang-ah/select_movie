@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
-import styles from './modal.module.scss';
+import styles from './cmsModal.module.scss';
 import { CSSTransition } from 'react-transition-group';
-import { Button } from '../../../../components';
+import cx from "classnames";
 
 
-const CmsModal = ( {modalOpen1, setModalOpen, children, buttonChildren, ...props} )=>{
+const CmsModal = ( {className, title, children,
+    modalOpen1, setModalOpen, ...props} )=>{
     // Modal 창을 useRef로 취득
     const modalRef = useRef(null);
 
@@ -26,8 +27,7 @@ const CmsModal = ( {modalOpen1, setModalOpen, children, buttonChildren, ...props
         document.removeEventListener('mousedown', handler);
         };
     });
-    //console.log(`컴포넌트 모달오픈${modalOpen1}`)
-    //if(modalOpen1===false){return null}
+
     return (
         <CSSTransition
             in={modalOpen1}
@@ -40,18 +40,10 @@ const CmsModal = ( {modalOpen1, setModalOpen, children, buttonChildren, ...props
             }}
             unmountOnExit>
         <div className={styles.overlay}>
-            <section ref={modalRef} className={styles.container}>
-                <header className={styles.title}>안내</header>
+            <section ref={modalRef} 
+            className={cx(styles.container, className)}>
                 <div className={styles.content}>{children}</div>
-                <footer className={styles.buttonBox}>
-                    <Button 
-                        className={styles.cancelButton}
-                        children={'취소'}
-                        onClick={closeModal}/>
-                    <Button 
-                        className={styles.deleteButton} 
-                        children={buttonChildren}/>
-                </footer>
+                
             </section>
         </div>
         </CSSTransition>

@@ -1,10 +1,18 @@
-import React from "react";
+import {React,useState} from "react";
 import styles from "./infoBox.module.scss";
 
 import Stars from "../../../components/Common/Stars";
 import { SettingIcon } from "../../../assets/icon";
+//컴포넌트 모달 호출
+import { Modal } from '../../../components';
 
 const Info = () => {
+  // 모달창 노출 여부 state
+  const [modalOpen, setModalOpen] = useState(false);
+  // 모달창 노출
+  const showModal = () => {
+      setModalOpen(true);
+  };
   return (
     <section className={styles.wrapper}>
       <article className={styles.info}>
@@ -13,14 +21,14 @@ const Info = () => {
           <div className={styles.infoTop}>
             <p className={styles.userName}>닉네임 (input시 10자 제한)</p>
             <div className={styles.setting}>
-              <button className={styles.settingB}>
+              <button className={styles.settingB}
+                onClick={showModal}>
                 <SettingIcon />
-                {"회원정보 수정"}
               </button>
-              <a href="/" className={styles.settingH}>
+              {/* <a href="/" className={styles.settingH}>
                 <SettingIcon />
                 <p>화원정보 수정</p>
-              </a>
+              </a> */}
             </div>
           </div>
           <div className={styles.introduce}>
@@ -50,6 +58,12 @@ const Info = () => {
           <p className={styles.bottom}>🌝음~ 거의 전문가🌝</p>
         </div>
       </article>
+      <Modal
+        className={styles.modal}
+        modalOpen1={modalOpen}
+        setModalOpen={setModalOpen}
+        children='여기에 내용이 들어갑니다' 
+        buttonChildren='버튼 내용' />
     </section>
   );
 };

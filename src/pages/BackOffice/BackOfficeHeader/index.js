@@ -3,6 +3,7 @@ import styles from "./backOfficeHeader.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import  CmsModal  from '../CMS/cmsModal';
+import { AdminLoginPage } from "../CMS/cmsAuth";
 
 const BackOfficeHeader = ({ path }) => {
   const navigate = useNavigate();
@@ -22,8 +23,9 @@ const BackOfficeHeader = ({ path }) => {
         <CmsModal
             modalOpen1={modalOpen}
             setModalOpen={setModalOpen}
-            children='1' 
-            buttonChildren='2' />
+            title='관리자 로그인'
+            children=<AdminLoginPage/>
+            />
         <div className={styles.today}>
           <p>오늘</p>
           <p>
