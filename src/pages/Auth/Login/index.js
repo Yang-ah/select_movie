@@ -44,24 +44,34 @@ const Login = () => {
       return setErr({...err,userId:'', password:'비밀번호를 입력해주세요'})}
 
     const { userId, password } = form;
-    //NOTE: 로그인 API 호출
-    const response = await login({
-      email: userId,
-      password,
-    });
-    //NOTE: 로그인 성공
-    if (response.data) {
-      const { accessToken, refreshToken } = response.data;
-      //NOTE: 토큰 저장
-      localStorage.setItem("ACCESS_TOKEN", accessToken);
-      localStorage.setItem("REFRESH_TOKEN", refreshToken);
-
-      //TODO: header 로그인 버튼 마이페이지 버튼으로 바꾸기
-      //state 상태를 넘겨 줘야함
-      setIsLogin(true);
-      navigate("/");
-    }
     
+
+    try{ //NOTE: 로그인 성공
+      //NOTE: 로그인 API 호출
+      const response = await login({
+        email: userId,
+        password,
+      });
+      if (response.data) {
+        const { accessToken, refreshToken } = response.data;
+        //NOTE: 토큰 저장
+        localStorage.setItem("ACCESS_TOKEN", accessToken);
+        localStorage.setItem("REFRESH_TOKEN", refreshToken);
+
+        //setIsLogin은 recoil state 
+        setIsLogin(true);
+        navigate("/");
+      }
+    }catch(err){
+      const errData = err.response.data;
+      if (errData.statusCode === 400){
+        alert(errData.message);
+      }//"message": "비밀번호가 일치하지 않습니다."
+      if (errData.statusCode === 404){
+        alert(errData.message);
+      }//"message": "존재하지 않는 유저입니다."
+    }
+
   };
 
   return (
