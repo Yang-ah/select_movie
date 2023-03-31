@@ -1,0 +1,16 @@
+@use "../../styles/constants/" as c;
+@use "../../styles/mixins" as m;
+
+.section {
+  @include m.flex();
+
+  > .wrap {
+    color: white;
+    width: 800px;
+    border: 1px solid white;
+  }
+}
+
+.main {
+  padding-top: 40px;
+}

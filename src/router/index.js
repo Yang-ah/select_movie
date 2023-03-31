@@ -26,7 +26,7 @@ const route = (
       <Route path="register" element={<RegisterPage />} />
     </Route>
     <Route path="search" element={<SearchPage />} />
-    <Route path="backOffice" element={<BackOfficePage />} />
+    <Route path="backoffice/:id" element={<BackOfficePage />} />
     <Route path="test" element={<TestPage />} />
   </Route>
 );
