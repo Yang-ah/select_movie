@@ -26,10 +26,10 @@ const Detail = () => {
     const response = await getMoviesRelated(id);
     setRelatedMovies(response.data);
 
-    /* const reviewTest = await getReviewsMovie(
+    const reviewTest = await getReviewsMovie(
       "0151449f-d2ae-4753-a44c-79be9044f8ff"
     );
-    console.log(reviewTest.data); */
+    console.log(reviewTest.data);
   };
 
   useEffect(

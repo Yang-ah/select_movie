@@ -1,5 +1,8 @@
 export { ReactComponent as ShareIcon } from "./share.svg";
 
+export { ReactComponent as logoutIcon } from "./logout.svg";
+export { ReactComponent as userIcon } from "./user.svg";
+
 // HOME CAROUSEL
 export { ReactComponent as CaretRightIcon } from "./caret-right.svg";
 export { ReactComponent as CaretLeftIcon } from "./caret-left.svg";
