@@ -30,7 +30,7 @@ const DetailInfo = ({ id }) => {
 
   useEffect(() => {
     fetchMovieData();
-  }, []);
+  }, [id]);
 
   return (
     <>

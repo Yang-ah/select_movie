@@ -17,7 +17,7 @@
     "react-dom": "^18.2.0",
     "react-google-font-loader": "^1.1.0",
     "react-paginate": "^8.1.4",
-    "react-router-dom": "^6.9.0",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-transition-group": "^4.4.5",

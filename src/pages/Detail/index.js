@@ -8,7 +8,7 @@ import { getMoviesRelated } from "../../api/Movies";
 import RelatedCard from "./RelatedCard";
 import { getReviewsMovie } from "../../api/Reviews";
 import { getUsersMe } from "../../api/Users";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Detail = () => {
   // TODO: DetailInfo {id}로 변경하기, DetailInfo 시멘틱 넣기
@@ -19,15 +19,20 @@ const Detail = () => {
 
   const { id } = useParams();
 
+  const navigate = useNavigate();
+  /*
+  const [{ movieId, setMovieId }] = useState();
+  useEffect(() => {
+    setMovieId(id);
+    console.log(movieId);
+  }, [{ id }]);
+  */
+
   const [relatedMovies, setRelatedMovies] = useState();
 
   const fetchRelatedMovies = async () => {
     const response = await getMoviesRelated(id);
-
     setRelatedMovies(response.data);
-
-    const response2 = await getUsersMe();
-    console.log(response.data);
 
     /* const reviewTest = await getReviewsMovie(
       "0151449f-d2ae-4753-a44c-79be9044f8ff"
@@ -35,9 +40,13 @@ const Detail = () => {
     console.log(reviewTest.data); */
   };
 
-  useEffect(() => {
-    fetchRelatedMovies();
-  }, []);
+  useEffect(
+    () => {
+      fetchRelatedMovies();
+    },
+    [id],
+    { id }
+  );
 
   return (
     <>
@@ -87,6 +96,9 @@ const Detail = () => {
                   title={movie.title}
                   id={movie.id}
                   postImage={movie.postImage}
+                  onClick={() => {
+                    navigate(`/detail/${movie.id}`);
+                  }}
                 />
               );
             })}
