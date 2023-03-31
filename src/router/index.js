@@ -18,7 +18,7 @@ import Main from "../pages/Main";
 const route = (
   <Route element={<Layout />}>
     <Route path="/" element={<HomePage />} />
-    <Route path="detail" element={<DetailPage />} />
+    <Route path="detail/:id" element={<DetailPage />} />
     <Route path="main" element={<Main />} />
     <Route path="my" element={<MyPage />} />
     <Route path="auth">

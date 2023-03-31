@@ -65,19 +65,19 @@ const Register = () => {
     };
 
     const registerApi = onGetRegisterApi();
-    const response = await registerApi(body);
-    if (response.status === 200) {
-      const data = response.data;
-      saveTokens(data);
-      navigate("/auth/login");
+    try{
+      const response = await registerApi(body);
+      if (response.status === 200) {
+        const data = response.data;
+        saveTokens(data);
+        navigate("/auth/login");
+      }
+    } catch(err) { //서버에서 주는 에러 메세지 띄우기 
+      const errData = err.response.data;
+      if (errData.statusCode === 409){
+        alert(errData.message);
+      }
     }
-    //TODO: 서버에서 주는 에러 메세지 띄우기 
-    /*{
-    "statusCode": 409,
-    "timestamp": "2023-03-29T05:54:14.480Z",
-    "path": "/auth/register",
-    "message": "이미 존재하는 이메일입니다."
-    }*/
   };
   
 
