@@ -1,5 +1,5 @@
-@use "../../../styles/constants" as c;
-@use "../../../styles/mixins" as m;
+@use '../../../styles/constants' as c;
+@use '../../../styles/mixins' as m;
 
 .button {
   @include m.flex();
@@ -13,12 +13,12 @@
   cursor: pointer;
   border: 1px solid transparent;
 
-  &:hover {
+  /* &:hover {
     background-color: c.$C_WHITE;
     border: 1px solid c.$C_ORANGE;
     color: c.$C_ORANGE;
   }
-
+*/
   &.secondary {
     background-color: c.$C_WHITE;
     color: c.$C_ORANGE;
@@ -28,28 +28,28 @@
       fill: c.$C_ORANGE;
     }
 
-    &:hover {
+    /* &:hover {
       background-color: c.$C_ORANGE;
       color: c.$C_WHITE;
       > svg {
         fill: c.$C_WHITE;
       }
-    }
+    }*/
   }
 
   &.comment {
     background-color: #232c4d;
 
-    &:hover {
+    /* &:hover {
       border: none;
       background-color: #232c4d;
       color: c.$C_WHITE;
-    }
+    }*/
   }
 
-  &:hover {
+  /*  &:hover {
     background-color: c.$C_WHITE;
     color: c.$C_PURPLE1;
     border: 1px solid c.$C_PURPLE1;
-  }
+  }*/
 }

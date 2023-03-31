@@ -1,0 +1,38 @@
+@use "../../../../styles/mixins" as m;
+@use "../../../../styles/constants" as c;
+
+.upDown {
+  @include m.flex();
+  column-gap: 8px;
+  padding: 0 8px;
+  border-left: 1px solid c.$C_WHITE;
+  border-right: 1px solid c.$C_WHITE;
+
+  &.child,
+  &.preview {
+    border-left: none;
+
+    button {
+      font-size: 12px;
+    }
+    svg {
+      width: 12px;
+    }
+  }
+
+  > button {
+    @include m.flex();
+    > svg {
+      width: 16px;
+      margin-right: 2px;
+      fill: c.$C_WHITE;
+      transition: 0.1s transform ease-in;
+    }
+  }
+
+  > button:hover {
+    > svg {
+      transform: translateY(-2px) scale(1.1);
+    }
+  }
+}

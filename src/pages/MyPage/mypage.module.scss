@@ -1,0 +1,17 @@
+@use "../../styles/constants/" as c;
+
+.wrap {
+  background-color: c.$C_BACKGROUND;
+  margin: 50px 350px;
+  color: c.$C_WHITE;
+  font-weight: 800;
+  font-size: 32px;
+}
+.contentbox,
+.commentbox {
+  padding: 20px 0;
+  font-size: 22px;
+}
+.sectionBody {
+  width: 500px;
+}

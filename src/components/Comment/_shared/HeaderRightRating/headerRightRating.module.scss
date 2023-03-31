@@ -1,0 +1,22 @@
+@use "../../../../styles/mixins" as m;
+
+@use "../../../../styles/constants" as c;
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: c.$C_WHITE;
+  cursor: pointer;
+}
+.rating {
+  @include m.flex();
+  font-size: 20px;
+  font-weight: 600;
+
+  > svg {
+    width: 20px;
+    fill: c.$C_STAR;
+    margin-right: 2px;
+  }
+}

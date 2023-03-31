@@ -1,0 +1,112 @@
+@use "../../styles/constants/" as c;
+@use "../../styles/mixins" as m;
+
+.modal {
+  .thumbUrl {
+    margin-top: 20px;
+    width: 200px;
+    border: 2px solid c.$C_WHITE;
+    border-radius: 5px;
+    box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
+  }
+  > .popup {
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    width: 800px;
+    height: 700px;
+    padding: 30px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
+    > .popupBackground {
+      background-color: c.$C_BLACK;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 45%;
+      z-index: -999;
+      filter: brightness(60%);
+      background-color: black;
+      object-fit: cover;
+    }
+    > .popupBody {
+      display: flex;
+      column-gap: 50px;
+      .popupMainContent {
+        font-size: 24px;
+        text-align: center;
+        line-height: 60px;
+        color: c.$C_WHITE;
+      }
+      .popupMainHead {
+        font-size: 40px;
+        color: c.$C_WHITE;
+      }
+      .popupSubHead {
+        font-size: 20px;
+        text-align: center;
+        color: c.$C_WHITE;
+      }
+      .popupSubContent {
+        height: 90px;
+        line-height: 30px;
+        text-overflow: ellipsis;
+        overflow-y: hidden;
+        color: c.$C_WHITE;
+      }
+    }
+  }
+  > h2 {
+    margin-bottom: 20px;
+  }
+  .close {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    font-size: 40px;
+    height: 60px;
+    width: 60px;
+    border: 1px solid c.$C_BLACK;
+    background-color: c.$C_BLACK;
+    opacity: 70%;
+    color: #fff;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+}
+
+.comment {
+  margin-top: 30px;
+  width: 100px;
+  overflow-y: hidden;
+}
+.commentHead {
+  position: fixed;
+  top: 48%;
+  letter-spacing: 10px;
+}
+
+//CSSTransition
+.modalEnterActive {
+  opacity: 0;
+  transform: scale(1.1);
+}
+.modalEnterDone {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.modalExit {
+  opacity: 1;
+  transform: scale(1);
+}
+.modalExitActive {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}

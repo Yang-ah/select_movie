@@ -6,12 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import rootRouter from "./router";
 
 import "./styles/global.scss";
+import {RecoilRoot, atom, selector, useRecoilState, useRecoilValue} from 'recoil';
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={rootRouter} />
-  </React.StrictMode>
+  <RecoilRoot>
+    <React.StrictMode>
+      <RouterProvider router={rootRouter} />
+    </React.StrictMode>
+  </RecoilRoot>
 );
 
 reportWebVitals();

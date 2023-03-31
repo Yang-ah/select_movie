@@ -1,0 +1,110 @@
+@use "../../../styles/constants" as c;
+@use "../../../styles/mixins" as m;
+
+.info {
+  @include m.flex(space-between, flex-start);
+  padding: 50px 80px;
+
+  .img {
+    margin-right: 60px;
+    flex-shrink: 0;
+    width: 260px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 150px;
+    border-radius: 50%;
+    background-color: c.$C_ORANGE;
+  }
+  .text {
+    width: 100%;
+    height: 260px;
+    padding: 50px 60px;
+    border-radius: 20px;
+    background-color: c.$C_REVIEWBOX;
+    overflow: hidden;
+    .infoTop {
+      @include m.flex(space-between, flex-start);
+      width: 100%;
+      padding: 0 12px; //소개글보다 약간 안쪽으로 들어옴
+      padding-bottom: 20px;
+      .userName {
+        font-size: 26px;
+      }
+    }
+  }
+  .introduce {
+    background-color: c.$C_REVIEWBOX_20;
+    padding: 20px;
+    border-radius: 8px;
+    height: 80%;
+    font-size: 21px;
+    line-height: normal;
+  }
+}
+.settingB {
+  @include m.flex();
+  font-size: 16px;
+  > svg {
+    height: 20px;
+    padding-right: 4px;
+  }
+
+  :hover {
+    cursor: pointer;
+    fill: c.$C_ORANGE;
+    color: c.$C_ORANGE;
+  }
+}
+.setting {
+  @include m.flex();
+  .settingH {
+    @include m.flex();
+    font-size: 16px;
+    color: c.$C_WHITE;
+    > svg {
+      height: 20px;
+      padding-right: 4px;
+    }
+  }
+  :hover,
+  :after {
+    cursor: pointer;
+    fill: c.$C_ORANGE;
+    color: c.$C_ORANGE;
+  }
+}
+.category {
+  @include m.flex(space-between, flex-start);
+  padding: 40px 0;
+  .rating,
+  .isliked,
+  .review {
+    width: 30%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: c.$C_REVIEWBOX;
+    border: 3px dashed white; //리뷰박스랑 비슷해서 임시로 넣은것. 이후 삭제.
+
+    .top,
+    .middle,
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      margin: 4px;
+    }
+    .top {
+      font-size: 18px;
+    }
+    .middle {
+      font-size: 32px;
+      color: c.$C_ORANGE;
+    }
+    .bottom {
+      font-size: 14px;
+    }
+  }
+}

@@ -4,7 +4,7 @@ export { ReactComponent as ShareIcon } from "./share.svg";
 export { ReactComponent as CaretRightIcon } from "./caret-right.svg";
 export { ReactComponent as CaretLeftIcon } from "./caret-left.svg";
 
-// MYPAGE CAROUSEL
+// MYPAGE CAROUSEL, MYPAGE PAGINATION
 export { ReactComponent as ChevronLeftIcon } from "./chevron-left.svg";
 export { ReactComponent as ChevronRightIcon } from "./chevron-right.svg";
 
@@ -36,6 +36,7 @@ export { ReactComponent as SolidHeartIcon } from "./solid-heart.svg";
 
 // 북마크
 export { ReactComponent as SolidBookmarkIcon } from "./solid-bookmark.svg";
+export { ReactComponent as BookmarkIcon } from "./bookmark.svg";
 
 // angles-right  (더보기)
 export { ReactComponent as DoubleChevronRightIcon } from "./angles-right.svg";

@@ -9,6 +9,7 @@
     "company": "LIONSGATE",
     "isLiked": true,
     "averageScore": 0,
+    "rating": "4",
     "genres": [
       { "id": "000001", "name": "thrille" },
       { "id": "000002", "name": "action" }
@@ -28,7 +29,8 @@
     "title": "Pinocchio",
     "postImage": "https://image.tmdb.org/t/p/w300/h32gl4a3QxQWNiNaR4Fc1uvLBkV.jpg",
     "releaseDate": "07.09.2022",
-    "__typename": "Movie"
+    "__typename": "Movie",
+    "rating": "5"
   },
   {
     "id": "760741",

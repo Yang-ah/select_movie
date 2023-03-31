@@ -1,8 +1,13 @@
 @use "../../../styles/mixins" as m;
+@use "../../../styles/constants" as c;
 
 .wrap {
   @include m.flex(space-between);
   position: relative;
+
+  input::placeholder {
+    color: grey;
+  }
 
   &.iconLocation {
     > button {

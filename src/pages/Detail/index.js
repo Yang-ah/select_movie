@@ -1,103 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./detail.module.scss";
-import dummy from "../../mock_comment.json";
-import Accordion from "./Accordion";
+import FakeAccordion from "./Accordion/FakeAccordian";
+import DetailInfo from "./DetailInfo";
+import Dropdown from "../../components/Common/Dropdown";
 import Comment from "../../components/Comment";
+import { getMoviesRelated } from "../../api/Movies";
+import RelatedCard from "./RelatedCard";
+import { getReviewsMovie } from "../../api/Reviews";
 
-const Detail = () => {
+const Detail = ({ id }) => {
+  // TODO: DetailInfo {id}로 변경하기, DetailInfo 시멘틱 넣기
+  // TODO: CommentInput "닉네임", 등록 api 연결하기 !
+  // TODO: Dropdown 정렬 글씨 줄이기, 애니메이션 추가(화살표 돌아가게), border?,
+  // TODO : 리뷰 api 받아서, 리뷰에 댓글이 있다면 Accordion, 없다면 comment 받기
+  // TODO : 정렬(별점순, 댓글 많은 순), comment 가 없다면 ? "첫 리뷰를 남겨보세용"
+  const [relatedMovies, setRelatedMovies] = useState();
+
+  const fetchRelatedMovies = async () => {
+    const response = await getMoviesRelated(
+      "0151449f-d2ae-4753-a44c-79be9044f8ff"
+    );
+
+    setRelatedMovies(response.data);
+
+    /* const reviewTest = await getReviewsMovie(
+      "0151449f-d2ae-4753-a44c-79be9044f8ff"
+    );
+    console.log(reviewTest.data); */
+  };
+
+  useEffect(() => {
+    fetchRelatedMovies();
+  }, []);
+
   return (
-    <section>
-      <header className={styles.header}>
-        <h1 className={styles.poster}>1.POSTER</h1>
-        <h1 className={styles.movieinfo}>2 MOVIE_INFO</h1>
-        <p>제목</p>
-        <p>장르</p>
-        <p>출판/배급사</p>
-        <p>출연진</p>
-        <p>줄거리</p>
-        <p>별점</p>
-      </header>
-      <main className={styles.main}>
-        <h2 className={styles.comment}>Comment</h2>
-        <Accordion />
-      </main>
-      <section className={styles.wrapper}>
-        <h2>type=preview</h2>
-        <Comment
-          type="preview"
-          key={dummy[0].userName + "2"}
-          userName={dummy[0].userName}
-          comment={dummy[0].comment}
-          // date={dummy[0].date} TODO : 넣을지 상의
-          rating={dummy[0].rating}
-        />
+    <>
+      <DetailInfo id="0151449f-d2ae-4753-a44c-79be9044f8ff" />
+      <section className={styles.sectionWrap}>
+        <main className={styles.commentsWrap}>
+          <Comment
+            type="commentInput"
+            className={styles.commentInput}
+            userName="닉네임"
+          />
+          <header>
+            <h1>Comments</h1>
+            <Dropdown
+              items={["별점높은순", "별점낮은순", "공감많은순"]}
+              className={styles.dropdown}
+            />
+          </header>
 
-        <h2>type=commentInput</h2>
-        <Comment
-          type="commentInput"
-          key={dummy[0].userName + "2"}
-          userName={dummy[0].userName}
-        />
+          <main>
+            <FakeAccordion />
+            <Comment
+              type="comment"
+              comment="라라라랄ㄹ라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라ㅏㅏ"
+              userName="라라랄"
+              rating="4.5"
+              className={styles.test}
+            />
+            <FakeAccordion />
+            <Comment
+              type="comment"
+              comment="라라라랄ㄹ라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라ㅏㅏ"
+              userName="라라랄"
+              rating="4.5"
+              className={styles.test}
+            />
+          </main>
+        </main>
+        <aside className={styles.relatedWrap}>
+          <h3>영화가 마음에 드셨다면 👀</h3>
 
-        <h2>type=comment</h2>
-
-        <Comment
-          type="comment"
-          key={dummy[0].userName + "2"}
-          userName={dummy[0].userName}
-          comment={dummy[0].comment}
-          date={dummy[0].date}
-          rating={dummy[0].rating}
-          up={dummy[0].up}
-          down={dummy[0].down}
-        />
-
-        <h2>type=child</h2>
-        <Comment
-          type="child"
-          key={dummy[0].userName + "2"}
-          userName={dummy[0].userName}
-          comment={dummy[0].comment}
-          date={dummy[0].date}
-          rating={dummy[0].rating}
-          up={dummy[0].up}
-          down={dummy[0].down}
-        />
-
-        <h2>used map (comment & child)</h2>
-
-        {dummy.map((commentObj) => {
-          return (
-            <>
-              <Comment
-                type="comment"
-                key={commentObj.userName + "2"}
-                userName={commentObj.userName}
-                comment={commentObj.comment}
-                date={commentObj.date}
-                rating={commentObj.rating}
-                up={commentObj.up}
-                down={commentObj.down}
-              />
-
-              {commentObj.children.map((child) => {
-                return (
-                  <Comment
-                    key={child.userName + "1"}
-                    type="child"
-                    comment={child.comment}
-                    userName={child.userName}
-                    date={child.date}
-                    up={commentObj.up}
-                    down={commentObj.down}
-                  />
-                );
-              })}
-            </>
-          );
-        })}
+          {relatedMovies &&
+            relatedMovies.map((movie) => {
+              return (
+                <RelatedCard
+                  key={movie.id}
+                  title={movie.title}
+                  id={movie.id}
+                  postImage={movie.postImage}
+                />
+              );
+            })}
+        </aside>
       </section>
-    </section>
+    </>
   );
 };
 

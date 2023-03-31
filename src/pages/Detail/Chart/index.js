@@ -1,33 +1,29 @@
 import React from "react";
 //yarn add recharts
-import { BarChart, Bar, XAxis, Tooltip } from "recharts";
-
+import { BarChart, Bar } from "recharts";
 
 const data = [
-  { name: "0", starData: 5 },
-  { name: "0.5", starData: 10 },
-  { name: "1", starData: 13 },
-  { name: "1.5", starData: 8 },
-  { name: "2", starData: 1 },
-  { name: "2.5", starData: 5 },
-  { name: "3", starData: 4 },
-  { name: "4", starData: 17 },
-  { name: "4.5", starData: 24 },
-  { name: "5", starData: 20 },
+  { name: "10대", starData: 5 },
+  { name: "20대", starData: 10 },
+  { name: "30대", starData: 13 },
+  { name: "40대", starData: 8 },
+  { name: "50대", starData: 1 },
 ];
 
-const Chart=()=> {
+const Chart = ({ className }) => {
   return (
-    <BarChart 
-    width={500} height={200} data={data}
+    <BarChart
+      width={140}
+      height={100}
+      data={data}
+      fill="white"
+      className={className}
     >
-      <XAxis dataKey='name'/>
-      <Tooltip 
-      wrapperStyle={{width:100}}/>
-
-      <Bar dataKey= "starData" fill="#635985" />
+      {/*<XAxis dataKey="name" fontSize="12px" fontWeight="600" /> */}
+      {/* <Tooltip wrapperStyle={{ width: 100 }} /> */}
+      <Bar dataKey="starData" fill="#FBE74D" />
     </BarChart>
   );
-}
+};
 
 export default Chart;
