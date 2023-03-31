@@ -1,97 +1,97 @@
 import React, { useEffect, useState } from "react";
 import styles from "./detail.module.scss";
-
-import mdata from "../../mock_movie.json";
-import Button from "../../components/Common/Button";
-import { HeartIcon, SolidBookmarkIcon } from "../../assets/icon";
-import Chart from "./Chart";
-import { getMoviesTop } from "../../api/Movies";
+import FakeAccordion from "./Accordion/FakeAccordian";
+import DetailInfo from "./DetailInfo";
+import Dropdown from "../../components/Common/Dropdown";
+import Comment from "../../components/Comment";
+import { getMoviesRelated } from "../../api/Movies";
+import RelatedCard from "./RelatedCard";
+import { getReviewsMovie } from "../../api/Reviews";
+import { getUsersMe } from "../../api/Users";
+import { useParams } from "react-router-dom";
 
 const Detail = () => {
-  const [movies, setMovies] = useState([]);
+  // TODO: DetailInfo {id}로 변경하기, DetailInfo 시멘틱 넣기
+  // TODO: CommentInput "닉네임", 등록 api 연결하기 !
+  // TODO: Dropdown 정렬 글씨 줄이기, 애니메이션 추가(화살표 돌아가게), border?,
+  // TODO : 리뷰 api 받아서, 리뷰에 댓글이 있다면 Accordion, 없다면 comment 받기
+  // TODO : 정렬(별점순, 댓글 많은 순), comment 가 없다면 ? "첫 리뷰를 남겨보세용"
 
-  const setMovieData = async () => {
-    const response = await getMoviesTop();
-    console.log({ response });
+  const { id } = useParams();
 
-    if (response.status === 200) {
-      //   setMovies(response.data.products);
-    }
+  const [relatedMovies, setRelatedMovies] = useState();
+
+  const fetchRelatedMovies = async () => {
+    const response = await getMoviesRelated(id);
+
+    setRelatedMovies(response.data);
+
+    const response2 = await getUsersMe();
+    console.log(response.data);
+
+    /* const reviewTest = await getReviewsMovie(
+      "0151449f-d2ae-4753-a44c-79be9044f8ff"
+    );
+    console.log(reviewTest.data); */
   };
 
   useEffect(() => {
-    setMovieData();
+    fetchRelatedMovies();
   }, []);
 
   return (
     <>
-      <header className={styles.header}>
-        <img src={mdata[0].postImage} alt="headerBackground" />
+      <DetailInfo id={id} />
+      <section className={styles.sectionWrap}>
+        <main className={styles.commentsWrap}>
+          <Comment
+            type="commentInput"
+            className={styles.commentInput}
+            userName="닉네임"
+          />
+          <header>
+            <h1>Comments</h1>
+            <Dropdown
+              items={["별점높은순", "별점낮은순", "공감많은순"]}
+              className={styles.dropdown}
+            />
+          </header>
 
-        <section className={styles.overlay}>
-          <article className={styles.headerContentWrap}>
-            <div className={styles.leftWrap}>
-              <img src={mdata[0].postImage} alt="headerPoster" />
-              <div className={styles.buttonWrap}>
-                {/* // TODO: mouse event 추가(hover) */}
+          <main>
+            <FakeAccordion />
+            <Comment
+              type="comment"
+              comment="라라라랄ㄹ라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라ㅏㅏ"
+              userName="라라랄"
+              rating="4.5"
+              className={styles.test}
+            />
+            <FakeAccordion />
+            <Comment
+              type="comment"
+              comment="라라라랄ㄹ라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라ㅏㅏ"
+              userName="라라랄"
+              rating="4.5"
+              className={styles.test}
+            />
+          </main>
+        </main>
+        <aside className={styles.relatedWrap}>
+          <h3>영화가 마음에 드셨다면 👀</h3>
 
-                <Button
-                  option="secondary"
-                  className={styles.button}
-                  children={
-                    <>
-                      북마크
-                      <SolidBookmarkIcon />
-                    </>
-                  }
+          {relatedMovies &&
+            relatedMovies.map((movie) => {
+              return (
+                <RelatedCard
+                  key={movie.id}
+                  title={movie.title}
+                  id={movie.id}
+                  postImage={movie.postImage}
                 />
-                <Button
-                  option="secondary"
-                  className={styles.button}
-                  children={
-                    <>
-                      좋아요
-                      <HeartIcon />
-                    </>
-                  }
-                />
-              </div>
-            </div>
-            <div className={styles.rightWrap}>
-              <div className={styles.info}>
-                <h1>
-                  {mdata[0].title} <p>{mdata[0].runtime}분</p>
-                  <p>100,100명</p>
-                </h1>
-                <h2>
-                  <span>{mdata[0].releaseDate}</span>
-                  <span>액션, 스릴러, 공포 </span>
-                  <span>한국</span>
-                </h2>
-
-                <h3>
-                  | 작품정보 |<p>{mdata[0].plot}</p>
-                </h3>
-
-                <h3 className={styles.actors}>
-                  | 감독 / 출연 |
-                  <p>
-                    <span>{mdata[0].company}</span>
-                    {mdata[0].actors.map((actor) => {
-                      return <span key={actor.id}>| {actor.name} |</span>;
-                    })}
-                  </p>
-                </h3>
-              </div>
-              <div className={styles.chart}>
-                <Chart />
-              </div>
-              <div className={styles.star}>Stars</div>
-            </div>
-          </article>
-        </section>
-      </header>
-      <h2>accordion</h2>
+              );
+            })}
+        </aside>
+      </section>
     </>
   );
 };

@@ -2,17 +2,16 @@
 
 .wrap {
   background-color: c.$C_BACKGROUND;
-  margin: 20px 160px;
-
+  margin: 50px 350px;
   color: c.$C_WHITE;
   font-weight: 800;
   font-size: 32px;
-
-  .logo {
-    font-size: 30px;
-  }
 }
-
+.contentbox,
+.commentbox {
+  padding: 20px 0;
+  font-size: 22px;
+}
 .sectionBody {
   width: 500px;
 }

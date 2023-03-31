@@ -1,104 +1,38 @@
-import React , {useEffect, useState, useRef} from "react"
-import axios from 'axios'
-import Tr from './Tr'
-import Br_Modal from './Br_Modal'
-import styles from './board.module.scss'
-import MealChooseCard from "./MealChooseCard"
+import { TrashIcon } from "../../../assets/icon";
+import Button from "../../../components/Common/Button";
+import SearchInput from "../../../components/Common/SearchInput";
+import TableTitle from "./TableTitle";
+import styles from "./table.module.scss";
+import TableRow from "./TableRow";
 
+const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const Board = ({bh_1,bh_2,bh_3,bh_4,bh_5,bh_6,bh_7}) =>{
+const Table = ({ path }) => {
+  return (
+    <>
+      <header className={styles.header}>
+        <h3 className={styles.mainTitle}>
+          {path === "movies" && "영화관리"}
+          {path === "reviews" && "리뷰관리"}
+          {path === "users" && "회원관리"}
+        </h3>
+        <SearchInput
+          option="iconLocation"
+          className={styles.searchInput}
+          placeholder="내용을 입력하세요."
+        />
+        <Button>
+          삭제
+          <TrashIcon />
+        </Button>
+      </header>
 
-    const [info , setInfo] = useState([]);
-    const [selected , setSelected] = useState('');
-    const [modalOn , setModalOn] = useState(false);
+      <TableTitle path={path} />
+      {testArr.map((item) => {
+        return <TableRow path={path} key={item} />;
+      })}
+    </>
+  );
+};
 
-    const nextId = useRef(11);
-
-    useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(res => setInfo(res.data))
-        .catch(err => console.log(err));
-    }, []);
-
-
-    const handleSave = (data) =>{
-
-        if(data.id) {
-            setInfo(
-                info.map(row => data.id === row.id ? {
-                    id : data.id,
-                    name : data.name,
-                    email : data.email,
-                    phone : data.phone,
-                    website : data.website,
-                } : row))
-        } else {
-            setInfo(info => info.concat(
-                {
-                    id : nextId.current,
-                    name : data.name,
-                    email : data.email,
-                    phone : data.phone,
-                    website : data.website                    
-                }
-            ))
-            nextId.current += 1;
-        }
-    }
-
-    const handleRemove = (id) =>{
-        setInfo(info => info.filter(item => item.id !== id))
-    }
-
-    const handleEdit = (item) =>{
-        setModalOn(true);
-        const selectedData = {
-            id : item.id,
-            name : item.name,
-            email : item.email,
-            phone : item.phone,
-            website : item.website
-        };
-        console.log(selectedData);
-        setSelected(selectedData);
-    };
-
-    const handleCancel = () =>{
-        setModalOn(false)
-    }
-
-    const handleEditSubmit = (item) => {
-        console.log(item);
-        handleSave(item);
-        setModalOn(false);
-    }
-
-
-    return(
-        <section className={styles.br_container}>
-            <table className={styles.br_body}>
-                <thead className={styles.br_head}>
-                    <tr>
-                        <th>{bh_1}</th>
-                        <th>{bh_2}</th>
-                        <th>{bh_3}</th>
-                        <th>{bh_4}</th>
-                        <th>{bh_5}</th>
-                        <th>{bh_6}</th>
-                        <th>{bh_7}</th>
-                    </tr>
-                </thead>
-            <Tr className={styles.tr_content} info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
-            {modalOn && <Br_Modal selectedData={selected} handleCancel={handleCancel} handleEditSubmit={handleEditSubmit} />}
-            </table>
-
-        </section>
-    )
-
-}
-
-export default Board;
-
-/*          <Post onSaveDate={handleSave} />
-{modalOn && <Modal selectedData={selected} handleCancel={handleCancel}
-handleEditSubmit={handleEditSubmit} />}*/
+export default Table;

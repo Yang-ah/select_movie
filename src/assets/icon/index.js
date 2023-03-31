@@ -36,6 +36,7 @@ export { ReactComponent as SolidHeartIcon } from "./solid-heart.svg";
 
 // 북마크
 export { ReactComponent as SolidBookmarkIcon } from "./solid-bookmark.svg";
+export { ReactComponent as BookmarkIcon } from "./bookmark.svg";
 
 // angles-right  (더보기)
 export { ReactComponent as DoubleChevronRightIcon } from "./angles-right.svg";
