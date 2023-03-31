@@ -52,6 +52,7 @@
   }
 
   :hover {
+    cursor: pointer;
     fill: c.$C_ORANGE;
     color: c.$C_ORANGE;
   }
@@ -69,6 +70,7 @@
   }
   :hover,
   :after {
+    cursor: pointer;
     fill: c.$C_ORANGE;
     color: c.$C_ORANGE;
   }

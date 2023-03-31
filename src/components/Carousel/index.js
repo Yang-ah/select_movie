@@ -7,7 +7,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "../../assets/icon";
-import mdata from "../../mock_movie.json";
+
 import PosterH from "../PosterH";
 import PosterM from "../PosterM";
 
@@ -21,7 +21,7 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-export const HomeCarousel = () => {
+export const HomeCarousel = ({ movies, onModalClick, onOver }) => {
   const settings = {
     dot: false,
     arrow: false,
@@ -34,15 +34,22 @@ export const HomeCarousel = () => {
   };
 
   return (
-    <Slider {...settings}>
-      {mdata.map((movie) => (
-        <PosterH movie={movie} />
-      ))}
-    </Slider>
+    <div>
+      <Slider {...settings}>
+        {movies.map((movie) => (
+          <PosterH
+            key={movies.id}
+            movie={movie}
+            onModalClick={onModalClick}
+            onOver={onOver}
+          />
+        ))}
+      </Slider>
+    </div>
   );
 };
 
-export const MyCarousel = () => {
+export const MyCarousel = ({ movies, onModalClick, onOver }) => {
   const settings = {
     dot: false,
     arrow: false,
@@ -56,8 +63,13 @@ export const MyCarousel = () => {
 
   return (
     <Slider {...settings}>
-      {mdata.map((movie) => (
-        <PosterM movie={movie} />
+      {movies.map((movie) => (
+        <PosterM
+          key={movies.id}
+          movie={movie}
+          onModalClick={onModalClick}
+          onOver={onOver}
+        />
       ))}
     </Slider>
   );

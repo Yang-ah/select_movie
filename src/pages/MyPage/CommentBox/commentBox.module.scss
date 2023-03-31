@@ -25,6 +25,7 @@
 .box:hover,
 .box:active {
   opacity: 0.7;
+  cursor: pointer;
 }
 
 .top {
@@ -94,6 +95,7 @@
     color: c.$C_ORANGE;
     fill: c.$C_ORANGE;
     transform: scale(1.2);
+    cursor: pointer;
   }
 
   li {
