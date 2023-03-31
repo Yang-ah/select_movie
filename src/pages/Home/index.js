@@ -14,7 +14,9 @@ const Home = () => {
     setMovieInfo(movies[num]);
   };
 
-  const onModalClick = () => {
+  const onModalClick = (id) => {
+    const num = movies.findIndex((item) => item.id === id);
+    setMovieInfo(movies[num]);
     setIsShow(true);
   };
   const onModalClose = () => {
@@ -29,7 +31,6 @@ const Home = () => {
             movieInfo={movieInfo}
             movies={movies}
             onModalClick={onModalClick}
-            onOver={onOver}
           />
         </div>
       </article>
