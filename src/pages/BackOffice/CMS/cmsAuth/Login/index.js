@@ -65,6 +65,7 @@ const CMSLogin = () => {
         //setIsLogin은 recoil state 
         setIsLogin(true);
         closeModal();
+        alert('관리자 로그인을 성공했습니다.')
       }
     }catch(err){
       const errData = err.response.data;

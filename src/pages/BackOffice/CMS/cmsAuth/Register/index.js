@@ -70,6 +70,7 @@ const Register = (setModalOpen) => {
       if (response.status === 200) {
         const data = response.data;
         saveTokens(data);
+        setModalOpen(false);
         alert('관리자 회원가입을 성공했습니다.')
       }
     } catch(err) { //서버에서 주는 에러 메세지 띄우기 
