@@ -18,7 +18,7 @@ const BackOffice = () => {
     if (location.pathname === "/backoffice/reviews") {
       setPath("reviews");
     }
-  }, [path]);
+  }, [location]);
 
   return (
     <section className={styles.section}>

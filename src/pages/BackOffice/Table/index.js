@@ -26,10 +26,11 @@ const Table = ({ path }) => {
           <TrashIcon />
         </Button>
       </header>
-
+    {/* 1. 서버에서 데이터를 받아서 
+        2. TableRow에 children에 넣어주기 */}
       <TableTitle path={path} />
       {testArr.map((item) => {
-        return <TableRow path={path} key={item} />;
+        return <TableRow path={path} key={item} children='ㅁㅁㄴㅇㅁㄴㅇ'/>;
       })}
     </>
   );
