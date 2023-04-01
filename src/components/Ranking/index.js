@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import styles from "./ranking.module.scss";
 import "./ranking.module.scss";
-import mdata from "../../mock_movie.json";
 
-export const RankingCarousel = () => {
+export const RankingCarousel = ({movies ,onModalClick}) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const settings = {
@@ -18,16 +17,18 @@ export const RankingCarousel = () => {
     slidesToShow: 3, //몇개씩 보여줌?,
     beforeChange: (current, next) => setSlideIndex(next),
   };
+  const { id } = movies
 
   return (
     <div className={styles.ranking}>
       <h2 className={styles.header}>💪최근 1~5위 영화를 살펴보세요💪</h2>
       <div className={styles.slider}>
         <Slider {...settings}>
-          {mdata.map((movie, id) => (
+          {movies.map((movie, idx) => (
             <div
+             onClick={() => onModalClick(id)}
               className={
-                id === slideIndex ? styles.slideActive : styles.slideBefore
+                idx === slideIndex ? styles.slideActive : styles.slideBefore
               }
             >
               <img
