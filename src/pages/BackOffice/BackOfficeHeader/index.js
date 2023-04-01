@@ -4,6 +4,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import  CmsModal  from '../CMS/cmsModal';
 import { AdminLoginPage } from "../CMS/cmsAuth";
+import { getMoviesCount } from "../../../api/Movies";
+import { getUsersCount } from "../../../api/Users";
+import { getReviewsCount } from "../../../api/Reviews";
 
 const BackOfficeHeader = ({ path }) => {
   const navigate = useNavigate();
@@ -12,15 +15,34 @@ const BackOfficeHeader = ({ path }) => {
     movies :'secondary',
     users : 'secondary',
     reviews : 'secondary',});
+  
+  const [totalCount, setTotalCount] = useState({
+    movies :'0',
+    users : '1',
+    reviews : '2',});
 
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => { setModalOpen(true); };
+
+  const responseCount = async ()=>{
+    const response1 = await getMoviesCount();
+    const response2 = await getUsersCount();
+    const response3 = await getReviewsCount();
+   
+    setTotalCount({
+      movies: response1.data.count,
+      users : response2.data.count,
+      reviews : response3.data.count,
+      });
+  }
+
 
   const location = useLocation();
   const moveMovies = () => { navigate(`/backoffice/movies`); };
   const moveUsers = () => { navigate(`/backoffice/users`); };
   const moveReviews = () => { navigate(`/backoffice/reviews`); };
     useEffect(()=>{
+      responseCount();
       if(location.pathname==='/backoffice/movies'){
         setIsClick({movies:'third', reviews:'secondary', users:'secondary'})
        }
@@ -42,12 +64,12 @@ const BackOfficeHeader = ({ path }) => {
             modalOpen1={modalOpen}
             setModalOpen={setModalOpen}
             title='관리자 로그인'
-            children=<AdminLoginPage/>
+            children={<AdminLoginPage/>}
             />
         <div className={styles.today}>
           <p>오늘</p>
           <p>
-            방문자 <span>8</span>명
+            방문자 <span>8(api없음)</span>명
           </p>
         </div>
       </header>
@@ -57,16 +79,16 @@ const BackOfficeHeader = ({ path }) => {
         onClick={moveMovies}>
           <h3>등록된 영화</h3>
           <h1>
-            <span>65 </span>개
+            <span> {totalCount.movies}</span>개
           </h1>
           <h2>영화관리</h2>
         </Button>
     
         <Button option={isClick.users} className={styles.button}
         onClick={moveUsers}>
-          <h3>등록된 리뷰</h3>
+          <h3>전체 이용자</h3>
           <h1>
-            <span>65 </span>개
+            <span> {totalCount.users} </span>개
           </h1>
           <h2>회원관리</h2>
         </Button>
@@ -74,7 +96,7 @@ const BackOfficeHeader = ({ path }) => {
         onClick={moveReviews}>
           <h3>전체 리뷰</h3>
           <h1>
-            <span>65 </span>개
+            <span> {totalCount.reviews} </span>개
           </h1>
           <h2>리뷰관리</h2>
         </Button>

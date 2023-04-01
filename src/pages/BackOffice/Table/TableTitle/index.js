@@ -3,7 +3,7 @@ import styles from "./tableTitle.module.scss";
 
 const EachHeader = {
   users: ["가입일", "생년월일", "닉네임", "성별", "수정", "탈퇴"],
-  movies: ["개봉일", "장르", "영화", "평점", "좋아요", "수정"],
+  movies: ['영화제목',"개봉일", "평균평점", "좋아요", "수정"],
   reviews: ["작성일", "작성자", "영화", "작성내용", "신고", "더보기"],
 };
 

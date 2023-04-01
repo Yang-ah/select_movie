@@ -4,7 +4,9 @@ import SearchInput from "../../../components/Common/SearchInput";
 import TableTitle from "./TableTitle";
 import styles from "./table.module.scss";
 import TableRow from "./TableRow";
-
+import MoviesTableData from "./TableData/moviesData";
+import UsersTableData from "./TableData/userData";
+import ReviewsTableData from "./TableData/reviewData";
 const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const Table = ({ path }) => {
@@ -26,12 +28,19 @@ const Table = ({ path }) => {
           <TrashIcon />
         </Button>
       </header>
-    {/* 1. 서버에서 데이터를 받아서 
-        2. TableRow에 children에 넣어주기 */}
       <TableTitle path={path} />
-      {testArr.map((item) => {
-        return <TableRow path={path} key={item} children='ㅁㅁㄴㅇㅁㄴㅇ'/>;
-      })}
+      {path === "movies" && testArr.map((item, index) => {
+        return <TableRow path={path} key={item} 
+        children={<MoviesTableData path={path} i={index}/>}
+        />;})} 
+      {path === "users" && testArr.map((item, index) => {
+        return <TableRow path={path} key={item} 
+        children={<UsersTableData path={path} i={index}/>}
+        />;})} 
+      {path === "reviews" && testArr.map((item, index) => {
+        return <TableRow path={path} key={item} 
+        children={<ReviewsTableData path={path} i={index}/>}
+        />;})} 
     </>
   );
 };
