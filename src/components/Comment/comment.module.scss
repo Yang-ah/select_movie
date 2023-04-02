@@ -44,31 +44,3 @@
     margin-left: 24px;
   }
 }
-
-// type = reviewInput
-.reviewInput {
-  > main {
-    @include m.flex();
-    height: 160px;
-
-    > .inputWrap {
-      @include m.flex();
-      flex-grow: 1;
-      height: 100%;
-      padding: 12px;
-      font-size: 16px;
-      outline: none;
-      border: none;
-      border-radius: 4px;
-    }
-    > button {
-      margin-left: 8px;
-      width: 120px;
-      height: 100%;
-      border-radius: 4px;
-      font-size: 20px;
-      padding: 40px;
-      font-weight: 600;
-    }
-  }
-}

@@ -14,10 +14,6 @@
   width: 720px;
   color: white;
 
-  > .reviewInput {
-    width: 100%;
-  }
-
   > header {
     @include m.flex(space-between);
     padding: 60px 0;

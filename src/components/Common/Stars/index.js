@@ -20,7 +20,9 @@ const Stars = ({ onChange, className }) => {
   const onClickStar = (num) => {
     return () => {
       setClickedStarIndex(num);
-      console.log(clickedStarIndex);
+      onChange((prev) => {
+        return { ...prev, ["score"]: num / 2 };
+      });
     };
   };
 
@@ -35,13 +37,6 @@ const Stars = ({ onChange, className }) => {
           onMouseLeave={() => setHoveredStarIndex(0)}
           onClick={onClickStar(num)}
         >
-          <input
-            type="number"
-            hidden
-            value={clickedStarIndex / 2}
-            onChange={onChange}
-            name="score"
-          />
           <SolidStarHalfIcon
             className={styles.star}
             key={num}

@@ -9,42 +9,29 @@ import useMe from "../../../hooks/useMe";
 import { isLoginAtom } from "../../../atom";
 import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
+import { createReviewComment, deleteReview } from "../../../api/Reviews";
 
 const Accordion = ({ review }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [reviewComments, setReviewComments] = useState([]);
-  const [newReview, setNewReview] = useState();
+  const [newReviewComment, setNewReviewComment] = useState({
+    content: "",
+  });
+
   const me = useMe();
   const isLogin = useRecoilValue(isLoginAtom);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    setReviewComments(() => {
-      return {
-        ...reviewComments,
-        new: {
-          content: newReview,
-          createdAt: 20230101,
-          id: new Date().getMilliseconds(),
-          user: {
-            name: me && (me["name"] ?? "이름없음"),
-            nickname: me && (me["nickname"] ?? "닉네임없음"),
-          },
-        },
-      };
-    });
-    //console.log(reviewComments);
-  };
-
-  const onChange = (e) => {
-    const { value } = e.currentTarget;
-    setNewReview(value);
+  const onSubmit = () => {
+    if (!newReviewComment.content) {
+      return alert("댓글을 입력해주세요.");
+    }
+    createReviewComment(review.id, newReviewComment);
+    setNewReviewComment({ content: "" });
   };
 
   useEffect(() => {
     setReviewComments(review.comments);
-  }, []);
+  }, [review]);
 
   return (
     <li className={cx(styles.accordionWrap)}>
@@ -59,15 +46,17 @@ const Accordion = ({ review }) => {
       />
 
       {isLogin && (
-        <div className={styles.reviewInputWrap}>
+        <div className={styles.commentInputWrap}>
           <p className={styles.userName}>
             {me && (me["nickname"] ?? me["name"])}
           </p>
           <Input
             className={styles.input}
             placeholder="바르고 고운말~ㅇ.<"
-            onChange={onChange}
-            value={newReview}
+            value={newReviewComment.content}
+            onChange={(e) =>
+              setNewReviewComment({ content: e.currentTarget.value })
+            }
           />
           <button type="button" onClick={onSubmit}>
             등록
@@ -86,7 +75,7 @@ const Accordion = ({ review }) => {
       {/* ⬆댓글이 없는 리뷰는 comment, 댓글 input만 리턴 */}
       {/* ⬇댓글이 있는 리뷰는 아래 댓글들 accordion도 같이 리턴 */}
 
-      {review.comments.length !== 0 && (
+      {review.comments.length === 0 || (
         <>
           <button
             className={cx(styles.showCommentsButton, {

@@ -27,7 +27,7 @@
 }
 
 // 로그인 상태 : 댓글 쓰는 곳
-.reviewInputWrap {
+.commentInputWrap {
   @include m.flex(space-between);
   width: 100%;
   gap: 12px;
@@ -83,7 +83,7 @@
     }
     & + .commentWrap {
       visibility: visible;
-      max-height: 400px;
+      max-height: 100vh;
     }
   }
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./detail.module.scss";
 import DetailInfo from "./DetailInfo";
 import Dropdown from "../../components/Common/Dropdown";
-import Comment from "../../components/Comment";
 import { getMoviesRelated } from "../../api/Movies";
 import RelatedCard from "./RelatedCard";
 import { getReviewsMovie } from "../../api/Reviews";
@@ -11,56 +10,24 @@ import { useRecoilValue } from "recoil";
 import { isLoginAtom } from "../../atom";
 import useMe from "../../hooks/useMe";
 import Accordion from "./Accordion";
+import ReviewInput from "../../components/Comment/ReviewInput";
 
 const Detail = () => {
-  // TODO:  DetailInfo 시멘틱 넣기
-  // TODO : 정렬(별점순, 댓글 많은 순), comment 가 없다면 ? "첫 리뷰를 남겨보세용"
-
   const navigate = useNavigate();
   const { id } = useParams();
   const isLogin = useRecoilValue(isLoginAtom);
   const me = useMe();
   const [relatedMovies, setRelatedMovies] = useState();
   const [reviews, setReviews] = useState([]); // review 객체가 들어있는 배열
-  const [newReview, setNewReview] = useState({
-    content: "string",
-    score: 0,
-  });
 
   const fetchRelatedMovies = async () => {
     const response = await getMoviesRelated(id);
     setRelatedMovies(response.data);
   };
 
-  //"0151449f-d2ae-4753-a44c-79be9044f8ff"
   const fetchReviews = async () => {
     const response = await getReviewsMovie(id);
     setReviews(response.data);
-  };
-
-  const onClick = () => {
-    const newReviewObject = {
-      ...newReview,
-      id: reviews.length + 1,
-      createdAt: new Date(),
-      score: 3,
-      user: {
-        name: me && me.name,
-        nickname: me && me.nickname,
-      },
-    };
-
-    const tmpReviews = [newReviewObject, ...reviews];
-    setReviews(tmpReviews);
-  };
-
-  const onChange = (e) => {
-    const { value, name } = e.currentTarget;
-    setNewReview({
-      ...newReview,
-      [name]: value,
-    });
-    console.log(name, value);
   };
 
   useEffect(() => {
@@ -73,18 +40,20 @@ const Detail = () => {
       <DetailInfo id={id} />
       <section className={styles.sectionWrap}>
         <main className={styles.mainWrap}>
-          <Comment
+          <ReviewInput
+            id={id}
+            disabled={!isLogin}
+            placeholder={
+              isLogin
+                ? "10자 이상 입력 시 등록 가능합니다."
+                : "로그인 후 작성하실 수 있습니다."
+            }
+            fetchReviews={fetchReviews}
             userName={
               me && isLogin
                 ? me["nickname"] ?? me["name"]
                 : "로그인 후 작성가능"
             }
-            type="reviewInput"
-            className={styles.reviewInput}
-            disabled={!isLogin}
-            placeholder={isLogin ? "" : "로그인 후 작성하실 수 있습니다."}
-            onClick={onClick}
-            onChange={onChange}
           />
           <header>
             <h1>Reviews</h1>
