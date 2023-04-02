@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./home.module.scss";
 import mdata from "../../mock_movie.json";
 import { RankingCarousel, HomeCarousel } from "../../components";
-import MovieModal from "../../components/MovieModal";
+import ModalMovie from "../../components/ModalMovie";
 
 const Home = () => {
   const [movies] = useState(mdata);
@@ -13,15 +13,15 @@ const Home = () => {
     const num = movies.findIndex((item) => item.id === id);
     setMovieInfo(movies[num]);
     setIsShow(true);
-    document.body.classList.add('modal_overlay');
-    document.body.classList.add('modal-open');
+    document.body.classList.add("modal_overlay");
+    document.body.classList.add("modal-open");
   };
   const onModalClose = () => {
     setIsShow(false);
-    document.body.classList.remove('modal_overlay');
-    document.body.classList.remove('modal-open');
+    document.body.classList.remove("modal_overlay");
+    document.body.classList.remove("modal-open");
   };
- 
+
   return (
     <section className={styles.wrapper}>
       <article className={styles.ranking}>
@@ -47,12 +47,12 @@ const Home = () => {
           onModalClick={onModalClick}
         />
       </article>
-      <MovieModal
+      <ModalMovie
         setIsShow={setIsShow}
         isShow={isShow}
         onModalClose={onModalClose}
         movieInfo={movieInfo}
-      ></MovieModal>
+      ></ModalMovie>
     </section>
   );
 };

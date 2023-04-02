@@ -7,9 +7,17 @@ import {
   ThumbsDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  TrashIcon,
+  ModifyIcon,
 } from "../../../assets/icon";
+import CommentModal from "../CommentModal";
 
 const Pagination = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 8;
   const lastIndex = currentPage * recordsPerPage;
@@ -35,41 +43,64 @@ const Pagination = () => {
 
   return (
     <section className={styles.wrapper}>
-      <ul className={styles.main}>
+      <ul className={styles.ul}>
         {records.map((data, id) => (
-          <li className={styles.box} key={id}>
-            <article className={styles.top}>
-              <div className={styles.left}>
-                <p className={styles.title}>{data.title}</p>
-                <p className={styles.date}>{data.date}</p>
+          <li className={styles.li} key={id}>
+            <section className={styles.screen}>
+              <div className={styles.layerUp}>
+                <button className={styles.commentModal} onClick={showModal}>
+                  <ModifyIcon className={styles.icon} />
+                  <CommentModal
+                    className={styles.modal}
+                    modalOpen1={modalOpen}
+                    setModalOpen={setModalOpen}
+                    notion="리뷰 수정"
+                    children="review"
+                    buttonChildren="완료"
+                  />
+                </button>
+                <button className={styles.deleteModal} onClick={showModal}>
+                  <TrashIcon className={styles.icon} />
+                </button>
               </div>
-              <div className={styles.rating}>
-                <SolidStarIcon className={styles.star} />
-                {data.rating}
+              <div className={styles.layerDown}>
+                <article className={styles.top}>
+                  <div className={styles.left}>
+                    <p className={styles.title}>{data.title}</p>
+                    <p className={styles.date}>{data.date}</p>
+                  </div>
+                  <div className={styles.rating}>
+                    <SolidStarIcon className={styles.star} />
+                    {data.rating}
+                  </div>
+                </article>
+
+                <p className={styles.comment}>
+                  {data.comment.length > 200
+                    ? data.comment.substring(0, 200) + "..."
+                    : data.comment}
+                </p>
+
+                <article className={styles.bottom}>
+                  <span className={styles.upDown}>
+                    <div className={styles.up}>
+                      <ThumbsUpIcon />
+                      {data.liked_up}
+                    </div>
+                    <div className={styles.down}>
+                      <ThumbsDownIcon />
+                      {data.liked_down}
+                    </div>
+                  </span>
+                </article>
               </div>
-            </article>
-            <p className={styles.comment}>
-              {data.comment.length > 200
-                ? data.comment.substring(0, 200) + "..."
-                : data.comment}
-            </p>
-            <article className={styles.bottom}>
-              <span className={styles.upDown}>
-                <div className={styles.up}>
-                  <ThumbsUpIcon />
-                  {data.liked_up}
-                </div>
-                <div className={styles.down}>
-                  <ThumbsDownIcon />
-                  {data.liked_down}
-                </div>
-              </span>
-            </article>
+            </section>
           </li>
         ))}
       </ul>
+
       <ul className={styles.pagination}>
-        <li className={styles.prev}>
+        <li className={styles.prevIcon}>
           <ChevronLeftIcon className={styles.Icon} onClick={onClickPrevPage} />
         </li>
         {numbers.map((number, i) => (
@@ -81,7 +112,7 @@ const Pagination = () => {
             {number}
           </li>
         ))}
-        <li className={styles.next}>
+        <li className={styles.nextIcon}>
           <ChevronRightIcon className={styles.Icon} onClick={onClickNextPage} />
         </li>
       </ul>

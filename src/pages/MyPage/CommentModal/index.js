@@ -1,20 +1,19 @@
-import { useEffect, useRef } from "react";
-import styles from "./modal.module.scss";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import Button from "../Button";
-//notion은 모달 상단 안내 children 입니다.
+import styles from "./modal.module.scss";
+import { Button, Input } from "../../../components";
 
-const Modal = ({
+const InfoModal = ({
   modalOpen1,
   setModalOpen,
   children,
   notion,
+  content,
   buttonChildren,
   ...props
 }) => {
-  // Modal 창을 useRef로 취득
   const modalRef = useRef(null);
-
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -35,6 +34,16 @@ const Modal = ({
   });
   //console.log(`컴포넌트 모달오픈${modalOpen1}`)
   //if(modalOpen1===false){return null}
+
+  //input관련임.
+  const [text, setText] = useState("");
+  const onChange = (e) => {
+    setText(e.target.value);
+  };
+  const onReset = () => {
+    setText("");
+  };
+
   return (
     <CSSTransition
       in={modalOpen1}
@@ -49,16 +58,15 @@ const Modal = ({
     >
       <div className={styles.overlay}>
         <section ref={modalRef} className={styles.container}>
-          <header className={styles.title}>
-            <p children={notion} />
-          </header>
-          <div className={styles.content}>{children}</div>
+          <header className={styles.title}>리뷰 수정</header>
+          <Input className={styles.content} onChange={onChange} value={text} />
           <footer className={styles.buttonBox}>
-            <Button
-              className={styles.cancelButton}
-              children={"취소"}
-              onClick={closeModal}
-            />
+            <Button className={styles.cancelButton} onClick={closeModal}>
+              취소
+            </Button>
+            <Button className={styles.resetButton} onClick={onReset}>
+              초기화
+            </Button>
             <Button className={styles.deleteButton} children={buttonChildren} />
           </footer>
         </section>
@@ -67,4 +75,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default InfoModal;

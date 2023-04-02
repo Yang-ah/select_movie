@@ -1,20 +1,18 @@
-import { useEffect, useRef } from "react";
-import styles from "./modal.module.scss";
+import React, { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import Button from "../Button";
-//notion은 모달 상단 안내 children 입니다.
+import styles from "./modal.module.scss";
+import { Button } from "../../../components";
 
-const Modal = ({
+const InfoModal = ({
   modalOpen1,
   setModalOpen,
   children,
   notion,
+  content,
   buttonChildren,
   ...props
 }) => {
-  // Modal 창을 useRef로 취득
   const modalRef = useRef(null);
-
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -35,6 +33,22 @@ const Modal = ({
   });
   //console.log(`컴포넌트 모달오픈${modalOpen1}`)
   //if(modalOpen1===false){return null}
+
+  //input관련.
+  const [text, setText] = useState("");
+  const onChange = (e) => {
+    setText(e.target.value);
+  };
+  //초기화
+  const onReset = () => {
+    setText("");
+  };
+  //상위컴포넌트로 넘김
+  const submitText = () => {
+    props.propFunction(text);
+  };
+  //textChangeHandler=onChange  currentTarget=target
+
   return (
     <CSSTransition
       in={modalOpen1}
@@ -50,16 +64,19 @@ const Modal = ({
       <div className={styles.overlay}>
         <section ref={modalRef} className={styles.container}>
           <header className={styles.title}>
-            <p children={notion} />
+            🤗 당신을 어떻게 소개하고 싶나요? 🤗
           </header>
-          <div className={styles.content}>{children}</div>
+          <input className={styles.content} value={text} onChange={onChange} />
           <footer className={styles.buttonBox}>
-            <Button
-              className={styles.cancelButton}
-              children={"취소"}
-              onClick={closeModal}
-            />
-            <Button className={styles.deleteButton} children={buttonChildren} />
+            <Button className={styles.cancelButton} onClick={closeModal}>
+              취소
+            </Button>
+            <Button className={styles.resetButton} onClick={onReset}>
+              초기화
+            </Button>
+            <Button className={styles.deleteButton} onClick={submitText}>
+              완료
+            </Button>
           </footer>
         </section>
       </div>
@@ -67,4 +84,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default InfoModal;
