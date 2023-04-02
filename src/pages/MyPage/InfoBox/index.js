@@ -58,6 +58,7 @@ const Info = () => {
           <p className={styles.bottom}>{grade.index === "1"}</p>
         </div>
       </article>
+      
     </section>
   );
 };

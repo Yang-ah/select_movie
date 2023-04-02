@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./register.module.scss";
-import Input from "../../../components/Common/Input";
-//import Button from "../../../components/Common/Button";
+import { Input } from "../../../../../components";
 
 import { useNavigate } from "react-router-dom";
-import { register } from "../../../api/Auth";
-import { saveTokens, isValidateEmail } from "../../../utils";
+import { adminRegister } from "../../../../../api/Auth";
+import { saveTokens, isValidateEmail } from "../../../../../utils";
 
-const Register = () => {
+
+const Register = (setModalOpen) => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     userId: "",
@@ -34,12 +34,11 @@ const Register = () => {
 
   //NOTE: 회원가입 API를 return 해주는 함수
   const onGetRegisterApi = () => {
-    return register;
+    return adminRegister;
   };
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-    //NOTE: 입력창 오류 확인
     if(!form.userId){
       return setErr({...err,userId:'이메일을 입력해주세요'})}
     if (!isValidateEmail(form.userId)) {
@@ -71,7 +70,8 @@ const Register = () => {
       if (response.status === 200) {
         const data = response.data;
         saveTokens(data);
-        navigate("/auth/login");
+        setModalOpen(false);
+        alert('관리자 회원가입을 성공했습니다.')
       }
     } catch(err) { //서버에서 주는 에러 메세지 띄우기 
       const errData = err.response.data;
@@ -85,7 +85,7 @@ const Register = () => {
   return (
     <main className={styles.wrapper}>
       <section>
-        <h1>회원가입</h1>
+        <h1>관리자 회원가입</h1>
         <form
           id="registerForm"
           className={styles.registerForm}

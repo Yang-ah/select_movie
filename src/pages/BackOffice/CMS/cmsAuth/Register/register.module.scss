@@ -1,5 +1,5 @@
-@use "../../../styles/constants" as c;
-@use "../../../styles/mixins" as m;
+@use "../../../../../styles/constants/" as c;
+@use "../../../../../styles/mixins" as m;
 
 .wrapper {
   width: 100%;
@@ -41,7 +41,7 @@
 }
 
 .inputClass {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   
 }
 
