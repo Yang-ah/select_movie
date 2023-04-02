@@ -23,6 +23,12 @@
       font-weight: 600;
     }
   }
+  a {
+    color: white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .reviewsWrap {

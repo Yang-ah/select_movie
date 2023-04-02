@@ -5,7 +5,7 @@ import Dropdown from "../../components/Common/Dropdown";
 import { getMoviesRelated } from "../../api/Movies";
 import RelatedCard from "./RelatedCard";
 import { getReviewsMovie } from "../../api/Reviews";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { isLoginAtom } from "../../atom";
 import useMe from "../../hooks/useMe";
@@ -50,9 +50,13 @@ const Detail = () => {
             }
             fetchReviews={fetchReviews}
             userName={
-              me && isLogin
-                ? me["nickname"] ?? me["name"]
-                : "로그인 후 작성가능"
+              me && isLogin ? (
+                me["nickname"] ?? me["name"]
+              ) : (
+                <Link to="http://localhost:3002/auth/login">
+                  로그인 후 작성가능
+                </Link>
+              )
             }
           />
           <header>
