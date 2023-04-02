@@ -25,7 +25,7 @@ const BackOffice = () => {
       <div className={styles.wrap}>
         <BackOfficeHeader path={path} />
         <main className={styles.main}>
-          <Table path={path} />
+        <Table path={path} /> 
         </main>
       </div>
     </section>

@@ -6,7 +6,9 @@ import Button from "../../../../components/Common/Button";
 const TableRow = ({ path, children, onChange }) => {
   return (
     <>
-      <ul className={cx(styles.wrap, { [styles.review]: path === "review" })}>
+      <ul className={cx(styles.wrap, 
+        { [styles.users]: path === "users" },
+        { [styles.reviews]: path === "reviews" })}>
         <li className={styles.checkbox}>
           <CheckBox onChange={onChange} />
         </li>

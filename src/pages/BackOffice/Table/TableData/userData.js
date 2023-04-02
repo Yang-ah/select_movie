@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getUsers } from "../../../../api/Users";
 //import styles from "./tableData.module.scss";
 
-const UsersTableData = ({i, path})=>{
+const UsersTableData = ({i, page})=>{
 
     const [userData, setUserData] = useState({
         id: "string",
@@ -15,11 +15,12 @@ const UsersTableData = ({i, path})=>{
     });
 
     const responseData = async ()=>{
-        const response1 = await getUsers(1,20);
-        
+        const response1 = await getUsers(page,20);
+        const createTime = response1.data.data[i].createdAt;
+        const day = createTime.slice(0,10);
         setUserData({
             //id : response1.data.data[i].id,
-            createdAt: response1.data.data[i].createdAt,
+            createdAt: day,
             nickname : response1.data.data[i].nickname,
             email : response1.data.data[i].email,
             name : response1.data.data[i].name,
@@ -29,13 +30,13 @@ const UsersTableData = ({i, path})=>{
     }
     useEffect(()=>{
         responseData();
-    },[]);
+    },[page]);
 
 return(
 <>
     <li> {userData.createdAt} </li>
     <li> {userData.email} </li>
-    <li> {userData.nickname} </li>
+    {/* <li> {userData.nickname} </li> */}
     <li> {userData.name} </li>
 </>
 )

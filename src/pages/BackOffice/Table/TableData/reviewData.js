@@ -16,10 +16,11 @@ const ReviewsTableData = ({i, path})=>{
 
     const responseData = async ()=>{
         const response1 = await getReviews(1,20);
-        
+        const createTime = response1.data.data[i].createdAt;
+        const day = createTime.slice(0,10);
         setUserData({
             //id : response1.data.data[i].id,
-            createdAt: response1.data.data[i].createdAt,
+            createdAt: day,
             userName : response1.data.data[i].user.name,
             content : response1.data.data[i].content,
      

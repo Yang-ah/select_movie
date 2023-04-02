@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getMovies } from "../../../../api/Movies";
 import styles from "./tableData.module.scss";
 
-const MoviesTableData = ({i, path, page})=>{
+const MoviesTableData = ({i, page})=>{
 
     const [movieData, setMovieData] = useState({
         id:'',
@@ -20,11 +20,10 @@ const MoviesTableData = ({i, path, page})=>{
             releasedAt : response1.data.data[i].releasedAt,
             averageScore : response1.data.data[i].averageScore,
         })
-        //console.log(response1.data.data[i].id);
     }
     useEffect(()=>{
         responseData();
-    },[]);
+    },[page]);
 
 return(
 <>
