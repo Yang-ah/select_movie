@@ -4,7 +4,7 @@ import Button from "../Common/Button";
 
 import { HeaderLeft, HeaderRight } from "./_shared";
 
-// type : commentInput(디테일 리뷰 입력), comment(리뷰), child(댓글), preview(미리보기)
+// type : reviewInput(리뷰 입력), review(리뷰), comment(댓글), preview(미리보기)
 const Comment = ({
   comment,
   userName,
@@ -14,24 +14,32 @@ const Comment = ({
   up = 0,
   down = 0,
   className,
+  onClick,onChange,
+  ...props
 }) => {
-  const isCommentInput = type === "commentInput";
+  const isReviewInput = type === "reviewInput";
 
   return (
     <section className={cx(styles.wrap, styles[type], className)}>
       <header>
         <HeaderLeft type={type} userName={userName} date={date} />
-        <HeaderRight type={type} rating={rating} up={up} down={down} />
+        <HeaderRight
+          type={type}
+          rating={rating}
+          up={up}
+          down={down}
+          onChange={onChange}
+        />
       </header>
 
       <main>
-        {isCommentInput && (
+        {isReviewInput && (
           <>
-            <textarea className={styles.inputWrap} />
-            <Button option="comment" children="코멘트등록" />
+            <textarea className={styles.inputWrap} name="content" {...props} />
+            <Button onClick={onClick} option="comment" children="리뷰 등록" />
           </>
         )}
-        {isCommentInput || comment}
+        {isReviewInput || comment}
       </main>
     </section>
   );

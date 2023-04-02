@@ -1,8 +1,8 @@
 import apiClient from "../apiClient";
 
 // 영화목록 불러오기
-export const getMovies = () => {
-  return apiClient.get("/movies");
+export const getMovies = (page = 1) => {
+  return apiClient.get(`/movies?page=${page}&limit=20`);
 };
 
 // 영화 전체 개수 불러오기
@@ -16,8 +16,14 @@ export const getMoviesMeLike = (id) => {
 };
 
 // 영화 장르별로 불러오기
-export const getMoviesGenre = () => {
-  return apiClient.get(`/movies/genre`);
+export const getMoviesGenre = (page = 1, genreId) => {
+  return apiClient.get(`/movies/genre`, {
+    params: {
+      page,
+      genreId,
+      limit: 20,
+    },
+  });
 };
 
 // top10 영화 불러오기

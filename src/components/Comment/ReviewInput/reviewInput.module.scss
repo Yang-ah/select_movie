@@ -1,9 +1,8 @@
-@use "../../styles/mixins" as m;
-@use "../../styles/constants" as c;
+@use "../../../styles/mixins" as m;
+@use "../../../styles/constants" as c;
 
-// type 공통
 .wrap {
-  min-width: 500px; // width는 각 page에서 조절
+  min-width: 500px;
   color: c.$C_WHITE;
   padding: 16px;
   background-color: transparent;
@@ -14,44 +13,11 @@
     padding-bottom: 12px;
   }
   > main {
-    padding: 8px 4px;
-    font-size: 16px;
-  }
-}
-
-// type = comment & preview
-.comment,
-.preview {
-  > main {
-    font-size: 14px;
-  }
-}
-
-// type = preview
-.preview {
-  background-color: c.$C_WHITE;
-  box-shadow: 2px 2px 4px 1px #333;
-  color: c.$C_BLACK;
-  border-radius: 4px;
-}
-
-// type = comment
-.comment {
-  background-color: c.$C_WHITE_10;
-  padding-left: 40px;
-
-  > main {
-    margin-left: 24px;
-  }
-}
-
-// type = reviewInput
-.reviewInput {
-  > main {
     @include m.flex();
     height: 160px;
-
-    > .inputWrap {
+    padding: 8px 4px;
+    font-size: 16px;
+    > .input {
       @include m.flex();
       flex-grow: 1;
       height: 100%;

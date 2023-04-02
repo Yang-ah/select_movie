@@ -1,52 +1,118 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./accordion.module.scss";
-import { ChevronUp, ChevronDown } from "../../../assets/icon";
+import { ChevronUp } from "../../../assets/icon";
 import Comment from "../../../components/Comment";
 import cx from "classnames";
+import dayjs from "dayjs";
+import Input from "../../../components/Common/Input";
+import useMe from "../../../hooks/useMe";
+import { isLoginAtom } from "../../../atom";
+import { useRecoilValue } from "recoil";
+import { Link } from "react-router-dom";
 
-// review:리뷰(object), childArr:리뷰에 달린 댓글들[]
-// TODO : 애니메이션 추가, 리뷰버튼 수정
-// chevron은 down만 사용해서 애니메이션
-const Accordion = ({ review, childArr }) => {
-  const [clicked, setClicked] = useState(false);
+const Accordion = ({ review }) => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [reviewComments, setReviewComments] = useState([]);
+  const [newReview, setNewReview] = useState();
+  const me = useMe();
+  const isLogin = useRecoilValue(isLoginAtom);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    setReviewComments(() => {
+      return {
+        ...reviewComments,
+        new: {
+          content: newReview,
+          createdAt: 20230101,
+          id: new Date().getMilliseconds(),
+          user: {
+            name: me && (me["name"] ?? "이름없음"),
+            nickname: me && (me["nickname"] ?? "닉네임없음"),
+          },
+        },
+      };
+    });
+    //console.log(reviewComments);
+  };
+
+  const onChange = (e) => {
+    const { value } = e.currentTarget;
+    setNewReview(value);
+  };
+
+  useEffect(() => {
+    setReviewComments(review.comments);
+  }, []);
 
   return (
-    <li className={cx(styles.accordionItem, styles.noChild)}>
+    <li className={cx(styles.accordionWrap)}>
       <Comment
-        type="comment"
-        key={""}
-        userName={""}
-        comment={""}
-        date={""}
-        rating={""}
+        type="review"
+        userName={review.user.nickname ?? review.user.name ?? "닉네임"}
+        comment={review.content}
+        date={dayjs(review.createdAt).format("YYYY.MM.DD")}
+        rating={review.score}
+        down={review.hateCount}
+        up={review.likeCount}
       />
-      {/* 댓글이 없는 리뷰는 ⬆comment만 리턴 */}
 
-      {childArr && (
+      {isLogin && (
+        <div className={styles.reviewInputWrap}>
+          <p className={styles.userName}>
+            {me && (me["nickname"] ?? me["name"])}
+          </p>
+          <Input
+            className={styles.input}
+            placeholder="바르고 고운말~ㅇ.<"
+            onChange={onChange}
+            value={newReview}
+          />
+          <button type="button" onClick={onSubmit}>
+            등록
+          </button>
+        </div>
+      )}
+
+      {isLogin || (
+        <Link to="/auth/login">
+          <div className={styles.logout}>
+            ✨ 로그인 후 댓글 작성 가능합니다.
+          </div>
+        </Link>
+      )}
+
+      {/* ⬆댓글이 없는 리뷰는 comment, 댓글 input만 리턴 */}
+      {/* ⬇댓글이 있는 리뷰는 아래 댓글들 accordion도 같이 리턴 */}
+
+      {review.comments.length !== 0 && (
         <>
           <button
-            className={styles.button}
-            onClick={() => setClicked(!clicked)}
+            className={cx(styles.showCommentsButton, {
+              [styles.isShow]: isClicked,
+            })}
+            onClick={() => setIsClicked(!isClicked)}
           >
-            댓글
-            {clicked ? <ChevronUp /> : <ChevronDown />}
+            댓글 {review.comments.length}
+            <ChevronUp />
           </button>
 
-          {clicked && (
-            <div className={styles.recomment}>
-              {childArr.map((child) => {
-                return (
-                  <Comment
-                    type="child"
-                    key={""}
-                    comment={""}
-                    userName={""}
-                    date={""}
-                  />
-                );
-              })}
-            </div>
-          )}
+          <article className={styles.commentWrap}>
+            {reviewComments.map((comment) => {
+              return (
+                <Comment
+                  type="comment"
+                  key={comment.id}
+                  comment={comment.content}
+                  userName={
+                    comment.user.nickname ?? comment.user.name ?? "댓글닉네임"
+                  }
+                  date={dayjs(comment.createdAt).format("YYYY.MM.DD")}
+                />
+              );
+            })}
+          </article>
         </>
       )}
     </li>

@@ -4,3 +4,17 @@ import apiClient from "../apiClient";
 export const getReviewsMovie = (movieId) => {
   return apiClient.get(`/reviews/movie/${movieId}`);
 };
+
+//
+
+export const createReview = (movieId, body) => {
+  return apiClient.get(`/reviews/${movieId}`, body);
+};
+
+/*
+{
+  "content": "string",
+  "score": 0,
+}
+
+*/
