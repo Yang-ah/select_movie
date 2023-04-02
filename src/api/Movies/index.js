@@ -1,8 +1,8 @@
 import apiClient from "../apiClient";
 
 // top10 영화 불러오기
-export const getMoviesTop = () => {
-  return apiClient.get(`/movies/top`);
+export const getMoviesTop = (id) => {
+  return apiClient.get(`/movies/${id}/top`);
 };
 // 영화 전체 개수 불러오기
 export const getMoviesCount = () => {
@@ -25,6 +25,6 @@ export const getMoviesRelated = (id) => {
 };
 
 // 영화목록 불러오기
-export const getMovies = () => {
-  return apiClient.get("/movies");
+export const getMovies = (page, limit) => {
+  return apiClient.get(`/movies?page=${page}&limit=${limit}`);
 };

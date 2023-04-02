@@ -3,24 +3,23 @@ import styles from "./home.module.scss";
 import mdata from "../../mock_movie.json";
 import { RankingCarousel, HomeCarousel } from "../../components";
 import MovieModal from "../../components/MovieModal";
-import { getMoviesTop } from "../../api/Movies";
+import { getMoviesRelated } from "../../api/Movies";
+import New from "../../components/Common/MotionModal/New";
 
-const Home = () => {
-  const [topMovies, setTopMovies] = useState();
+const Home = ({ id }) => {
+  const [relatedMovies, setRelatedMovies] = useState();
 
-  const fetchTopMovies = async () => {
-    const response = await getMoviesTop(
-      "0151449f-d2ae-4753-a44c-79be9044f8ff"
-    );
-
-    setTopMovies(response.data);
-
+  const fetchRelatedMovies = async () => {
+    const response = await getMoviesRelated(id);
+    setRelatedMovies(response.data);
   };
 
   useEffect(() => {
-    fetchTopMovies();
+    fetchRelatedMovies();
   }, []);
   
+  console.log(setRelatedMovies)
+
   const [movies] = useState(mdata);
   const [movieInfo, setMovieInfo] = useState(movies[0]);
   const [isShow, setIsShow] = useState(false);
@@ -40,6 +39,12 @@ const Home = () => {
  
   return (
     <section className={styles.wrapper}>
+      <MovieModal
+        setIsShow={setIsShow}
+        isShow={isShow}
+        onModalClose={onModalClose}
+        movieInfo={movieInfo}
+      ></MovieModal>
       <article className={styles.ranking}>
         <div>
           <RankingCarousel
@@ -71,19 +76,23 @@ const Home = () => {
           onModalClick={onModalClick}
         />
         <h2>👀 오늘 이거 볼래? 👀</h2>
+        {relatedMovies &&
+            relatedMovies.map((movie) => {
+              return (
         <HomeCarousel
+          title={movie.title}
+          id={movie.id}
+          postImage={movie.postImage}
+          key={movie.id}
           movieInfo={movieInfo}
-          movies={movies}
+          movies={movie}
           onModalClick={onModalClick}
-        />
+          />
+          );
+        })}
       </article>
-      <MovieModal
-        setIsShow={setIsShow}
-        isShow={isShow}
-        onModalClose={onModalClose}
-        movieInfo={movieInfo}
-      ></MovieModal>
     </section>
+
   );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./poster.module.scss";
 import { SolidStarIcon } from "../../assets/icon";
 
-const PosterL = ({ movie, onModalClick }) => {
+const PosterH = ({ movie, onModalClick }) => {
   const { id, postImage, title, rating } = movie;
   return (
     <div className={styles.wrapper}>
@@ -19,4 +19,4 @@ const PosterL = ({ movie, onModalClick }) => {
     </div>
   );
 };
-export default PosterL;
+export default PosterH;

@@ -1,11 +1,15 @@
 @use "../../styles/constants/" as c;
 
+
 .wrapper {
   background-color: c.$C_BACKGROUND;
   color: c.$C_WHITE;
   font-weight: 800;
   font-size: 24px;
   padding: 20px 10px;
+
+  .modal_overlay{
+    border : 120px solid red;
 }
 .ranking,
 .category {
@@ -14,4 +18,12 @@
 
 .sectionBody {
   width: 500px;
+}
+.modal_overlay{
+  width:100%;
+  height:100%;
+  background-color: #000;
+  z-index: 999;
+  transform: translateY(-150%);
+}
 }

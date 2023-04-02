@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import styles from "./ranking.module.scss";
 import "./ranking.module.scss";
+import PosterL from "../PosterH";
 
-export const RankingCarousel = ({movies ,onModalClick}) => {
+export const RankingCarousel = ({movies ,onModalClick, id }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const settings = {
@@ -17,7 +18,6 @@ export const RankingCarousel = ({movies ,onModalClick}) => {
     slidesToShow: 3, //몇개씩 보여줌?,
     beforeChange: (current, next) => setSlideIndex(next),
   };
-  const { id } = movies
 
   return (
     <div className={styles.ranking}>
@@ -26,16 +26,15 @@ export const RankingCarousel = ({movies ,onModalClick}) => {
         <Slider {...settings}>
           {movies.map((movie, idx) => (
             <div
-             onClick={() => onModalClick(id)}
               className={
                 idx === slideIndex ? styles.slideActive : styles.slideBefore
-              }
-            >
-              <img
-                className={styles.media}
-                src={movie.postImage}
-                alt={movie.title}
-              />
+              }>
+              <PosterL
+          key={movies.id}
+          movie={movie}
+          onModalClick={onModalClick}
+        />
+          
             </div>
           ))}
         </Slider>

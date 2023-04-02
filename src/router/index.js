@@ -21,6 +21,7 @@ const route = (
     <Route path="detail/:id" element={<DetailPage />} />
     <Route path="main" element={<Main />} />
     <Route path="my" element={<MyPage />} />
+    <Route path="test" element={<TestPage />} />
     <Route path="auth">
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
