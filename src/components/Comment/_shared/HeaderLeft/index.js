@@ -6,8 +6,8 @@ import { ShareIcon } from "../../../../assets/icon";
 const HeaderLeft = ({ className, type, userName, date }) => {
   return (
     <article className={cx(styles.left, styles[type], className)}>
-      {/* type: child의 경우, 답글 화살표 아이콘 넣기 */}
-      {type === "child" && <ShareIcon className={styles.IShare} />}
+      {/* type: comment 경우, 답글 화살표 아이콘 넣기 */}
+      {type === "comment" && <ShareIcon className={styles.IShare} />}
 
       <p className={styles.profileIcon}>🤔</p>
       <div className={styles.profileText}>

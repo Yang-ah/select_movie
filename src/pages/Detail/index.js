@@ -1,81 +1,86 @@
 import React, { useEffect, useState } from "react";
 import styles from "./detail.module.scss";
-import FakeAccordion from "./Accordion/FakeAccordian";
 import DetailInfo from "./DetailInfo";
 import Dropdown from "../../components/Common/Dropdown";
-import Comment from "../../components/Comment";
 import { getMoviesRelated } from "../../api/Movies";
 import RelatedCard from "./RelatedCard";
 import { getReviewsMovie } from "../../api/Reviews";
-import { getUsersMe } from "../../api/Users";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { isLoginAtom } from "../../atom";
+import useMe from "../../hooks/useMe";
+import Accordion from "./Accordion";
+import ReviewInput from "../../components/Comment/ReviewInput";
 
 const Detail = () => {
-  // TODO: DetailInfo {id}로 변경하기, DetailInfo 시멘틱 넣기
-  // TODO: CommentInput "닉네임", 등록 api 연결하기 !
-  // TODO: Dropdown 정렬 글씨 줄이기, 애니메이션 추가(화살표 돌아가게), border?,
-  // TODO : 리뷰 api 받아서, 리뷰에 댓글이 있다면 Accordion, 없다면 comment 받기
-  // TODO : 정렬(별점순, 댓글 많은 순), comment 가 없다면 ? "첫 리뷰를 남겨보세용"
-
-  const { id } = useParams();
   const navigate = useNavigate();
-
+  const { id } = useParams();
+  const isLogin = useRecoilValue(isLoginAtom);
+  const me = useMe();
   const [relatedMovies, setRelatedMovies] = useState();
+  const [reviews, setReviews] = useState([]); // review 객체가 들어있는 배열
 
   const fetchRelatedMovies = async () => {
     const response = await getMoviesRelated(id);
     setRelatedMovies(response.data);
-
-    const reviewTest = await getReviewsMovie(
-      "0151449f-d2ae-4753-a44c-79be9044f8ff"
-    );
-    console.log(reviewTest.data);
   };
 
-  useEffect(
-    () => {
-      fetchRelatedMovies();
-    },
-    [id],
-    { id }
-  );
+  const fetchReviews = async () => {
+    const response = await getReviewsMovie(id);
+    setReviews(response.data);
+  };
+
+  useEffect(() => {
+    fetchRelatedMovies();
+    fetchReviews();
+  }, [id, reviews]);
 
   return (
     <>
       <DetailInfo id={id} />
       <section className={styles.sectionWrap}>
-        <main className={styles.commentsWrap}>
-          <Comment
-            type="commentInput"
-            className={styles.commentInput}
-            userName="닉네임"
+        <main className={styles.mainWrap}>
+          <ReviewInput
+            id={id}
+            disabled={!isLogin}
+            placeholder={
+              isLogin
+                ? "10자 이상 입력 시 등록 가능합니다."
+                : "로그인 후 작성하실 수 있습니다."
+            }
+            fetchReviews={fetchReviews}
+            userName={
+              me && isLogin ? (
+                me["nickname"] ?? me["name"]
+              ) : (
+                <Link to="/auth/login">
+                  로그인 후 작성가능
+                </Link>
+              )
+            }
           />
           <header>
-            <h1>Comments</h1>
+            <h1>Reviews</h1>
             <Dropdown
               items={["별점높은순", "별점낮은순", "공감많은순"]}
               className={styles.dropdown}
             />
           </header>
 
-          <main>
-            <FakeAccordion />
-            <Comment
-              type="comment"
-              comment="라라라랄ㄹ라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라ㅏㅏ"
-              userName="라라랄"
-              rating="4.5"
-              className={styles.test}
-            />
-            <FakeAccordion />
-            <Comment
-              type="comment"
-              comment="라라라랄ㄹ라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라라라랄ㄹ라라라라라ㅏㅏ"
-              userName="라라랄"
-              rating="4.5"
-              className={styles.test}
-            />
-          </main>
+          <article className={styles.reviewsWrap}>
+            {reviews.length !== 0 || (
+              <div className={styles.empty}>
+                <p>텅</p>
+                <p>첫 리뷰를 남겨보세요✨</p>
+              </div>
+            )}
+            {reviews &&
+              reviews.map((review) => {
+                return (
+                  <Accordion review={review} key={review.id} movieId={id} />
+                );
+              })}
+          </article>
         </main>
         <aside className={styles.relatedWrap}>
           <h3>영화가 마음에 드셨다면 👀</h3>
@@ -90,7 +95,7 @@ const Detail = () => {
                   postImage={movie.postImage}
                   onClick={() => {
                     navigate(`/detail/${movie.id}`, {
-                      preventScrollReset: true,
+                      preventScrollReset: true, // 뒤로가기 시
                     });
                   }}
                 />

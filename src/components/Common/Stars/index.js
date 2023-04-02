@@ -3,7 +3,7 @@ import styles from "./stars.module.scss";
 import { SolidStarHalfIcon } from "../../../assets/icon";
 import cx from "classnames";
 
-const Stars = ({ onClick: onClickProps, className }) => {
+const Stars = ({ onChange, className }) => {
   const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
   const [clickedStarIndex, setClickedStarIndex] = useState(0);
 
@@ -17,10 +17,12 @@ const Stars = ({ onClick: onClickProps, className }) => {
     return "#eeeeee";
   };
 
-  const onClick = (num) => {
+  const onClickStar = (num) => {
     return () => {
       setClickedStarIndex(num);
-      onClickProps?.();
+      onChange((prev) => {
+        return { ...prev, ["score"]: num / 2 };
+      });
     };
   };
 
@@ -33,7 +35,7 @@ const Stars = ({ onClick: onClickProps, className }) => {
           className={cx(styles.wrapper, num % 2 || styles.right)}
           onMouseEnter={() => setHoveredStarIndex(num)}
           onMouseLeave={() => setHoveredStarIndex(0)}
-          onClick={onClick(num)}
+          onClick={onClickStar(num)}
         >
           <SolidStarHalfIcon
             className={styles.star}

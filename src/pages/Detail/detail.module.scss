@@ -1,14 +1,6 @@
 @use "../../styles/constants/" as c;
 @use "../../styles/mixins" as m;
 
-// 나중에 지우기
-.test {
-  border: 1px solid c.$C_WHITE_10;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
-//////
-
 .sectionWrap {
   @include m.flex(center, flex-start);
   width: 100%;
@@ -18,13 +10,9 @@
   overflow: scroll;
 }
 
-.commentsWrap {
+.mainWrap {
   width: 720px;
   color: white;
-
-  > .commentInput {
-    width: 100%;
-  }
 
   > header {
     @include m.flex(space-between);
@@ -33,6 +21,25 @@
     > h1 {
       font-size: 32px;
       font-weight: 600;
+    }
+  }
+  a {
+    color: white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.reviewsWrap {
+  > .empty {
+    @include m.flex(center, center, column);
+    width: 100%;
+    padding: 40px 0;
+    > p:first-of-type {
+      font-family: "Black Han Sans";
+      font-size: 120px;
+      padding-bottom: 4px;
     }
   }
 }
