@@ -127,7 +127,7 @@
     font-size: 24px;
     font-weight: 600;
     padding: 30px;
-    background-color: c.$C_ORANGE;
+    background-color: c.$C_FOOTER;
     color: c.$C_WHITE;
     border-radius: c.$S_RADIUS c.$S_RADIUS 0 0;
     display: flex;
@@ -144,7 +144,7 @@
     align-items: center;
     justify-content: center;
 
-    color: c.$C_ORANGE;
+    color: black;
     font-size: 24px;
     font-weight: 600;
 
@@ -173,11 +173,12 @@
   }
 
   .deleteButtonDelete {
-    background-color: c.$C_ORANGE;
+    background-color: c.$C_FOOTER;
     box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
     &:hover,
     &:active {
-      filter: brightness(80%);
+      //filter: brightness(80%);
+      background-color: c.$C_ORANGE;
     }
   }
 }
