@@ -1,0 +1,119 @@
+@use "../../../../styles/constants" as c;
+@use "../../../../styles/mixins" as m;
+.wrapper {
+  margin: 10px 0px;
+  padding: 4px 0px;
+  width: 100%;
+  position: relative;
+  float: left;
+}
+
+//comment
+.main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  animation-delay: 0.3ms;
+}
+.box {
+  background-color: c.$C_REVIEWBOX;
+  padding: 24px;
+  height: 320px;
+  position: relative;
+  border-radius: 12px;
+}
+.box:hover,
+.box:active {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.top {
+  @include m.flex(space-between, flex-start);
+  margin-bottom: 8px;
+  line-height: 20px;
+  .left {
+    .title {
+      font-size: 22px;
+    }
+    .date {
+      font-size: 12px;
+    }
+  }
+  .rating {
+    @include m.flex();
+    font-size: 20px;
+    .star {
+      fill: c.$C_STAR;
+      height: 20px;
+      margin-right: 4px;
+    }
+  }
+}
+
+.comment {
+  font-size: 16px;
+  line-height: 30px;
+  height: 220px;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+
+.upDown {
+  @include m.flex();
+  margin: auto 0;
+  padding: 0 4px;
+  float: right;
+  column-gap: 16px;
+
+  .up,
+  .down {
+    @include m.flex();
+    font-size: 14px;
+    > svg {
+      margin-right: 4px;
+      width: 14px;
+      fill: white;
+    }
+  }
+}
+
+//nav
+.pagination {
+  font-size: 16px;
+  margin: 20px 0px;
+  height: 100%;
+  color: c.$C_ARROW;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  fill: c.$C_ARROW;
+
+  :hover,
+  :active {
+    color: c.$C_ORANGE;
+    fill: c.$C_ORANGE;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+
+  li {
+    margin: 0px 20px;
+    line-height: 0px;
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+  }
+
+  .Icon {
+    height: 20px;
+    width: 20px;
+
+    :hover,
+    :active {
+      fill: c.$C_ORANGE;
+    }
+  }
+}
