@@ -3,22 +3,9 @@ import styles from "./home.module.scss";
 import mdata from "../../mock_movie.json";
 import { RankingCarousel, HomeCarousel } from "../../components";
 import MovieModal from "../../components/MovieModal";
-import { getMoviesRelated } from "../../api/Movies";
-import New from "../../components/Common/MotionModal/New";
+import { getMovies } from "../../api/Movies";
 
 const Home = ({ id }) => {
-  const [relatedMovies, setRelatedMovies] = useState();
-
-  const fetchRelatedMovies = async () => {
-    const response = await getMoviesRelated(id);
-    setRelatedMovies(response.data);
-  };
-
-  useEffect(() => {
-    fetchRelatedMovies();
-  }, []);
-  
-  console.log(setRelatedMovies)
 
   const [movies] = useState(mdata);
   const [movieInfo, setMovieInfo] = useState(movies[0]);
@@ -28,14 +15,28 @@ const Home = ({ id }) => {
     const num = movies.findIndex((item) => item.id === id);
     setMovieInfo(movies[num]);
     setIsShow(true);
-    document.body.classList.add('modal_overlay');
-    document.body.classList.add('modal-open');
   };
   const onModalClose = () => {
     setIsShow(false);
-    document.body.classList.remove('modal_overlay');
-    document.body.classList.remove('modal-open');
   };
+  
+  /*
+
+  const [moviedata , setMovieData] = useState();
+
+  const responseData = async (i)=>{
+      const response1 = await getMovies(1,20);
+    
+      setMovieData({
+          id : response1.data.data[i].id,
+          title : response1.data.data[i].title,
+          releasedAt : response1.data.data[i].releasedAt,
+          averageScore : response1.data.data[i].averageScore,
+      })
+    }
+    useEffect(()=>{
+      responseData();
+    },[1]);  */
  
   return (
     <section className={styles.wrapper}>
@@ -76,20 +77,11 @@ const Home = ({ id }) => {
           onModalClick={onModalClick}
         />
         <h2>👀 오늘 이거 볼래? 👀</h2>
-        {relatedMovies &&
-            relatedMovies.map((movie) => {
-              return (
         <HomeCarousel
-          title={movie.title}
-          id={movie.id}
-          postImage={movie.postImage}
-          key={movie.id}
           movieInfo={movieInfo}
-          movies={movie}
+          movies={movies}
           onModalClick={onModalClick}
-          />
-          );
-        })}
+              />
       </article>
     </section>
 

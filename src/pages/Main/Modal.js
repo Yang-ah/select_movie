@@ -4,10 +4,43 @@ import Comment from '../../components/Comment';
 import dummy from "../../mock_comment.json";
 
 import styles from './modal.module.scss'
-import { CSSTransition } from 'react-transition-group';
+
+import { motion , AnimatePresence } from "framer-motion";
 
 
-const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow}) => {
+const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow , onOver}) => {
+
+
+    const backdropVariants = {
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 },
+        exit : {opacity : 0},
+        
+      };
+      
+      const modalVariants = {
+        hidden: {
+          y: "50",
+          opacity: 0,
+          scale : 0.3,
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+        },
+        visible: {
+          y: "10",
+          opacity: 1,
+          scale : 1,
+          backgroundColor: "#fff",
+          transition: {
+            stiffness: 200, damping: 20, duration: 0.3,
+          }
+        },
+        exit : {
+          y : "50",
+          opacity : 0,
+          scale : 0.3,
+
+        }
+      };
 
     const modalRef1 = useRef(null);
 
@@ -27,16 +60,17 @@ const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow}) => {
     });
     
     return (
-        <CSSTransition
-            in={isShow}
-            timeout={300}
-            classNames={{
-            enterActive: styles.modalEnterActive,
-            enterDone: styles.modalEnterDone,
-            exitActive: styles.modalExit,
-            exitDone: styles.modalExitActive
-            }}
-            unmountOnExit>
+      <AnimatePresence>
+        <motion.div
+          variants={backdropVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+        <motion.div
+            className="modal"
+            variants={modalVariants}
+          >
         <div
         ref={modalRef1} 
         className={styles.modal}>
@@ -83,7 +117,9 @@ const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow}) => {
                 
             </div>
         </div>
-        </CSSTransition>
+        </motion.div>
+        </motion.div>
+        </AnimatePresence>
     );
 };
  

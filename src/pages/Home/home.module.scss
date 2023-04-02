@@ -8,8 +8,16 @@
   font-size: 24px;
   padding: 20px 10px;
 
-  .modal_overlay{
-    border : 120px solid red;
+.wrapper_background{
+  background-color: c.$C_BLACK;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  z-index: -999;
+  filter: brightness(60%);
+  background-color: black;
+  object-fit: cover;
 }
 .ranking,
 .category {

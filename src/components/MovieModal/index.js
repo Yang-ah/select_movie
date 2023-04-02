@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import styles from "./modal.module.scss";
 
@@ -10,28 +10,8 @@ import {
   DoubleChevronRightIcon
 } from "../../assets/icon";
 
-import { getMovie } from "../../api/Movies";
 
-
-const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow , id }) => {
-
-  const [moviedata , setMovieData] = useState();
-
-const responseData = async ()=>{
-    const response1 = await getMovies(page,20);
-  
-    setMovieData({
-        id : response1.data.data[i].id,
-        title : response1.data.data[i].title,
-        releasedAt : response1.data.data[i].releasedAt,
-        averageScore : response1.data.data[i].averageScore,
-    })
-  }
-  useEffect(()=>{
-    responseData();
-  },[page]);
-  
-
+const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
   
   const modalRef1 = useRef(null);
 
@@ -52,7 +32,7 @@ const responseData = async ()=>{
 
   return (
     <CSSTransition
-      in={isShow}
+          in={isShow}
       timeout={300}
       classNames={{
         enterActive: styles.modalEnterActive,
@@ -78,42 +58,6 @@ const responseData = async ()=>{
                 alt={movieInfo.title}
               />
             </div>
-            <div className={styles.rightWrap}>
-              <div className={styles.info}>
-                <h1>
-                  {movieDetail?.title} <p>{movieDetail?.runtime}분</p>
-                </h1>
-                <h2>
-
-                  {movieDetail?.genres.map((genre) => {
-                    return <span key={genre.id}> {genre.name} /</span>;
-                  })}
-                </h2>
-
-                <h3>
-                  | 작품정보 |<p>{movieDetail?.plot}</p>
-                </h3>
-
-                <h3 className={styles.actors}>
-                  | 출연 |
-                  <p>
-                    {movieDetail?.actors.map((actor) => {
-                      return <span key={actor.id}> {actor.name} </span>;
-                    })}
-                  </p>
-                </h3>
-
-                <h3 className={styles.actors}>
-                  | 제작 / 스태프 |
-                  <p>
-                    <span>{movieDetail?.company} / </span>
-                    {movieDetail?.staffs.map((staff) => {
-                      return <span key={staff.id}> {staff.name} </span>;
-                    })}
-                  </p>
-                </h3>
-              </div>
-              </div>
               </div>
           <div className={styles.commentHead}>c o m m e n t</div>
           <p className={styles.close} onClick={onModalClose}>
@@ -149,3 +93,5 @@ const responseData = async ()=>{
 };
 
 export default Modal1;
+
+

@@ -5,29 +5,15 @@ import hdata from '../../mock_movie.json';
 import Modal1 from "./Modal";
 
 const Main = () =>{
-  
-  /* const [topMovies, setTopMovies] = useState();
-
-  const fetchTopMovies = async () => {
-    const response = await getMoviesTop(
-      "0151449f-d2ae-4753-a44c-79be9044f8ff"
-    );
-
-    setTopMovies(response.data);
-
-  };
-
-  useEffect(() => {
-    fetchTopMovies();
-  }, []); */
  
-  
-
   const [ movies ] = useState(hdata);
   const [ movieInfo , setMovieInfo ] = useState(movies[0]);
   const [ isShow , setIsShow ] = useState(false);
 
-
+  const onOver = (id) => {
+    const num = hdata.findIndex(item=>item===id)
+    setMovieInfo(hdata[num])       
+}
 
   const onModalClick = () =>{
     setIsShow(true)
@@ -41,10 +27,9 @@ const Main = () =>{
         <div>
           <MainCarousel movieInfo={movieInfo} movies={movies} onModalClick={onModalClick} />
         </div>
-                <Modal1 
-                setIsShow={setIsShow} isShow={isShow}
-                onModalClose={onModalClose} movieInfo={movieInfo}>
-                </Modal1>
+        {
+            isShow && <Modal1 onModalClose={onModalClose} movieInfo={movieInfo}  onOver={onOver}/>
+        }
               
 
       </main>
