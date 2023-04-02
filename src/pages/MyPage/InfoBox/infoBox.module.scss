@@ -92,12 +92,16 @@
       padding: 30px;
     }
     .middle {
-      font-size: 32px;
+      font-size: 36px;
+      font-weight: 700;
       color: c.$C_ORANGE;
 
       height: 40px;
-      min-width: 100%;
       padding: 30px;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
     }
     .bottom {
       font-size: 14px;

@@ -1,77 +1,6 @@
 @use "../../../styles/constants" as c;
 @use "../../../styles/mixins" as m;
 
-.overlay {
-  @include m.flex();
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.46);
-  z-index: 999;
-}
-.container {
-  /* 모달창 크기 */
-  min-width: 50%;
-  height: 600px;
-
-  /* 모달창 디자인 */
-  background-color: c.$C_WHITE;
-  border-radius: c.$S_RADIUS;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  > .title {
-    height: 40px;
-    min-width: 100%;
-    font-size: 24px;
-    font-weight: 600;
-    padding: 30px;
-    background-color: c.$C_FOOTER;
-    color: c.$C_WHITE;
-    border-radius: c.$S_RADIUS c.$S_RADIUS 0 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-  }
-  > .content {
-    padding: 5%;
-    width: 100%;
-    height: 100%;
-    align-items: flex-start;
-    height: calc(100% - 70px);
-  }
-}
-.buttonBox {
-  background-color: rgba(55, 50, 63, 0.075);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 10px;
-  width: 100%;
-
-  .cancelButton {
-    margin-right: 20px;
-    background-color: c.$C_WHITE;
-    color: black;
-    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
-  }
-  .resetButton {
-    margin-right: 20px;
-    background-color: c.$C_PURPLE2;
-    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
-  }
-  .deleteButton {
-    background-color: c.$C_FOOTER;
-    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
-  }
-}
-
 //CSSTransition
 .modalEnterActive {
   opacity: 0;
@@ -90,4 +19,165 @@
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+}
+
+.overlay {
+  @include m.flex();
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.46);
+  z-index: 999;
+}
+
+//FIXMODAL
+.containerFix {
+  /* 모달창 크기 */
+  min-width: 50%;
+  height: 600px;
+
+  /* 모달창 디자인 */
+  background-color: c.$C_WHITE;
+  border-radius: c.$S_RADIUS;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > .titleFix {
+    height: 40px;
+    min-width: 100%;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 30px;
+    background-color: c.$C_FOOTER;
+    color: c.$C_WHITE;
+    border-radius: c.$S_RADIUS c.$S_RADIUS 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+  > .contentFix {
+    padding: 5%;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    height: calc(100% - 70px);
+  }
+}
+.buttonBoxFix {
+  background-color: rgba(55, 50, 63, 0.075);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+
+  .cancelButtonFix {
+    margin-right: 20px;
+    background-color: c.$C_WHITE;
+    color: black;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
+    &:hover,
+    &:active {
+      filter: brightness(80%);
+    }
+  }
+  .resetButtonFix {
+    margin-right: 20px;
+    background-color: c.$C_PURPLE2;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
+    &:hover,
+    &:active {
+      filter: brightness(80%);
+    }
+  }
+  .deleteButtonFix {
+    background-color: c.$C_FOOTER;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
+    &:hover,
+    &:active {
+      filter: brightness(80%);
+    }
+  }
+}
+
+//DELETEMODAL
+.containerDelete {
+  /* 모달창 크기 */
+  min-width: 20%;
+  height: 400px;
+
+  /* 모달창 디자인 */
+  background-color: c.$C_WHITE;
+  border-radius: c.$S_RADIUS;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > .titleDelete {
+    height: 40px;
+    min-width: 100%;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 30px;
+    background-color: c.$C_ORANGE;
+    color: c.$C_WHITE;
+    border-radius: c.$S_RADIUS c.$S_RADIUS 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+  > .contentDelete {
+    padding: 5% auto;
+    min-width: 100%;
+    height: calc(100% - 70px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: c.$C_ORANGE;
+    font-size: 24px;
+    font-weight: 600;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.buttonBoxDelete {
+  background-color: rgba(55, 50, 63, 0.075);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+
+  .cancelButtonDelete {
+    margin-right: 20px;
+    background-color: c.$C_WHITE;
+    color: black;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
+    &:hover,
+    &:active {
+      filter: brightness(80%);
+    }
+  }
+
+  .deleteButtonDelete {
+    background-color: c.$C_ORANGE;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.46);
+    &:hover,
+    &:active {
+      filter: brightness(80%);
+    }
+  }
 }
