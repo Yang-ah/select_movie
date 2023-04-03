@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getUsersMe } from "../api/Users";
-
 //NOTE: 커스텀 훅
 const useMe = () => {
   const [me, setMe] = useState(null);
@@ -14,7 +13,7 @@ const useMe = () => {
 
   useEffect(() => {
     onGetMe();
-  }, [me]);
+  }, []);
 
   return me;
 };

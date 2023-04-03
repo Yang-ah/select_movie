@@ -1,2 +1,3 @@
 export { default as HeaderLeft } from "./HeaderLeft";
-export { default as HeaderRight } from "./HeaderRight";
+export { default as HeaderRightButtons } from "./HeaderRightButtons";
+export { default as HeaderRightRating } from "./HeaderRightRating";

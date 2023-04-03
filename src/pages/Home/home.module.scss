@@ -1,5 +1,9 @@
 @use "../../styles/constants/" as c;
 
+.preview {
+  width: 400px;
+}
+
 .wrapper {
   background-color: c.$C_BACKGROUND;
   color: c.$C_WHITE;

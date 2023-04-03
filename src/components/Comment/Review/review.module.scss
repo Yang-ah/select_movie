@@ -1,0 +1,49 @@
+@use "../../../styles/mixins" as m;
+@use "../../../styles/constants" as c;
+
+.wrap {
+  min-width: 500px;
+  color: c.$C_WHITE;
+  padding: 16px;
+  background-color: transparent;
+  margin-bottom: 10px;
+
+  > header {
+    @include m.flex(space-between, flex-start);
+    padding-bottom: 12px;
+  }
+  > main {
+    padding: 8px 4px;
+    font-size: 16px;
+  }
+
+  &.myReview {
+    background-color: c.$C_PURPLE1;
+
+    .myButtons {
+      @include m.flex(space-between);
+      width: 36px;
+
+      > button {
+        transition: 0.2s transform ease-in;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+        fill: white;
+      }
+    }
+  }
+}
+
+.right {
+  @include m.flex();
+  column-gap: 12px;
+}
+.modal {
+  color: black;
+}

@@ -1,0 +1,49 @@
+@use "../../../styles/mixins" as m;
+@use "../../../styles/constants" as c;
+
+.wrap {
+  min-width: 500px;
+  color: c.$C_WHITE;
+  padding: 16px 16px 16px 40px;
+  background-color: c.$C_WHITE_10;
+  margin-bottom: 10px;
+
+  > header {
+    @include m.flex(space-between, flex-start);
+    padding-bottom: 12px;
+  }
+  > main {
+    margin-left: 24px;
+    padding: 8px 4px;
+    font-size: 14px;
+  }
+
+  &.myComment {
+    background-color: c.$C_PURPLE1;
+
+    .myButtons {
+      @include m.flex(space-between);
+      width: 30px;
+
+      > button {
+        transition: 0.2s transform ease-in;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      svg {
+        width: 12px;
+        height: 12px;
+        fill: white;
+      }
+    }
+  }
+}
+.right {
+  @include m.flex();
+  column-gap: 12px;
+}
+.modal {
+  color: black;
+}

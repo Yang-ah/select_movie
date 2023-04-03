@@ -1,14 +1,8 @@
 import apiClient from "../apiClient";
 
-// 영화목록 불러오기 /limit는 최소 20이상이여야 합니다
-export const getMovies = (page, limit, title) => {
-  return apiClient.get(`/movies`, {
-    params: {
-      page,
-      limit,
-      title,
-    },
-  });
+// 영화목록 불러오기
+export const getMovies = (id, page, limit) => {
+  return apiClient.get(`/movies/${id}?page=${page}&limit=${limit}`);
 };
 
 // 영화 전체 개수 불러오기
@@ -42,7 +36,17 @@ export const getMoviesRelated = (id) => {
   return apiClient.get(`/movies/${id}/related`);
 };
 
+// 영화 장르별로 불러오기22 ?
+export const getMoviesCategory = () => {
+  return apiClient.get(`/movies/category`);
+};
+
 // 영화 자세히 불러오기
 export const getMovie = (id) => {
   return apiClient.get(`/movies/${id}/detail`);
+};
+
+// 영화 카테고리 불러오기
+export const getMovieCategories = (id) => {
+  return apiClient.get(`/movies/categories`);
 };

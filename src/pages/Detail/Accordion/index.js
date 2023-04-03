@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./accordion.module.scss";
 import { ChevronUp } from "../../../assets/icon";
-import Comment from "../../../components/Comment";
 import cx from "classnames";
 import dayjs from "dayjs";
 import Input from "../../../components/Common/Input";
@@ -9,52 +8,67 @@ import useMe from "../../../hooks/useMe";
 import { isLoginAtom } from "../../../atom";
 import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
-import { createReviewComment, deleteReview } from "../../../api/Reviews";
+import { createReviewComment } from "../../../api/Reviews";
+import { Comment, Review } from "../../../components/Comment";
 
-const Accordion = ({ review }) => {
+const Accordion = ({ review, movieId, fetchReviews }) => {
+  const isLogin = useRecoilValue(isLoginAtom);
+  const me = useMe();
+
   const [isClicked, setIsClicked] = useState(false);
   const [reviewComments, setReviewComments] = useState([]);
   const [newReviewComment, setNewReviewComment] = useState({
     content: "",
   });
 
-  const me = useMe();
-  const isLogin = useRecoilValue(isLoginAtom);
+  const onClickCommentAccordion = () => setIsClicked(!isClicked);
 
+  const onChangeInput = (e) =>
+    setNewReviewComment({ content: e.currentTarget.value });
+
+  const setUserName = (user) => {
+    return user.nickName ?? user.name ?? "닉네임없음";
+  };
+
+  useEffect(() => {
+    setReviewComments(review.comments);
+  }, [review.comments]);
+
+  // 리뷰의 '댓글' 등록 버튼 클릭 이벤트
   const onSubmit = () => {
     if (!newReviewComment.content) {
       return alert("댓글을 입력해주세요.");
     }
     createReviewComment(review.id, newReviewComment);
+    fetchReviews();
     setNewReviewComment({ content: "" });
-  };
-
-  useEffect(() => {
     setReviewComments(review.comments);
-  }, [review]);
+  };
 
   return (
     <li className={cx(styles.accordionWrap)}>
-      <Comment
-        type="review"
-        userName={review.user.nickname ?? review.user.name ?? "닉네임"}
+      {/* 리뷰 */}
+      <Review
+        userName={setUserName(review.user)}
         comment={review.content}
         date={dayjs(review.createdAt).format("YYYY.MM.DD")}
         rating={review.score}
         down={review.hateCount}
         up={review.likeCount}
+        reviewId={review.id}
+        written={review.user.id}
+        movieId={movieId}
       />
 
+      {/* 로그인 상태의 댓글 input */}
       {isLogin && (
         <div className={styles.commentInputWrap}>
-          <p className={styles.userName}>{me && (me.nickname ?? me.name)}</p>
+          <p className={styles.userName}>{me && setUserName(me)}</p>
           <Input
             className={styles.input}
             placeholder="바르고 고운말~ㅇ.<"
             value={newReviewComment.content}
-            onChange={(e) =>
-              setNewReviewComment({ content: e.currentTarget.value })
-            }
+            onChange={onChangeInput}
           />
           <button type="button" onClick={onSubmit}>
             등록
@@ -62,6 +76,7 @@ const Accordion = ({ review }) => {
         </div>
       )}
 
+      {/* 로그아웃 상태의 댓글 input */}
       {isLogin || (
         <Link to="/auth/login">
           <div className={styles.logout}>
@@ -70,16 +85,14 @@ const Accordion = ({ review }) => {
         </Link>
       )}
 
-      {/* ⬆댓글이 없는 리뷰는 comment, 댓글 input만 리턴 */}
-      {/* ⬇댓글이 있는 리뷰는 아래 댓글들 accordion도 같이 리턴 */}
-
+      {/* 댓글들 accordion */}
       {review.comments.length === 0 || (
         <>
           <button
             className={cx(styles.showCommentsButton, {
               [styles.isShow]: isClicked,
             })}
-            onClick={() => setIsClicked(!isClicked)}
+            onClick={onClickCommentAccordion}
           >
             댓글 {review.comments.length}
             <ChevronUp />
@@ -89,13 +102,12 @@ const Accordion = ({ review }) => {
             {reviewComments.map((comment) => {
               return (
                 <Comment
-                  type="comment"
                   key={comment.id}
                   comment={comment.content}
-                  userName={
-                    comment.user.nickname ?? comment.user.name ?? "댓글닉네임"
-                  }
+                  userName={setUserName(comment.user)}
                   date={dayjs(comment.createdAt).format("YYYY.MM.DD")}
+                  commentId={comment.id}
+                  written={comment.user.id}
                 />
               );
             })}

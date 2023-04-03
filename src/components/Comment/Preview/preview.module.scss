@@ -1,0 +1,21 @@
+@use "../../../styles/mixins" as m;
+@use "../../../styles/constants" as c;
+
+.wrap {
+  min-width: 500px;
+  color: c.$C_BLACK;
+  padding: 16px;
+  margin-bottom: 10px;
+  background-color: c.$C_WHITE;
+  box-shadow: 2px 2px 4px 1px #333;
+  border-radius: 4px;
+
+  > header {
+    @include m.flex(space-between, flex-start);
+    padding-bottom: 12px;
+  }
+  > main {
+    padding: 8px 4px;
+    font-size: 14px;
+  }
+}

@@ -26,6 +26,13 @@ const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
     });
   };
 
+  const onChange = (e) => {
+    setNewReview({
+      ...newReview,
+      content: e.currentTarget.value,
+    });
+  };
+
   return (
     <section className={styles.wrap}>
       <header>
@@ -36,13 +43,7 @@ const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
       <main>
         <textarea
           className={styles.input}
-          //NOTE: onChange도 함수로 빼놓는 습관을 기르는게 좋다~
-          onChange={(e) => {
-            setNewReview({
-              ...newReview,
-              content: e.currentTarget.value,
-            });
-          }}
+          onChange={onChange}
           {...props}
           name="content"
           required

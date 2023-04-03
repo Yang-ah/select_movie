@@ -2,14 +2,16 @@ import { useEffect, useRef } from "react";
 import styles from "./modal.module.scss";
 import { CSSTransition } from "react-transition-group";
 import Button from "../Button";
-//notion은 모달 상단 안내 children 입니다.
+import cx from "classnames";
 
 const Modal = ({
+  className,
+  option,
+  children,
+  buttonChildren,
   modalOpen1,
   setModalOpen,
-  children,
-  notion,
-  buttonChildren,
+  onClick,
   ...props
 }) => {
   // Modal 창을 useRef로 취득
@@ -48,10 +50,11 @@ const Modal = ({
       unmountOnExit
     >
       <div className={styles.overlay}>
-        <section ref={modalRef} className={styles.container}>
-          <header className={styles.title}>
-            <p children={notion} />
-          </header>
+        <section
+          ref={modalRef}
+          className={cx(styles.container, className, styles[option])}
+        >
+          <header className={styles.title}>안내</header>
           <div className={styles.content}>{children}</div>
           <footer className={styles.buttonBox}>
             <Button
@@ -59,7 +62,11 @@ const Modal = ({
               children={"취소"}
               onClick={closeModal}
             />
-            <Button className={styles.deleteButton} children={buttonChildren} />
+            <Button
+              className={styles.deleteButton}
+              children={buttonChildren}
+              onClick={onClick}
+            />
           </footer>
         </section>
       </div>

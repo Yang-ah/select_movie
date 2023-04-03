@@ -8,16 +8,13 @@ const HeaderRightButtons = ({ up, down, type }) => {
       <div className={cx(styles.upDown, styles[type])}>
         <button name="up">
           <ThumbsUpIcon />
-          {up + ""}
+          {up}
         </button>
         <button name="down">
           <ThumbsDownIcon />
-          {down + ""}
+          {down}
         </button>
       </div>
-      <button type="button" name="report">
-        신고하기
-      </button>
     </>
   );
 };
