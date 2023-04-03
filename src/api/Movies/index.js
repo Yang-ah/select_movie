@@ -1,8 +1,8 @@
 import apiClient from "../apiClient";
 
 // 영화목록 불러오기 
-export const getMovies = (id,page, limit) => {
-  return apiClient.get(`/movies/${id}?page=${page}&limit=${limit}`);
+export const getMovies = (page, limit) => {
+  return apiClient.get(`/movies?page=${page}&limit=${limit}`);
 };
 
 // 영화 전체 개수 불러오기

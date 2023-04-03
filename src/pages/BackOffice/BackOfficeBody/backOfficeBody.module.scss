@@ -1,0 +1,101 @@
+@use "../../../styles/constants" as c;
+@use "../../../styles/mixins" as m;
+
+.header {
+    @include m.flex(space-between);
+    margin-bottom: 20px;
+    > .mainTitle {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .searchInput {
+      width: 400px;
+    }
+    > button {
+      @include m.flex(space-between);
+      width: 76px;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 8px;
+  
+      > svg {
+        width: 18px;
+        fill: white;
+        }
+    }
+}
+
+.title {
+  background-color: c.$C_ORANGE;
+  width: 100%;
+  display: grid;
+
+  grid-template-columns: 40px 2fr 1fr 1fr 1fr ;
+  margin-bottom: 8px;
+  max-height: 80px;
+  &.users{
+    grid-template-columns: 40px 2fr 2fr 1fr 1fr 1fr ;
+  }
+  &.Reviews {
+    grid-template-columns: 40px 2fr 1fr 3fr 1fr 1fr;
+    > li:nth-child(5) {
+      @include m.flex(center, flex-start);
+    }
+  }
+  > li {
+    @include m.flex();
+    max-height: 80px;
+    padding: 8px 4px;
+  }
+}
+
+.tableRow {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40px 2fr 1fr 1fr 1fr ;
+    margin-bottom: 8px;
+    max-height: 80px;
+    background-color: c.$C_WHITE_10;
+    &.users{
+        grid-template-columns: 40px 2fr 2fr 1fr 1fr 1fr ;
+      }
+      &.Reviews {
+        grid-template-columns: 40px 2fr 1fr 3fr 1fr 1fr;
+        > li:nth-child(5) {
+          @include m.flex(center, flex-start);
+        }
+      }
+    > li {
+      @include m.flex();
+      max-height: 80px;
+      padding: 8px 4px;
+      overflow: scroll;
+    }
+
+    
+  }
+  .checkBox {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-color: c.$C_OB_YELLOW;
+    border: 1px solid #787878;
+  
+    input + svg {
+      fill: #787878;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  
+    > input:not(:checked) + svg {
+      display: none;
+    }
+  }
+
+  .modal{
+    color: black;
+  }

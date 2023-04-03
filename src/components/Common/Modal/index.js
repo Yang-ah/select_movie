@@ -35,10 +35,10 @@ const Modal = ( {className, option, children, buttonChildren,
             in={modalOpen1}
             timeout={300}
             classNames={{
-            enterActive: styles.modalEnterActive,
-            enterDone: styles.modalEnterDone,
-            exitActive: styles.modalExit,
-            exitDone: styles.modalExitActive
+                enterActive: styles.modalEnterActive,
+                enterDone: styles.modalEnterDone,
+                exitActive: styles.modalExit,
+                exitDone: styles.modalExitActive
             }}
             unmountOnExit>
         <div className={styles.overlay}>

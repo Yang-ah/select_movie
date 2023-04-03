@@ -1,8 +1,11 @@
 import styles from "./backOffice.module.scss";
 import BackOfficeHeader from "./BackOfficeHeader";
-import Table from "./Table";
+
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import BackOfficeMovies from "./BackOfficeBody/movies";
+import BackOfficeUsers from "./BackOfficeBody/users";
+import BackOfficeReviews from "./BackOfficeBody/reviews";
 
 const BackOffice = () => {
   const location = useLocation();
@@ -25,7 +28,10 @@ const BackOffice = () => {
       <div className={styles.wrap}>
         <BackOfficeHeader path={path} />
         <main className={styles.main}>
-        <Table path={path} /> 
+        {/* <Table path={path} /> */}
+        {path==='movies' && <BackOfficeMovies/>}
+        {path==='users' && <BackOfficeUsers/>}
+        {path==='reviews' && <BackOfficeReviews/>}
         </main>
       </div>
     </section>
