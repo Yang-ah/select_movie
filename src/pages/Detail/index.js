@@ -5,7 +5,7 @@ import Dropdown from "../../components/Common/Dropdown";
 import { getMoviesRelated } from "../../api/Movies";
 import RelatedCard from "./RelatedCard";
 import { getReviewsMovie } from "../../api/Reviews";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { isLoginAtom } from "../../atom";
 import useMe from "../../hooks/useMe";
@@ -15,6 +15,7 @@ import ReviewInput from "../../components/Comment/ReviewInput";
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { pathname } = useLocation();
   const isLogin = useRecoilValue(isLoginAtom);
   const me = useMe();
   const [relatedMovies, setRelatedMovies] = useState();
@@ -35,6 +36,11 @@ const Detail = () => {
     fetchReviews();
   }, [id, reviews]);
 
+  useEffect(() => {
+    console.log({ pathname });
+    window.scrollTo(0, 0);
+  }, [pathname, relatedMovies]);
+
   return (
     <>
       <DetailInfo id={id} />
@@ -51,11 +57,9 @@ const Detail = () => {
             fetchReviews={fetchReviews}
             userName={
               me && isLogin ? (
-                me["nickname"] ?? me["name"]
+                me.nickname ?? me.name
               ) : (
-                <Link to="/auth/login">
-                  로그인 후 작성가능
-                </Link>
+                <Link to="/auth/login">로그인 후 작성가능</Link>
               )
             }
           />
@@ -95,7 +99,7 @@ const Detail = () => {
                   postImage={movie.postImage}
                   onClick={() => {
                     navigate(`/detail/${movie.id}`, {
-                      preventScrollReset: true, // 뒤로가기 시
+                      replace: true,
                     });
                   }}
                 />

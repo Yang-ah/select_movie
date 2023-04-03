@@ -23,6 +23,8 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
     };
   });
 
+  //NOTE: tag depth가 조금 깊다~
+
   return (
     <CSSTransition
       in={isShow}
@@ -52,16 +54,14 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
                 />
               </div>
               <div>
-                <ul>
-                  <div className={styles.popupMainContent}>
-                    <li>
-                      <h1 className={styles.popupMainHead}>
-                        {movieInfo.title}
-                      </h1>
-                    </li>
-                  </div>
-                  <div className={styles.popupSubHead}></div>
-                </ul>
+                {/* <ul> */}
+                <div className={styles.popupMainContent}>
+                  {/* <li> */}
+                  <h1 className={styles.popupMainHead}>{movieInfo.title}</h1>
+                  {/* </li> */}
+                </div>
+                <div className={styles.popupSubHead}></div>
+                {/* </ul> */}
               </div>
             </div>
             <div className={styles.commentHead}>c o m m e n t</div>

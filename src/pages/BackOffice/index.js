@@ -4,6 +4,7 @@ import Table from "./Table";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+//NOTE: /backoffice?type=movies
 const BackOffice = () => {
   const location = useLocation();
   const [path, setPath] = useState("movies");
@@ -25,7 +26,7 @@ const BackOffice = () => {
       <div className={styles.wrap}>
         <BackOfficeHeader path={path} />
         <main className={styles.main}>
-        <Table path={path} /> 
+          <Table path={path} />
         </main>
       </div>
     </section>

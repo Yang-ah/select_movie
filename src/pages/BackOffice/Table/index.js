@@ -1,4 +1,8 @@
-import { ChevronLeftIcon, ChevronRightIcon, TrashIcon } from "../../../assets/icon";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  TrashIcon,
+} from "../../../assets/icon";
 import Button from "../../../components/Common/Button";
 import SearchInput from "../../../components/Common/SearchInput";
 import TableTitle from "./TableTitle";
@@ -12,18 +16,21 @@ import { useState } from "react";
 //TODO: Page Nation
 //TODO: 수정 삭제 기능
 //TODO: 검색기능
+//NOTE: users, movies, reviews => 따로 파일을 분리
+//NOTE: MoviesTableData => 이와 같은 파일은 삭제, 부모 컴포넌트에서 api를 호출
 const Table = ({ path }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const AddArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const pageUp = ()=>{
-    setPageNumber(pageNumber+1);
-  }
-  const pageDown = ()=>{
-    if(pageNumber>1){
-      setPageNumber(pageNumber-1);
+  const pageUp = () => {
+    setPageNumber(pageNumber + 1);
+  };
+  const pageDown = () => {
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
     }
-  }
+  };
+  console.log({ pageNumber });
   return (
     <>
       <header className={styles.header}>
@@ -44,37 +51,111 @@ const Table = ({ path }) => {
       </header>
       <TableTitle path={path} />
 
-      {path === "movies" && (pageNumber%2===1) && AddArr.map((item, index) => {
-        return <TableRow path={path} key={item} 
-        children={<MoviesTableData path={path} page={(pageNumber+1)/2} i={index}/>}
-        />;})}
-      {path === "movies" && (pageNumber%2===0) && AddArr.map((item, index) => {
-        return <TableRow path={path} key={item} 
-        children={<MoviesTableData path={path} page={pageNumber/2} i={index+10}/>}
-        />;})}
+      {path === "movies" &&
+        pageNumber % 2 === 1 &&
+        AddArr.map((item, index) => {
+          return (
+            <TableRow path={path} key={item}>
+              <MoviesTableData
+                path={path}
+                page={(pageNumber + 1) / 2}
+                i={index}
+              />
+            </TableRow>
+          );
+        })}
+      {path === "movies" &&
+        pageNumber % 2 === 0 &&
+        AddArr.map((item, index) => {
+          return (
+            <TableRow
+              path={path}
+              key={item}
+              children={
+                <MoviesTableData
+                  path={path}
+                  page={pageNumber / 2}
+                  i={index + 10}
+                />
+              }
+            />
+          );
+        })}
 
-      {path === "users" && (pageNumber%2===1) && AddArr.map((item, index) => {
-        return <TableRow path={path} key={item} 
-        children={<UsersTableData path={path} page={(pageNumber+1)/2} i={index}/>}
-        />;})}
-      {path === "users" && (pageNumber%2===0) && AddArr.map((item, index) => {
-        return <TableRow path={path} key={item} 
-        children={<UsersTableData path={path} page={pageNumber/2} i={index+10}/>}
-        />;})}
+      {path === "users" &&
+        pageNumber % 2 === 1 &&
+        AddArr.map((item, index) => {
+          return (
+            <TableRow
+              path={path}
+              key={item}
+              children={
+                <UsersTableData
+                  path={path}
+                  page={(pageNumber + 1) / 2}
+                  i={index}
+                />
+              }
+            />
+          );
+        })}
+      {path === "users" &&
+        pageNumber % 2 === 0 &&
+        AddArr.map((item, index) => {
+          return (
+            <TableRow
+              path={path}
+              key={item}
+              children={
+                <UsersTableData
+                  path={path}
+                  page={pageNumber / 2}
+                  i={index + 10}
+                />
+              }
+            />
+          );
+        })}
 
-      {path === "reviews" && (pageNumber%2===1) && AddArr.map((item, index) => {
-        return <TableRow path={path} key={item} 
-        children={<ReviewsTableData path={path} page={(pageNumber+1)/2} i={index}/>}
-        />;})}
-      {path === "reviews" && (pageNumber%2===0) && AddArr.map((item, index) => {
-        return <TableRow path={path} key={item} 
-        children={<ReviewsTableData path={path} page={pageNumber/2} i={index+10}/>}
-        />;})}
+      {path === "reviews" &&
+        pageNumber % 2 === 1 &&
+        AddArr.map((item, index) => {
+          return (
+            <TableRow
+              path={path}
+              key={item}
+              children={
+                <ReviewsTableData
+                  path={path}
+                  page={(pageNumber + 1) / 2}
+                  i={index}
+                />
+              }
+            />
+          );
+        })}
+      {path === "reviews" &&
+        pageNumber % 2 === 0 &&
+        AddArr.map((item, index) => {
+          return (
+            <TableRow
+              path={path}
+              key={item}
+              children={
+                <ReviewsTableData
+                  path={path}
+                  page={pageNumber / 2}
+                  i={index + 10}
+                />
+              }
+            />
+          );
+        })}
 
       {/* 페이지네이션 추가하기 */}
-        <button onClick={pageDown}>[페이지 다운]</button>
-        <button onClick={pageUp}>[페이지 업]</button>
-        <p>{pageNumber}</p>
+      <button onClick={pageDown}>[페이지 다운]</button>
+      <button onClick={pageUp}>[페이지 업]</button>
+      <p>{pageNumber}</p>
     </>
   );
 };

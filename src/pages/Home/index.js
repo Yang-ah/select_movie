@@ -5,7 +5,6 @@ import { RankingCarousel, HomeCarousel } from "../../components";
 import MovieModal from "../../components/ModalMovie";
 
 const Home = () => {
-
   const [movies] = useState(mdata);
   const [movieInfo, setMovieInfo] = useState(movies[0]);
   const [isShow, setIsShow] = useState(false);
@@ -14,13 +13,13 @@ const Home = () => {
     const num = movies.findIndex((item) => item.id === id);
     setMovieInfo(movies[num]);
     setIsShow(true);
-    document.body.classList.add("modal_overlay");
-    document.body.classList.add("modal-open");
+    // document.body.classList.add("modal_overlay");
+    // document.body.classList.add("modal-open");
   };
   const onModalClose = () => {
     setIsShow(false);
-    document.body.classList.remove("modal_overlay");
-    document.body.classList.remove("modal-open");
+    // document.body.classList.remove("modal_overlay");
+    // document.body.classList.remove("modal-open");
   };
 
   return (
@@ -54,7 +53,7 @@ const Home = () => {
           onModalClick={onModalClick}
         />
       </article>
-    
+
       <article className={styles.category}>
         <h2>🔥 개봉 예정 🔥</h2>
         <HomeCarousel
@@ -67,10 +66,9 @@ const Home = () => {
           movieInfo={movieInfo}
           movies={movies}
           onModalClick={onModalClick}
-              />
+        />
       </article>
     </section>
-
   );
 };
 

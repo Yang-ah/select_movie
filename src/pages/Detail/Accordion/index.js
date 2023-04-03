@@ -47,9 +47,7 @@ const Accordion = ({ review }) => {
 
       {isLogin && (
         <div className={styles.commentInputWrap}>
-          <p className={styles.userName}>
-            {me && (me["nickname"] ?? me["name"])}
-          </p>
+          <p className={styles.userName}>{me && (me.nickname ?? me.name)}</p>
           <Input
             className={styles.input}
             placeholder="바르고 고운말~ㅇ.<"
