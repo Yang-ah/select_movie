@@ -7,9 +7,21 @@ import {
   ThumbsDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  TrashIcon,
+  ModifyIcon,
 } from "../../../assets/icon";
+import { FixModal, DeleteModal } from "../CommentModal";
 
 const Pagination = () => {
+  const [fixModalOpen, setFixModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const showFixModal = () => {
+    setFixModalOpen(true);
+  };
+  const showDeleteModal = () => {
+    setDeleteModalOpen(true);
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 8;
   const lastIndex = currentPage * recordsPerPage;
@@ -34,58 +46,101 @@ const Pagination = () => {
   console.log({ data });
 
   return (
-    <section className={styles.wrapper}>
-      <ul className={styles.main}>
-        {records.map((data, id) => (
-          <li className={styles.box} key={id}>
-            <article className={styles.top}>
-              <div className={styles.left}>
-                <p className={styles.title}>{data.title}</p>
-                <p className={styles.date}>{data.date}</p>
-              </div>
-              <div className={styles.rating}>
-                <SolidStarIcon className={styles.star} />
-                {data.rating}
-              </div>
-            </article>
-            <p className={styles.comment}>
-              {data.comment.length > 200
-                ? data.comment.substring(0, 200) + "..."
-                : data.comment}
-            </p>
-            <article className={styles.bottom}>
-              <span className={styles.upDown}>
-                <div className={styles.up}>
-                  <ThumbsUpIcon />
-                  {data.liked_up}
+    <>
+      <section className={styles.wrapper}>
+        <ul className={styles.ul}>
+          {records.map((data, id) => (
+            <li className={styles.li} key={id}>
+              <section className={styles.screen}>
+                <div className={styles.layerUp}>
+                  <button className={styles.fixModal} onClick={showFixModal}>
+                    <ModifyIcon className={styles.icon} />
+                  </button>
+                  <button
+                    className={styles.deleteModal}
+                    onClick={showDeleteModal}
+                  >
+                    <TrashIcon className={styles.icon} />
+                  </button>
                 </div>
-                <div className={styles.down}>
-                  <ThumbsDownIcon />
-                  {data.liked_down}
+                <div className={styles.layerDown}>
+                  <article className={styles.top}>
+                    <div className={styles.left}>
+                      <p className={styles.title}>{data.title}</p>
+                      <p className={styles.date}>{data.date}</p>
+                    </div>
+                    <div className={styles.rating}>
+                      <SolidStarIcon className={styles.star} />
+                      {data.rating}
+                    </div>
+                  </article>
+
+                  <p className={styles.comment}>
+                    {data.comment.length > 200
+                      ? data.comment.substring(0, 200) + "..."
+                      : data.comment}
+                  </p>
+
+                  <article className={styles.bottom}>
+                    <span className={styles.upDown}>
+                      <div className={styles.up}>
+                        <ThumbsUpIcon />
+                        {data.liked_up}
+                      </div>
+                      <div className={styles.down}>
+                        <ThumbsDownIcon />
+                        {data.liked_down}
+                      </div>
+                    </span>
+                  </article>
                 </div>
-              </span>
-            </article>
+              </section>
+            </li>
+          ))}
+        </ul>
+
+        <ul className={styles.pagination}>
+          <li className={styles.prevIcon}>
+            <ChevronLeftIcon
+              className={styles.Icon}
+              onClick={onClickPrevPage}
+            />
           </li>
-        ))}
-      </ul>
-      <ul className={styles.pagination}>
-        <li className={styles.prev}>
-          <ChevronLeftIcon className={styles.Icon} onClick={onClickPrevPage} />
-        </li>
-        {numbers.map((number, i) => (
-          <li
-            className="currentPage"
-            key={i}
-            onClick={() => onChangePage(number)}
-          >
-            {number}
+          {numbers.map((number, i) => (
+            <li
+              className="currentPage"
+              key={i}
+              onClick={() => onChangePage(number)}
+            >
+              {number}
+            </li>
+          ))}
+          <li className={styles.nextIcon}>
+            <ChevronRightIcon
+              className={styles.Icon}
+              onClick={onClickNextPage}
+            />
           </li>
-        ))}
-        <li className={styles.next}>
-          <ChevronRightIcon className={styles.Icon} onClick={onClickNextPage} />
-        </li>
-      </ul>
-    </section>
+        </ul>
+      </section>
+      <FixModal
+        className={styles.fixModal}
+        modalOpen1={fixModalOpen}
+        setModalOpen={setFixModalOpen}
+        notion="리뷰 수정"
+        children="review"
+        buttonChildren="완료"
+      />
+      <DeleteModal
+        className={styles.deleteModal}
+        modalOpen1={deleteModalOpen}
+        setModalOpen={setDeleteModalOpen}
+        notion="리뷰 삭제"
+        children={"삭제?"}
+        buttonChildren="완료"
+        color="red"
+      />
+    </>
   );
 };
 

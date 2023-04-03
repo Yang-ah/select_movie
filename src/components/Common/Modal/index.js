@@ -10,9 +10,9 @@ const Modal = ( {className, option, children, buttonChildren,
     // Modal 창을 useRef로 취득
     const modalRef = useRef(null);
 
-    const closeModal = () => {
-        setModalOpen(false);
-    };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
     useEffect(() => {
         const handler = (event) => {

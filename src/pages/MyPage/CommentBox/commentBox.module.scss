@@ -1,94 +1,141 @@
 @use "../../../styles/constants" as c;
 @use "../../../styles/mixins" as m;
+
 .wrapper {
-  margin: 10px 0px;
-  padding: 4px 0px;
+  padding: 1% 0;
+  height: 100;
   width: 100%;
   position: relative;
   float: left;
 }
 
-//comment
-.main {
+.ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  gap: 15px;
   animation-delay: 0.3ms;
+  width: 100%;
 }
-.box {
+
+.li {
   background-color: c.$C_REVIEWBOX;
-  padding: 24px;
-  height: 320px;
-  position: relative;
-  border-radius: 12px;
-}
-.box:hover,
-.box:active {
-  opacity: 0.7;
+  padding: 5%;
+  height: 350px;
+  border-radius: 10px;
   cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
 }
 
-.top {
-  @include m.flex(space-between, flex-start);
-  margin-bottom: 8px;
-  line-height: 20px;
-  .left {
-    .title {
-      font-size: 22px;
+.screen {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  &:hover,
+  :active {
+    .layerDown {
+      opacity: 0.2;
+      z-index: -1;
     }
-    .date {
-      font-size: 12px;
-    }
-  }
-  .rating {
-    @include m.flex();
-    font-size: 20px;
-    .star {
-      fill: c.$C_STAR;
-      height: 20px;
-      margin-right: 4px;
+    .layerUp {
+      z-index: 5;
     }
   }
 }
 
-.comment {
-  font-size: 16px;
-  line-height: 30px;
-  height: 220px;
-  overflow-y: hidden;
-  padding: 4px 0;
-}
-
-.upDown {
+.layerUp {
   @include m.flex();
-  margin: auto 0;
-  padding: 0 4px;
-  float: right;
-  column-gap: 16px;
-
-  .up,
-  .down {
-    @include m.flex();
-    font-size: 14px;
-    > svg {
-      margin-right: 4px;
-      width: 14px;
-      fill: white;
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  z-index: -1;
+  .icon {
+    width: 50%;
+    fill: white;
+    &:hover,
+    :active {
+      fill: c.$C_ORANGE;
     }
+  }
+}
+
+.layerDown {
+  .top {
+    @include m.flex(space-between, flex-start);
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    .left {
+      .title {
+        font-size: 22px;
+        font-weight: 700;
+        padding-bottom: 6px;
+      }
+      .date {
+        font-size: 14px;
+      }
+    }
+    .rating {
+      @include m.flex();
+      font-size: 20px;
+      .star {
+        fill: c.$C_STAR;
+        height: 20px;
+        margin-right: 4px;
+      }
+    }
+  }
+  .comment {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 4px 0;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 2em;
+    height: 16em;
+  }
+  .upDown {
+    @include m.flex();
+    margin: auto 0;
+    padding: 0 4px;
+    float: right;
+    column-gap: 16px;
+
+    .up,
+    .down {
+      @include m.flex();
+      font-size: 14px;
+      > svg {
+        margin-right: 4px;
+        width: 14px;
+        fill: white;
+      }
+    }
+  }
+}
+
+//modal
+.deleteModal {
+  color: red;
+  .container {
+    background-color: aquamarine;
   }
 }
 
 //nav
 .pagination {
-  font-size: 16px;
   margin: 20px 0px;
   height: 100%;
   color: c.$C_ARROW;
+  fill: c.$C_ARROW;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  fill: c.$C_ARROW;
 
   :hover,
   :active {
@@ -99,21 +146,12 @@
   }
 
   li {
-    margin: 0px 20px;
-    line-height: 0px;
-    cursor: pointer;
-
-    border: none;
-    outline: none;
+    font-size: 16px;
+    margin: 0 1%;
   }
 
   .Icon {
-    height: 20px;
-    width: 20px;
-
-    :hover,
-    :active {
-      fill: c.$C_ORANGE;
-    }
+    height: 16px;
+    width: 16px;
   }
 }

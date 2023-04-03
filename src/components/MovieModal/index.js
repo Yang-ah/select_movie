@@ -1,18 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import styles from "./modal.module.scss";
-
 import Comment from "../../components/Comment";
 import dummy from "../../mock_comment.json";
 import { Link } from "react-router-dom";
 
-import {
-  DoubleChevronRightIcon
-} from "../../assets/icon";
-
-
-const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
-  
+const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
   const modalRef1 = useRef(null);
 
   useEffect(() => {
@@ -32,7 +25,7 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
 
   return (
     <CSSTransition
-          in={isShow}
+      in={isShow}
       timeout={300}
       classNames={{
         enterActive: styles.modalEnterActive,
@@ -43,55 +36,64 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow }) => {
       unmountOnExit
     >
       <div className={styles.modal_overlay}>
-      <div ref={modalRef1} className={styles.modal}>
-        <div className={styles.popup}>
-          <img
-            className={styles.popupBackground}
-            src={movieInfo.postImage}
-            alt={movieInfo.title}
-          />
-          <div className={styles.popupBody}>
-            <div>
-              <img
-                className={styles.thumbUrl}
-                src={movieInfo.postImage}
-                alt={movieInfo.title}
-              />
-            </div>
+        <div ref={modalRef1} className={styles.modal}>
+          <div className={styles.popup}>
+            <img
+              className={styles.popupBackground}
+              src={movieInfo.postImage}
+              alt={movieInfo.title}
+            />
+            <div className={styles.popupBody}>
+              <div>
+                <img
+                  className={styles.thumbUrl}
+                  src={movieInfo.postImage}
+                  alt={movieInfo.title}
+                />
               </div>
-          <div className={styles.commentHead}>c o m m e n t</div>
-          <p className={styles.close} onClick={onModalClose}>
-            x
-          </p>
-          <Link to="detail/{id}" ><p className={styles.moveDetail}>
-          <DoubleChevronRightIcon/>
-          </p>
-          </Link>
-          <Comment
-            className={styles.comment}
-            type="preview"
-            key={dummy[0].userName + "2"}
-            userName={dummy[0].userName}
-            comment={dummy[0].comment}
-            // date={dummy[0].date} TODO : 넣을지 상의
-            rating={dummy[0].rating}
-          />
-          <Comment
-            className={styles.comment}
-            type="preview"
-            key={dummy[0].userName + "2"}
-            userName={dummy[0].userName}
-            comment={dummy[0].comment}
-            // date={dummy[0].date} TODO : 넣을지 상의
-            rating={dummy[0].rating}
-          />
+              <div>
+                <ul>
+                  <div className={styles.popupMainContent}>
+                    <li>
+                      <h1 className={styles.popupMainHead}>
+                        {movieInfo.title}
+                      </h1>
+                    </li>
+                  </div>
+                  <div className={styles.popupSubHead}></div>
+                </ul>
+              </div>
+            </div>
+            <div className={styles.commentHead}>c o m m e n t</div>
+            <p className={styles.close} onClick={onModalClose}>
+              x
+            </p>
+            <Link to="detail/{id}">
+              <p className={styles.moveDetail}>{">>"}</p>
+            </Link>
+            <Comment
+              className={styles.comment}
+              type="preview"
+              key={dummy[0].userName + "2"}
+              userName={dummy[0].userName}
+              comment={dummy[0].comment}
+              // date={dummy[0].date} TODO : 넣을지 상의
+              rating={dummy[0].rating}
+            />
+            <Comment
+              className={styles.comment}
+              type="preview"
+              key={dummy[0].userName + "2"}
+              userName={dummy[0].userName}
+              comment={dummy[0].comment}
+              // date={dummy[0].date} TODO : 넣을지 상의
+              rating={dummy[0].rating}
+            />
+          </div>
         </div>
-      </div>
       </div>
     </CSSTransition>
   );
 };
 
 export default Modal1;
-
-
