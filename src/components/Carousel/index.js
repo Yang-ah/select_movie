@@ -21,14 +21,14 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-export const HomeCarousel = ({ movies, onModalClick, onOver }) => {
+export const HomeCarousel = ({ movies, onModalClick }) => {
   const settings = {
     dot: false,
     arrow: false,
     infinite: false,
     speed: 600,
-    slidesToShow: 8,
-    slidesToScroll: 7,
+    slidesToShow: 6,
+    slidesToScroll: 5,
     prevArrow: <CaretLeftIcon />,
     nextArrow: <CaretRightIcon />,
   };
@@ -41,7 +41,6 @@ export const HomeCarousel = ({ movies, onModalClick, onOver }) => {
             key={movies.id}
             movie={movie}
             onModalClick={onModalClick}
-            onOver={onOver}
           />
         ))}
       </Slider>
@@ -49,7 +48,7 @@ export const HomeCarousel = ({ movies, onModalClick, onOver }) => {
   );
 };
 
-export const MyCarousel = ({ movies, onModalClick, onOver }) => {
+export const MyCarousel = ({ movies, onModalClick }) => {
   const settings = {
     dot: false,
     arrow: false,
@@ -68,7 +67,6 @@ export const MyCarousel = ({ movies, onModalClick, onOver }) => {
           key={movies.id}
           movie={movie}
           onModalClick={onModalClick}
-          onOver={onOver}
         />
       ))}
     </Slider>

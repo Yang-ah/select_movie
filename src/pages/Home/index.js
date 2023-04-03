@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./home.module.scss";
 import mdata from "../../mock_movie.json";
 import { RankingCarousel, HomeCarousel } from "../../components";
-import ModalMovie from "../../components/ModalMovie";
+import MovieModal from "../../components/ModalMovie";
 
 const Home = () => {
+
   const [movies] = useState(mdata);
   const [movieInfo, setMovieInfo] = useState(movies[0]);
   const [isShow, setIsShow] = useState(false);
@@ -24,6 +25,12 @@ const Home = () => {
 
   return (
     <section className={styles.wrapper}>
+      <MovieModal
+        setIsShow={setIsShow}
+        isShow={isShow}
+        onModalClose={onModalClose}
+        movieInfo={movieInfo}
+      ></MovieModal>
       <article className={styles.ranking}>
         <div>
           <RankingCarousel
@@ -47,13 +54,23 @@ const Home = () => {
           onModalClick={onModalClick}
         />
       </article>
-      <ModalMovie
-        setIsShow={setIsShow}
-        isShow={isShow}
-        onModalClose={onModalClose}
-        movieInfo={movieInfo}
-      ></ModalMovie>
+    
+      <article className={styles.category}>
+        <h2>🔥 개봉 예정 🔥</h2>
+        <HomeCarousel
+          movieInfo={movieInfo}
+          movies={movies}
+          onModalClick={onModalClick}
+        />
+        <h2>👀 오늘 이거 볼래? 👀</h2>
+        <HomeCarousel
+          movieInfo={movieInfo}
+          movies={movies}
+          onModalClick={onModalClick}
+              />
+      </article>
     </section>
+
   );
 };
 
