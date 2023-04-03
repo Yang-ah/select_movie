@@ -11,6 +11,7 @@ import {
 import Chart from "../Chart";
 import dayjs from "dayjs";
 import { getMovie } from "../../../api/Movies";
+import { getUsersMe } from "../../../api/Users";
 
 const DetailInfo = ({ id }) => {
   const [movieDetail, setMovieDetail] = useState();
@@ -29,7 +30,7 @@ const DetailInfo = ({ id }) => {
 
   useEffect(() => {
     fetchMovieData();
-  }, []);
+  }, [id]);
 
   return (
     <>

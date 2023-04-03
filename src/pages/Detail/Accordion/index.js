@@ -28,7 +28,7 @@ const Accordion = ({ review, childArr }) => {
             className={styles.button}
             onClick={() => setClicked(!clicked)}
           >
-            리뷰
+            댓글
             {clicked ? <ChevronUp /> : <ChevronDown />}
           </button>
 

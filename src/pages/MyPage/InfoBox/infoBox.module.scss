@@ -3,7 +3,7 @@
 
 .info {
   @include m.flex(space-between, flex-start);
-  padding: 50px 80px;
+  //padding: 50px 80px;
 
   .img {
     margin-right: 60px;
@@ -107,4 +107,8 @@
       font-size: 14px;
     }
   }
+}
+
+.modal{
+  color: black;
 }
