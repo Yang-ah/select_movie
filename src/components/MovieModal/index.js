@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import styles from "./modal.module.scss";
-import Comment from "../../components/Comment";
+import Comment from "../Comment";
 import dummy from "../../mock_comment.json";
 import { Link } from "react-router-dom";
 
