@@ -1,7 +1,8 @@
 @use "../../../styles/mixins" as m;
 @use "../../../styles/constants" as c;
 
-.accordionItem {
+// 아코디언 전체를 감싸는 wrap
+.accordionWrap {
   width: 100%;
   margin-bottom: 20px;
   color: c.$C_WHITE;
@@ -9,49 +10,88 @@
   border-radius: 4px;
 }
 
-.button {
-  background-color: c.$C_BACKGROUND;
-  border: 1px outset c.$C_BACKGROUND;
-
-  border-radius: 4px;
-  margin: 0px 0px 8px 8px;
-  padding: 0px 0px 0px 5px;
-  align-items: center;
-  @include m.flex(center, column);
-
-  font-size: 20px;
-  color: c.$C_WHITE;
-  &:hover,
-  &:active {
-    border: 1px inset c.$C_BACKGROUND;
-  }
-}
-
-.review_wrapper {
+// 로그아웃 상태 : 댓글 작성창에 뜨는 문구
+.logout {
+  @include m.flex();
   width: 100%;
-  height: auto;
-  overflow: hidden;
-  transition: height ease 0.1s;
-  color: c.$C_WHITE;
+  background-color: c.$C_WHITE_10;
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 12px;
+  color: white;
+  opacity: 0.5;
+  transition: 0.2s opacity ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
 }
 
-//comment
-.child {
-  padding-left: 40px;
-  background-color: c.$C_RECOMMENT;
+// 로그인 상태 : 댓글 쓰는 곳
+.commentInputWrap {
+  @include m.flex(space-between);
+  width: 100%;
+  gap: 12px;
+  padding: 32px 16px;
 
-  color: c.$C_WHITE;
-  margin-bottom: 8px;
-
-  .IShare {
-    width: 16px;
-    fill: c.$C_WHITE;
-    transform: rotate(180deg) rotateY(180deg);
-    margin-right: 8px;
-  }
-
-  .profileIcon {
-    padding: 8px;
+  > .userName {
+    padding: 4px;
     font-size: 20px;
+    font-weight: 600;
   }
+
+  > .input {
+    width: 100%;
+    background-color: c.$C_WHITE_10;
+    border-radius: 4px;
+
+    > input {
+      width: 100%;
+      padding: 4px 12px;
+      border: none;
+      background-color: transparent;
+      color: white;
+    }
+  }
+
+  > button {
+    width: 52px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: c.$C_WHITE_10;
+    transition: 0.2s background-color ease-in, 0.2s color ease-in;
+
+    &:hover {
+      background-color: white;
+      color: c.$C_PURPLE1;
+    }
+  }
+}
+
+// 댓글 드롭다운 버튼
+.showCommentsButton {
+  @include m.flex();
+  padding: 0 0 16px 16px;
+  font-size: 16px;
+
+  > svg {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &.isShow {
+    > svg {
+      transform: rotate(0deg);
+    }
+    & + .commentWrap {
+      visibility: visible;
+      max-height: 100vh;
+    }
+  }
+}
+
+// 댓글 드롭다운 Wrap
+.commentWrap {
+  transition: max-height 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  visibility: hidden;
+  max-height: 0px;
+  overflow-y: scroll;
 }

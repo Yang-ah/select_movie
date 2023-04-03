@@ -1,6 +1,6 @@
 import apiClient from "../apiClient";
 
-// 영화목록 불러오기 /limit는 최소 20이상이여야 합니다
+// 영화목록 불러오기 
 export const getMovies = (id,page, limit) => {
   return apiClient.get(`/movies/${id}?page=${page}&limit=${limit}`);
 };
@@ -16,8 +16,14 @@ export const getMoviesMeLike = (id) => {
 };
 
 // 영화 장르별로 불러오기
-export const getMoviesGenre = () => {
-  return apiClient.get(`/movies/genre`);
+export const getMoviesGenre = (page = 1, genreId) => {
+  return apiClient.get(`/movies/genre`, {
+    params: {
+      page,
+      genreId,
+      limit: 20,
+    },
+  });
 };
 
 // top10 영화 불러오기
