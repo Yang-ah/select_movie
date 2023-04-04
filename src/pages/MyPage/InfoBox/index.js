@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./infoBox.module.scss";
+import useMe from "../../../hooks/useMe";
+import { isLoginAtom } from "../../../atom";
+import { useRecoilValue } from "recoil";
 
 import Stars from "../../../components/Common/Stars";
 import { SettingIcon } from "../../../assets/icon";
@@ -7,6 +11,9 @@ import InfoModal from "../InfoModal";
 import grade from "../../../mock_grade.json";
 
 const Info = () => {
+  const me = useMe();
+  const isLogin = useRecoilValue(isLoginAtom);
+
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(true);
@@ -19,12 +26,24 @@ const Info = () => {
     <section className={styles.wrapper}>
       <article className={styles.info}>
         <div className={styles.img}>🤔</div>
+
         <div className={styles.text}>
           <div className={styles.infoTop}>
-            <p className={styles.name}>닉네임 (input시 10자 제한)</p>
-            <button className={styles.setting} onClick={showModal}>
-              <SettingIcon />
-            </button>
+            {!isLogin && <p className={styles.userName}>누군가의 name</p>}
+            {isLogin && (
+              <p className={styles.userName}>{me && isLogin && me.name}</p>
+            )}
+
+            {isLogin && (
+              <button
+                className={styles.setting}
+                type="submit"
+                value="modify"
+                onClick={showModal}
+              >
+                <SettingIcon />
+              </button>
+            )}
             <InfoModal
               className={styles.inputModal}
               modalOpen1={modalOpen}
@@ -33,10 +52,7 @@ const Info = () => {
               buttonChildren="완료"
             />
           </div>
-          <div className={styles.introduce}>
-            소개 (100자 제한)
-            <InfoModal propFunction={modalInput} />
-          </div>
+          <div className={styles.introduce}>소개글</div>
         </div>
       </article>
       <article className={styles.category}>

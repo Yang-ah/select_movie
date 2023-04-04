@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { getMoviesTop } from '../../api/Movies'
+import { getMoviesTop, getMovies, getMoviesMeLike } from "../../api/Movies";
 import { useNavigate } from "react-router-dom";
 import "./carousel.scss";
+import styles from "./myCarousel.module.scss";
 import {
   CaretLeftIcon,
   CaretRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  SolidHeartIcon,
+  SolidBookmarkIcon,
 } from "../../assets/icon";
 
 import PosterH from "../PosterH";
-import PosterM from "../PosterM";
-
-
-
+import { PosterHeart, PosterMark } from "../PosterM";
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -27,7 +27,6 @@ export const NextArrow = (props) => {
 };
 
 export const HomeCarousel = () => {
-
   const navigate = useNavigate;
   const [moviesTop, setMoviesTop] = useState();
 
@@ -35,7 +34,7 @@ export const HomeCarousel = () => {
     const response = await getMoviesTop();
     setMoviesTop(response.data);
   };
-  
+
   useEffect(() => {
     fetchMoviesTop();
   }, []);
@@ -52,28 +51,46 @@ export const HomeCarousel = () => {
   };
 
   return (
-    <div>
+    <>
       <Slider {...settings}>
-        {moviesTop && 
-        moviesTop.data.map((movie) => (
-          <PosterH
-          key={movie.id}
-          title={movie.title}
-          id={movie.id}
-          postImage={movie.postImage}
-          onClick={() => {
-            navigate(`/${movie.id}`, {
-              replace: true,
-            });
-          }}
-          />
-        ))}
+        {moviesTop &&
+          moviesTop.data.map((movie) => (
+            <PosterH
+              key={movie.id}
+              title={movie.title}
+              id={movie.id}
+              postImage={movie.postImage}
+              onClick={() => {
+                navigate(`/${movie.id}`, {
+                  replace: true,
+                });
+              }}
+            />
+          ))}
       </Slider>
-    </div>
+    </>
   );
 };
 
-export const MyCarousel = ({ movies, onModalClick }) => {
+export const MyCarousel = () => {
+  const navigate = useNavigate;
+  const [moviesTop, setMoviesTop] = useState();
+  const [moviesLike, setMoviesLike] = useState();
+
+  const fetchMoviesTop = async () => {
+    const response = await getMoviesTop();
+    setMoviesTop(response.data);
+  };
+  const fetchMoviesLike = async () => {
+    const response = await getMoviesMeLike();
+    setMoviesLike(response.data);
+    console.log(response.data);
+  };
+
+  useEffect(() => {
+    fetchMoviesTop();
+    fetchMoviesLike();
+  }, []);
   const settings = {
     dot: false,
     arrow: false,
@@ -86,14 +103,52 @@ export const MyCarousel = ({ movies, onModalClick }) => {
   };
 
   return (
-    <Slider {...settings}>
-      {movies.map((movie) => (
-        <PosterM
-          key={movies.id}
-          movie={movie}
-          onModalClick={onModalClick}
-        />
-      ))}
-    </Slider>
+    <>
+      <p>
+        <SolidHeartIcon className={styles.myIcon} />
+        내가 좋아하는 컨텐츠
+      </p>
+      <div className={styles.mywrap}>
+        <Slider {...settings}>
+          {moviesLike &&
+            moviesLike?.data?.map((movie) => (
+              <PosterHeart
+                key={movie.id}
+                title={movie.title}
+                id={movie.id}
+                postImage={movie.postImage}
+                onClick={() => {
+                  navigate(`/${movie.id}`, {
+                    replace: true,
+                  });
+                }}
+              />
+            ))}
+        </Slider>
+      </div>
+
+      <p>
+        <SolidBookmarkIcon className={styles.myIcon} />
+        내가 북마크 한 컨텐츠
+      </p>
+      <div className={styles.mywrap}>
+        <Slider {...settings}>
+          {moviesTop &&
+            moviesTop.data.map((movie) => (
+              <PosterMark
+                key={movie.id}
+                title={movie.title}
+                id={movie.id}
+                postImage={movie.postImage}
+                onClick={() => {
+                  navigate(`/detail/${movie.id}`, {
+                    replace: true,
+                  });
+                }}
+              />
+            ))}
+        </Slider>
+      </div>
+    </>
   );
 };

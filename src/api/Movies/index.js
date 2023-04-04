@@ -17,7 +17,7 @@ export const getMoviesCount = () => {
 };
 
 // 내가 좋아요 한 영화 불러오기
-export const getMoviesMeLike = (id) => {
+export const getMoviesMeLike = () => {
   return apiClient.get(`/movies/me/like`);
 };
 
