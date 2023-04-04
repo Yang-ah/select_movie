@@ -14,8 +14,8 @@ const Review = ({
   userName,
   date,
   rating,
-  up = 0,
-  down = 0,
+  like = 0,
+  hate = 0,
   reviewId,
   written,
   className,
@@ -36,6 +36,7 @@ const Review = ({
       setIsUserMe(true);
     }
   };
+
   const onClickDelete = () => {
     setModalOpen(true);
   };
@@ -52,7 +53,12 @@ const Review = ({
         <HeaderLeft type="review" userName={userName} date={date} />
         <article className={styles.right}>
           <HeaderRightRating rating={rating} />
-          <HeaderRightButtons up={up} down={down} type="review" />
+          <HeaderRightButtons
+            like={like}
+            hate={hate}
+            type="review"
+            reviewId={reviewId}
+          />
           {isUserMe || (
             <button type="button" name="report">
               신고하기

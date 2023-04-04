@@ -13,8 +13,8 @@ const Comment = ({
   comment,
   userName,
   date,
-  up = 0,
-  down = 0,
+  like = 0,
+  hate = 0,
   className,
   commentId,
   written,
@@ -36,6 +36,7 @@ const Comment = ({
       setIsUserMe(true);
     }
   };
+
   const onClickDelete = () => {
     setModalOpen(true);
   };
@@ -52,7 +53,7 @@ const Comment = ({
         <HeaderLeft type="comment" userName={userName} date={date} />
 
         <article className={styles.right}>
-          <HeaderRightButtons up={up} down={down} type="comment" />
+          <HeaderRightButtons like={like} hate={hate} type="comment" />
 
           {isUserMe || (
             <button type="button" name="report">

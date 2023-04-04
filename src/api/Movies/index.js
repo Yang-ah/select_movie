@@ -57,6 +57,17 @@ export const deleteMovieLike = (id) => {
   return apiClient.delete(`/movies/${id}/like`);
 };
 
+
+// 영화 북마크 생성
+export const postBookmark = (movieId) => {
+  return apiClient.post(`/bookmarks/${movieId}`);
+};
+
+// 영화 북마크 삭제
+export const deleteBookmark = (movieId) => {
+  return apiClient.delete(`/bookmarks/${movieId}`);
+};
+
 // 영화 수정하기
 export const patchMovie = (id, body) => {
   return apiClient.get(`/movies/${id}`,body);

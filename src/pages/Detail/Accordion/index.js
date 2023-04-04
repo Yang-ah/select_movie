@@ -53,8 +53,8 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
         comment={review.content}
         date={dayjs(review.createdAt).format("YYYY.MM.DD")}
         rating={review.score}
-        down={review.hateCount}
-        up={review.likeCount}
+        hate={review.hateCount}
+        like={review.likeCount}
         reviewId={review.id}
         written={review.user.id}
         movieId={movieId}
