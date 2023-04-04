@@ -10,11 +10,20 @@ import {
 } from "../../../assets/icon";
 import Chart from "../Chart";
 import dayjs from "dayjs";
-import { deleteMovieLike, getMovie, postMovieLike } from "../../../api/Movies";
+import {
+  deleteBookmark,
+  deleteMovieLike,
+  getMovie,
+  postBookmark,
+  postMovieLike,
+} from "../../../api/Movies";
+import { useRecoilValue } from "recoil";
+import { isLoginAtom } from "../../../atom";
 
 const DetailInfo = ({ id }) => {
-  const [movieDetail, setMovieDetail] = useState();
+  const isLogin = useRecoilValue(isLoginAtom);
 
+  const [movieDetail, setMovieDetail] = useState();
   const [isMyState, setMyState] = useState({
     isLiked: false,
     isBookmarked: false,
@@ -23,9 +32,24 @@ const DetailInfo = ({ id }) => {
   const fetchMovieData = async () => {
     const response = await getMovie(id);
     setMovieDetail(response.data);
-    console.log(response.data);
+
+    // TODO : bookmark도 데이터에 넣어주실 수 있는지 여쭤보기 !
+    if (isLogin) {
+      setMyState({
+        isLiked: response.data.isLiked,
+        isBookmarked: false,
+      });
+    }
+
+    if (!isLogin) {
+      setMyState({
+        isLiked: false,
+        isBookmarked: false,
+      });
+    }
   };
 
+  // 다른 영화로 이동했을 때, state 초기화하고 다시 fetch
   useEffect(() => {
     setMyState({
       isLiked: false,
@@ -34,14 +58,24 @@ const DetailInfo = ({ id }) => {
     fetchMovieData();
   }, [id]);
 
-  const setMovieLike = async () => {
-    if (isMyState.isLiked) {
-      deleteMovieLike(id);
-      setMyState({ ...isMyState, isLiked: false });
+  const onClickButton = (e) => {
+    if (!isLogin) {
+      return alert("로그인 후 이용 가능합니다!");
     }
-    if (!isMyState.isLiked) {
-      postMovieLike(id);
-      setMyState({ ...isMyState, isLiked: true });
+
+    const { name } = e.currentTarget;
+
+    if (isMyState[name]) {
+      name === "isLiked" && deleteMovieLike(id);
+      name === "isBookmarked" && deleteBookmark(id);
+
+      setMyState({ ...isMyState, [name]: false });
+    }
+
+    if (!isMyState[name]) {
+      name === "isLiked" && postMovieLike(id);
+      name === "isBookmarked" && postBookmark(id);
+      setMyState({ ...isMyState, [name]: true });
     }
   };
 
@@ -55,7 +89,12 @@ const DetailInfo = ({ id }) => {
             <div className={styles.leftWrap}>
               <img src={movieDetail?.postImage} alt="detailPoster" />
               <div className={styles.buttonWrap}>
-                <Button option="secondary" className={styles.button}>
+                <Button
+                  name="isBookmarked"
+                  option="secondary"
+                  className={styles.button}
+                  onClick={onClickButton}
+                >
                   북마크
                   {isMyState.isBookmarked ? (
                     <SolidBookmarkIcon />
@@ -65,8 +104,9 @@ const DetailInfo = ({ id }) => {
                 </Button>
                 <Button
                   option="secondary"
+                  name="isLiked"
                   className={styles.button}
-                  onClick={setMovieLike}
+                  onClick={onClickButton}
                 >
                   좋아요
                   {isMyState.isLiked ? <SolidHeartIcon /> : <HeartIcon />}

@@ -17,6 +17,11 @@ export const getReviews = (page, limit) => {
   return apiClient.get(`/reviews?page=${page}&limit=${limit}`);
 };
 
+// 리뷰 자세히 보기
+export const getReviewDetail = (movieId) => {
+  return apiClient.get(`/reviews/${movieId}/detail`);
+};
+
 // ******** post *********
 
 // 영화 리뷰 생성
@@ -29,6 +34,16 @@ export const createReviewComment = (reviewId, body) => {
   return apiClient.post(`/reviews/${reviewId}/comments`, body);
 };
 
+// 영화 리뷰의 '좋아요' 생성
+export const createReviewLike = (reviewId) => {
+  return apiClient.post(`/reviews/${reviewId}/like`);
+};
+
+// 영화 리뷰의 '싫어요' 생성
+export const createReviewHate = (reviewId) => {
+  return apiClient.post(`/reviews/${reviewId}/hate`);
+};
+
 // ******** delete *********
 
 // 영화 리뷰 삭제
@@ -39,4 +54,14 @@ export const deleteReview = (reviewId) => {
 // 영화 리뷰의 '댓글' 삭제
 export const deleteReviewComment = (commentId) => {
   return apiClient.delete(`/reviews/comments/${commentId}`);
+};
+
+// 영화 리뷰의 '좋아요' 삭제
+export const deleteReviewLike = (reviewId) => {
+  return apiClient.delete(`/reviews/{id}/like`);
+};
+
+// 영화 리뷰의 '싫어요' 삭제
+export const deleteReviewHate = (reviewId) => {
+  return apiClient.delete(`/reviews/${reviewId}/hate`);
 };
