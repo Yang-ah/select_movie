@@ -13,16 +13,16 @@
     @include m.flex(space-between, flex-start);
     padding-bottom: 12px;
   }
-
   > main {
+    padding: 8px 4px;
     font-size: 16px;
   }
 }
 
-// type = child & preview
-.child,
+// type = comment & preview
+.comment,
 .preview {
-  > .comment {
+  > main {
     font-size: 14px;
   }
 }
@@ -35,36 +35,12 @@
   border-radius: 4px;
 }
 
-// type = child
-.child {
+// type = comment
+.comment {
   background-color: c.$C_WHITE_10;
   padding-left: 40px;
-}
 
-// type = commentInput
-.commentInput {
   > main {
-    @include m.flex();
-    height: 160px;
-
-    > .inputWrap {
-      @include m.flex();
-      flex-grow: 1;
-      height: 100%;
-      padding: 12px;
-      font-size: 16px;
-      outline: none;
-      border: none;
-      border-radius: 4px;
-    }
-    > button {
-      margin-left: 8px;
-      width: 120px;
-      height: 100%;
-      border-radius: 4px;
-      font-size: 20px;
-      padding: 32px;
-      font-weight: 600;
-    }
+    margin-left: 24px;
   }
 }

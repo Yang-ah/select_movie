@@ -29,7 +29,7 @@
   }
 }
 
-// type = child일 때 들어가는 답글 아이콘
+// type = comment 때 들어가는 답글 아이콘
 .IShare {
   width: 16px;
   fill: c.$C_WHITE;
@@ -37,7 +37,7 @@
   margin-right: 8px;
 }
 
-// type = child & preview 일 때, 스타일 변화
+// type = comment & preview 일 때, 스타일 변화
 .left {
   // type = preview는 프로필 아이콘 배경색 변경
   &.preview {
@@ -46,7 +46,7 @@
     }
   }
 
-  &.child,
+  &.comment,
   &.preview {
     .profileIcon {
       padding: 8px;

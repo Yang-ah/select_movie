@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./home.module.scss";
 import mdata from "../../mock_movie.json";
 import { RankingCarousel, HomeCarousel } from "../../components";
-import MovieModal from "../../components/MovieModal";
-import { getMovies } from "../../api/Movies";
+import MovieModal from "../../components/ModalMovie";
 
-const Home = ({ id }) => {
-
+const Home = () => {
   const [movies] = useState(mdata);
   const [movieInfo, setMovieInfo] = useState(movies[0]);
   const [isShow, setIsShow] = useState(false);
@@ -19,25 +17,7 @@ const Home = ({ id }) => {
   const onModalClose = () => {
     setIsShow(false);
   };
-  
-  /*
 
-  const [moviedata , setMovieData] = useState();
-
-  const responseData = async (i)=>{
-      const response1 = await getMovies(1,20);
-    
-      setMovieData({
-          id : response1.data.data[i].id,
-          title : response1.data.data[i].title,
-          releasedAt : response1.data.data[i].releasedAt,
-          averageScore : response1.data.data[i].averageScore,
-      })
-    }
-    useEffect(()=>{
-      responseData();
-    },[1]);  */
- 
   return (
     <section className={styles.wrapper}>
       <MovieModal
@@ -69,6 +49,7 @@ const Home = ({ id }) => {
           onModalClick={onModalClick}
         />
       </article>
+
       <article className={styles.category}>
         <h2>🔥 개봉 예정 🔥</h2>
         <HomeCarousel
@@ -81,10 +62,9 @@ const Home = ({ id }) => {
           movieInfo={movieInfo}
           movies={movies}
           onModalClick={onModalClick}
-              />
+        />
       </article>
     </section>
-
   );
 };
 

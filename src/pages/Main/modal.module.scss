@@ -10,17 +10,16 @@
   left: 0px;
   background-color: rgba(0, 0, 0, 0.46);
   z-index: 999;
-
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 800px;
-      height: 700px;
-      padding: 30px;
-      background: #fff;
-      transform: translate(-50%, -50%);
-      box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 700px;
+    padding: 30px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
       .popupBackground {
         background-color: c.$C_BLACK;
         position: fixed;
@@ -70,25 +69,34 @@
 
         }
     }
-        >h2 {  
-          margin-bottom: 20px;
-        }
-         .close {
-         position: absolute;
-         right: 30px;
-         top: 20px;
-         font-size: 40px;
-         height: 60px;
-         width : 60px;
-         border: 1px solid c.$C_BLACK;
-         background-color: c.$C_BLACK;
-         opacity: 70%;
-         color: #fff;
-         border-radius: 100%;
-         text-align: center;
-         line-height: 50px;
-         cursor: pointer;
-      }
+    > h2 {
+      margin-bottom: 20px;
+    }
+    .close {
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      font-size: 40px;
+      height: 60px;
+      width: 60px;
+      border: 1px solid c.$C_BLACK;
+      background-color: c.$C_BLACK;
+      opacity: 70%;
+      color: #fff;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+    .moveDetail{
+      position: absolute;
+      top: 40%;
+      right: -30%;
+      font-size: 140px;
+      height: 120px;
+      width: 120px;
+      opacity: 90%;
+    }
 }
 
 .comment{
@@ -101,23 +109,3 @@
     top: 48%;
     letter-spacing: 10px;
 }
-
-  //CSSTransition
-  .modalEnterActive {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  .modalEnterDone {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 300ms, transform 300ms;
-  }
-  .modalExit {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .modalExitActive {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 300ms, transform 300ms;
-  }

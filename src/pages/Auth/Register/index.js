@@ -39,6 +39,7 @@ const Register = () => {
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
+    //NOTE: 입력창 오류 확인
     if(!form.userId){
       return setErr({...err,userId:'이메일을 입력해주세요'})}
     if (!isValidateEmail(form.userId)) {

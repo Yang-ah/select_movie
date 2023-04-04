@@ -15,8 +15,6 @@ import { getMovie } from "../../../api/Movies";
 const DetailInfo = ({ id }) => {
   const [movieDetail, setMovieDetail] = useState();
 
-  // api 연동 후 array.filter() id 동일한 영화 있는지, 있으면 liked 인지 확인 후 setState
-  // 계속 필요하니까 hooks에 만들까? id만 넣으면 좋아요,북마크한 영화인지 아닌지 ? (boolean)
   const [isMyState, setMyState] = useState({
     isLiked: false,
     isBookmarked: false,
@@ -29,7 +27,7 @@ const DetailInfo = ({ id }) => {
 
   useEffect(() => {
     fetchMovieData();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -41,9 +39,6 @@ const DetailInfo = ({ id }) => {
             <div className={styles.leftWrap}>
               <img src={movieDetail?.postImage} alt="detailPoster" />
               <div className={styles.buttonWrap}>
-                {/* // TODO: mouse event 추가(hover) */}
-
-                {/* // TODO: 비어있는 북마크 아이콘 구해오기 => state에 따라 아이콘 변경*/}
                 <Button
                   option="secondary"
                   className={styles.button}
@@ -113,7 +108,7 @@ const DetailInfo = ({ id }) => {
                 <div className={styles.starWrap}>
                   <span>평균 평점</span>
                   <SolidStarIcon />
-                  {movieDetail?.averageScore}
+                  {/* {movieDetail?.averageScore?.toFixed(1)} */}
                 </div>
               </div>
             </div>

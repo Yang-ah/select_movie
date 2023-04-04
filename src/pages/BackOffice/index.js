@@ -4,6 +4,7 @@ import Table from "./Table";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+//NOTE: /backoffice?type=movies
 const BackOffice = () => {
   const location = useLocation();
   const [path, setPath] = useState("movies");
@@ -18,7 +19,7 @@ const BackOffice = () => {
     if (location.pathname === "/backoffice/reviews") {
       setPath("reviews");
     }
-  }, [path]);
+  }, [location]);
 
   return (
     <section className={styles.section}>

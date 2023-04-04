@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { getMoviesTop } from '../../api/Movies'
+import { useNavigate } from "react-router-dom";
 import "./carousel.scss";
 import {
   CaretLeftIcon,
@@ -11,6 +13,9 @@ import {
 import PosterH from "../PosterH";
 import PosterM from "../PosterM";
 
+
+
+
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
   return <div className={className} onClick={onClick} />;
@@ -21,7 +26,20 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-export const HomeCarousel = ({ movies, onModalClick }) => {
+export const HomeCarousel = () => {
+
+  const navigate = useNavigate;
+  const [moviesTop, setMoviesTop] = useState();
+
+  const fetchMoviesTop = async () => {
+    const response = await getMoviesTop();
+    setMoviesTop(response.data);
+  };
+  
+  useEffect(() => {
+    fetchMoviesTop();
+  }, []);
+
   const settings = {
     dot: false,
     arrow: false,
@@ -36,11 +54,18 @@ export const HomeCarousel = ({ movies, onModalClick }) => {
   return (
     <div>
       <Slider {...settings}>
-        {movies.map((movie) => (
+        {moviesTop && 
+        moviesTop.data.map((movie) => (
           <PosterH
-            key={movies.id}
-            movie={movie}
-            onModalClick={onModalClick}
+          key={movie.id}
+          title={movie.title}
+          id={movie.id}
+          postImage={movie.postImage}
+          onClick={() => {
+            navigate(`/${movie.id}`, {
+              replace: true,
+            });
+          }}
           />
         ))}
       </Slider>
