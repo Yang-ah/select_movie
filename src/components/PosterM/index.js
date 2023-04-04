@@ -10,7 +10,7 @@ export const PosterHeart = ({ id, title, postImage, onClick }) => {
         <article className={styles.layerUp}>
           <div className={styles.title}>{title}</div>
           <button className={styles.icon}>
-            <SolidHeartIcon />
+            <SolidHeartIcon height="24px" />
           </button>
         </article>
         <Link to={`/detail/${id}`}>
@@ -30,7 +30,7 @@ export const PosterMark = ({ id, title, postImage, onClick }) => {
         <article className={styles.layerUp}>
           <div className={styles.title}>{title}</div>
           <button className={styles.icon}>
-            <SolidBookmarkIcon />
+            <SolidBookmarkIcon height="22px" />
           </button>
         </article>
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./infoBox.module.scss";
 import useMe from "../../../hooks/useMe";
 import { isLoginAtom } from "../../../atom";
@@ -28,7 +29,11 @@ const Info = () => {
 
         <div className={styles.text}>
           <div className={styles.infoTop}>
-            <p className={styles.userName}>{me && isLogin && me.name}</p>
+            {!isLogin && <p className={styles.userName}>누군가의 name</p>}
+            {isLogin && (
+              <p className={styles.userName}>{me && isLogin && me.name}</p>
+            )}
+
             {isLogin && (
               <button
                 className={styles.setting}

@@ -51,7 +51,7 @@ export const HomeCarousel = () => {
   };
 
   return (
-    <div className={styles.mywrap}>
+    <>
       <Slider {...settings}>
         {moviesTop &&
           moviesTop.data.map((movie) => (
@@ -68,14 +68,19 @@ export const HomeCarousel = () => {
             />
           ))}
       </Slider>
-    </div>
+    </>
   );
 };
 
 export const MyCarousel = () => {
   const navigate = useNavigate;
+  const [moviesTop, setMoviesTop] = useState();
   const [moviesLike, setMoviesLike] = useState();
 
+  const fetchMoviesTop = async () => {
+    const response = await getMoviesTop();
+    setMoviesTop(response.data);
+  };
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
     setMoviesLike(response.data);
@@ -83,6 +88,7 @@ export const MyCarousel = () => {
   };
 
   useEffect(() => {
+    fetchMoviesTop();
     fetchMoviesLike();
   }, []);
   const settings = {
@@ -102,43 +108,47 @@ export const MyCarousel = () => {
         <SolidHeartIcon className={styles.myIcon} />
         내가 좋아하는 컨텐츠
       </p>
-      <Slider {...settings}>
-        {moviesLike &&
-          moviesLike?.data?.map((movie) => (
-            <PosterHeart
-              key={movie.id}
-              title={movie.title}
-              id={movie.id}
-              postImage={movie.postImage}
-              onClick={() => {
-                navigate(`/${movie.id}`, {
-                  replace: true,
-                });
-              }}
-            />
-          ))}
-      </Slider>
+      <div className={styles.mywrap}>
+        <Slider {...settings}>
+          {moviesLike &&
+            moviesLike?.data?.map((movie) => (
+              <PosterHeart
+                key={movie.id}
+                title={movie.title}
+                id={movie.id}
+                postImage={movie.postImage}
+                onClick={() => {
+                  navigate(`/${movie.id}`, {
+                    replace: true,
+                  });
+                }}
+              />
+            ))}
+        </Slider>
+      </div>
 
       <p>
         <SolidBookmarkIcon className={styles.myIcon} />
         내가 북마크 한 컨텐츠
       </p>
-      <Slider {...settings}>
-        {moviesLike &&
-          moviesLike?.data?.map((movie) => (
-            <PosterMark
-              key={movie.id}
-              title={movie.title}
-              id={movie.id}
-              postImage={movie.postImage}
-              onClick={() => {
-                navigate(`/detail/${movie.id}`, {
-                  replace: true,
-                });
-              }}
-            />
-          ))}
-      </Slider>
+      <div className={styles.mywrap}>
+        <Slider {...settings}>
+          {moviesTop &&
+            moviesTop.data.map((movie) => (
+              <PosterMark
+                key={movie.id}
+                title={movie.title}
+                id={movie.id}
+                postImage={movie.postImage}
+                onClick={() => {
+                  navigate(`/detail/${movie.id}`, {
+                    replace: true,
+                  });
+                }}
+              />
+            ))}
+        </Slider>
+      </div>
     </>
   );
 };

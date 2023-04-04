@@ -48,9 +48,6 @@ const Home = () => {
           movies={movies}
           onModalClick={onModalClick}
         />
-      </article>
-
-      <article className={styles.category}>
         <h2>🔥 개봉 예정 🔥</h2>
         <HomeCarousel
           movieInfo={movieInfo}
