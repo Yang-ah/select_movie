@@ -66,12 +66,6 @@ const BackOfficeHeader = ({ path }) => {
             title='관리자 로그인'
             children={<AdminLoginPage/>}
             />
-        <div className={styles.today}>
-          <p>오늘</p>
-          <p>
-            방문자 <span>8(api없음)</span>명
-          </p>
-        </div>
       </header>
       <nav className={styles.nav}>
         
