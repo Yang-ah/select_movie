@@ -19,6 +19,7 @@ const Review = ({
   reviewId,
   written,
   className,
+  fetchReviews,
 }) => {
   const me = useMe();
 
@@ -41,9 +42,8 @@ const Review = ({
 
   const onClickDeleteReview = () => {
     deleteReview(reviewId);
+    fetchReviews();
     setModalOpen(false);
-
-    // window.location.reload(); 새로고침:로그인 해제됨
   };
 
   return (

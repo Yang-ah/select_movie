@@ -1,4 +1,3 @@
-
 import apiClient from "../apiClient";
 
 // 영화목록 불러오기 /limit는 최소 20이상이여야 합니다
@@ -46,4 +45,14 @@ export const getMoviesRelated = (id) => {
 // 영화 자세히 불러오기
 export const getMovie = (id) => {
   return apiClient.get(`/movies/${id}/detail`);
+};
+
+// 영화 좋아요 생성
+export const postMovieLike = (id) => {
+  return apiClient.post(`/movies/${id}/like`);
+};
+
+// 영화 좋아요 삭제
+export const deleteMovieLike = (id) => {
+  return apiClient.delete(`/movies/${id}/like`);
 };

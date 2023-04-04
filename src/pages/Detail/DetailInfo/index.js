@@ -10,7 +10,7 @@ import {
 } from "../../../assets/icon";
 import Chart from "../Chart";
 import dayjs from "dayjs";
-import { getMovie } from "../../../api/Movies";
+import { deleteMovieLike, getMovie, postMovieLike } from "../../../api/Movies";
 
 const DetailInfo = ({ id }) => {
   const [movieDetail, setMovieDetail] = useState();
@@ -23,11 +23,23 @@ const DetailInfo = ({ id }) => {
   const fetchMovieData = async () => {
     const response = await getMovie(id);
     setMovieDetail(response.data);
+    console.log(response.data);
   };
 
   useEffect(() => {
     fetchMovieData();
   }, [id]);
+
+  const setMovieLike = async () => {
+    if (isMyState.isLiked) {
+      deleteMovieLike(id);
+      setMyState({ ...isMyState, isLiked: false });
+    }
+    if (!isMyState.isLiked) {
+      postMovieLike(id);
+      setMyState({ ...isMyState, isLiked: true });
+    }
+  };
 
   return (
     <>
@@ -39,30 +51,22 @@ const DetailInfo = ({ id }) => {
             <div className={styles.leftWrap}>
               <img src={movieDetail?.postImage} alt="detailPoster" />
               <div className={styles.buttonWrap}>
+                <Button option="secondary" className={styles.button}>
+                  북마크
+                  {isMyState.isBookmarked ? (
+                    <SolidBookmarkIcon />
+                  ) : (
+                    <BookmarkIcon />
+                  )}
+                </Button>
                 <Button
                   option="secondary"
                   className={styles.button}
-                  children={
-                    <>
-                      북마크
-                      {isMyState.isLiked ? (
-                        <SolidBookmarkIcon />
-                      ) : (
-                        <BookmarkIcon />
-                      )}
-                    </>
-                  }
-                />
-                <Button
-                  option="secondary"
-                  className={styles.button}
-                  children={
-                    <>
-                      좋아요
-                      {isMyState.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
-                    </>
-                  }
-                />
+                  onClick={setMovieLike}
+                >
+                  좋아요
+                  {isMyState.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+                </Button>
               </div>
             </div>
             <div className={styles.rightWrap}>
