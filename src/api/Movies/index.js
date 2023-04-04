@@ -47,3 +47,8 @@ export const getMoviesRelated = (id) => {
 export const getMovie = (id) => {
   return apiClient.get(`/movies/${id}/detail`);
 };
+
+// 영화 수정하기
+export const patchMovie = (id, body) => {
+  return apiClient.get(`/movies/${id}`,body);
+};

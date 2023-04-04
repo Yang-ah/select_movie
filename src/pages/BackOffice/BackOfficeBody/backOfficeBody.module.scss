@@ -99,3 +99,80 @@
   .modal{
     color: black;
   }
+
+  .searchInput {
+    @include m.flex(space-between);
+    position: relative;
+  
+    input::placeholder {
+      color: grey;
+    }
+  
+    &.iconLocation {
+      > button {
+        right: 8px;
+      }
+  
+      input {
+        padding-right: 32px;
+        box-sizing: border-box;
+      }
+    }
+    &:not(.iconLocation) {
+      > button {
+        left: 8px;
+      }
+      input {
+        padding-left: 32px;
+      }
+    }
+  
+    .inputWrapper {
+      flex-grow: 1;
+      > input {
+        width: 100%;
+      }
+    }
+  
+    > button {
+      @include m.flex();
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      top: 50%;
+      transform: translateY(-50%);
+      min-width: 16px;
+      position: absolute;
+      z-index: 99;
+      cursor: pointer;
+    }
+  }
+
+  .pagination {
+    margin: 20px 0px;
+    height: 100%;
+    color: c.$C_ARROW;
+    fill: c.$C_ARROW;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  
+    :hover,
+    :active {
+      color: c.$C_ORANGE;
+      fill: c.$C_ORANGE;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+  
+    li {
+      font-size: 16px;
+      margin: 0 1%;
+    }
+  
+    .Icon {
+      height: 16px;
+      width: 16px;
+    }
+  }

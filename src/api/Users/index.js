@@ -17,6 +17,12 @@ export const getUsersMeInfo = () => {
 // data: averageScore: null, reviewCount: 0, likeCount: 0
 
 // 유저목록 불러오기 /limit는 최소 20이상이여야 합니다
-export const getUsers = (page, limit) => {
-  return apiClient.get(`/users?page=${page}&limit=${limit}`);
+export const getUsers = (page, limit, name) => {
+  return apiClient.get(`/users`, {
+    params: {
+      page,
+      limit,
+      name,
+    },
+  });
 };

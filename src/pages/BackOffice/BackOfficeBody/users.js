@@ -1,21 +1,26 @@
 import {React, useState, useEffect} from "react";
 import styles from './backOfficeBody.module.scss'
-import { Button, Modal, SearchInput } from "../../../components";
-import { CheckIcon, TrashIcon } from "../../../assets/icon";
-import { getUsers } from "../../../api/Users";
+import { Button, Input, Modal, SearchInput } from "../../../components";
+import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon, TrashIcon } from "../../../assets/icon";
+import { getUsers, getUsersCount } from "../../../api/Users";
 import cx from "classnames";
 const BackOfficeUsers = ()=>{
     const [pageNumber, setPageNumber] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalOpen2, setModalOpen2] = useState(false);
     const [usersData, setUsersData] = useState();
+    const [Count, setCount] = useState();
+    const [form, setForm] = useState();
+    const [pageNationNumber, setPageNationNumber] = useState();
 
     const responseData = async ()=>{
         const response1 = await getUsers(pageNumber,10);
+        const responseCount = await getUsersCount();
         setUsersData(response1.data.data);
-        console.log(usersData)
+        setCount(responseCount.data.count);
+        const totalPage = Math.ceil(responseCount.data.count/10)
+        setPageNationNumber(totalPage);
     };
-
 
     useEffect(()=>{
         responseData();
@@ -35,7 +40,20 @@ const BackOfficeUsers = ()=>{
     };
     const showModal2 = () => { setModalOpen2(true); };
 
+    const onChange = (e) => {
+        const { name, value } = e.currentTarget;
+        setForm(value);
+    };
+
+    const onSearch = async (e)=>{
+        e.preventDefault();
+        const response2 = await getUsers(1,Count,form);
+        setUsersData(response2.data.data);
+    }
+
     const title = ["가입일", "이메일", "닉네임", "수정", "탈퇴"];
+
+    const pageNationNumbers = Array(pageNationNumber).fill().map((v,i)=>i+1);
 
 return(
 <>
@@ -43,11 +61,17 @@ return(
     <h3 className={styles.mainTitle}>
         유저관리
     </h3>
-    <SearchInput
-        option="iconLocation"
-        className={styles.searchInput}
-        placeholder="내용을 입력하세요."
-    />
+    <form id='searchForm' className={cx(styles.searchInput, styles["iconLocation"])}>
+      <Input onChange={onChange}
+        name="title"
+        value={form}
+        placeholder='회원이름검색'
+        className={styles.inputWrapper} />
+      <button type="submit" form="searchForm"
+        onClick={onSearch} className={cx(styles.button)}>
+        <SearchIcon />
+      </button>
+    </form>
     <Button>
         삭제
         <TrashIcon />
@@ -102,10 +126,30 @@ return(
 })}
 
 
-{/* 페이지네이션 추가하기 */}
-<button onClick={pageDown}>[페이지 다운]</button>
-<button onClick={pageUp}>[페이지 업]</button>
-<p>{pageNumber}</p>
+{/* 페이지네이션 */}
+<ul className={styles.pagination}>
+    <li className={styles.prevIcon}>
+    <ChevronLeftIcon
+        className={styles.Icon}
+        onClick={pageDown}
+    />
+    </li>
+    {pageNationNumbers.map((number, i) => (
+    <li
+        className="currentPage"
+        key={i}
+        onClick={() => setPageNumber(number)}
+    >
+        {number}
+    </li>
+    ))} 
+    <li className={styles.nextIcon}>
+    <ChevronRightIcon
+        className={styles.Icon}
+        onClick={pageUp}
+    />
+    </li>
+</ul>
 </>
     );
 }

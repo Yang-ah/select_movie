@@ -12,9 +12,15 @@ export const getReviewsCount = () => {
   return apiClient.get("/reviews/count");
 };
 
-// 리뷰목록 불러오기 /limit는 최소 20이상이여야 합니다
-export const getReviews = (page, limit) => {
-  return apiClient.get(`/reviews?page=${page}&limit=${limit}`);
+// 리뷰목록 불러오기
+export const getReviews = (page, limit, name) => {
+  return apiClient.get(`/reviews`, {
+    params: {
+      page,
+      limit,
+      name,
+    },
+  });
 };
 
 // ******** post *********
