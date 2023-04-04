@@ -2,15 +2,16 @@ import React from "react";
 import styles from "./poster.module.scss";
 import { SolidStarIcon } from "../../assets/icon";
 
-const PosterL = ({ movie, onModalClick }) => {
-  const { id, postImage, title, rating } = movie;
+const PosterL = ({ title , postImage , onModalClick }) => {
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.box} onClick={() => onModalClick(id)}>
+    <div className={styles.wrapper} onClick={onModalClick}>
+      <div
+        className={styles.box}
+      >
         <img className={styles.media} src={postImage} alt={title} />
         <div className={styles.rating}>
-          <SolidStarIcon className={styles.star} />
-          <p className={styles.aver}>{rating}</p>
+          <SolidStarIcon className={styles.star} />\
         </div>
       </div>
     </div>

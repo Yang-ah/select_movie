@@ -15,6 +15,7 @@ import {
 
 import PosterH from "../PosterH";
 import { PosterHeart, PosterMark } from "../PosterM";
+import MovieModal from "../../components/MovieModal";
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -29,6 +30,7 @@ export const NextArrow = (props) => {
 export const HomeCarousel = () => {
   const navigate = useNavigate;
   const [moviesTop, setMoviesTop] = useState();
+  const [isShow, setIsShow] = useState(false);
 
   const fetchMoviesTop = async () => {
     const response = await getMoviesTop();
@@ -38,6 +40,15 @@ export const HomeCarousel = () => {
   useEffect(() => {
     fetchMoviesTop();
   }, []);
+
+
+
+  const onModalClick = () => {
+    setIsShow(true);
+  };
+  const onModalClose = () => {
+    setIsShow(false);
+  };
 
   const settings = {
     dot: false,
@@ -51,24 +62,35 @@ export const HomeCarousel = () => {
   };
 
   return (
-    <>
+
+    <div>
+      {moviesTop && 
+      moviesTop.data.map((movie) => (
+    <MovieModal 
+       key={movie.id}
+      title={movie.title}
+      id={movie.id}
+       postImage={movie.postImage}
+    />
+      ))}
       <Slider {...settings}>
-        {moviesTop &&
-          moviesTop.data.map((movie) => (
-            <PosterH
-              key={movie.id}
-              title={movie.title}
-              id={movie.id}
-              postImage={movie.postImage}
-              onClick={() => {
-                navigate(`/${movie.id}`, {
-                  replace: true,
-                });
-              }}
-            />
-          ))}
+        {moviesTop && 
+        moviesTop.data.map((movie) => (
+          <PosterH
+          key={movie.id}
+          title={movie.title}
+          id={movie.id}
+          postImage={movie.postImage}
+          onClick={() => {
+            onModalClick={onModalClick}
+            navigate(`/${movie.id}`, {
+              replace: true,
+            });
+          }}
+          />
+        ))}
       </Slider>
-    </>
+    </div>
   );
 };
 

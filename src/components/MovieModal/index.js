@@ -5,7 +5,11 @@ import Comment, { Preview } from "../Comment";
 import dummy from "../../mock_comment.json";
 import { Link } from "react-router-dom";
 
-const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
+import {
+  DoubleChevronRightIcon
+} from "../../assets/icon";
+
+const Modal1 = ({  title , postImage , onModalClick , onModalClose, setIsShow, isShow, moveDetail }) => {
   const modalRef1 = useRef(null);
 
   useEffect(() => {
@@ -40,28 +44,26 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
           <div className={styles.popup}>
             <img
               className={styles.popupBackground}
-              src={movieInfo.postImage}
-              alt={movieInfo.title}
+              src={postImage}
+              alt={title}
             />
             <div className={styles.popupBody}>
               <div>
                 <img
                   className={styles.thumbUrl}
-                  src={movieInfo.postImage}
-                  alt={movieInfo.title}
+                  src={postImage}
+                  alt={title}
                 />
               </div>
               <div>
-                <ul>
-                  <div className={styles.popupMainContent}>
-                    <li>
-                      <h1 className={styles.popupMainHead}>
-                        {movieInfo.title}
-                      </h1>
-                    </li>
-                  </div>
-                  <div className={styles.popupSubHead}></div>
-                </ul>
+                {/* <ul> */}
+                <div className={styles.popupMainContent}>
+                  {/* <li> */}
+                  <h1 className={styles.popupMainHead}>{title}</h1>
+                  {/* </li> */}
+                </div>
+                <div className={styles.popupSubHead}></div>
+                {/* </ul> */}
               </div>
             </div>
             <div className={styles.commentHead}>c o m m e n t</div>
@@ -72,24 +74,7 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
               <p className={styles.moveDetail}>{">>"}</p>
             </Link>
             <Preview/>
-            {/* <Comment
-              className={styles.comment}
-              type="preview"
-              key={dummy[0].userName + "2"}
-              userName={dummy[0].userName}
-              comment={dummy[0].comment}
-              // date={dummy[0].date} TODO : 넣을지 상의
-              rating={dummy[0].rating}
-            />
-            <Comment
-              className={styles.comment}
-              type="preview"
-              key={dummy[0].userName + "2"}
-              userName={dummy[0].userName}
-              comment={dummy[0].comment}
-              // date={dummy[0].date} TODO : 넣을지 상의
-              rating={dummy[0].rating}
-            /> */}
+            
           </div>
         </div>
       </div>
