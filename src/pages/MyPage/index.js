@@ -1,49 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getReviewsMovie } from "../../api/Reviews";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+// import { useRecoilValue } from "recoil";
+// import { isLoginAtom } from "../../atom";
+// import useMe from "../../hooks/useMe";
 import styles from "./mypage.module.scss";
-import mdata from "../../mock_movie.json";
 import Info from "./InfoBox";
 import { MyCarousel } from "../../components/Carousel";
 import Comment from "./CommentBox";
-import ModalMovie from "../../components/ModalMovie";
 
 const MyPage = () => {
-  const [movies] = useState(mdata);
-  const [movieInfo, setMovieInfo] = useState(movies[0]);
+  const [movies] = useState();
+  const [movieInfo, setMovieInfo] = useState([0]);
   const [isShow, setIsShow] = useState(false);
 
-  const onOver = (id) => {
+  const onClick = (id) => {
     const num = movies.findIndex((item) => item.id === id);
     setMovieInfo(movies[num]);
-  };
-
-  const onModalClick = () => {
     setIsShow(true);
   };
-  const onModalClose = () => {
-    setIsShow(false);
+
+  const { id } = useParams();
+  const [reviews, setReviews] = useState([]); // review 객체가 들어있는 배열
+
+  const fetchReviews = async () => {
+    const response = await getReviewsMovie(id);
+    setReviews(response.data);
   };
+
+  useEffect(() => {
+    fetchReviews();
+  }, [id, reviews]);
+
   return (
     <section className={styles.wrap}>
       <Info />
       <div className={styles.contentbox}>
-        <p>내가 좋아하는 컨텐츠</p>
-        <MyCarousel
-          movieInfo={movieInfo}
-          movies={movies}
-          onModalClick={onModalClick}
-          onOver={onOver}
-        />
-        <ModalMovie
-          setIsShow={setIsShow}
-          isShow={isShow}
-          onModalClose={onModalClose}
-          movieInfo={movieInfo}
-        />
+        <MyCarousel movieInfo={movieInfo} onClick={onClick} />
       </div>
+
       <div className={styles.commentbox}>
-        <p>작성한 리뷰 및 댓글</p>
+        <p>작성한 리뷰</p>
         <Comment />
       </div>
+      <article className={styles.reviewsWrap}>
+        {reviews.length !== 0 || (
+          <div className={styles.empty}>
+            <p>텅</p>
+            <p>첫 리뷰를 남겨보세요✨</p>
+          </div>
+        )}
+        {reviews &&
+          reviews.map((review) => {
+            return <Comment review={review} key={review.id} movieId={id} />;
+          })}
+      </article>
     </section>
   );
 };
