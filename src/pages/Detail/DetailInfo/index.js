@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
-import styles from "./detailInfo.module.scss";
-import Button from "../../../components/Common/Button";
+import React, { useEffect, useState } from 'react';
+import styles from './detailInfo.module.scss';
+import Button from '../../../components/Common/Button';
 import {
   BookmarkIcon,
   HeartIcon,
   SolidBookmarkIcon,
   SolidHeartIcon,
   SolidStarIcon,
-} from "../../../assets/icon";
-import Chart from "../Chart";
-import dayjs from "dayjs";
+} from '../../../assets/icon';
+import Chart from '../Chart';
+import dayjs from 'dayjs';
 import {
   deleteBookmark,
   deleteMovieLike,
   getMovie,
   postBookmark,
   postMovieLike,
-} from "../../../api/Movies";
-import { useRecoilValue } from "recoil";
-import { isLoginAtom } from "../../../atom";
+} from '../../../api/Movies';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../../atom';
 
 const DetailInfo = ({ id }) => {
   const isLogin = useRecoilValue(isLoginAtom);
@@ -32,6 +32,7 @@ const DetailInfo = ({ id }) => {
   const fetchMovieData = async () => {
     const response = await getMovie(id);
     setMovieDetail(response.data);
+    // console.log(response.data);
 
     // TODO : bookmark도 데이터에 넣어주실 수 있는지 여쭤보기 !
     if (isLogin) {
@@ -60,21 +61,21 @@ const DetailInfo = ({ id }) => {
 
   const onClickButton = (e) => {
     if (!isLogin) {
-      return alert("로그인 후 이용 가능합니다!");
+      return alert('로그인 후 이용 가능합니다!');
     }
 
     const { name } = e.currentTarget;
 
     if (isMyState[name]) {
-      name === "isLiked" && deleteMovieLike(id);
-      name === "isBookmarked" && deleteBookmark(id);
+      name === 'isLiked' && deleteMovieLike(id);
+      name === 'isBookmarked' && deleteBookmark(id);
 
       setMyState({ ...isMyState, [name]: false });
     }
 
     if (!isMyState[name]) {
-      name === "isLiked" && postMovieLike(id);
-      name === "isBookmarked" && postBookmark(id);
+      name === 'isLiked' && postMovieLike(id);
+      name === 'isBookmarked' && postBookmark(id);
       setMyState({ ...isMyState, [name]: true });
     }
   };
@@ -120,7 +121,7 @@ const DetailInfo = ({ id }) => {
                 </h1>
                 <h2>
                   <span>
-                    {dayjs(movieDetail?.releasedAt).format("YYYY.MM.DD")}
+                    {dayjs(movieDetail?.releasedAt).format('YYYY.MM.DD')}
                   </span>
 
                   {movieDetail?.genres.map((genre) => {

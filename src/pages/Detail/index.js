@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import styles from "./detail.module.scss";
-import DetailInfo from "./DetailInfo";
-import Dropdown from "../../components/Common/Dropdown";
-import { getMoviesRelated, postMovieLike } from "../../api/Movies";
-import { getReviewsMovie } from "../../api/Reviews";
-import RelatedCard from "./RelatedCard";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { isLoginAtom } from "../../atom";
-import useMe from "../../hooks/useMe";
-import Accordion from "./Accordion";
-import ReviewInput from "../../components/Comment/ReviewInput";
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './detail.module.scss';
+import DetailInfo from './DetailInfo';
+import Dropdown from '../../components/Common/Dropdown';
+import { getMoviesRelated, postMovieLike } from '../../api/Movies';
+import { getReviewsMovie } from '../../api/Reviews';
+import RelatedCard from './RelatedCard';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../atom';
+import useMe from '../../hooks/useMe';
+import Accordion from './Accordion';
+import ReviewInput from '../../components/Comment/ReviewInput';
 
 // review dropdown list
 const dropdownItems = () => {
-  return ["별점높은순", "별점낮은순", "최신순"];
+  return ['별점높은순', '별점낮은순', '최신순'];
 };
 
 const Detail = () => {
@@ -37,11 +37,10 @@ const Detail = () => {
   // 해당 영화 리뷰 fetch
   const fetchReviews = async () => {
     const response = await getReviewsMovie(id);
-    console.log(response.data);
+    //  console.log(response.data);
     setReviews(response.data);
   };
 
-  // deps에 reviews 넣으면 무한 랜더링이 나는데, reviews를 안넣으면 댓글 상태 반영이 바로 안됩니다..(삭제,생성)
   useEffect(() => {
     fetchRelatedMovies();
     fetchReviews();
@@ -52,9 +51,9 @@ const Detail = () => {
     if (!ref.current) return;
 
     ref.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
     });
     fetchRelatedMovies();
     fetchReviews();
@@ -63,8 +62,8 @@ const Detail = () => {
   // 로그인 상태에 따라 reviewInput의 placeholder 변경
   const inputPlaceholder = () => {
     return isLogin
-      ? "10자 이상 입력 시 등록 가능합니다."
-      : "로그인 후 작성하실 수 있습니다.";
+      ? '10자 이상 입력 시 등록 가능합니다.'
+      : '로그인 후 작성하실 수 있습니다.';
   };
 
   // 로그인 상태에 따라 reviewInput의 userName 변경
