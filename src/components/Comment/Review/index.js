@@ -41,9 +41,9 @@ const Review = ({
     setModalOpen(true);
   };
 
-  const onClickDeleteReview = () => {
-    deleteReview(reviewId);
-    fetchReviews();
+  const onClickDeleteReview = async () => {
+    await deleteReview(reviewId);
+    await fetchReviews();
     setModalOpen(false);
   };
 

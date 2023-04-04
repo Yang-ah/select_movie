@@ -37,8 +37,8 @@ const Detail = () => {
   // 해당 영화 리뷰 fetch
   const fetchReviews = async () => {
     const response = await getReviewsMovie(id);
-    setReviews(response.data);
     console.log(response.data);
+    setReviews(response.data);
   };
 
   // deps에 reviews 넣으면 무한 랜더링이 나는데, reviews를 안넣으면 댓글 상태 반영이 바로 안됩니다..(삭제,생성)

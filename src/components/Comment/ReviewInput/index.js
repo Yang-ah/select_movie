@@ -11,15 +11,16 @@ const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
     score: 0,
   });
 
-  const onClick = () => {
+  const onClick = async () => {
     if (!newReview.score) {
       return alert("별점을 선택해주세요.");
     }
     if (newReview.content.length < 10) {
       return alert("리뷰를 10자 이상 입력해주세요.");
     }
-    createReview(id, newReview);
-    fetchReviews();
+    //NOTE: 리뷰 등록이 완성되면 리뷰 목록을 다시 불러온다. (동기작업)
+    await createReview(id, newReview);
+    await fetchReviews();
     setNewReview({
       content: "",
       score: 0,
