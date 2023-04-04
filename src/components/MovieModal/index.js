@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import styles from "./modal.module.scss";
-import Comment from "../Comment";
+import Comment, { Preview } from "../Comment";
 import dummy from "../../mock_comment.json";
 import { Link } from "react-router-dom";
 
@@ -71,7 +71,8 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
             <Link to="detail/{id}">
               <p className={styles.moveDetail}>{">>"}</p>
             </Link>
-            <Comment
+            <Preview/>
+            {/* <Comment
               className={styles.comment}
               type="preview"
               key={dummy[0].userName + "2"}
@@ -88,7 +89,7 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
               comment={dummy[0].comment}
               // date={dummy[0].date} TODO : 넣을지 상의
               rating={dummy[0].rating}
-            />
+            /> */}
           </div>
         </div>
       </div>
