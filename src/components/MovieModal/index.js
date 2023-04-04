@@ -9,7 +9,7 @@ import {
   DoubleChevronRightIcon
 } from "../../assets/icon";
 
-const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
+const Modal1 = ({  title , postImage , onModalClick , onModalClose, setIsShow, isShow, moveDetail }) => {
   const modalRef1 = useRef(null);
 
   useEffect(() => {
@@ -46,22 +46,22 @@ const Modal1 = ({ movieInfo, onModalClose, setIsShow, isShow, moveDetail }) => {
           <div className={styles.popup}>
             <img
               className={styles.popupBackground}
-              src={movieInfo.postImage}
-              alt={movieInfo.title}
+              src={postImage}
+              alt={title}
             />
             <div className={styles.popupBody}>
               <div>
                 <img
                   className={styles.thumbUrl}
-                  src={movieInfo.postImage}
-                  alt={movieInfo.title}
+                  src={postImage}
+                  alt={title}
                 />
               </div>
               <div>
                 {/* <ul> */}
                 <div className={styles.popupMainContent}>
                   {/* <li> */}
-                  <h1 className={styles.popupMainHead}>{movieInfo.title}</h1>
+                  <h1 className={styles.popupMainHead}>{title}</h1>
                   {/* </li> */}
                 </div>
                 <div className={styles.popupSubHead}></div>

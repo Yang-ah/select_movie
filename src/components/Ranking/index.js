@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getMoviesTop } from '../../api/Movies'
 import Slider from "react-slick";
 import styles from "./ranking.module.scss";
-import "./ranking.module.scss";
-import PosterL from "../PosterH";
+import PosterL from "../PosterL";
 
-export const RankingCarousel = ({movies ,onModalClick, id }) => {
+
+export const RankingCarousel = () => {
+
+    const navigate = useNavigate;
+  const [moviesTop, setMoviesTop] = useState();
+
+  const fetchMoviesTop = async () => {
+    const response = await getMoviesTop();
+    setMoviesTop(response.data);
+  };
+  
+  useEffect(() => {
+    fetchMoviesTop();
+  }, []);
+
   const [slideIndex, setSlideIndex] = useState(0);
 
   const settings = {
@@ -24,17 +39,18 @@ export const RankingCarousel = ({movies ,onModalClick, id }) => {
       <h2 className={styles.header}>💪최근 1~5위 영화를 살펴보세요💪</h2>
       <div className={styles.slider}>
         <Slider {...settings}>
-          {movies.map((movie, idx) => (
+          {moviesTop &&
+           moviesTop.data.map((movie, idx) => (
             <div
               className={
                 idx === slideIndex ? styles.slideActive : styles.slideBefore
               }>
               <PosterL
-          key={movies.id}
-          movie={movie}
-          onModalClick={onModalClick}
+          key={movie.id}
+          title={movie.title}
+          id={movie.id}
+          postImage={movie.postImage}
         />
-          
             </div>
           ))}
         </Slider>
