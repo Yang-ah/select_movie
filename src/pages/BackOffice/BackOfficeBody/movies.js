@@ -4,6 +4,7 @@ import styles from './backOfficeBody.module.scss'
 import cx from "classnames";
 import { Button, Input, Modal, SearchInput } from "../../../components";
 import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon, TrashIcon } from "../../../assets/icon";
+import BOmovieModal from "./BOmodal/BOmovieModal";
 const BackOfficeMovies = ()=>{
     const [pageNumber, setPageNumber] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
@@ -47,6 +48,7 @@ const BackOfficeMovies = ()=>{
 
     const onSearch = async (e)=>{
         e.preventDefault();
+        if(form.length<2){return alert('두 글자 이상을 검색해 주세요')}
         const response2 = await getMovies(1,Count,form);
         setMovieData(response2.data.data);
     }
@@ -65,7 +67,7 @@ return(
       <Input onChange={onChange}
         name="title"
         value={form}
-        placeholder='영화제목검색'
+        placeholder='영화 제목을 두글자 이상 검색해주세요'
         className={styles.inputWrapper} />
       <button type="submit" form="searchForm"
         onClick={onSearch} className={cx(styles.button)}>
@@ -107,11 +109,13 @@ return(
     </ul>   
     )
 })}
-<Modal className={styles.modal}
-    modalOpen1={modalOpen}
-    setModalOpen={setModalOpen}
-    children={'a'}
-    buttonChildren='수정' />
+<BOmovieModal
+className={styles.modal}
+modalOpen1={modalOpen}
+setModalOpen={setModalOpen}
+children='a'
+buttonChildren='수정'
+num='인덱스값 넣기1'/>
 
 {/* 페이지네이션 */}
 <ul className={styles.pagination}>
