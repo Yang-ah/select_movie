@@ -27,6 +27,10 @@ const DetailInfo = ({ id }) => {
   };
 
   useEffect(() => {
+    setMyState({
+      isLiked: false,
+      isBookmarked: false,
+    });
     fetchMovieData();
   }, [id]);
 
@@ -76,7 +80,7 @@ const DetailInfo = ({ id }) => {
                 </h1>
                 <h2>
                   <span>
-                    {dayjs(movieDetail?.releasedAt + "").format("YYYY.MM.DD")}
+                    {dayjs(movieDetail?.releasedAt).format("YYYY.MM.DD")}
                   </span>
 
                   {movieDetail?.genres.map((genre) => {
