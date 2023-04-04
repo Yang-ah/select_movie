@@ -7,7 +7,7 @@ import { isLoginAtom } from "../../../atom";
 import { useEffect, useState } from "react";
 import { ModifyIcon, TrashIcon } from "../../../assets/icon";
 import Modal from "../../Common/Modal";
-import { deleteReview } from "../../../api/Reviews";
+import { deleteReviewComment } from "../../../api/Reviews";
 
 const Comment = ({
   comment,
@@ -18,6 +18,7 @@ const Comment = ({
   className,
   commentId,
   written,
+  fetchReviews,
   ...props
 }) => {
   const me = useMe();
@@ -40,10 +41,9 @@ const Comment = ({
   };
 
   const onClickDeleteReview = () => {
-    deleteReview(commentId);
+    deleteReviewComment(commentId);
+    fetchReviews();
     setModalOpen(false);
-
-    // window.location.reload(); 새로고침:로그인 해제됨
   };
 
   return (
@@ -74,7 +74,7 @@ const Comment = ({
                 buttonChildren="삭제"
                 onClick={onClickDeleteReview}
               >
-                리뷰를 삭제하시겠습니까?
+                댓글을 삭제하시겠습니까?
               </Modal>
             </div>
           )}

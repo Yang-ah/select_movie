@@ -58,6 +58,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
         reviewId={review.id}
         written={review.user.id}
         movieId={movieId}
+        fetchReviews={fetchReviews}
       />
 
       {/* 로그인 상태의 댓글 input */}
@@ -108,6 +109,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
                   date={dayjs(comment.createdAt).format("YYYY.MM.DD")}
                   commentId={comment.id}
                   written={comment.user.id}
+                  fetchReviews={fetchReviews}
                 />
               );
             })}

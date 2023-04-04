@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./detail.module.scss";
 import DetailInfo from "./DetailInfo";
 import Dropdown from "../../components/Common/Dropdown";
-import { getMoviesRelated } from "../../api/Movies";
+import { getMoviesRelated, postMovieLike } from "../../api/Movies";
 import { getReviewsMovie } from "../../api/Reviews";
 import RelatedCard from "./RelatedCard";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -40,7 +40,7 @@ const Detail = () => {
     setReviews(response.data);
   };
 
-  // 화면 최초 실행 시, id 변경 시
+  // deps에 reviews 넣으면 무한 랜더링이 나는데, reviews를 안넣으면 댓글 상태 반영이 바로 안됩니다..(삭제,생성)
   useEffect(() => {
     fetchRelatedMovies();
     fetchReviews();
