@@ -40,9 +40,26 @@
     justify-content: center;
     align-items: center;
     height: calc(100% - 70px);
+    width: 80%;
     color: c.$C_WHITE;
+    >.inputForm{
+      width: 100%;
+    }
   }
 }
+.labelText {
+  font-size: 12px;
+  color: c.$C_WHITE;
+}
+.textArea {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid c.$C_WHITE;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 4px 0px;
+}
+
 .buttonBox {
   display: flex;
   flex-direction: row;
