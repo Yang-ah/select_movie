@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import styles from "./accordion.module.scss";
-import { ChevronUp } from "../../../assets/icon";
-import cx from "classnames";
-import dayjs from "dayjs";
-import Input from "../../../components/Common/Input";
-import useMe from "../../../hooks/useMe";
-import { isLoginAtom } from "../../../atom";
-import { useRecoilValue } from "recoil";
-import { Link } from "react-router-dom";
-import { createReviewComment } from "../../../api/Reviews";
-import { Comment, Review } from "../../../components/Comment";
+import React, { useEffect, useState } from 'react';
+import styles from './accordion.module.scss';
+import { ChevronUp } from '../../../assets/icon';
+import cx from 'classnames';
+import dayjs from 'dayjs';
+import Input from '../../../components/Common/Input';
+import useMe from '../../../hooks/useMe';
+import { isLoginAtom } from '../../../atom';
+import { useRecoilValue } from 'recoil';
+import { Link } from 'react-router-dom';
+import { createReviewComment } from '../../../api/Reviews';
+import { Comment, Review } from '../../../components/Comment';
 
 const Accordion = ({ review, movieId, fetchReviews }) => {
   const isLogin = useRecoilValue(isLoginAtom);
@@ -18,7 +18,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [reviewComments, setReviewComments] = useState([]);
   const [newReviewComment, setNewReviewComment] = useState({
-    content: "",
+    content: '',
   });
 
   const onClickCommentAccordion = () => setIsClicked(!isClicked);
@@ -27,7 +27,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
     setNewReviewComment({ content: e.currentTarget.value });
 
   const setUserName = (user) => {
-    return user.nickName ?? user.name ?? "닉네임없음";
+    return user.nickName ?? user.name ?? '닉네임없음';
   };
 
   useEffect(() => {
@@ -37,11 +37,11 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
   // 리뷰의 '댓글' 등록 버튼 클릭 이벤트
   const onSubmit = () => {
     if (!newReviewComment.content) {
-      return alert("댓글을 입력해주세요.");
+      return alert('댓글을 입력해주세요.');
     }
     createReviewComment(review.id, newReviewComment);
     fetchReviews();
-    setNewReviewComment({ content: "" });
+    setNewReviewComment({ content: '' });
     setReviewComments(review.comments);
   };
 
@@ -51,10 +51,8 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
       <Review
         userName={setUserName(review.user)}
         comment={review.content}
-        date={dayjs(review.createdAt).format("YYYY.MM.DD")}
+        date={dayjs(review.createdAt).format('YYYY.MM.DD')}
         rating={review.score}
-        hate={review.hateCount}
-        like={review.likeCount}
         reviewId={review.id}
         written={review.user.id}
         movieId={movieId}
@@ -106,7 +104,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
                   key={comment.id}
                   comment={comment.content}
                   userName={setUserName(comment.user)}
-                  date={dayjs(comment.createdAt).format("YYYY.MM.DD")}
+                  date={dayjs(comment.createdAt).format('YYYY.MM.DD')}
                   commentId={comment.id}
                   written={comment.user.id}
                   fetchReviews={fetchReviews}

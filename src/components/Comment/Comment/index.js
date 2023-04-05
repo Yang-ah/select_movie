@@ -1,20 +1,18 @@
-import styles from "./comment.module.scss";
-import cx from "classnames";
-import { HeaderLeft, HeaderRightButtons } from "../_shared";
-import useMe from "../../../hooks/useMe";
-import { useRecoilValue } from "recoil";
-import { isLoginAtom } from "../../../atom";
-import { useEffect, useState } from "react";
-import { ModifyIcon, TrashIcon } from "../../../assets/icon";
-import Modal from "../../Common/Modal";
-import { deleteReviewComment } from "../../../api/Reviews";
+import styles from './comment.module.scss';
+import cx from 'classnames';
+import { HeaderLeft, HeaderRightButtons } from '../_shared';
+import useMe from '../../../hooks/useMe';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../../atom';
+import { useEffect, useState } from 'react';
+import { ModifyIcon, TrashIcon } from '../../../assets/icon';
+import Modal from '../../Common/Modal';
+import { deleteReviewComment } from '../../../api/Reviews';
 
 const Comment = ({
   comment,
   userName,
   date,
-  like = 0,
-  hate = 0,
   className,
   commentId,
   written,
@@ -53,7 +51,7 @@ const Comment = ({
         <HeaderLeft type="comment" userName={userName} date={date} />
 
         <article className={styles.right}>
-          <HeaderRightButtons like={like} hate={hate} type="comment" />
+          <HeaderRightButtons type="comment" commentId={commentId} />
 
           {isUserMe || (
             <button type="button" name="report">

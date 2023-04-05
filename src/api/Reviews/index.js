@@ -1,4 +1,4 @@
-import apiClient from "../apiClient";
+import apiClient from '../apiClient';
 
 // ******** get *********
 
@@ -9,7 +9,7 @@ export const getReviewsMovie = (movieId) => {
 
 // 리뷰 수 구하기
 export const getReviewsCount = () => {
-  return apiClient.get("/reviews/count");
+  return apiClient.get('/reviews/count');
 };
 
 // 리뷰목록 불러오기
@@ -26,6 +26,11 @@ export const getReviews = (page, limit, name) => {
 // 리뷰 자세히 보기
 export const getReviewDetail = (movieId) => {
   return apiClient.get(`/reviews/${movieId}/detail`);
+};
+
+// 내 리뷰 보기
+export const getMyReview = (movieId) => {
+  return apiClient.get(`/reviews/movie/${movieId}/me`);
 };
 
 // ******** post *********
@@ -64,7 +69,7 @@ export const deleteReviewComment = (commentId) => {
 
 // 영화 리뷰의 '좋아요' 삭제
 export const deleteReviewLike = (reviewId) => {
-  return apiClient.delete(`/reviews/{id}/like`);
+  return apiClient.delete(`/reviews/${reviewId}/like`);
 };
 
 // 영화 리뷰의 '싫어요' 삭제

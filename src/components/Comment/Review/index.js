@@ -1,25 +1,24 @@
-import styles from "./review.module.scss";
-import cx from "classnames";
-import { HeaderLeft, HeaderRightRating, HeaderRightButtons } from "../_shared";
-import { useEffect, useState } from "react";
-import useMe from "../../../hooks/useMe";
-import { isLoginAtom } from "../../../atom";
-import { useRecoilValue } from "recoil";
-import { ModifyIcon, TrashIcon } from "../../../assets/icon";
-import Modal from "../../Common/Modal";
-import { deleteReview } from "../../../api/Reviews";
+import styles from './review.module.scss';
+import cx from 'classnames';
+import { HeaderLeft, HeaderRightRating, HeaderRightButtons } from '../_shared';
+import { useEffect, useState } from 'react';
+import useMe from '../../../hooks/useMe';
+import { isLoginAtom } from '../../../atom';
+import { useRecoilValue } from 'recoil';
+import { ModifyIcon, TrashIcon } from '../../../assets/icon';
+import Modal from '../../Common/Modal';
+import { deleteReview, getMyReview } from '../../../api/Reviews';
 
 const Review = ({
   comment,
   userName,
   date,
   rating,
-  like = 0,
-  hate = 0,
   reviewId,
   written,
   className,
   fetchReviews,
+  movieId,
 }) => {
   const me = useMe();
 
@@ -27,15 +26,14 @@ const Review = ({
   const [isUserMe, setIsUserMe] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  useEffect(() => {
-    isUserMeToggle();
-  }, [isLogin, me]);
-
-  const isUserMeToggle = () => {
-    if (isLogin && me && me.id === written) {
-      setIsUserMe(true);
-    }
+  const isMyReview = async () => {
+    const response = await getMyReview(movieId);
+    response.data && setIsUserMe(response.data.user.id === written);
   };
+
+  useEffect(() => {
+    isMyReview();
+  }, [isLogin, me]);
 
   const onClickDelete = () => {
     setModalOpen(true);
@@ -53,12 +51,7 @@ const Review = ({
         <HeaderLeft type="review" userName={userName} date={date} />
         <article className={styles.right}>
           <HeaderRightRating rating={rating} />
-          <HeaderRightButtons
-            like={like}
-            hate={hate}
-            type="review"
-            reviewId={reviewId}
-          />
+          <HeaderRightButtons type="review" reviewId={reviewId} />
           {isUserMe || (
             <button type="button" name="report">
               신고하기

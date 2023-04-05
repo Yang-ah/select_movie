@@ -1,6 +1,6 @@
-import apiClient from "../apiClient";
+import apiClient from '../apiClient';
 
-// 영화목록 불러오기 /limit는 최소 20이상이여야 합니다
+// 영화목록 불러오기
 export const getMovies = (page, limit, title) => {
   return apiClient.get(`/movies`, {
     params: {
@@ -13,7 +13,7 @@ export const getMovies = (page, limit, title) => {
 
 // 영화 전체 개수 불러오기
 export const getMoviesCount = () => {
-  return apiClient.get("/movies/count");
+  return apiClient.get('/movies/count');
 };
 
 // 내가 좋아요 한 영화 불러오기
@@ -57,18 +57,7 @@ export const deleteMovieLike = (id) => {
   return apiClient.delete(`/movies/${id}/like`);
 };
 
-
-// 영화 북마크 생성
-export const postBookmark = (movieId) => {
-  return apiClient.post(`/bookmarks/${movieId}`);
-};
-
-// 영화 북마크 삭제
-export const deleteBookmark = (movieId) => {
-  return apiClient.delete(`/bookmarks/${movieId}`);
-};
-
 // 영화 수정하기
 export const patchMovie = (id, body) => {
-  return apiClient.get(`/movies/${id}`,body);
+  return apiClient.get(`/movies/${id}`, body);
 };

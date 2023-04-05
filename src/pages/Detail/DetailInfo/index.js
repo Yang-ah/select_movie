@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './detailInfo.module.scss';
 import Button from '../../../components/Common/Button';
+import Chart from '../Chart';
+import dayjs from 'dayjs';
+import { deleteMovieLike, getMovie, postMovieLike } from '../../../api/Movies';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../../atom';
 import {
   BookmarkIcon,
   HeartIcon,
@@ -8,77 +13,66 @@ import {
   SolidHeartIcon,
   SolidStarIcon,
 } from '../../../assets/icon';
-import Chart from '../Chart';
-import dayjs from 'dayjs';
 import {
-  deleteBookmark,
-  deleteMovieLike,
-  getMovie,
   postBookmark,
-  postMovieLike,
-} from '../../../api/Movies';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../atom';
+  deleteBookmark,
+  getMyBookmarks,
+} from '../../../api/Boorkmarks';
 
 const DetailInfo = ({ id }) => {
   const isLogin = useRecoilValue(isLoginAtom);
-
   const [movieDetail, setMovieDetail] = useState();
-  const [isMyState, setMyState] = useState({
-    isLiked: false,
-    isBookmarked: false,
-  });
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const fetchMovieData = async () => {
     const response = await getMovie(id);
     setMovieDetail(response.data);
-    // console.log(response.data);
 
-    // TODO : bookmark도 데이터에 넣어주실 수 있는지 여쭤보기 !
     if (isLogin) {
-      setMyState({
-        isLiked: response.data.isLiked,
-        isBookmarked: false,
-      });
+      setIsLiked(response.data.isLiked);
+    } else {
+      setIsLiked(false);
     }
-
-    if (!isLogin) {
-      setMyState({
-        isLiked: false,
-        isBookmarked: false,
-      });
-    }
+    // console.log('like', isLogin && response.data.isLiked);
   };
 
-  // 다른 영화로 이동했을 때, state 초기화하고 다시 fetch
-  useEffect(() => {
-    setMyState({
-      isLiked: false,
-      isBookmarked: false,
+  const fetchBookmarks = async () => {
+    const response = await getMyBookmarks();
+    const bookmarkIdArr = response.data.map((dataArr) => {
+      return dataArr.movie.id;
     });
-    fetchMovieData();
-  }, [id]);
 
-  const onClickButton = (e) => {
+    if (isLogin && bookmarkIdArr.includes(id)) {
+      setIsBookmarked(true);
+    } else {
+      setIsBookmarked(false);
+    }
+
+    //  console.log('bookmark', isLogin && bookmarkIdArr.includes(id));
+  };
+
+  const onClickButton = async (e) => {
     if (!isLogin) {
       return alert('로그인 후 이용 가능합니다!');
     }
-
     const { name } = e.currentTarget;
 
-    if (isMyState[name]) {
-      name === 'isLiked' && deleteMovieLike(id);
-      name === 'isBookmarked' && deleteBookmark(id);
-
-      setMyState({ ...isMyState, [name]: false });
+    if (name === 'isLiked') {
+      isLiked ? await deleteMovieLike(id) : await postMovieLike(id);
+      setIsLiked((cur) => !cur);
     }
 
-    if (!isMyState[name]) {
-      name === 'isLiked' && postMovieLike(id);
-      name === 'isBookmarked' && postBookmark(id);
-      setMyState({ ...isMyState, [name]: true });
+    if (name === 'isBookmarked') {
+      isBookmarked ? await deleteBookmark(id) : await postBookmark(id);
+      setIsBookmarked((cur) => !cur);
     }
   };
+
+  useEffect(() => {
+    fetchMovieData();
+    fetchBookmarks();
+  }, [id]);
 
   return (
     <>
@@ -97,11 +91,7 @@ const DetailInfo = ({ id }) => {
                   onClick={onClickButton}
                 >
                   북마크
-                  {isMyState.isBookmarked ? (
-                    <SolidBookmarkIcon />
-                  ) : (
-                    <BookmarkIcon />
-                  )}
+                  {isBookmarked ? <SolidBookmarkIcon /> : <BookmarkIcon />}
                 </Button>
                 <Button
                   option="secondary"
@@ -110,7 +100,7 @@ const DetailInfo = ({ id }) => {
                   onClick={onClickButton}
                 >
                   좋아요
-                  {isMyState.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+                  {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
                 </Button>
               </div>
             </div>
