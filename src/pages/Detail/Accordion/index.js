@@ -35,12 +35,12 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
   }, [review.comments]);
 
   // 리뷰의 '댓글' 등록 버튼 클릭 이벤트
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!newReviewComment.content) {
       return alert('댓글을 입력해주세요.');
     }
-    createReviewComment(review.id, newReviewComment);
-    fetchReviews();
+    await createReviewComment(review.id, newReviewComment);
+    await fetchReviews();
     setNewReviewComment({ content: '' });
     setReviewComments(review.comments);
   };

@@ -7,7 +7,7 @@ import { isLoginAtom } from '../../../atom';
 import { useEffect, useState } from 'react';
 import { ModifyIcon, TrashIcon } from '../../../assets/icon';
 import Modal from '../../Common/Modal';
-import { deleteReviewComment } from '../../../api/Reviews';
+import { deleteReviewComment, patchReviewComment } from '../../../api/Reviews';
 
 const Comment = ({
   comment,
@@ -24,6 +24,8 @@ const Comment = ({
   const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [canModify, setCanModify] = useState(false);
+  const [modifiedComment, setModifiedComment] = useState(comment);
 
   useEffect(() => {
     isUserMeToggle();
@@ -39,10 +41,24 @@ const Comment = ({
     setModalOpen(true);
   };
 
-  const onClickDeleteReview = () => {
+  const onClickDeleteComment = () => {
     deleteReviewComment(commentId);
     fetchReviews();
     setModalOpen(false);
+  };
+
+  const onPatchComment = async () => {
+    await patchReviewComment(commentId, { content: modifiedComment });
+    await fetchReviews();
+    setCanModify(false);
+  };
+
+  const onChangeModifiedComment = (e) => {
+    setModifiedComment(e.currentTarget.value);
+  };
+
+  const onClickModify = () => {
+    setCanModify(true);
   };
 
   return (
@@ -60,7 +76,7 @@ const Comment = ({
           )}
           {isUserMe && (
             <div className={styles.myButtons}>
-              <button type="button" name="modify">
+              <button type="button" name="modify" onClick={onClickModify}>
                 <ModifyIcon />
               </button>
               <button type="button" name="delete" onClick={onClickDelete}>
@@ -71,7 +87,7 @@ const Comment = ({
                 modalOpen1={modalOpen}
                 setModalOpen={setModalOpen}
                 buttonChildren="삭제"
-                onClick={onClickDeleteReview}
+                onClick={onClickDeleteComment}
               >
                 댓글을 삭제하시겠습니까?
               </Modal>
@@ -80,7 +96,17 @@ const Comment = ({
         </article>
       </header>
 
-      <main>{comment}</main>
+      {canModify || <main>{comment}</main>}
+
+      {canModify && (
+        <main className={styles.modifyMain}>
+          <textarea
+            value={modifiedComment}
+            onChange={onChangeModifiedComment}
+          />
+          <button onClick={onPatchComment}>수정</button>
+        </main>
+      )}
     </section>
   );
 };

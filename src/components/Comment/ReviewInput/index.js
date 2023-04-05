@@ -1,28 +1,28 @@
-import { useState } from "react";
-import Button from "../../Common/Button";
-import Stars from "../../Common/Stars";
-import { HeaderLeft } from "../_shared";
-import styles from "./reviewInput.module.scss";
-import { createReview } from "../../../api/Reviews";
+import { useEffect, useState } from 'react';
+import Button from '../../Common/Button';
+import Stars from '../../Common/Stars';
+import { HeaderLeft } from '../_shared';
+import styles from './reviewInput.module.scss';
+import { createReview } from '../../../api/Reviews';
 
 const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
   const [newReview, setNewReview] = useState({
-    content: "",
+    content: '',
     score: 0,
   });
 
   const onClick = async () => {
     if (!newReview.score) {
-      return alert("별점을 선택해주세요.");
+      return alert('별점을 선택해주세요.');
     }
     if (newReview.content.length < 10) {
-      return alert("리뷰를 10자 이상 입력해주세요.");
+      return alert('리뷰를 10자 이상 입력해주세요.');
     }
     //NOTE: 리뷰 등록이 완성되면 리뷰 목록을 다시 불러온다. (동기작업)
     await createReview(id, newReview);
     await fetchReviews();
     setNewReview({
-      content: "",
+      content: '',
       score: 0,
     });
   };
@@ -34,11 +34,23 @@ const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
     });
   };
 
+  useEffect(() => {
+    setNewReview({
+      content: '',
+      score: 0,
+    });
+  }, [id]);
+
   return (
     <section className={styles.wrap}>
       <header>
         <HeaderLeft type="reviewInput" userName={userName} date={date} />
-        <Stars className={styles.stars} onChange={setNewReview} />
+        <Stars
+          className={styles.stars}
+          onChange={setNewReview}
+          value={newReview.score}
+          movieId={id}
+        />
       </header>
 
       <main>

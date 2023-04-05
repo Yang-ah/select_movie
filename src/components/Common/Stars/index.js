@@ -1,30 +1,34 @@
-import { useState } from "react";
-import styles from "./stars.module.scss";
-import { SolidStarHalfIcon } from "../../../assets/icon";
-import cx from "classnames";
+import { useEffect, useState } from 'react';
+import styles from './stars.module.scss';
+import { SolidStarHalfIcon } from '../../../assets/icon';
+import cx from 'classnames';
 
-const Stars = ({ onChange, className }) => {
+const Stars = ({ movieId, onChange, className, value = 0 }) => {
   const [hoveredStarIndex, setHoveredStarIndex] = useState(0);
-  const [clickedStarIndex, setClickedStarIndex] = useState(0);
+  const [clickedStarIndex, setClickedStarIndex] = useState(value);
 
   const fillStarOfIndex = (num, event) => {
-    if (event === "enter" && hoveredStarIndex >= num) {
-      return "#ff9900";
+    if (event === 'enter' && hoveredStarIndex >= num) {
+      return '#ff9900';
     }
-    if (event === "leave" && clickedStarIndex >= num) {
-      return "#ff9900";
+    if (event === 'leave' && clickedStarIndex >= num) {
+      return '#ff9900';
     }
-    return "#eeeeee";
+    return '#eeeeee';
   };
 
   const onClickStar = (num) => {
     return () => {
       setClickedStarIndex(num);
       onChange((prev) => {
-        return { ...prev, ["score"]: num / 2 };
+        return { ...prev, ['score']: num / 2 };
       });
     };
   };
+
+  useEffect(() => {
+    setClickedStarIndex(value);
+  }, [movieId]);
 
   return (
     <div className={cx(styles.starRateContainer, className)}>
@@ -42,7 +46,7 @@ const Stars = ({ onChange, className }) => {
             key={num}
             fill={fillStarOfIndex(
               num,
-              hoveredStarIndex === 0 ? "leave" : "enter"
+              hoveredStarIndex === 0 ? 'leave' : 'enter',
             )}
           />
         </button>
