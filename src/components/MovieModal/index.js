@@ -1,18 +1,59 @@
-import React, { useEffect, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./modal.module.scss";
-import Comment, { Preview } from "../Comment";
-import dummy from "../../mock_comment.json";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { motion  } from "framer-motion";
 
 import {
-  DoubleChevronRightIcon
+  DoubleChevronRightIcon,
+  BookmarkIcon,
+  HeartIcon,
+  SolidBookmarkIcon,
+  SolidHeartIcon,
+  SolidStarIcon,
 } from "../../assets/icon";
+import Button from "../Common/Button";
+import dayjs from "dayjs";
 
-const Modal1 = ({  title , postImage , onModalClick , onModalClose, setIsShow, isShow, moveDetail }) => {
+const MovieModal = ({ onModalClose ,movieId }) => {
+
+  const backdropVariants = {
+    visible: { opacity: 1,
+      scale : 1,
+      defaultZIndex : 30,
+     },
+    hidden: { opacity: 0 ,
+      scale : 0.3,
+      backgroundColor: "rgba(0, 0, 0, 0.5)" ,
+    },
+    exit : {opacity : 0},
+    
+  };
+  
+  const modalVariants = {
+    hidden: {
+      y: "50",
+      opacity: 0,
+    },
+    visible: {
+      y: "10",
+
+      backgroundColor: "#fff",
+
+    },
+  };
+
+  const navigate = useNavigate();
+  const [isMyState, setMyState] = useState({
+    isLiked: false,
+    isBookmarked: false,
+  });
+
+
+  const { title , postImage ,runtime , releasedAt , plot  ,actors , genres , staffs, company} = movieId;
+
   const modalRef1 = useRef(null);
-
-  useEffect(() => {
+    
+ /* useEffect(() => {
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef1.current && !modalRef1.current.contains(event.target)) {
@@ -25,20 +66,18 @@ const Modal1 = ({  title , postImage , onModalClick , onModalClose, setIsShow, i
       // 이벤트 핸들러 해제
       document.removeEventListener("mousedown", handler);
     };
-  });
+  }); */
+
+  //NOTE: tag depth가 조금 깊다~
 
   return (
-    <CSSTransition
-      in={isShow}
-      timeout={300}
-      classNames={{
-        enterActive: styles.modalEnterActive,
-        enterDone: styles.modalEnterDone,
-        exitActive: styles.modalExit,
-        exitDone: styles.modalExitActive,
-      }}
-      unmountOnExit
-    >
+    <motion.div
+    variants={backdropVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit"
+    className="modal"
+  >
       <div className={styles.modal_overlay}>
         <div ref={modalRef1} className={styles.modal}>
           <div className={styles.popup}>
@@ -46,40 +85,99 @@ const Modal1 = ({  title , postImage , onModalClick , onModalClose, setIsShow, i
               className={styles.popupBackground}
               src={postImage}
               alt={title}
-            />
-            <div className={styles.popupBody}>
-              <div>
-                <img
-                  className={styles.thumbUrl}
-                  src={postImage}
-                  alt={title}
+            /> 
+            <div className={styles.headerContentWrap}>
+            <div className={styles.leftWrap}>
+              <img className={styles.thumbUrl} src={postImage} alt="detailPoster" />
+              <div className={styles.buttonWrap}>
+                <Button
+                  option="secondary"
+                  className={styles.button}
+                  children={
+                    <>
+                      북마크
+                      {isMyState.isLiked ? (
+                        <SolidBookmarkIcon />
+                      ) : (
+                        <BookmarkIcon />
+                      )}
+                    </>
+                  }
+                />
+                <Button
+                  option="secondary"
+                  className={styles.button}
+                  children={
+                    <>
+                      좋아요
+                      {isMyState.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+                    </>
+                  }
                 />
               </div>
-              <div>
-                {/* <ul> */}
-                <div className={styles.popupMainContent}>
-                  {/* <li> */}
-                  <h1 className={styles.popupMainHead}>{title}</h1>
-                  {/* </li> */}
-                </div>
-                <div className={styles.popupSubHead}></div>
-                {/* </ul> */}
+            </div>
+            <div className={styles.rightWrap}>
+              <div className={styles.info}>
+                <h1>
+                  {title} <p>{runtime}분</p>
+                </h1>
+                <h2>
+                  <span>
+                    {dayjs(releasedAt + "").format("YYYY.MM.DD")}
+                  </span>
+
+                  {genres.map((genre) => {
+                    return <span key={genre.id}> {genre.name} /</span>;
+                  })}
+                </h2>
+
+                <h3>
+                  | 작품정보 |<p>{plot}</p>
+                </h3>
+
+                <h3 className={styles.actors}>
+                  | 출연 |
+                  <p>
+                    {actors.map((actor) => {
+                      return <span key={actor.id}> {actor.name} </span>;
+                    })}
+                  </p>
+                </h3>
+
+                <h3 className={styles.actors}>
+                  | 제작 / 스태프 |
+                  <p>
+                    <span>{company} / </span>
+                    {staffs.map((staff) => {
+                      return <span key={staff.id}> {staff.name} </span>;
+                    })}
+                  </p>
+                </h3>
               </div>
             </div>
-            <div className={styles.commentHead}>c o m m e n t</div>
+          </div>
+            
             <p className={styles.close} onClick={onModalClose}>
               x
             </p>
-            <Link to="detail/{id}">
-              <p className={styles.moveDetail}>{">>"}</p>
-            </Link>
-            <Preview/>
-            
+            <div className={styles.moveSection}>
+          <div className={styles.moveDetail}
+            onClick={() => {
+            navigate(`/detail/${movieId.id}`, {
+              to: true,
+            });
+         }}>
+          <DoubleChevronRightIcon/>
+          </div>
+          <div className={styles.moveBox}></div>
+          </div>
+
           </div>
         </div>
       </div>
-    </CSSTransition>
+      </motion.div>
   );
 };
 
-export default Modal1;
+
+export default MovieModal;

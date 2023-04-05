@@ -42,6 +42,11 @@ export const getMoviesRelated = (id) => {
   return apiClient.get(`/movies/${id}/related`);
 };
 
+// 영화 장르별로 불러오기22 ?
+export const getMoviesCategory = () => {
+  return apiClient.get(`/movies/category`);
+};
+
 // 영화 자세히 불러오기
 export const getMovie = (id) => {
   return apiClient.get(`/movies/${id}/detail`);
