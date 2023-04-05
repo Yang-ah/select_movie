@@ -157,7 +157,7 @@ export const MyCarousel = () => {
         <SolidBookmarkIcon className={styles.myIcon} />
         내가 북마크 한 컨텐츠
       </p>
-      <div className={styles.mywrap}>
+      {/* <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesMark &&
             moviesMark?.map((movie) => (
@@ -174,7 +174,7 @@ export const MyCarousel = () => {
               />
             ))}
         </Slider>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -10,19 +10,19 @@ import { isLoginAtom } from "../../../atom";
 import { useRecoilValue } from "recoil";
 
 const Pagination = () => {
-  const navigate = useNavigate;
-  const isLogin = useRecoilValue(isLoginAtom);
-  const [review, setReview] = useState([]);
+  // const navigate = useNavigate;
+  // const isLogin = useRecoilValue(isLoginAtom);
+  // const [review, setReview] = useState([]);
 
-  const fetchMyReviews = async () => {
-    const response = await getReviewsMe(1, 20);
-    setReview(response.data);
-    console.log(response.data);
-  };
+  // const fetchMyReviews = async () => {
+  //   const response = await getReviewsMe(1, 20);
+  //   setReview(response.data);
+  //   console.log(response.data);
+  // };
 
-  useEffect(() => {
-    fetchMyReviews();
-  }, []);
+  // useEffect(() => {
+  //   fetchMyReviews();
+  // }, []);
 
   const [fixModalOpen, setFixModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);

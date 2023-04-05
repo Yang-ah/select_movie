@@ -4,7 +4,7 @@ import styles from "./mypage.module.scss";
 
 import Info from "./InfoBox";
 import { MyCarousel } from "../../components/Carousel";
-import Comments from "./CommentBox";
+//import Comments from "./CommentBox";
 import { getReviewsMovie } from "../../api/Reviews";
 import { getUsersMeInfo } from "../../api/Users";
 
@@ -49,7 +49,6 @@ const MyPage = () => {
 
       <div className={styles.commentbox}>
         <p>작성한 리뷰</p>
-        <Comments />
       </div>
     </section>
   );
