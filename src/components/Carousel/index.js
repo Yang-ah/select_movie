@@ -14,10 +14,6 @@ import PosterH from "../PosterH";
 import PosterM from "../PosterM";
 import MovieModal from "../MovieModal";
 
-/* onClick={() => {
-  navigate(`/detail/${movie.id}`, {
-    replace: true,
-  }); */
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -29,7 +25,7 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-export const HomeCarousel = (num) => {
+export const HomeCarousel = () => {
 
   const navigate = useNavigate;
   const [isShow, setIsShow] = useState(false);

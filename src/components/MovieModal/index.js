@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./modal.module.scss";
-import Comment from "../Comment";
-import dummy from "../../mock_comment.json";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { motion  } from "framer-motion";
 
 import {
   DoubleChevronRightIcon,
@@ -10,12 +9,40 @@ import {
   HeartIcon,
   SolidBookmarkIcon,
   SolidHeartIcon,
+  SolidStarIcon,
 } from "../../assets/icon";
 import Button from "../Common/Button";
 import dayjs from "dayjs";
 
 const MovieModal = ({ onModalClose ,movieId }) => {
 
+  const backdropVariants = {
+    visible: { opacity: 1,
+      scale : 1,
+      defaultZIndex : 30,
+     },
+    hidden: { opacity: 0 ,
+      scale : 0.3,
+      backgroundColor: "rgba(0, 0, 0, 0.5)" ,
+    },
+    exit : {opacity : 0},
+    
+  };
+  
+  const modalVariants = {
+    hidden: {
+      y: "50",
+      opacity: 0,
+    },
+    visible: {
+      y: "10",
+
+      backgroundColor: "#fff",
+
+    },
+  };
+
+  const navigate = useNavigate();
   const [isMyState, setMyState] = useState({
     isLiked: false,
     isBookmarked: false,
@@ -44,6 +71,13 @@ const MovieModal = ({ onModalClose ,movieId }) => {
   //NOTE: tag depth가 조금 깊다~
 
   return (
+    <motion.div
+    variants={backdropVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit"
+    className="modal"
+  >
       <div className={styles.modal_overlay}>
         <div ref={modalRef1} className={styles.modal}>
           <div className={styles.popup}>
@@ -52,7 +86,10 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               src={postImage}
               alt={title}
             /> 
-            <div className={styles.buttonWrap}>
+            <div className={styles.headerContentWrap}>
+            <div className={styles.leftWrap}>
+              <img className={styles.thumbUrl} src={postImage} alt="detailPoster" />
+              <div className={styles.buttonWrap}>
                 <Button
                   option="secondary"
                   className={styles.button}
@@ -78,15 +115,8 @@ const MovieModal = ({ onModalClose ,movieId }) => {
                   }
                 />
               </div>
-            <div className={styles.popupBody}>
-              <div>
-                <img
-                  className={styles.thumbUrl}
-                  src={postImage}
-                  alt={title}
-                />
-              </div>
-              <div className={styles.rightWrap}>
+            </div>
+            <div className={styles.rightWrap}>
               <div className={styles.info}>
                 <h1>
                   {title} <p>{runtime}분</p>
@@ -125,37 +155,29 @@ const MovieModal = ({ onModalClose ,movieId }) => {
                 </h3>
               </div>
             </div>
-            </div>
-            <div className={styles.commentHead}>c o m m e n t</div>
+          </div>
+            
             <p className={styles.close} onClick={onModalClose}>
               x
             </p>
-          <Link to="detail/{id}" ><p className={styles.moveDetail}>
+            <div className={styles.moveSection}>
+          <div className={styles.moveDetail}
+            onClick={() => {
+            navigate(`/detail/${movieId.id}`, {
+              to: true,
+            });
+         }}>
           <DoubleChevronRightIcon/>
-          </p>
-          </Link>
-            <Comment
-              className={styles.comment}
-              type="preview"
-              key={dummy[0].userName + "2"}
-              userName={dummy[0].userName}
-              comment={dummy[0].comment}
-              // date={dummy[0].date} TODO : 넣을지 상의
-              rating={dummy[0].rating}
-            />
-            <Comment
-              className={styles.comment}
-              type="preview"
-              key={dummy[0].userName + "2"}
-              userName={dummy[0].userName}
-              comment={dummy[0].comment}
-              // date={dummy[0].date} TODO : 넣을지 상의
-              rating={dummy[0].rating}
-            />
+          </div>
+          <div className={styles.moveBox}></div>
+          </div>
+
           </div>
         </div>
       </div>
+      </motion.div>
   );
 };
+
 
 export default MovieModal;

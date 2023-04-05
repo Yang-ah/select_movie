@@ -4,7 +4,7 @@ import mdata from "../../mock_movie.json";
 import Info from "./InfoBox";
 import { MyCarousel } from "../../components/Carousel";
 import Comment from "./CommentBox";
-import MovieModal from "../../components/MovieModal";
+
 
 const MyPage = () => {
   const [movies] = useState(mdata);
@@ -32,12 +32,6 @@ const MyPage = () => {
           movies={movies}
           onModalClick={onModalClick}
           onOver={onOver}
-        />
-        <MovieModal 
-          setIsShow={setIsShow}
-          isShow={isShow}
-          onModalClose={onModalClose}
-          movieInfo={movieInfo}
         />
       </div>
       <div className={styles.commentbox}>

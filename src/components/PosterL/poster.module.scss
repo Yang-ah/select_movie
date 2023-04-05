@@ -1,73 +1,98 @@
 @use "../../styles/constants" as c;
 @use "../../styles/mixins" as m;
-
 .wrapper {
-  width: 100%;
+    width: 100%;
   height: 100%;
   padding: 12px;
-
   position: relative;
-  overflow: hidden;
-  color: c.$C_WHITE;
 }
 
-.box {
-  padding: 4px;
-  width: 100%;
+.screen {
+  display: block;
   position: relative;
   overflow: hidden;
-  text-align: center;
-  border-radius: 4px;
-
-  &:hover .aver {
-    font-size: 30px;
-    transition: 0.5s;
-    transform: scale(1.1);
-  }
-}
-
-.media {
-  text-align: center;
-  position: relative;
-  width: 100%;
-  border-radius: 4px;
-
-  &:before {
-    line-height: 1;
-    opacity: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  &:hover {
-    cursor: pointer;
-    opacity: 0.5;
-    transition: 0.5s;
-    transform: translateY(-20px);
-  }
+  cursor: pointer;
 
   &:hover,
-  &:focus {
-    outline: none;
-    background: transparent;
-
-    color: transparent;
-    &:before {
-      opacity: 0.5;
+  :active {
+    .layerDown {
+      opacity: 0.2;
+      transition: 0.5s;
+      transform: translateY(-10px);
+    }
+    .layerUp {
+      z-index: 5;
+      .bottom {
+        .heart {
+          &:hover,
+          :active {
+            z-index: 999;
+            transform: scale(1.2);
+          }
+        }
+      }
     }
   }
 }
 
-.rating {
-  @include m.flex();
-  fill: c.$C_STAR;
-  position: absolute;
-  font-size: 25px;
-  margin-top: -40px;
-  margin-left: 10px;
-  z-index: 99;
-  cursor: pointer;
-  .star {
-    height: 25px;
-    margin-right: 4px;
+.layerUp {
+  z-index: -2;
+  width: 95%;
+  white-space: nowrap;
+  .title {
+    text-align: center;
+    justify-content: center;
+
+    position: absolute;
+    bottom: 50%;
+    margin: 0 auto;
+    z-index: -2;
+    width: 95%;
+
+    font-size: 24px;
+    overflow: hidden;
+    color: c.$C_WHITE;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .bottom {
+    @include m.flex(space-between, flex-start);
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+
+    white-space: nowrap;
+    .rating {
+      font-size: 20px;
+      white-space: nowrap;
+      color: white;
+      .star {
+        margin-right: 5%;
+        fill: c.$C_STAR;
+        height: 20px;
+      }
+    }
+    .heart {
+      height: 22px;
+      width: 22px;
+      margin-right: 5%;
+      fill: red;
+    }
   }
 }
+
+.layerDown {
+  position: relative;
+
+  .postImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+
