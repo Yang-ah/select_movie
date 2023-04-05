@@ -20,7 +20,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Button, Input } from "../../../../components";
 import styles from "./BOmovieModal.module.scss";
 import { CSSTransition } from "react-transition-group";
-
 import cx from "classnames";
 import { patchMovie } from "../../../../api/Movies";
 
@@ -31,7 +30,7 @@ const BOmovieModal = ({
   modalOpen,
   setModalOpen,
   ID,
-  selectedMovieData,
+  selectedData,
   setSelectedIDs
 }) => {
   // Modal 창을 useRef로 취득
@@ -39,7 +38,11 @@ const BOmovieModal = ({
 
     const [postForm, setPostForm] = useState(
     {
-      title:'',plot:'',releasedAt:'',runtime:'',company:''
+      title:'',
+      plot:'',
+      releasedAt:'',
+      runtime:'',
+      company:''
     }
   );
   
@@ -63,11 +66,11 @@ const BOmovieModal = ({
 
   useEffect(() => {
     setPostForm({
-      title:selectedMovieData.title,
-      plot:selectedMovieData.plot,
-      releasedAt:selectedMovieData.releasedAt,
-      runtime:selectedMovieData.runtime,
-      company:selectedMovieData.company,
+      title:selectedData.title,
+      plot:selectedData.plot,
+      releasedAt:selectedData.releasedAt,
+      runtime:selectedData.runtime,
+      company:selectedData.company,
     });
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리

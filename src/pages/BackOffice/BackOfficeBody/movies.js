@@ -40,7 +40,12 @@ const BackOfficeMovies = ()=>{
     const onSearch = async (e)=>{
         e.preventDefault();
         if(form.length<2){return alert('두 글자 이상을 검색해 주세요')}
+        setPageNumber(1);
         const response2 = await getMovies(1,LIMIT,form);
+        onSetData(response2.data.data, response2.data.paging.total);
+    }
+    const onSearchPageChange = async ()=>{
+        const response2 = await getMovies(pageNumber,LIMIT,form);
         onSetData(response2.data.data, response2.data.paging.total);
     }
 
@@ -79,8 +84,11 @@ const BackOfficeMovies = ()=>{
     }
     
     useEffect(()=>{
-        responseData();
-    },[pageNumber, modalOpen]);
+        if(!form){responseData();
+        }else{
+            onSearchPageChange()
+        }
+    },[pageNumber,modalOpen]);
 
 return(
 <>
@@ -150,7 +158,7 @@ return(
     </ul>   
     )
 })}
-{SelectIndex !=undefined &&
+{SelectIndex !==undefined &&
 <BOmovieModal
 className={styles.modal}
 modalOpen={modalOpen}
@@ -159,7 +167,7 @@ closeModal={closeModal}
 buttonChildren='수정'
 ID={SelectedIDs[0]}
 setMovieData={setMovieData}
-selectedMovieData={movieData[SelectIndex]}
+selectedData={movieData[SelectIndex]}
 setSelectedIDs={setSelectedIDs}
 />}
 

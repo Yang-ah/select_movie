@@ -10,12 +10,15 @@ import {
 import { getUsers, getUsersCount } from "../../../api/Users";
 //import BOmovieModal from "./BOmodal/BOuserModal";
 import BOpageNation from "./BOpageNation/BOpageNation";
+import BOuserModal from "./BOmodal/BOuserModal";
+import BOdeleteModal from "./BOmodal/BOdeleteModal";
 
 const title = ["가입일", "이메일", "닉네임", "수정", "탈퇴"];
 const LIMIT =10;
 
 const BackOfficeUsers = ()=>{
     const [pageNumber, setPageNumber] = useState(1);
+    //const [SearchPageNumber, setSearchPageNumber] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalOpen2, setModalOpen2] = useState(false);
     const [usersData, setUsersData] = useState();
@@ -23,6 +26,7 @@ const BackOfficeUsers = ()=>{
     const [form, setForm] = useState();
     const [pageNationNumber, setPageNationNumber] = useState();
     const [SelectedIDs, setSelectedIDs] = useState([]);
+    const [SelectIndex, setSelectIndex] = useState();
 
     const onSetData = (data,total) => {
         const totalPage = Math.ceil(total / LIMIT);
@@ -39,9 +43,14 @@ const BackOfficeUsers = ()=>{
 
     const onSearch = async (e)=>{
         e.preventDefault();
-        const response2 = await getUsers(1,LIMIT,form);
+        setPageNumber(1);
+        const response2 = await getUsers(pageNumber,LIMIT,form);
         onSetData(response2.data.data, response2.data.paging.total);
-        console.log(response2.data.paging);
+    }
+
+    const onSearchPageChange = async ()=>{
+        const response2 = await getUsers(pageNumber,LIMIT,form);
+        onSetData(response2.data.data, response2.data.paging.total);
     }
 
     const pageUp = () => {
@@ -52,15 +61,19 @@ const BackOfficeUsers = ()=>{
         setPageNumber(pageNumber - 1);
         }
     };
-    const showModal = (id) => {
+    const showModal = (item, index) => {
         return()=>{
-            setSelectedIDs([id]);
+            setSelectedIDs([item.id]);
+            setSelectIndex(index);
+            setModalOpen2(false);
             setModalOpen(true);
         }
     };
-    const showModal2 = (id) => {
+    const showModal2 = (item, index) => {
         return()=>{
-            setSelectedIDs([id]);
+            setSelectedIDs([item.id]);
+            setSelectIndex(index);
+            setModalOpen(false);
             setModalOpen2(true);
         } 
     };
@@ -84,8 +97,12 @@ const BackOfficeUsers = ()=>{
         }
     }
     useEffect(()=>{
-        responseData();
-    },[pageNumber]);
+        if(!form){
+            responseData()
+        }else{
+            onSearchPageChange()
+        }
+    },[pageNumber, modalOpen, modalOpen2]);
 
 return(
 <>
@@ -146,14 +163,14 @@ return(
 
     <li>
         <Button children="수정" 
-        onClick={showModal(item.id)}
+        onClick={showModal(item, index)} 
         id={index}
         />
     </li>
         
     <li>
         <Button children="탈퇴" 
-        onClick={showModal2(item.id)}
+        onClick={showModal2(item, index)}
         id={index}/>
     </li>
         
@@ -162,17 +179,28 @@ return(
     
     )
 })}
-<Modal
-        modalOpen1={modalOpen}
-        setModalOpen={setModalOpen}
-        children='인풋 만들기' 
-        buttonChildren='수정' /> 
-<Modal
-        modalOpen1={modalOpen2}
-        setModalOpen={setModalOpen2}
-        children='회원을 탈퇴시키겠습니까?' 
-        buttonChildren='탈퇴'
-        /* buttonClick */ /> 
+{SelectIndex !==undefined &&
+<BOuserModal
+className={styles.modal}
+modalOpen={modalOpen}
+setModalOpen={setModalOpen}
+closeModal={closeModal}
+buttonChildren='수정'
+ID={SelectedIDs[0]}
+setMovieData={setUsersData}
+selectedData={usersData[SelectIndex]}
+setSelectedIDs={setSelectedIDs}
+/>}
+{SelectIndex !==undefined &&
+<BOdeleteModal
+className={styles.modal}
+modalOpen2={modalOpen2}
+setModalOpen2={setModalOpen2}
+buttonChildren='삭제'
+ID={SelectedIDs[0]}
+setSelectedIDs={setSelectedIDs}
+userORreview='user'
+/>}
 {/* 페이지네이션 
 TODO: 검색 후 페이지 변경시 검색한 데이터가 사라짐, 검색 후 페이지 변경이 안됨*/}
 <BOpageNation
