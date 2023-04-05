@@ -33,6 +33,18 @@ export const getMyReview = (movieId) => {
   return apiClient.get(`/reviews/movie/${movieId}/me`);
 };
 
+//내 리뷰 목록 보기
+export const getReviewMe = () => {
+  return apiClient.get(`/reviews/me`);
+};
+export const getReviewsMe = (page = 1, limit = 20) => {
+  return apiClient.get(`/reviews/me/paging`, {
+    params: {
+      page,
+      limit,
+    },
+  });
+};
 // ******** post *********
 
 // 영화 리뷰 생성

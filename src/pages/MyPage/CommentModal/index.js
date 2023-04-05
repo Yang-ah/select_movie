@@ -63,17 +63,14 @@ export const FixModal = ({
             onChange={onChange}
             value={text}
           />
-          <footer className={styles.buttonBoxFix}>
-            <Button className={styles.cancelButtonFix} onClick={closeModal}>
+          <footer className={styles.buttonBox}>
+            <Button className={styles.cancelButton} onClick={closeModal}>
               취소
             </Button>
-            <Button className={styles.resetButtonFix} onClick={onReset}>
+            <Button className={styles.resetButton} onClick={onReset}>
               초기화
             </Button>
-            <Button
-              className={styles.deleteButtonFix}
-              children={buttonChildren}
-            />
+            <Button className={styles.deleteButton} children={buttonChildren} />
           </footer>
         </section>
       </div>
@@ -130,14 +127,11 @@ export const DeleteModal = ({
           <main className={styles.contentDelete}>
             리뷰를 삭제 하시겠습니까?
           </main>
-          <footer className={styles.buttonBoxDelete}>
-            <Button className={styles.cancelButtonDelete} onClick={closeModal}>
+          <footer className={styles.buttonBox}>
+            <Button className={styles.cancelButton} onClick={closeModal}>
               취소
             </Button>
-            <Button
-              className={styles.deleteButtonDelete}
-              children={buttonChildren}
-            />
+            <Button className={styles.deleteButton} children={buttonChildren} />
           </footer>
         </section>
       </div>

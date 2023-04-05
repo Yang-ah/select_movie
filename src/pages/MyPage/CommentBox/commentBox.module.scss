@@ -1,7 +1,8 @@
 @use "../../../styles/constants" as c;
 @use "../../../styles/mixins" as m;
 
-.wrapper {
+//index
+.wrap {
   padding: 1% 0;
   height: 100;
   width: 100%;
@@ -27,39 +28,72 @@
   overflow: hidden;
 }
 
+//comment
+.wrapper {
+  padding: 12px;
+  position: relative;
+}
+
 .screen {
   display: block;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+
   &:hover,
   :active {
     .layerDown {
       opacity: 0.2;
       z-index: -1;
+      transition: 0.5s;
+      transform: translateY(-10px);
     }
     .layerUp {
       z-index: 5;
+      .icon {
+        &:hover,
+        :active {
+          z-index: 999;
+          transform: scale(1.2);
+        }
+      }
     }
   }
 }
 
 .layerUp {
-  @include m.flex();
+  @include m.flex(space-between, flex-start);
   position: absolute;
   bottom: 30%;
-  left: 0;
-  z-index: -1;
+  left: 5%;
+  z-index: -2;
+
+  width: 95%;
+  font-size: 24px;
+  white-space: nowrap;
+  .title {
+    font-size: 24px;
+    width: 70%;
+    overflow: hidden;
+    color: c.$C_WHITE;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
   .icon {
     width: 50%;
+    margin-right: 5%;
     fill: white;
     &:hover,
     :active {
+      transform: scale(1.1);
       fill: c.$C_ORANGE;
     }
   }
 }
 
 .layerDown {
+  position: relative;
   .top {
     @include m.flex(space-between, flex-start);
     margin-bottom: 4px;
@@ -70,11 +104,11 @@
         font-weight: 700;
         padding-bottom: 6px;
       }
-      .date {
+      .createAt {
         font-size: 14px;
       }
     }
-    .rating {
+    .score {
       @include m.flex();
       font-size: 20px;
       .star {
@@ -84,7 +118,7 @@
       }
     }
   }
-  .comment {
+  .content {
     font-size: 16px;
     font-weight: 600;
     padding: 4px 0;
@@ -97,24 +131,6 @@
     word-wrap: break-word;
     line-height: 2em;
     height: 16em;
-  }
-  .upDown {
-    @include m.flex();
-    margin: auto 0;
-    padding: 0 4px;
-    float: right;
-    column-gap: 16px;
-
-    .up,
-    .down {
-      @include m.flex();
-      font-size: 14px;
-      > svg {
-        margin-right: 4px;
-        width: 14px;
-        fill: white;
-      }
-    }
   }
 }
 

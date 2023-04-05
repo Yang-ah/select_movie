@@ -28,3 +28,19 @@ const PosterH = ({ title , postImage , onModalClick , id  , rating}) => {
   );
 };
 export default PosterH;
+
+// const PosterH = ({ title , postImage , onModalClick }) => {
+//   return (
+//     <div className={styles.wrapper} onClick={onModalClick}>
+//       <div
+//         className={styles.box}
+//       >
+//         <img className={styles.media} src={postImage} alt={title} />
+//         <div className={styles.rating}>
+//           <SolidStarIcon className={styles.star} />10점
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+// export default PosterH;

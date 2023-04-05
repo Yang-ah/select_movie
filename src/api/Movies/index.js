@@ -20,6 +20,15 @@ export const getMoviesCount = () => {
 export const getMoviesMeLike = () => {
   return apiClient.get(`/movies/me/like`);
 };
+// 내가 북마크 한 영화 불러오기
+export const getBookmarksMe = (page = 1, limit = 20) => {
+  return apiClient.get(`/bookmarks/me/paging`, {
+    params: {
+      page,
+      limit,
+    },
+  });
+};
 
 // 영화 장르별로 불러오기
 export const getMoviesGenre = (page = 1, genreId) => {

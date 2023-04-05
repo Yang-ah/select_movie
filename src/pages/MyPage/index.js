@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { getReviewsMovie } from "../../api/Reviews";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-// import { useRecoilValue } from "recoil";
-// import { isLoginAtom } from "../../atom";
-// import useMe from "../../hooks/useMe";
+import { useParams } from "react-router-dom";
 import styles from "./mypage.module.scss";
+
 import Info from "./InfoBox";
 import { MyCarousel } from "../../components/Carousel";
-import Comment from "./CommentBox";
+//import Comments from "./CommentBox";
+import { getReviewsMovie } from "../../api/Reviews";
+import { getUsersMeInfo } from "../../api/Users";
 
 const MyPage = () => {
+  const [userInfo, setUserInfo] = useState();
+
   const [movies] = useState();
   const [movieInfo, setMovieInfo] = useState([0]);
   const [isShow, setIsShow] = useState(false);
+
+  const fetchUserInfo = async () => {
+    const response = await getUsersMeInfo();
+    setUserInfo(response.data);
+    //    console.log(response.data);
+  };
 
   const onClick = (id) => {
     const num = movies.findIndex((item) => item.id === id);
@@ -29,6 +36,7 @@ const MyPage = () => {
   };
 
   useEffect(() => {
+    fetchUserInfo();
     fetchReviews();
   }, [id, reviews]);
 
@@ -41,20 +49,7 @@ const MyPage = () => {
 
       <div className={styles.commentbox}>
         <p>작성한 리뷰</p>
-        <Comment />
       </div>
-      <article className={styles.reviewsWrap}>
-        {reviews.length !== 0 || (
-          <div className={styles.empty}>
-            <p>텅</p>
-            <p>첫 리뷰를 남겨보세요✨</p>
-          </div>
-        )}
-        {reviews &&
-          reviews.map((review) => {
-            return <Comment review={review} key={review.id} movieId={id} />;
-          })}
-      </article>
     </section>
   );
 };

@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./commentBox.module.scss";
-import data from "../../../mock_review.json";
-import {
-  SolidStarIcon,
-  ThumbsUpIcon,
-  ThumbsDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  TrashIcon,
-  ModifyIcon,
-} from "../../../assets/icon";
+import Comment from "./comment";
+import { SolidStarIcon, TrashIcon, ModifyIcon } from "../../../assets/icon";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../../assets/icon";
 import { FixModal, DeleteModal } from "../CommentModal";
+import { getReviewsMe } from "../../../api/Reviews";
+import { isLoginAtom } from "../../../atom";
+import { useRecoilValue } from "recoil";
 
 const Pagination = () => {
+  // const navigate = useNavigate;
+  // const isLogin = useRecoilValue(isLoginAtom);
+  // const [review, setReview] = useState([]);
+
+  // const fetchMyReviews = async () => {
+  //   const response = await getReviewsMe(1, 20);
+  //   setReview(response.data);
+  //   console.log(response.data);
+  // };
+
+  // useEffect(() => {
+  //   fetchMyReviews();
+  // }, []);
+
   const [fixModalOpen, setFixModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const showFixModal = () => {
@@ -22,84 +33,80 @@ const Pagination = () => {
     setDeleteModalOpen(true);
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 8;
-  const lastIndex = currentPage * recordsPerPage;
-  const firstIndex = lastIndex - recordsPerPage;
-  const records = data.slice(firstIndex, lastIndex);
-  const pageNumber = Math.ceil(data.length / recordsPerPage);
-  const numbers = [...Array(pageNumber + 1).keys()].slice(1);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const recordsPerPage = 8;
+  // const lastIndex = currentPage * recordsPerPage;
+  // const firstIndex = lastIndex - recordsPerPage;
+  // const records = review.slice(firstIndex, lastIndex);
+  // const pageNumber = Math.ceil(review.length / recordsPerPage);
+  // const numbers = [...Array(pageNumber + 1).keys()].slice(1);
 
-  const onClickPrevPage = () => {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-  const onChangePage = (id) => {
-    setCurrentPage(id);
-  };
-  const onClickNextPage = () => {
-    if (currentPage !== pageNumber) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-  console.log({ data });
+  // const onClickPrevPage = () => {
+  //   if (currentPage !== 1) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
+  // const onChangePage = (id) => {
+  //   setCurrentPage(id);
+  // };
+  // const onClickNextPage = () => {
+  //   if (currentPage !== pageNumber) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
 
   return (
     <>
-      <section className={styles.wrapper}>
+      <p>ㄷㄷ</p>
+      <section className={styles.wrap}>
         <ul className={styles.ul}>
-          {records.map((data, id) => (
-            <li className={styles.li} key={id}>
-              <section className={styles.screen}>
-                <div className={styles.layerUp}>
-                  <button className={styles.fixModal} onClick={showFixModal}>
-                    <ModifyIcon className={styles.icon} />
-                  </button>
-                  <button
-                    className={styles.deleteModal}
-                    onClick={showDeleteModal}
-                  >
-                    <TrashIcon className={styles.icon} />
-                  </button>
-                </div>
-                <div className={styles.layerDown}>
-                  <article className={styles.top}>
-                    <div className={styles.left}>
-                      <p className={styles.title}>{data.title}</p>
-                      <p className={styles.date}>{data.date}</p>
-                    </div>
-                    <div className={styles.rating}>
-                      <SolidStarIcon className={styles.star} />
-                      {data.rating}
-                    </div>
-                  </article>
+          <li className={styles.li}>
+            {/* {isLogin &&
+              review &&
+              review?.map((review) => (
+                <div className={styles.wrapper}>
+                  <div className={styles.screen}>
+                    <section className={styles.screen}>
+                      <article className={styles.layerUp}>
+                        <button
+                          className={styles.fixModal}
+                          onClick={showFixModal}
+                        >
+                          <ModifyIcon className={styles.icon} height="24px" />
+                        </button>
+                        <button
+                          className={styles.deleteModal}
+                          onClick={showDeleteModal}
+                        >
+                          <TrashIcon className={styles.icon} height="24px" />
+                        </button>
+                      </article>
 
-                  <p className={styles.comment}>
-                    {data.comment.length > 200
-                      ? data.comment.substring(0, 200) + "..."
-                      : data.comment}
-                  </p>
-
-                  <article className={styles.bottom}>
-                    <span className={styles.upDown}>
-                      <div className={styles.up}>
-                        <ThumbsUpIcon />
-                        {data.liked_up}
-                      </div>
-                      <div className={styles.down}>
-                        <ThumbsDownIcon />
-                        {data.liked_down}
-                      </div>
-                    </span>
-                  </article>
+                      <article className={styles.layerDown}>
+                        <aside className={styles.top}>
+                          <div className={styles.left}>
+                            <p className={styles.title}>{review.id}</p>
+                            <p className={styles.createAt}>{review.createAt}</p>
+                          </div>
+                          <div className={styles.score}>
+                            <SolidStarIcon className={styles.star} />
+                            {review.score}
+                          </div>
+                        </aside>
+                        <p className={styles.content}>
+                          {review.content.length > 200
+                            ? review.content.substring(0, 200) + "..."
+                            : review.content}
+                        </p>
+                      </article>
+                    </section>
+                  </div>
                 </div>
-              </section>
-            </li>
-          ))}
+              ))} */}
+          </li>
         </ul>
 
-        <ul className={styles.pagination}>
+        {/* <ul className={styles.pagination}>
           <li className={styles.prevIcon}>
             <ChevronLeftIcon
               className={styles.Icon}
@@ -121,7 +128,7 @@ const Pagination = () => {
               onClick={onClickNextPage}
             />
           </li>
-        </ul>
+        </ul> */}
       </section>
       <FixModal
         className={styles.fixModal}
