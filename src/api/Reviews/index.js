@@ -88,3 +88,4 @@ export const patchReview = (reviewId, body) => {
 export const patchReviewComment = (commentId, body) => {
   return apiClient.patch(`/reviews/comments/${commentId}`, body);
 };
+

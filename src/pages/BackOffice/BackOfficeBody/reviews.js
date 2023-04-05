@@ -7,9 +7,11 @@ import {
     SearchIcon, 
     TrashIcon 
 } from "../../../assets/icon";
-import { getReviews, getReviewsCount } from "../../../api/Reviews";
+import { deleteReview, getReviews, getReviewsCount } from "../../../api/Reviews";
 //import BOmovieModal from "./BOmodal/BOreviewModal";
 import BOpageNation from "./BOpageNation/BOpageNation";
+import BOreviewModal from "./BOmodal/BOreviewModal";
+import BOdeleteModal from "./BOmodal/BOdeleteModal";
 
 const title = ["작성일", "작성자",  "작성내용", "더보기", "삭제"];
 const LIMIT =10;
@@ -23,6 +25,7 @@ const BackOfficeReviews = ()=>{
     const [form, setForm] = useState();
     const [pageNationNumber, setPageNationNumber] = useState();
     const [SelectedIDs, setSelectedIDs] = useState([]);
+    const [SelectIndex, setSelectIndex] = useState();
 
     const onSetData = (data,total) => {
         const totalPage = Math.ceil(total / LIMIT);
@@ -39,7 +42,13 @@ const BackOfficeReviews = ()=>{
 
     const onSearch = async (e)=>{
         e.preventDefault();
+        setPageNumber(1);
         const response2 = await getReviews(1,LIMIT,form);
+        onSetData(response2.data.data, response2.data.paging.total);
+    }
+
+    const onSearchPageChange = async ()=>{
+        const response2 = await getReviews(pageNumber,LIMIT,form);
         onSetData(response2.data.data, response2.data.paging.total);
     }
     
@@ -51,15 +60,19 @@ const BackOfficeReviews = ()=>{
         setPageNumber(pageNumber - 1);
         }
     };
-    const showModal = (id) => {
+    const showModal = (item, index) => {
         return()=>{
-            setSelectedIDs([id]);
+            setSelectedIDs([item.id]);
+            setSelectIndex(index);
+            setModalOpen2(false);
             setModalOpen(true);
         }
     };
-    const showModal2 = (id) => {
+    const showModal2 = (item, index) => {
         return()=>{
-            setSelectedIDs([id]);
+            setSelectedIDs([item.id]);
+            setSelectIndex(index);
+            setModalOpen(false);
             setModalOpen2(true);
         } 
     };
@@ -82,9 +95,22 @@ const BackOfficeReviews = ()=>{
             }
         }
     }
+    const deleteChecked=()=>{
+        const ids = SelectedIDs;
+        for(const element of ids){
+            deleteReview(element);
+        }
+        alert('일괄 삭제 완료?');
+    }
+
+
     useEffect(()=>{
-        responseData();
-    },[pageNumber]);
+        if(!form){
+            responseData()
+        }else{
+            onSearchPageChange()
+        }
+    },[pageNumber, modalOpen, modalOpen2]);
 
 return(
 <>
@@ -107,7 +133,8 @@ return(
         <SearchIcon />
       </button>
     </form>
-    <Button>
+    <Button
+    onClick={deleteChecked}>
         삭제
         <TrashIcon />
     </Button>
@@ -145,29 +172,40 @@ return(
 
     <li>
         <Button children="더보기" 
-        onClick={showModal(item.id)}
+        onClick={showModal(item, index)} 
         id={index}
         />
     </li>  
     <li>
         <Button children="삭제" 
-        onClick={showModal2(item.id)}
+        onClick={showModal2(item, index)}
         id={index}/>
     </li>
 </ul>   
     )
 })}
-<Modal
-modalOpen1={modalOpen}
+{SelectIndex !==undefined &&
+<BOreviewModal
+className={styles.modal}
+modalOpen={modalOpen}
 setModalOpen={setModalOpen}
-children='인풋 만들기' 
-buttonChildren='수정' /> 
-<Modal
-modalOpen1={modalOpen2}
-setModalOpen={setModalOpen2}
-children='회원을 탈퇴시키겠습니까?' 
-buttonChildren='탈퇴'
-/* buttonClick */ /> 
+closeModal={closeModal}
+buttonChildren='수정'
+ID={SelectedIDs[0]}
+setMovieData={setReviewsData}
+selectedData={ReviewsData[SelectIndex]}
+setSelectedIDs={setSelectedIDs}
+/>}
+{SelectIndex !==undefined &&
+<BOdeleteModal
+className={styles.modal}
+modalOpen2={modalOpen2}
+setModalOpen2={setModalOpen2}
+buttonChildren='삭제'
+ID={SelectedIDs[0]}
+setSelectedIDs={setSelectedIDs}
+userORreview='review'
+/>}
 
 {/* 페이지네이션 */}
 <BOpageNation

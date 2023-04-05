@@ -1,28 +1,44 @@
-수정 삭제 기능 구현
+1.>>patchUser 500 오류 발생 [CMS]유저수정하기
+2.>>review 수정,삭제 관리자도 가능하게 수정요청
+3.>>회원가입시, body에 
+{
+  "email": "string",
+  "password": "string",
+  "name": "string | null",
+  "birth": "string | null",
+  "nickname": "string | null"
+}
+중 생일, 닉네임이 서버에 등록되지 않음
+
+3. 삭제 기능 구현
+삭제는 하나만 되게 되있으므로 프론트에서 맵으로 여러번 보내기
+
+
++>페이지네이션 길이 조절
+
+
+
+수정 기능 구현 -완
 1. 체크박스 및 버튼을 눌렀을 때, 체크박스가 포함된 줄의 index 정보를 받아야함
 HOW? index만 받으면 data처리 가능, index를 어떻게 받아야?
-
-체크박스로 데이터 받는 방법
-onClick으로 index값 저장 하기
-일괄 삭제를 위해 데이터를 배열 형식으로 받아야?
-
-
-2. API에 보낼 body 작성하는 모달창
-
-3. id를 기반으로 API 전송
-
-
-검색 완
+```
+const [SelectedIDs, setSelectedIDs] = useState([]);
+const [SelectIndex, setSelectIndex] = useState();
+    const showModal = (item, index) => {
+        return()=>{
+            setSelectedIDs([item.id]);
+            setSelectIndex(index);
+            setModalOpen(true);
+        }
+    };
+onClick={showModal(item, index)} 
+```
 >> 시호 검색시 
 -시호
 -네가 내가 되었으면 좋겠다
-가 검색 되는이유???
+가 검색 되는이유??? >> 타이틀 + 다른것도 검색 되서
 
 페이지네이션 완
->> 현재 페이지 표시
-검색시 전체 검색 수 많큼만 page로
-컴포넌트로 빼면 좋음
-
-페이지네이션 길이 조절
-
-삭제는 하나만 되게 되있으므로 프론트에서 맵으로 여러번 보내기
+>> 현재 페이지 표시 완
+검색시 전체 검색 수 많큼만 page로 완
+컴포넌트로 빼면 좋음-완

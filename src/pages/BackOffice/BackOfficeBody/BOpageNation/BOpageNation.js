@@ -4,7 +4,7 @@ import styles from "./BOpageNation.module.scss";
 import {range} from 'lodash-es';
 import cx from "classnames";
 import { number } from "prop-types";
-const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNumber})=>{
+const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNumber, SearchPageNumber})=>{
     const [isCurrent, setCurrent] =useState();
     
     return(
@@ -20,7 +20,7 @@ const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNum
         <li
             value={i}
             onClick={()=>setPageNumber(number)}
-            className={cx(styles.page, {[styles.currentPage]: number===pageNumber})}
+            className={cx(styles.page, {[styles.currentPage]: number===pageNumber })}
         >
             {number}
         </li>

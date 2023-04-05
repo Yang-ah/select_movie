@@ -16,13 +16,32 @@ export const getUsersMeInfo = () => {
 };
 // data: averageScore: null, reviewCount: 0, likeCount: 0
 
-// 유저목록 불러오기 /limit는 최소 20이상이여야 합니다
+// 유저목록 불러오기 
 export const getUsers = (page, limit, name) => {
   return apiClient.get(`/users`, {
     params: {
       page,
       limit,
       name,
+    },
+  });
+};
+
+//유저 수정하기
+export const patchUser = (id, body) => {
+  return apiClient.patch(`/users/${id}`,body);
+};
+
+//유저 삭제하기
+export const deleteUser = (userId ) => {
+  return apiClient.delete(`/users/${userId}`);
+};
+
+//다수 유저 삭제하기
+export const deleteUsers = (userIds ) => {
+  return apiClient.delete(`/users`,{
+    params: {
+      userIds
     },
   });
 };
