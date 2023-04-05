@@ -62,6 +62,7 @@ const BOmovieModal = ({
     //NOTE: 새로고침 방지
     e.preventDefault();
     patchMovie(ID,postForm);
+    alert('수정완료')
   };
 
   useEffect(() => {

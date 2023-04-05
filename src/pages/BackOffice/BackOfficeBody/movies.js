@@ -114,9 +114,9 @@ return(
         <SearchIcon />
       </button>
     </form>
-    <Button>
-        삭제
-        <TrashIcon />
+    <Button >
+        {/* 삭제
+        <TrashIcon /> */}
     </Button>
 </header>
 

@@ -1,18 +1,7 @@
 /*
 {
-  "email": "string | null",
-  "password": "string | null",
-  "name": "string | null",
-  "birth": "string | null",
-  "nickname": "string | null",
-  "description": "string | null",
-  "profileImage": "string | null",
-  "isPublic": "boolean | null",
-  "preferredGenres": "string[] | null",
-  "gender": [
-    "MALE",
-    "FEMALE"
-  ]
+  "content": "string | null",
+  "score": "number | null"
 }
 */
 import React, { useState, useEffect, useRef } from "react";
@@ -20,9 +9,9 @@ import { Button, Input } from "../../../../components";
 import styles from "./BOmovieModal.module.scss";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
-import { patchUser } from "../../../../api/Users";
+import { patchReview } from "../../../../api/Reviews";
 
-const BOuserModal = ({
+const BOreviewModal = ({
   className,
   option,
   buttonChildren,
@@ -36,24 +25,16 @@ const BOuserModal = ({
   const modalRef = useRef(null);
     const [postForm, setPostForm] = useState(
     {
-      email: "",
-      password: "",
-      name: "",
-      birth: "",
-      nickname: "",
-      description: "",
+      content: "",
+      score: "",
     }
   );
-  
+
   const closeModal = ()=>{
     setSelectedIDs([]);
     setPostForm({
-      email: "",
-      password: "",
-      name: "",
-      birth: "",
-      nickname: "",
-      description: "",})
+      content: "",
+      score: "",})
     setModalOpen(false);
   }
   
@@ -66,29 +47,22 @@ const BOuserModal = ({
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-    patchUser(ID,postForm);
+    patchReview(ID,postForm);
   };
 
   useEffect(() => {
     setPostForm({
-      email: selectedData.email,
-      password: selectedData.password,
-      name: selectedData.name,
-      birth: selectedData.birth,
-      nickname: selectedData.nickname,
-      description: selectedData.description,
+      content: selectedData.content,
+      score: selectedData.score,
     });
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setModalOpen(false); setSelectedIDs([]);
         setPostForm({
-          email: "",
-          password: "",
-          name: "",
-          birth: "",
-          nickname: "",
-          description: "",})
+          content: "",
+          score: "",
+        })
       }
     };
     // 이벤트 핸들러 등록
@@ -121,46 +95,18 @@ return (
         <li>ID : {ID}</li>
         <Input
             className={styles.inputClass}
-            label="이메일"
+            label="별점"
             onChange={onChange}
-            name="email"
-            value={postForm.email}
+            name="score"
+            value={postForm.score}
           />
-        <Input
-            className={styles.inputClass}
-            label="비밀번호"
-            onChange={onChange}
-            name="password"
-            value={postForm.password}
-          />
-          <Input
-            className={styles.inputClass}
-            label='이름'
-            onChange={onChange}
-            name="name"
-            value={postForm.name}
-          />
-          <Input
-            className={styles.inputClass}
-            label='닉네임'
-            onChange={onChange}
-            name="nickname"
-            value={postForm.nickname}
-          />
-          <Input
-            className={styles.inputClass}
-            label='생일'
-            onChange={onChange}
-            name="birth"
-            value={postForm.birth}
-          />
-          <li className={styles.labelText}>상세</li>
+          <li className={styles.labelText}>리뷰</li>
           <textarea 
             className={styles.textArea}
-            label="상세"
+            label="리뷰"
             onChange={onChange}
-            name="description"
-            value={postForm.description}
+            name="content"
+            value={postForm.content}
           />
       </ul>
       </div>
@@ -183,4 +129,4 @@ return (
 );
 };
 
-export default BOuserModal;
+export default BOreviewModal;

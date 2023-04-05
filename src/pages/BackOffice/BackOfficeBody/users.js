@@ -1,13 +1,13 @@
 import {React, useState, useEffect} from "react";
 import styles from './backOfficeBody.module.scss'
 import cx from "classnames";
-import { Button, Input, Modal } from "../../../components";
+import { Button, Input} from "../../../components";
 import { 
     CheckIcon,
     SearchIcon, 
     TrashIcon 
 } from "../../../assets/icon";
-import { getUsers, getUsersCount } from "../../../api/Users";
+import { getUsers, deleteUsers } from "../../../api/Users";
 //import BOmovieModal from "./BOmodal/BOuserModal";
 import BOpageNation from "./BOpageNation/BOpageNation";
 import BOuserModal from "./BOmodal/BOuserModal";
@@ -27,6 +27,7 @@ const BackOfficeUsers = ()=>{
     const [pageNationNumber, setPageNationNumber] = useState();
     const [SelectedIDs, setSelectedIDs] = useState([]);
     const [SelectIndex, setSelectIndex] = useState();
+
 
     const onSetData = (data,total) => {
         const totalPage = Math.ceil(total / LIMIT);
@@ -96,6 +97,12 @@ const BackOfficeUsers = ()=>{
             }
         }
     }
+    const deleteChecked=()=>{
+        const ids = SelectedIDs.join(',');
+        deleteUsers(ids);
+        alert('일괄 삭제 완료');
+    }
+
     useEffect(()=>{
         if(!form){
             responseData()
@@ -125,7 +132,8 @@ return(
         <SearchIcon />
       </button>
     </form>
-    <Button>
+    <Button
+    onClick={deleteChecked}>
         삭제
         <TrashIcon />
     </Button>

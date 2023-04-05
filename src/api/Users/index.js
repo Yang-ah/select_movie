@@ -33,6 +33,15 @@ export const patchUser = (id, body) => {
 };
 
 //유저 삭제하기
-export const deleteUser = (id) => {
-  return apiClient.delete(`/users/${id}`);
+export const deleteUser = (userId ) => {
+  return apiClient.delete(`/users/${userId}`);
+};
+
+//다수 유저 삭제하기
+export const deleteUsers = (userIds ) => {
+  return apiClient.delete(`/users`,{
+    params: {
+      userIds
+    },
+  });
 };

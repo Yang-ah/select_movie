@@ -21,6 +21,7 @@ import styles from "./BOmovieModal.module.scss";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
 import { deleteUser } from "../../../../api/Users";
+import { deleteReview } from "../../../../api/Reviews";
 
 const BOdeleteModal = ({
   className,
@@ -45,7 +46,11 @@ const BOdeleteModal = ({
     e.preventDefault();
     if(userORreview==='user'){
       deleteUser(ID);
-      alert('삭제를 완료했습니다.')
+      alert('회원을 삭제를 완료했습니다.')
+    }
+    if(userORreview==='review'){
+      deleteReview(ID);
+      alert('리뷰를 삭제를 완료했습니다.')
     }
   };
 

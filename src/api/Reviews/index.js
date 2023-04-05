@@ -46,3 +46,10 @@ export const deleteReview = (reviewId) => {
 export const deleteReviewComment = (commentId) => {
   return apiClient.delete(`/reviews/comments/${commentId}`);
 };
+
+// ******** patch *********
+
+// 영화 리뷰 수정
+export const patchReview = (reviewId) => {
+  return apiClient.patch(`/reviews/${reviewId}`);
+};
