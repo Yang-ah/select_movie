@@ -10,6 +10,7 @@ import { motion , AnimatePresence } from "framer-motion";
 
 const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow , onOver}) => {
 
+    const { title , postImage , id} = movieInfo;
 
     const backdropVariants = {
         visible: { opacity: 1 },
@@ -73,18 +74,18 @@ const Modal1 = ({movieInfo , onModalClose, setIsShow, isShow , onOver}) => {
           >
         <div
         ref={modalRef1} 
-        className={styles.modal}>
+        className={styles.modal} onMouseOver={() => onOver=(id)}>
             <div className={styles.popup}>
-                <img className={styles.popupBackground} src={movieInfo.postImage} alt={movieInfo.title} />
+                <img className={styles.popupBackground} src={postImage} alt={title} />
                 <div 
                 className={styles.popupBody}>
                     <div>
-                     <img className={styles.thumbUrl} src={movieInfo.postImage} alt={movieInfo.title} />
+                     <img className={styles.thumbUrl} src={postImage} alt={title} />
                     </div>
                         <div>
                              <ul>
                                 <div className={styles.popupMainContent}>
-                                <li><h1 className={styles.popupMainHead}>{movieInfo.title}</h1></li>
+                                <li><h1 className={styles.popupMainHead}>{title}</h1></li>
                                 </div>
                                 <div className={styles.popupSubHead }>
                                 </div>

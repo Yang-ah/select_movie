@@ -12,7 +12,12 @@ import {
 
 import PosterH from "../PosterH";
 import PosterM from "../PosterM";
-import MovieModal from "../../components/MovieModal";
+import MovieModal from "../MovieModal";
+
+/* onClick={() => {
+  navigate(`/detail/${movie.id}`, {
+    replace: true,
+  }); */
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -24,11 +29,12 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-export const HomeCarousel = () => {
+export const HomeCarousel = (num) => {
 
   const navigate = useNavigate;
-  const [moviesTop, setMoviesTop] = useState();
   const [isShow, setIsShow] = useState(false);
+  const [moviesTop, setMoviesTop] = useState({ data:[ ]});
+  const [movieId , setMovieId] = useState(null);
 
   const fetchMoviesTop = async () => {
     const response = await getMoviesTop();
@@ -39,15 +45,15 @@ export const HomeCarousel = () => {
     fetchMoviesTop();
   }, []);
 
-
-
-  const onModalClick = () => {
+  const onModalClick = (id) => {
+    const num = moviesTop.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
+    setMovieId(moviesTop.data[num]) //data값에 아이디값 대입 
   };
+
   const onModalClose = () => {
     setIsShow(false);
   };
-
   const settings = {
     dot: false,
     arrow: false,
@@ -60,37 +66,32 @@ export const HomeCarousel = () => {
   };
 
   return (
-
     <div>
-      {moviesTop && 
-      moviesTop.data.map((movie) => (
-    <MovieModal 
-       key={movie.id}
-      title={movie.title}
-      id={movie.id}
-       postImage={movie.postImage}
-    />
-      ))}
+    {isShow && (
+          <MovieModal 
+            onModalClose={onModalClose}
+            onModalClick={onModalClick}
+            movieId ={movieId}
+          />
+        )
+    }
       <Slider {...settings}>
-        {moviesTop && 
-        moviesTop.data.map((movie) => (
+        {moviesTop?.data.map((movie) => (
           <PosterH
           key={movie.id}
           title={movie.title}
           id={movie.id}
           postImage={movie.postImage}
-          onClick={() => {
-            onModalClick={onModalClick}
-            navigate(`/${movie.id}`, {
-              replace: true,
-            });
-          }}
+          onModalClick={onModalClick}
+          movieId ={movieId}
           />
         ))}
       </Slider>
     </div>
   );
 };
+
+
 
 export const MyCarousel = ({ movies, onModalClick }) => {
   const settings = {
