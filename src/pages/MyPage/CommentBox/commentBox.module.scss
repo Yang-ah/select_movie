@@ -4,27 +4,24 @@
 //index
 .wrap {
   padding: 1% 0;
-  height: 100;
+  height: 1000vh;
   width: 100%;
   position: relative;
-  float: left;
 }
 
 .ul {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   animation-delay: 0.3ms;
   width: 100%;
 }
 
 .li {
-  background-color: c.$C_REVIEWBOX;
+  gap: 10px;
   padding: 5%;
-  height: 350px;
-  border-radius: 10px;
+  height: 100%;
+
   cursor: pointer;
-  display: inline-block;
+  display: flex;
   overflow: hidden;
 }
 
@@ -32,6 +29,9 @@
 .wrapper {
   padding: 12px;
   position: relative;
+  width: 200px;
+  background-color: c.$C_REVIEWBOX;
+  border-radius: 10px;
 }
 
 .screen {

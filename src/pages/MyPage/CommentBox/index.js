@@ -10,19 +10,19 @@ import { isLoginAtom } from "../../../atom";
 import { useRecoilValue } from "recoil";
 
 const Pagination = () => {
-  // const navigate = useNavigate;
-  // const isLogin = useRecoilValue(isLoginAtom);
-  // const [review, setReview] = useState([]);
+  const navigate = useNavigate;
+  const isLogin = useRecoilValue(isLoginAtom);
+  const [reviews, setReviews] = useState([]);
 
-  // const fetchMyReviews = async () => {
-  //   const response = await getReviewsMe(1, 20);
-  //   setReview(response.data);
-  //   console.log(response.data);
-  // };
+  const fetchMyReviews = async () => {
+    const response = await getReviewsMe(1, 20);
+    setReviews(response.data.data);
+    console.log(response.data.data);
+  };
 
-  // useEffect(() => {
-  //   fetchMyReviews();
-  // }, []);
+  useEffect(() => {
+    fetchMyReviews();
+  }, []);
 
   const [fixModalOpen, setFixModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -33,80 +33,79 @@ const Pagination = () => {
     setDeleteModalOpen(true);
   };
 
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const recordsPerPage = 8;
-  // const lastIndex = currentPage * recordsPerPage;
-  // const firstIndex = lastIndex - recordsPerPage;
-  // const records = review.slice(firstIndex, lastIndex);
-  // const pageNumber = Math.ceil(review.length / recordsPerPage);
-  // const numbers = [...Array(pageNumber + 1).keys()].slice(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 8;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = reviews.slice(firstIndex, lastIndex);
+  const pageNumber = Math.ceil(reviews.length / recordsPerPage);
+  const numbers = [...Array(pageNumber + 1).keys()].slice(1);
 
-  // const onClickPrevPage = () => {
-  //   if (currentPage !== 1) {
-  //     setCurrentPage(currentPage - 1);
-  //   }
-  // };
-  // const onChangePage = (id) => {
-  //   setCurrentPage(id);
-  // };
-  // const onClickNextPage = () => {
-  //   if (currentPage !== pageNumber) {
-  //     setCurrentPage(currentPage + 1);
-  //   }
-  // };
+  const onClickPrevPage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const onChangePage = (id) => {
+    setCurrentPage(id);
+  };
+  const onClickNextPage = () => {
+    if (currentPage !== pageNumber) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <>
-      <p>ㄷㄷ</p>
       <section className={styles.wrap}>
         <ul className={styles.ul}>
           <li className={styles.li}>
-            {/* {isLogin &&
-              review &&
-              review?.map((review) => (
+            {reviews?.map((item, index) => {
+              return (
                 <div className={styles.wrapper}>
-                  <div className={styles.screen}>
-                    <section className={styles.screen}>
-                      <article className={styles.layerUp}>
-                        <button
-                          className={styles.fixModal}
-                          onClick={showFixModal}
-                        >
-                          <ModifyIcon className={styles.icon} height="24px" />
-                        </button>
-                        <button
-                          className={styles.deleteModal}
-                          onClick={showDeleteModal}
-                        >
-                          <TrashIcon className={styles.icon} height="24px" />
-                        </button>
-                      </article>
+                  <section className={styles.screen}>
+                    <article className={styles.layerUp}>
+                      <button
+                        className={styles.fixModal}
+                        onClick={showFixModal}
+                      >
+                        <ModifyIcon className={styles.icon} height="24px" />
+                      </button>
+                      <button
+                        className={styles.deleteModal}
+                        onClick={showDeleteModal}
+                      >
+                        <TrashIcon className={styles.icon} height="24px" />
+                      </button>
+                    </article>
 
-                      <article className={styles.layerDown}>
-                        <aside className={styles.top}>
-                          <div className={styles.left}>
-                            <p className={styles.title}>{review.id}</p>
-                            <p className={styles.createAt}>{review.createAt}</p>
-                          </div>
-                          <div className={styles.score}>
-                            <SolidStarIcon className={styles.star} />
-                            {review.score}
-                          </div>
-                        </aside>
-                        <p className={styles.content}>
-                          {review.content.length > 200
-                            ? review.content.substring(0, 200) + "..."
-                            : review.content}
-                        </p>
-                      </article>
-                    </section>
-                  </div>
+                    <article className={styles.layerDown}>
+                      <aside className={styles.top}>
+                        <div className={styles.left}>
+                          <p className={styles.title}>{reviews[index].id}</p>
+                          <p className={styles.createAt}>
+                            {reviews[index].createAt}
+                          </p>
+                        </div>
+                        <div className={styles.score}>
+                          <SolidStarIcon className={styles.star} />
+                          {reviews[index].score}
+                        </div>
+                      </aside>
+                      <p className={styles.content}>
+                        {reviews[index].content.length > 200
+                          ? reviews[index].content.substring(0, 200) + "..."
+                          : reviews[index].content}
+                      </p>
+                    </article>
+                  </section>
                 </div>
-              ))} */}
+              );
+            })}
           </li>
         </ul>
 
-        {/* <ul className={styles.pagination}>
+        <ul className={styles.pagination}>
           <li className={styles.prevIcon}>
             <ChevronLeftIcon
               className={styles.Icon}
@@ -128,7 +127,7 @@ const Pagination = () => {
               onClick={onClickNextPage}
             />
           </li>
-        </ul> */}
+        </ul>
       </section>
       <FixModal
         className={styles.fixModal}
