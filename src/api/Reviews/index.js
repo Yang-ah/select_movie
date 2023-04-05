@@ -76,3 +76,15 @@ export const deleteReviewLike = (reviewId) => {
 export const deleteReviewHate = (reviewId) => {
   return apiClient.delete(`/reviews/${reviewId}/hate`);
 };
+
+// ******** patch *********
+
+// 영화 리뷰 수정
+export const patchReview = (reviewId, body) => {
+  return apiClient.patch(`/reviews/${reviewId}`, body);
+};
+
+// 영화 리뷰 댓글 수정
+export const patchReviewComment = (commentId, body) => {
+  return apiClient.patch(`/reviews/comments/${commentId}`, body);
+};

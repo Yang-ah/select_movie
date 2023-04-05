@@ -12,7 +12,6 @@ import { isLoginAtom } from '../../../../atom';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 
-// 개발중입니다 ~!
 const HeaderRightButtons = ({ reviewId, commentId, type }) => {
   const isLogin = useRecoilValue(isLoginAtom);
   const [likeHateCount, setLikeHateCount] = useState({
