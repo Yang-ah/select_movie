@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { getReviewsMovie } from "../../api/Reviews";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 // import { useRecoilValue } from "recoil";
 // import { isLoginAtom } from "../../atom";
 // import useMe from "../../hooks/useMe";
 import styles from "./mypage.module.scss";
+
 import Info from "./InfoBox";
 import { MyCarousel } from "../../components/Carousel";
 import Comment from "./CommentBox";
+import { getReviewsMovie } from "../../api/Reviews";
+import { getUsersMeInfo } from "../../api/Users";
 
 const MyPage = () => {
+  const [userInfo, setUserInfo] = useState();
+
   const [movies] = useState();
   const [movieInfo, setMovieInfo] = useState([0]);
   const [isShow, setIsShow] = useState(false);
+
+  const fetchUserInfo = async () => {
+    const response = await getUsersMeInfo();
+    setUserInfo(response.data);
+    //    console.log(response.data);
+  };
 
   const onClick = (id) => {
     const num = movies.findIndex((item) => item.id === id);
@@ -29,6 +39,7 @@ const MyPage = () => {
   };
 
   useEffect(() => {
+    fetchUserInfo();
     fetchReviews();
   }, [id, reviews]);
 

@@ -20,6 +20,15 @@ export const getMoviesCount = () => {
 export const getMoviesMeLike = () => {
   return apiClient.get(`/movies/me/like`);
 };
+// 내가 북마크 한 영화 불러오기
+export const getBookmarksMe = (page = 1, limit = 20) => {
+  return apiClient.get(`/bookmarks/me/pageing`, {
+    params: {
+      page,
+      limit,
+    },
+  });
+};
 
 // 영화 장르별로 불러오기
 export const getMoviesGenre = (page = 1, genreId) => {
@@ -57,7 +66,6 @@ export const deleteMovieLike = (id) => {
   return apiClient.delete(`/movies/${id}/like`);
 };
 
-
 // 영화 북마크 생성
 export const postBookmark = (movieId) => {
   return apiClient.post(`/bookmarks/${movieId}`);
@@ -70,5 +78,5 @@ export const deleteBookmark = (movieId) => {
 
 // 영화 수정하기
 export const patchMovie = (id, body) => {
-  return apiClient.get(`/movies/${id}`,body);
+  return apiClient.get(`/movies/${id}`, body);
 };

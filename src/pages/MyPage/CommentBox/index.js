@@ -43,7 +43,7 @@ const Pagination = () => {
       setCurrentPage(currentPage + 1);
     }
   };
-  console.log({ data });
+  //  console.log({ data });
 
   return (
     <>
@@ -82,12 +82,12 @@ const Pagination = () => {
                   </p>
 
                   <article className={styles.bottom}>
-                    <span className={styles.upDown}>
-                      <div className={styles.up}>
+                    <span className={styles.count}>
+                      <div className={styles.hateCount}>
                         <ThumbsUpIcon />
                         {data.liked_up}
                       </div>
-                      <div className={styles.down}>
+                      <div className={styles.hateCount}>
                         <ThumbsDownIcon />
                         {data.liked_down}
                       </div>

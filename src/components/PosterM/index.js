@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./poster.module.scss";
 import { SolidHeartIcon, SolidBookmarkIcon } from "../../assets/icon";
 
 export const PosterHeart = ({ id, title, postImage, onClick }) => {
+  //  console.log("postImage", postImage);
   return (
     <div className={styles.wrapper}>
       <div className={styles.screen}>

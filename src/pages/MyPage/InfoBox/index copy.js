@@ -21,12 +21,15 @@ const Info = () => {
   const fetchUserInfo = async () => {
     const response = await getUsersMeInfo();
     setUserInfo(response.data);
-    //    console.log(response.data);
+   // console.log(response.data);
   };
 
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(true);
+  };
+  const modalInput = (text) => {
+  //  console.log(text);
   };
 
   useEffect(() => {
@@ -42,12 +45,9 @@ const Info = () => {
           <div className={styles.infoTop}>
             {!isLogin && <p className={styles.userName}>누군가의 name</p>}
             {isLogin && (
-              <p className={styles.userName}>
-                {me && me.name}
-                {me && me.email}
-                {me && me.nickname}
-              </p>
+              <p className={styles.userName}>{me && isLogin && me.name}</p>
             )}
+
             {isLogin && (
               <button
                 className={styles.setting}
@@ -66,7 +66,7 @@ const Info = () => {
               buttonChildren="완료"
             />
           </div>
-          <div className={styles.introduce}>{me && isLogin && me.email}</div>
+          <div className={styles.introduce}>소개글</div>
         </div>
       </article>
       {isLogin && (

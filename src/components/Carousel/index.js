@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { getMoviesTop, getMovies, getMoviesMeLike } from "../../api/Movies";
+import {
+  getMoviesTop,
+  getMovies,
+  getMoviesMeLike,
+  getBookmarksMe,
+} from "../../api/Movies";
 import { useNavigate } from "react-router-dom";
 import "./carousel.scss";
 import styles from "./myCarousel.module.scss";
@@ -41,8 +46,6 @@ export const HomeCarousel = () => {
     fetchMoviesTop();
   }, []);
 
-
-
   const onModalClick = () => {
     setIsShow(true);
   };
@@ -62,33 +65,33 @@ export const HomeCarousel = () => {
   };
 
   return (
-
     <div>
-      {moviesTop && 
-      moviesTop.data.map((movie) => (
-    <MovieModal 
-       key={movie.id}
-      title={movie.title}
-      id={movie.id}
-       postImage={movie.postImage}
-    />
-      ))}
-      <Slider {...settings}>
-        {moviesTop && 
+      {moviesTop &&
         moviesTop.data.map((movie) => (
-          <PosterH
-          key={movie.id}
-          title={movie.title}
-          id={movie.id}
-          postImage={movie.postImage}
-          onClick={() => {
-            onModalClick={onModalClick}
-            navigate(`/${movie.id}`, {
-              replace: true,
-            });
-          }}
+          <MovieModal
+            key={movie.id}
+            title={movie.title}
+            id={movie.id}
+            postImage={movie.postImage}
           />
         ))}
+      <Slider {...settings}>
+        {moviesTop &&
+          moviesTop.data.map((movie) => (
+            <PosterH
+              key={movie.id}
+              title={movie.title}
+              id={movie.id}
+              postImage={movie.postImage}
+              score={movie.score}
+              onClick={() => {
+                onModalClick = { onModalClick };
+                navigate(`/${movie.id}`, {
+                  replace: true,
+                });
+              }}
+            />
+          ))}
       </Slider>
     </div>
   );
@@ -96,22 +99,29 @@ export const HomeCarousel = () => {
 
 export const MyCarousel = () => {
   const navigate = useNavigate;
-  const [moviesTop, setMoviesTop] = useState();
   const [moviesLike, setMoviesLike] = useState();
+  const [moviesMark, setMoviesMark] = useState();
 
+  const [moviesTop, setMoviesTop] = useState();
+
+  const fetchMoviesLike = async () => {
+    const response = await getMoviesMeLike();
+    setMoviesLike(response.data);
+    //    console.log(response.data[0].postImage);
+  };
+  const fetchMoviesMark = async () => {
+    const response = await getBookmarksMe();
+    setMoviesMark(response.data);
+  };
   const fetchMoviesTop = async () => {
     const response = await getMoviesTop();
     setMoviesTop(response.data);
   };
-  const fetchMoviesLike = async () => {
-    const response = await getMoviesMeLike();
-    setMoviesLike(response.data);
-    console.log(response.data);
-  };
 
   useEffect(() => {
-    fetchMoviesTop();
     fetchMoviesLike();
+    fetchMoviesMark();
+    fetchMoviesTop();
   }, []);
   const settings = {
     dot: false,
@@ -133,7 +143,7 @@ export const MyCarousel = () => {
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesLike &&
-            moviesLike?.data?.map((movie) => (
+            moviesLike?.map((movie) => (
               <PosterHeart
                 key={movie.id}
                 title={movie.title}
@@ -153,6 +163,26 @@ export const MyCarousel = () => {
         <SolidBookmarkIcon className={styles.myIcon} />
         내가 북마크 한 컨텐츠
       </p>
+      <div className={styles.mywrap}>
+        <Slider {...settings}>
+          {moviesMark &&
+            moviesTop?.map((movie) => (
+              <PosterMark
+                key={movie.id}
+                title={movie.title}
+                id={movie.id}
+                postImage={movie.postImage}
+                onClick={() => {
+                  navigate(`/detail/${movie.id}`, {
+                    replace: true,
+                  });
+                }}
+              />
+            ))}
+        </Slider>
+      </div>
+
+      <p>이건 그냥 랭킹</p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesTop &&

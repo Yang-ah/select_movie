@@ -54,6 +54,7 @@
     fill: white;
     &:hover,
     :active {
+      transform: scale(1.1);
       fill: c.$C_ORANGE;
     }
   }
@@ -70,7 +71,7 @@
         font-weight: 700;
         padding-bottom: 6px;
       }
-      .date {
+      .createAt {
         font-size: 14px;
       }
     }
@@ -98,15 +99,15 @@
     line-height: 2em;
     height: 16em;
   }
-  .upDown {
+  .count {
     @include m.flex();
     margin: auto 0;
     padding: 0 4px;
     float: right;
     column-gap: 16px;
 
-    .up,
-    .down {
+    .likeCount,
+    .hateCount {
       @include m.flex();
       font-size: 14px;
       > svg {
