@@ -32,7 +32,14 @@ export const getReviewDetail = (movieId) => {
 export const getReviewMe = () => {
   return apiClient.get(`/reviews/me`);
 };
-
+export const getReviewsMe = (page = 1, limit = 20) => {
+  return apiClient.get(`/reviews/me/paging`, {
+    params: {
+      page,
+      limit,
+    },
+  });
+};
 // ******** post *********
 
 // 영화 리뷰 생성

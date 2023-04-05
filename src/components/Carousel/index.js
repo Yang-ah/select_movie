@@ -102,27 +102,21 @@ export const MyCarousel = () => {
   const [moviesLike, setMoviesLike] = useState();
   const [moviesMark, setMoviesMark] = useState();
 
-  const [moviesTop, setMoviesTop] = useState();
-
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
     setMoviesLike(response.data);
     //    console.log(response.data[0].postImage);
   };
   const fetchMoviesMark = async () => {
-    const response = await getBookmarksMe();
+    const response = await getBookmarksMe(1, 20);
     setMoviesMark(response.data);
-  };
-  const fetchMoviesTop = async () => {
-    const response = await getMoviesTop();
-    setMoviesTop(response.data);
   };
 
   useEffect(() => {
     fetchMoviesLike();
     fetchMoviesMark();
-    fetchMoviesTop();
   }, []);
+
   const settings = {
     dot: false,
     arrow: false,
@@ -166,27 +160,7 @@ export const MyCarousel = () => {
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesMark &&
-            moviesTop?.map((movie) => (
-              <PosterMark
-                key={movie.id}
-                title={movie.title}
-                id={movie.id}
-                postImage={movie.postImage}
-                onClick={() => {
-                  navigate(`/detail/${movie.id}`, {
-                    replace: true,
-                  });
-                }}
-              />
-            ))}
-        </Slider>
-      </div>
-
-      <p>이건 그냥 랭킹</p>
-      <div className={styles.mywrap}>
-        <Slider {...settings}>
-          {moviesTop &&
-            moviesTop.data.map((movie) => (
+            moviesMark?.map((movie) => (
               <PosterMark
                 key={movie.id}
                 title={movie.title}

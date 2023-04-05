@@ -22,7 +22,7 @@ export const getMoviesMeLike = () => {
 };
 // 내가 북마크 한 영화 불러오기
 export const getBookmarksMe = (page = 1, limit = 20) => {
-  return apiClient.get(`/bookmarks/me/pageing`, {
+  return apiClient.get(`/bookmarks/me/paging`, {
     params: {
       page,
       limit,
