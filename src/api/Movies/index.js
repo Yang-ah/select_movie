@@ -59,5 +59,5 @@ export const deleteMovieLike = (id) => {
 
 // 영화 수정하기
 export const patchMovie = (id, body) => {
-  return apiClient.get(`/movies/${id}`, body);
+  return apiClient.patch(`/movies/${id}`,body);
 };

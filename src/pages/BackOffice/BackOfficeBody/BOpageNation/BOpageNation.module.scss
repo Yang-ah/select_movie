@@ -1,0 +1,38 @@
+@use "../../../../styles/constants" as c;
+@use "../../../../styles/mixins" as m;
+
+.pagination {
+    margin: 20px 0px;
+    height: 100%;
+    color: c.$C_ARROW;
+    fill: c.$C_ARROW;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  
+    :hover,
+    :active {
+      color: c.$C_ORANGE;
+      fill: c.$C_ORANGE;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+  
+    li {
+      font-size: 16px;
+      margin: 0 1%;
+    }
+  
+    .Icon {
+      height: 16px;
+      width: 16px;
+    }
+    .page{
+        &.currentPage{
+        color: c.$C_ORANGE;
+        }
+    }
+    
+    
+}
