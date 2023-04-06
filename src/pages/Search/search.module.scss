@@ -1,0 +1,21 @@
+.wrap {
+  min-height: calc(100vh - 148px);
+  padding: 40px 80px;
+  color: white;
+  > .searchInput {
+    opacity: 0.3;
+    transition: 0.2s opacity ease-in;
+
+    &:focus-within {
+      opacity: 1;
+    }
+  }
+}
+
+.moviesSection {
+  width: 100%;
+  display: grid;
+  gap: 16px;
+  padding: 20px 0;
+  grid-template-columns: repeat(4, 1fr);
+}

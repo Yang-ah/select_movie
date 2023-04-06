@@ -1,0 +1,50 @@
+@use '../../../styles/constants/' as c;
+@use '../../../styles/mixins' as m;
+
+.wrap {
+  height: 360px;
+  color: white;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s transform ease-in;
+  background-color: c.$C_WHITE_10;
+  &:hover {
+    transform: scale(1.1) translateY(-10px);
+
+    > .overlay {
+      background-color: c.$C_BLACK_50;
+      visibility: visible;
+    }
+  }
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  > .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    transition: 0.2s background-color ease-in-out, 0.2s visibility ease-in-out;
+  }
+}
+
+.overlay {
+  > h2 {
+    @include m.flex();
+    width: 100%;
+    height: 100%;
+    font-family: 'Black Han Sans';
+    font-size: 32px;
+    padding: 20px;
+  }
+}
