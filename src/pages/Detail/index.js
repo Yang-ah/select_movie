@@ -12,6 +12,8 @@ import useMe from "../../hooks/useMe";
 import Accordion from "./Accordion";
 import ReviewInput from "../../components/Comment/ReviewInput";
 
+import { motion } from "framer-motion";
+
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -43,6 +45,11 @@ const Detail = () => {
 
   return (
     <>
+        <motion.div
+          initial={{y : -200}}
+          animate={{y : 0}}
+          transition={{ duration: 1, type: "spring" }}
+  >
       <DetailInfo id={id} />
       <section className={styles.sectionWrap}>
         <main className={styles.mainWrap}>
@@ -107,6 +114,7 @@ const Detail = () => {
             })}
         </aside>
       </section>
+      </motion.div>
     </>
   );
 };

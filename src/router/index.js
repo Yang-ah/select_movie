@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
+  Routes,
   ScrollRestoration,
 } from "react-router-dom";
 import { Layout } from "../components";
@@ -31,8 +32,10 @@ export const ScrollToTop = () => {
 };
 
 const route = (
+  
   <>
     {/*<ScrollRestoration />*/}
+
     <Route element={<ScrollToTop />} />
     <Route element={<Layout />}>
       <Route path="/" element={<HomePage />} />

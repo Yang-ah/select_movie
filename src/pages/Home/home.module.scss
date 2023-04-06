@@ -7,16 +7,15 @@
   font-size: 24px;
   padding: 20px 10px;
 
-  .wrapper_background {
-    background-color: c.$C_BLACK;
-    top: 0;
+  .background {
+    position: fixed;
+    background: linear-gradient(0deg, rgba(24,18,42,1) 0%, rgba(24,18,42,0.4) 35%, rgba(48,42,64,0.4) 100% ),  url("https://img.freepik.com/free-vector/night-ocean-landscape-full-moon-stars-shine_107791-7397.jpg?w=2000&t=st=1680761050~exp=1680761650~hmac=977613982d880dcf4d3c02231b35a57d28204d02e2ada7ae39ee5738721ceefc");
+    top: 7%;
     left: 0;
     width: 100%;
-    height: 20%;
-    z-index: -999;
-    filter: brightness(60%);
-    background-color: black;
-    object-fit: cover;
+    height: 800px;
+    z-index: 0;
+    filter: brightness(80%);
   }
   .ranking,
   .category {
@@ -34,3 +33,4 @@
     transform: translateY(-150%);
   }
 }
+
