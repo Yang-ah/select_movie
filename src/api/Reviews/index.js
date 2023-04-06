@@ -74,6 +74,11 @@ export const deleteReview = (reviewId) => {
   return apiClient.delete(`/reviews/${reviewId}`);
 };
 
+// 영화 리뷰 삭제 (관리자)
+export const deleteReviewAdmin = (reviewId) => {
+  return apiClient.delete(`/reviews/${reviewId}/admin`);
+};
+
 // 영화 리뷰의 '댓글' 삭제
 export const deleteReviewComment = (commentId) => {
   return apiClient.delete(`/reviews/comments/${commentId}`);
@@ -94,6 +99,11 @@ export const deleteReviewHate = (reviewId) => {
 // 영화 리뷰 수정
 export const patchReview = (reviewId, body) => {
   return apiClient.patch(`/reviews/${reviewId}`, body);
+};
+
+// 영화 리뷰 수정 (관리자)
+export const patchReviewAdmin = (reviewId, body) => {
+  return apiClient.patch(`/reviews/${reviewId}/admin`, body);
 };
 
 // 영화 리뷰 댓글 수정

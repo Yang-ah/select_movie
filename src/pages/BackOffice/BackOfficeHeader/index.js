@@ -60,6 +60,7 @@ const BackOfficeHeader = ({ path }) => {
     <>
       <header className={styles.header}>
         <h1 onClick={showModal}>관리자 페이지</h1>
+        <Button onClick={showModal}>관리자 로그인</Button>
         <CmsModal
             modalOpen1={modalOpen}
             setModalOpen={setModalOpen}

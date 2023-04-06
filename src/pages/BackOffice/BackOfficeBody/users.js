@@ -55,7 +55,9 @@ const BackOfficeUsers = ()=>{
     }
 
     const pageUp = () => {
+        if(pageNumber<pageNationNumber){
         setPageNumber(pageNumber + 1);
+        }
     };
     const pageDown = () => {
         if (pageNumber > 1) {
@@ -82,6 +84,7 @@ const BackOfficeUsers = ()=>{
         setSelectedIDs([]);
         setModalOpen(false);
         setModalOpen2(false);
+        responseData();
     }
     const onChange = (e) => {
         const { value } = e.currentTarget;
@@ -98,9 +101,23 @@ const BackOfficeUsers = ()=>{
         }
     }
     const deleteChecked=()=>{
-        const ids = SelectedIDs.join(',');
-        deleteUsers(ids);
-        alert('일괄 삭제 완료');
+        const ids = SelectedIDs;
+        try{
+            for(const element of ids){
+                const response = deleteUsers(element);
+                if(response.status===200){
+                    alert('회원 일괄 삭제 완료')//안나옴
+                    responseData();
+                }
+            }
+        }catch(err){
+            const errData = err.response.data;
+            if (errData.statusCode !== 200){
+                alert(errData.message);
+            }
+        }
+        alert('회원 일괄 삭제 완료');
+        closeModal();
     }
 
     useEffect(()=>{
