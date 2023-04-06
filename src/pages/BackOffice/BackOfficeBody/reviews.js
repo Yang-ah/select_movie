@@ -24,8 +24,8 @@ const BackOfficeReviews = ()=>{
     const [Count, setCount] = useState();
     const [form, setForm] = useState();
     const [pageNationNumber, setPageNationNumber] = useState();
-    const [SelectedIDs, setSelectedIDs] = useState([]);
-    const [SelectIndex, setSelectIndex] = useState();
+    const [selectedIDs, setSelectedIDs] = useState([]);
+    const [selectIndex, setSelectIndex] = useState();
 
     const onSetData = (data,total) => {
         const totalPage = Math.ceil(total / LIMIT);
@@ -82,6 +82,7 @@ const BackOfficeReviews = ()=>{
         setSelectedIDs([]);
         setModalOpen(false);
         setModalOpen2(false);
+        responseData();
     }
     const onChange = (e) => {
         const { value } = e.currentTarget;
@@ -91,19 +92,19 @@ const BackOfficeReviews = ()=>{
         return (e) => {
             const { checked } = e.currentTarget;
             if (checked){
-                setSelectedIDs([...SelectedIDs, id]);
+                setSelectedIDs([...selectedIDs, id]);
             }else{
-                setSelectedIDs(SelectedIDs.filter((x) => x !== id));
+                setSelectedIDs(selectedIDs.filter((x) => x !== id));
             }
         }
     }
     const deleteChecked= ()=>{
-        const ids = SelectedIDs;
+        const ids = selectedIDs;
         try{
             for(const element of ids){
                 const response = deleteReviewAdmin(element);
                 if(response.status===200){
-                    alert('리뷰 일괄 삭제 완료')
+                    alert('리뷰 일괄 삭제 완료')//작동을 안함
                 }
             }
         }catch(err){
@@ -112,7 +113,8 @@ const BackOfficeReviews = ()=>{
                 alert(errData.message);
             }
         }
-        responseData();
+        alert('리뷰 일괄 삭제 완료')
+        closeModal();
     }
 
 
@@ -171,7 +173,7 @@ return(
             type="checkbox" 
             readOnly 
             hidden
-            checked={SelectedIDs.includes(item.id)}
+            checked={selectedIDs.includes(item.id)}
             onClick={onClickCheckBox(item.id)}
             />
         <CheckIcon />
@@ -196,25 +198,25 @@ return(
 </ul>   
     )
 })}
-{SelectIndex !==undefined &&
+{selectIndex !==undefined &&
 <BOreviewModal
 className={styles.modal}
 modalOpen={modalOpen}
 setModalOpen={setModalOpen}
 closeModal={closeModal}
 buttonChildren='수정'
-ID={SelectedIDs[0]}
+ID={selectedIDs[0]}
 setMovieData={setReviewsData}
-selectedData={ReviewsData[SelectIndex]}
+selectedData={ReviewsData[selectIndex]}
 setSelectedIDs={setSelectedIDs}
 />}
-{SelectIndex !==undefined &&
+{selectIndex !==undefined &&
 <BOdeleteModal
 className={styles.modal}
 modalOpen2={modalOpen2}
 setModalOpen2={setModalOpen2}
 buttonChildren='삭제'
-ID={SelectedIDs[0]}
+ID={selectedIDs[0]}
 setSelectedIDs={setSelectedIDs}
 userORreview='review'
 />}

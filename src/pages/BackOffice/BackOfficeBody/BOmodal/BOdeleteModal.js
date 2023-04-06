@@ -51,9 +51,9 @@ console.log(ID)
         const response2 = await deleteReviewAdmin(ID);
           if(response2.status===200){
             alert('리뷰를 삭제를 완료했습니다.')
-            responseData();
+            closeModal();
           }
-      } catch(err) { //회원 삭제 권한이 없다고 뜨지만 삭제됨
+      } catch(err) {
         const errData = err.response.data;
         if (errData.statusCode !== 200){
           alert(errData.message);
@@ -66,9 +66,9 @@ console.log(ID)
         const response = await deleteUser(ID);
           if(response.status===200){
             alert('회원을 삭제를 완료했습니다.')
-            responseData();
+            closeModal();
           }
-      } catch(err) { //회원 삭제 권한이 없다고 뜨지만 삭제됨
+      } catch(err) { 
         const errData = err.response.data;
         if (errData.statusCode !== 200){
           alert(errData.message);

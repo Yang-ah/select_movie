@@ -1,8 +1,7 @@
-1.삭제 후 API호출
-2. 수정 후 API호출
-
 >모달에서 수정 완료 시, alert 동작을 안함
->//회원 삭제 권한이 없다고 뜨지만 삭제됨 (BOdeleteModal)
+try catch 안에 있는 alert가 동작을 안함
+
+
 
 
 

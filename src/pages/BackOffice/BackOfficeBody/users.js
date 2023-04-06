@@ -116,6 +116,8 @@ const BackOfficeUsers = ()=>{
                 alert(errData.message);
             }
         }
+        alert('회원 일괄 삭제 완료');
+        closeModal();
     }
 
     useEffect(()=>{
