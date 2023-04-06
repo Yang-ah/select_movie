@@ -55,6 +55,7 @@ const BOuserModal = ({
       nickname: "",
       description: "",})
     setModalOpen(false);
+    responseData();
   }
   
 
@@ -66,7 +67,18 @@ const BOuserModal = ({
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-    patchUser(ID,postForm);
+    try{
+      const responsePatch = await patchUser(ID,postForm);
+      if(responsePatch.status===200){
+        alert('수정완료'); //not work...
+        responseData();
+      }
+    } catch(err) {
+      const errData = err.response.data;
+      if (errData.statusCode !== 200){
+        alert(errData.message);
+      }
+    }
   };
 
   useEffect(() => {
@@ -89,6 +101,7 @@ const BOuserModal = ({
           birth: "",
           nickname: "",
           description: "",})
+          responseData();
       }
     };
     // 이벤트 핸들러 등록

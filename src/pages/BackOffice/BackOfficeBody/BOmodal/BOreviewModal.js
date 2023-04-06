@@ -9,7 +9,7 @@ import { Button, Input } from "../../../../components";
 import styles from "./BOmovieModal.module.scss";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
-import { patchReview } from "../../../../api/Reviews";
+import { patchReviewAdmin } from "../../../../api/Reviews";
 
 const BOreviewModal = ({
   className,
@@ -36,6 +36,7 @@ const BOreviewModal = ({
       content: "",
       score: "",})
     setModalOpen(false);
+    responseData();
   }
   
 
@@ -47,7 +48,18 @@ const BOreviewModal = ({
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-    patchReview(ID,postForm);
+    try{
+      const responsePatch = await patchReviewAdmin(ID,postForm);
+      if(responsePatch.status===200){
+        alert('수정완료');
+        responseData();
+      }
+    } catch(err) {
+      const errData = err.response.data;
+      if (errData.statusCode !== 200){
+        alert(errData.message);
+      }
+    }
   };
 
   useEffect(() => {
@@ -63,6 +75,7 @@ const BOreviewModal = ({
           content: "",
           score: "",
         })
+        responseData();
       }
     };
     // 이벤트 핸들러 등록

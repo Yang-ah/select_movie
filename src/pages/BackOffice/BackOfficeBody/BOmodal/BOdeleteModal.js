@@ -21,7 +21,7 @@ import styles from "./BOmovieModal.module.scss";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
 import { deleteUser } from "../../../../api/Users";
-import { deleteReview } from "../../../../api/Reviews";
+import { deleteReviewAdmin } from "../../../../api/Reviews";
 
 const BOdeleteModal = ({
   className,
@@ -39,26 +39,50 @@ const BOdeleteModal = ({
   const closeModal = ()=>{
     setSelectedIDs([]);
     setModalOpen2(false);
+    responseData();
   }
-
+console.log(ID)
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-    if(userORreview==='user'){
-      deleteUser(ID);
-      alert('회원을 삭제를 완료했습니다.')
-    }
+
     if(userORreview==='review'){
-      deleteReview(ID);
-      alert('리뷰를 삭제를 완료했습니다.')
+      try{
+        const response2 = await deleteReviewAdmin(ID);
+          if(response2.status===200){
+            alert('리뷰를 삭제를 완료했습니다.')
+            responseData();
+          }
+      } catch(err) { //회원 삭제 권한이 없다고 뜨지만 삭제됨
+        const errData = err.response.data;
+        if (errData.statusCode !== 200){
+          alert(errData.message);
+        }
+      }
     }
+    
+    if(userORreview==='user'){
+      try{
+        const response = await deleteUser(ID);
+          if(response.status===200){
+            alert('회원을 삭제를 완료했습니다.')
+            responseData();
+          }
+      } catch(err) { //회원 삭제 권한이 없다고 뜨지만 삭제됨
+        const errData = err.response.data;
+        if (errData.statusCode !== 200){
+          alert(errData.message);
+        }
+      }
+    }
+    
   };
 
   useEffect(() => {
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setModalOpen2(false); setSelectedIDs([]);
+        setModalOpen2(false); setSelectedIDs([]);responseData();
       }
     };
     // 이벤트 핸들러 등록

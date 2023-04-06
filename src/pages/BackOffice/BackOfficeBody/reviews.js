@@ -7,7 +7,7 @@ import {
     SearchIcon, 
     TrashIcon 
 } from "../../../assets/icon";
-import { deleteReview, getReviews, getReviewsCount } from "../../../api/Reviews";
+import { deleteReviewAdmin, getReviews, getReviewsCount } from "../../../api/Reviews";
 //import BOmovieModal from "./BOmodal/BOreviewModal";
 import BOpageNation from "./BOpageNation/BOpageNation";
 import BOreviewModal from "./BOmodal/BOreviewModal";
@@ -53,7 +53,9 @@ const BackOfficeReviews = ()=>{
     }
     
     const pageUp = () => {
+        if(pageNumber<pageNationNumber){
         setPageNumber(pageNumber + 1);
+        }
     };
     const pageDown = () => {
         if (pageNumber > 1) {
@@ -95,12 +97,22 @@ const BackOfficeReviews = ()=>{
             }
         }
     }
-    const deleteChecked=()=>{
+    const deleteChecked= ()=>{
         const ids = SelectedIDs;
-        for(const element of ids){
-            deleteReview(element);
+        try{
+            for(const element of ids){
+                const response = deleteReviewAdmin(element);
+                if(response.status===200){
+                    alert('리뷰 일괄 삭제 완료')
+                }
+            }
+        }catch(err){
+            const errData = err.response.data;
+            if (errData.statusCode !== 200){
+                alert(errData.message);
+            }
         }
-        alert('일괄 삭제 완료?');
+        responseData();
     }
 
 

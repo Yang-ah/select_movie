@@ -50,6 +50,7 @@ const BOmovieModal = ({
     setSelectedIDs([]);
     setPostForm({title:'',plot:'',releasedAt:'',runtime:'',company:''})
     setModalOpen(false);
+    responseData();
   }
   
 
@@ -59,10 +60,20 @@ const BOmovieModal = ({
   };
 
   const onSubmit = async (e) => {
-    //NOTE: 새로고침 방지
+    //NOTE: try catch로 err 잡기
     e.preventDefault();
-    patchMovie(ID,postForm);
-    alert('수정완료')
+    try{
+      const responsePatch = await patchMovie(ID,postForm);
+      if(responsePatch.status===200){
+        responseData();
+        alert('수정완료'); //alert 동작을 안함
+      }
+    } catch(err) {
+      const errData = err.response.data;
+      if (errData.statusCode !== 200){
+        alert(errData.message);
+      }
+    }
   };
 
   useEffect(() => {
@@ -77,7 +88,8 @@ const BOmovieModal = ({
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setModalOpen(false); setSelectedIDs([]);
-        setPostForm({title:'',plot:'',releasedAt:'',runtime:'',company:''})
+        setPostForm({title:'',plot:'',releasedAt:'',runtime:'',company:''});
+        responseData();
       }
     };
     // 이벤트 핸들러 등록

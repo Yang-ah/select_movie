@@ -50,7 +50,9 @@ const BackOfficeMovies = ()=>{
     }
 
     const pageUp = () => {
+        if(pageNumber<pageNationNumber){
         setPageNumber(pageNumber + 1);
+        }
     };
     const pageDown = () => {
         if (pageNumber > 1) {
@@ -67,6 +69,7 @@ const BackOfficeMovies = ()=>{
     const closeModal = ()=>{
         setSelectedIDs([]);
         setModalOpen(false);
+        responseData();
     }
     const onChange = (e) => {
         const { value } = e.currentTarget;
@@ -173,10 +176,6 @@ setSelectedIDs={setSelectedIDs}
 
 
 {/* 페이지네이션 */}
-{/* //TODO: 현재 페이지가 몇 페이지인지 확인할 수 있도록 */}
-{/* //TODO: 전체 영화 개수 대비 페이지 수가 일치할 수 있도록 */}
-{/* //TODO: Pagination 컴포넌트 분리 */}
-{/* //TODO: ul li 없어도 된다 */}
 <BOpageNation
 pageDown={pageDown}
 pageNationNumber={pageNationNumber}
