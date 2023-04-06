@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./modal.module.scss";
 import { useNavigate } from "react-router-dom";
-import { motion  } from "framer-motion";
+import { motion ,AnimatePresence  } from "framer-motion";
 
 import {
   DoubleChevronRightIcon,
@@ -19,29 +19,31 @@ const MovieModal = ({ onModalClose ,movieId }) => {
   const backdropVariants = {
     visible: { opacity: 1,
       scale : 1,
-      defaultZIndex : 30,
      },
     hidden: { opacity: 0 ,
       scale : 0.3,
       backgroundColor: "rgba(0, 0, 0, 0.5)" ,
     },
-    exit : {opacity : 0},
-    
+
   };
-  
   const modalVariants = {
     hidden: {
-      y: "50",
+      y : 150 ,
       opacity: 0,
     },
     visible: {
-      y: "10",
-
-      backgroundColor: "#fff",
-
+      y : 0 ,
+      opacity: 1,
+      transition: { type: "spring", delayduration : 0.5 , bounce: 0.4,}
     },
   };
 
+  const closeVariants = {
+    hidden: { backgroundColor: "rgba(0, 0, 0, 0)" },
+    visible: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
+    exit: { backgroundColor: "rgba(0, 0, 0, 0)" },
+    
+  }
   const navigate = useNavigate();
   const [isMyState, setMyState] = useState({
     isLiked: false,
@@ -53,11 +55,11 @@ const MovieModal = ({ onModalClose ,movieId }) => {
 
   const modalRef1 = useRef(null);
     
- /* useEffect(() => {
+  useEffect((onModalClose) => {
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef1.current && !modalRef1.current.contains(event.target)) {
-        setIsShow(false);
+        onModalClose={onModalClose}
       }
     };
     // 이벤트 핸들러 등록
@@ -66,26 +68,38 @@ const MovieModal = ({ onModalClose ,movieId }) => {
       // 이벤트 핸들러 해제
       document.removeEventListener("mousedown", handler);
     };
-  }); */
+  }); 
 
   //NOTE: tag depth가 조금 깊다~
 
   return (
-    <motion.div
-    variants={backdropVariants}
-    initial="hidden"
-    animate="visible"
-    exit="exit"
-    className="modal"
-  >
+   <AnimatePresence
+   initial="hidden"
+   animate="visible"
+   exit="exit"
+   >
       <div className={styles.modal_overlay}>
         <div ref={modalRef1} className={styles.modal}>
+        <motion.div
+          variants={backdropVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="modal" 
+        >
           <div className={styles.popup}>
             <img
               className={styles.popupBackground}
               src={postImage}
               alt={title}
             /> 
+        <motion.div
+          variants={modalVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="modal" 
+        >
             <div className={styles.headerContentWrap}>
             <div className={styles.leftWrap}>
               <img className={styles.thumbUrl} src={postImage} alt="detailPoster" />
@@ -156,7 +170,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               </div>
             </div>
           </div>
-            
+                </motion.div>        
             <p className={styles.close} onClick={onModalClose}>
               x
             </p>
@@ -171,11 +185,11 @@ const MovieModal = ({ onModalClose ,movieId }) => {
           </div>
           <div className={styles.moveBox}></div>
           </div>
-
           </div>
+          </motion.div>
         </div>
       </div>
-      </motion.div>
+      </AnimatePresence>
   );
 };
 

@@ -17,6 +17,8 @@ const dropdownItems = () => {
   return ['별점높은순', '별점낮은순', '최신순'];
 };
 
+import { motion } from 'framer-motion';
+
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -87,63 +89,69 @@ const Detail = () => {
 
   return (
     <section ref={ref}>
-      <DetailInfo id={id} />
-      <section className={styles.sectionWrap}>
-        <main className={styles.mainWrap}>
-          {/* 영화 리뷰를 입력하는 input  */}
-          <ReviewInput
-            id={id}
-            disabled={!isLogin}
-            placeholder={inputPlaceholder()}
-            fetchReviews={fetchReviews}
-            userName={inputUsername()}
-          />
-          <header>
-            <h1>Reviews</h1>
-            <Dropdown items={dropdownItems()} className={styles.dropdown} />
-          </header>
+      <motion.div
+        initial={{ y: -200 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1, type: 'spring' }}
+      >
+        <DetailInfo id={id} />
+        <section className={styles.sectionWrap}>
+          <main className={styles.mainWrap}>
+            {/* 영화 리뷰를 입력하는 input  */}
+            <ReviewInput
+              id={id}
+              disabled={!isLogin}
+              placeholder={inputPlaceholder()}
+              fetchReviews={fetchReviews}
+              userName={inputUsername()}
+            />
+            <header>
+              <h1>Reviews</h1>
+              <Dropdown items={dropdownItems()} className={styles.dropdown} />
+            </header>
 
-          <article className={styles.reviewsWrap}>
-            {/* 리뷰가 없을 때 */}
-            {reviews.length === 0 && (
-              <div className={styles.empty}>
-                <p>텅</p>
-                <p>첫 리뷰를 남겨보세요✨</p>
-              </div>
-            )}
+            <article className={styles.reviewsWrap}>
+              {/* 리뷰가 없을 때 */}
+              {reviews.length === 0 && (
+                <div className={styles.empty}>
+                  <p>텅</p>
+                  <p>첫 리뷰를 남겨보세요✨</p>
+                </div>
+              )}
 
-            {/* 리뷰가 있을 때 */}
-            {reviews &&
-              reviews.map((review) => {
+              {/* 리뷰가 있을 때 */}
+              {reviews &&
+                reviews.map((review) => {
+                  return (
+                    <Accordion
+                      review={review}
+                      key={review.id}
+                      movieId={id}
+                      fetchReviews={fetchReviews}
+                    />
+                  );
+                })}
+            </article>
+          </main>
+
+          {/* 리뷰(main) 옆에 위치하고 있는 '관련 영화'  */}
+          <aside className={styles.relatedWrap}>
+            <h3>영화가 마음에 드셨다면 👀</h3>
+            {relatedMovies &&
+              relatedMovies.map((movie) => {
                 return (
-                  <Accordion
-                    review={review}
-                    key={review.id}
-                    movieId={id}
-                    fetchReviews={fetchReviews}
+                  <RelatedCard
+                    key={movie.id}
+                    title={movie.title}
+                    id={movie.id}
+                    postImage={movie.postImage}
+                    onClick={navigateOtherMovie(movie.id)}
                   />
                 );
               })}
-          </article>
-        </main>
-
-        {/* 리뷰(main) 옆에 위치하고 있는 '관련 영화'  */}
-        <aside className={styles.relatedWrap}>
-          <h3>영화가 마음에 드셨다면 👀</h3>
-          {relatedMovies &&
-            relatedMovies.map((movie) => {
-              return (
-                <RelatedCard
-                  key={movie.id}
-                  title={movie.title}
-                  id={movie.id}
-                  postImage={movie.postImage}
-                  onClick={navigateOtherMovie(movie.id)}
-                />
-              );
-            })}
-        </aside>
-      </section>
+          </aside>
+        </section>
+      </motion.div>
     </section>
   );
 };
