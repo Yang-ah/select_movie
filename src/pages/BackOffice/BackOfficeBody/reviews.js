@@ -113,7 +113,6 @@ const BackOfficeReviews = ()=>{
                 alert(errData.message);
             }
         }
-        alert('리뷰 일괄 삭제 완료')
         closeModal();
     }
 

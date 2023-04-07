@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./login.module.scss";
 import { Link } from "react-router-dom";
 import Input from "../../../components/Common/Input";
@@ -11,6 +11,21 @@ import { isValidateEmail } from "../../../utils";
 //recoil
 import { useRecoilState } from "recoil";
 import { isLoginAtom } from "../../../atom";
+import { getMoviesTop } from "../../../api/Movies";
+
+import Slider from "react-slick";
+
+const settings={
+  centerMode: true,
+  centerPadding: "0px",
+  dot: false,
+  arrow: false,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  slidesToScroll: 1,
+  slidesToShow: 1, //몇개씩 보여줌?,
+}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -79,10 +94,33 @@ const Login = () => {
       } //"message": "존재하지 않는 유저입니다."
     }
   };
+  const [movies,setMovies] = useState();
+
+  const showMoviesTop = async () => {
+    const response = await getMoviesTop();
+    setMovies(response.data.data);
+  };
+  
+  useEffect(() => {
+    showMoviesTop();
+  }, []);
 
   return (
     <main className={styles.wrapper}>
-      <section>
+      <section className={styles.movies}>
+      <Slider {...settings}>
+      {!!movies&& movies.map((movie, index)=>{
+        return(
+          <div >
+            <img className={styles.moviePoster} 
+            src={movies[index].postImage
+            }/>
+            </div>
+        );  
+      })}
+      </Slider >
+      </section>
+      <section className={styles.login}>
         <h1>로그인</h1>
         <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
           <Input
