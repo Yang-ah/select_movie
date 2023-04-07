@@ -31,14 +31,19 @@ export const getBookmarksMe = (page = 1, limit = 20) => {
 };
 
 // 영화 장르별로 불러오기
-export const getMoviesGenre = (page = 1, genreId) => {
+export const getMoviesGenre = (page = 1, genreIds) => {
   return apiClient.get(`/movies/genre`, {
     params: {
       page,
-      genreId,
       limit: 20,
+      genreIds,
     },
   });
+};
+
+// 영화 장르불러오기
+export const getMoviesGenres = () => {
+  return apiClient.get(`/movies/genres`);
 };
 
 // top10 영화 불러오기

@@ -14,8 +14,36 @@ import {
 import Button from "../Common/Button";
 import dayjs from "dayjs";
 
+import { Preview } from "../Comment"
+import { getReviewsMovie } from "../../api/Reviews";
+
+
+
 const MovieModal = ({ onModalClose ,movieId }) => {
 
+  //리뷰관련 내용 
+
+  const [ reviews , setReviews ] = useState();
+
+  const fetchReviews = async () => {
+
+    const response = await getReviewsMovie(movieId.id);
+    //  console.log(response.data);
+    setReviews(response.data);
+    console.log(response.data)
+   
+  };
+  console.log(movieId.id)
+  useEffect(() => {
+    fetchReviews();
+  }, [movieId.id]);
+
+  const setUserName = (user) => {
+    return user.nickName ?? user.name ?? '닉네임없음';
+  };
+
+  //ㅇ
+  
   const backdropVariants = {
     visible: { opacity: 1,
       scale : 1,
@@ -52,7 +80,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
 
 
   const { title , postImage ,runtime , releasedAt , plot  ,actors , genres , staffs, company} = movieId;
-
+``
   const modalRef1 = useRef(null);
     
   useEffect((onModalClose) => {
@@ -73,6 +101,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
   //NOTE: tag depth가 조금 깊다~
 
   return (
+
    <AnimatePresence
    initial="hidden"
    animate="visible"
@@ -170,7 +199,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               </div>
             </div>
           </div>
-                </motion.div>        
+          </motion.div>        
             <p className={styles.close} onClick={onModalClose}>
               x
             </p>
@@ -183,9 +212,23 @@ const MovieModal = ({ onModalClose ,movieId }) => {
          }}>
           <DoubleChevronRightIcon/>
           </div>
-          <div className={styles.moveBox}></div>
+          </div>
+          <div className={styles.moveReview}>
+          {reviews &&
+          reviews.slice(0, 2).map((review)=>{
+            return(
+              <Preview 
+              userName={setUserName(review.user)}
+              date={dayjs(review.createdAt).format('YYYY.MM.DD')}
+              comment={review.content}
+              rating={review.score}
+              />
+              )
+          })}
           </div>
           </div>
+          
+          {movieId.averageScore} 
           </motion.div>
         </div>
       </div>
@@ -195,3 +238,5 @@ const MovieModal = ({ onModalClose ,movieId }) => {
 
 
 export default MovieModal;
+
+//  {movieId.averageScore} 평균평점

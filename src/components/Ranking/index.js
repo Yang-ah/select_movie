@@ -56,7 +56,7 @@ export const RankingCarousel = () => {
         />
       )}
       <div className={styles.ranking}>
-        <h2 className={styles.header}>💪최근 1~5위 영화를 살펴보세요💪</h2>
+        <h2 className={styles.header}>💪가장 HOT한 영화 1~10위💪</h2>
         <div className={styles.slider}>
           <Slider {...settings}>
             {moviesTop &&
@@ -64,8 +64,8 @@ export const RankingCarousel = () => {
                 <div
                   className={
                     idx === slideIndex ? styles.slideActive : styles.slideBefore
-                  }
-                >
+                  }>
+                 <p className={styles.rankingNum}>{idx+1}</p>
                   <PosterL
                     key={movie.id}
                     title={movie.title}
