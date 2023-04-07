@@ -88,7 +88,7 @@ const Detail = () => {
   };
 
   return (
-    <section ref={ref}>
+    <main ref={ref}>
       <motion.div
         initial={{ y: -200 }}
         animate={{ y: 0 }}
@@ -152,7 +152,7 @@ const Detail = () => {
           </aside>
         </section>
       </motion.div>
-    </section>
+    </main>
   );
 };
 

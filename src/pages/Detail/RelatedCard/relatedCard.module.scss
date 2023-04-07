@@ -1,5 +1,5 @@
-@use "../../../styles/constants/" as c;
-@use "../../../styles/mixins" as m;
+@use '../../../styles/constants/' as c;
+@use '../../../styles/mixins' as m;
 
 .cardWrap {
   width: 100%;
@@ -36,27 +36,15 @@
     transition: 0.1s background-color ease-in-out;
 
     > h3 {
-      @include m.flex(space-between);
+      @include m.flex();
       width: 100%;
       position: absolute;
       color: white;
-      font-family: "Black Han Sans";
+      font-family: 'Black Han Sans';
+      font-size: 18px;
       left: 0;
       bottom: 4px;
-      padding: 4px 20px;
-      // background-color: c.$C_BLACK_10;
-
-      svg {
-        width: 16px;
-        height: 16px;
-        fill: white;
-      }
-      > .leftWrap {
-        @include m.flex();
-        svg {
-          margin-right: 4px;
-        }
-      }
+      padding: 4px;
     }
   }
 }

@@ -21,9 +21,20 @@
     border: none;
     background-color: c.$C_WHITE_10;
     color: white;
+    opacity: 0.6;
+    transition: 0.2s opacity ease-in;
+
+    &:focus {
+      opacity: 1;
+    }
   }
-  svg {
-    fill: c.$C_WHITE;
+
+  button {
+    > svg {
+      width: 22px;
+      fill: c.$C_WHITE;
+      opacity: 0.6;
+    }
   }
 }
 
@@ -45,12 +56,13 @@
 
   svg {
     fill: white;
-    width: 18px;
-    height: 18px;
-    transition: 0.2s transform ease-in;
+    width: 22px;
+    height: 22px;
+    opacity: 0.6;
+    transition: 0.2s opacity ease-in-out;
 
     &:hover {
-      transform: scale(1.1) translateY(-1px);
+      opacity: 1;
     }
   }
 }
