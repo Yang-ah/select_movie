@@ -147,7 +147,7 @@ const DetailInfo = ({ id }) => {
                 <div className={styles.starWrap}>
                   <span>평균 평점</span>
                   <SolidStarIcon />
-                  {/* {movieDetail?.averageScore?.toFixed(1)} */}
+                  {movieDetail?.averageScore?.toFixed(1)}
                 </div>
               </div>
             </div>

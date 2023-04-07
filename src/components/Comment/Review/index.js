@@ -73,7 +73,12 @@ const Review = ({
   return (
     <section className={cx(styles.wrap, { [styles.myReview]: isUserMe })}>
       <header>
-        <HeaderLeft type="review" userName={userName} date={date} />
+        <HeaderLeft
+          type="review"
+          userName={userName}
+          date={date}
+          writtenId={written}
+        />
         <article className={styles.right}>
           <HeaderRightRating rating={rating} />
           <HeaderRightButtons type="review" reviewId={reviewId} />
