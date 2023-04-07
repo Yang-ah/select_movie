@@ -1,10 +1,9 @@
-@use "../../../styles/mixins" as m;
-@use "../../../styles/constants" as c;
+@use '../../../styles/mixins' as m;
+@use '../../../styles/constants' as c;
 
 .wrap {
   width: 100%;
   color: c.$C_WHITE;
-  padding: 16px;
   background-color: transparent;
   margin-bottom: 10px;
 
@@ -15,7 +14,6 @@
   > main {
     @include m.flex();
     height: 160px;
-    padding: 8px 4px;
     font-size: 16px;
     > .input {
       @include m.flex();

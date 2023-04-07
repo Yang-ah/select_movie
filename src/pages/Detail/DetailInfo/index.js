@@ -86,70 +86,72 @@ const DetailInfo = ({ id }) => {
               <div className={styles.buttonWrap}>
                 <Button
                   name="isBookmarked"
-                  option="secondary"
                   className={styles.button}
                   onClick={onClickButton}
                 >
-                  북마크
                   {isBookmarked ? <SolidBookmarkIcon /> : <BookmarkIcon />}
+                  북마크
                 </Button>
                 <Button
-                  option="secondary"
                   name="isLiked"
                   className={styles.button}
                   onClick={onClickButton}
                 >
-                  좋아요
                   {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+                  좋아요
                 </Button>
               </div>
             </div>
             <div className={styles.rightWrap}>
-              <div className={styles.info}>
-                <h1>
-                  {movieDetail?.title} <p>{movieDetail?.runtime}분</p>
-                </h1>
-                <h2>
-                  <span>
-                    {dayjs(movieDetail?.releasedAt).format('YYYY.MM.DD')}
-                  </span>
-
-                  {movieDetail?.genres.map((genre) => {
-                    return <span key={genre.id}> {genre.name} /</span>;
-                  })}
-                </h2>
-
-                <h3>
-                  | 작품정보 |<p>{movieDetail?.plot}</p>
-                </h3>
-
-                <h3 className={styles.actors}>
-                  | 출연 |
+              <header>
+                <span className={styles.title}>{movieDetail?.title}</span>
+                <span className={styles.runtime}>
+                  {movieDetail?.runtime}분 |
+                </span>
+                <span>
+                  {dayjs(movieDetail?.releasedAt).format('YYYY.MM.DD')}
+                </span>
+              </header>
+              <section className={styles.info}>
+                <article>
+                  <h3>장르</h3>
+                  <p>
+                    {movieDetail?.genres.map((genre) => {
+                      return <span key={genre.id}>{genre.name}</span>;
+                    })}
+                  </p>
+                </article>
+                <article>
+                  <h3>줄거리</h3>
+                  <p className={styles.plot}>{movieDetail?.plot}</p>
+                </article>
+                <article>
+                  <h3>출연</h3>
                   <p>
                     {movieDetail?.actors.map((actor) => {
                       return <span key={actor.id}> {actor.name} </span>;
                     })}
                   </p>
-                </h3>
-
-                <h3 className={styles.actors}>
-                  | 제작 / 스태프 |
+                </article>
+                <article>
+                  <h3>제작 / 스태프</h3>
                   <p>
-                    <span>{movieDetail?.company} / </span>
+                    <span> {movieDetail?.company} | </span>
                     {movieDetail?.staffs.map((staff) => {
                       return <span key={staff.id}> {staff.name} </span>;
                     })}
                   </p>
-                </h3>
-              </div>
-              <div className={styles.chartStarWrap}>
+                </article>
+              </section>
+
+              <section className={styles.chartStarWrap}>
                 <Chart className={styles.chartWrap} />
                 <div className={styles.starWrap}>
                   <span>평균 평점</span>
                   <SolidStarIcon />
-                  {/* {movieDetail?.averageScore?.toFixed(1)} */}
+                  {movieDetail?.averageScore?.toFixed(1)}
                 </div>
-              </div>
+              </section>
             </div>
           </article>
         </section>

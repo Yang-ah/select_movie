@@ -9,6 +9,7 @@ import { ModifyIcon, TrashIcon } from '../../../assets/icon';
 import Modal from '../../Common/Modal';
 import { deleteReview, getMyReview, patchReview } from '../../../api/Reviews';
 import Stars from '../../Common/Stars';
+import Button from '../../Common/Button';
 
 const Review = ({
   comment,
@@ -73,7 +74,12 @@ const Review = ({
   return (
     <section className={cx(styles.wrap, { [styles.myReview]: isUserMe })}>
       <header>
-        <HeaderLeft type="review" userName={userName} date={date} />
+        <HeaderLeft
+          type="review"
+          userName={userName}
+          date={date}
+          writtenId={written}
+        />
         <article className={styles.right}>
           <HeaderRightRating rating={rating} />
           <HeaderRightButtons type="review" reviewId={reviewId} />
@@ -109,14 +115,19 @@ const Review = ({
       {canModify && (
         <main className={styles.modifyMain}>
           <Stars
+            className={styles.star}
             value={modifiedReview.score * 2}
             onChange={setModifiedReview}
           />
-          <textarea
-            value={modifiedReview.content}
-            onChange={onChangeModifiedReview}
-          />
-          <button onClick={onPatchReview}>수정</button>
+          <div className={styles.inputWrap}>
+            <textarea
+              value={modifiedReview.content}
+              onChange={onChangeModifiedReview}
+            />
+            <Button option="secondary" onClick={onPatchReview}>
+              수정
+            </Button>
+          </div>
         </main>
       )}
     </section>
