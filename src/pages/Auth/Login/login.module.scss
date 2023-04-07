@@ -12,8 +12,12 @@
     width: 252px;
     height: 360px;
     background-color: c.$C_BACKGROUND;
+    //height: 100%;
+    //width: 100%;
+    //position: absolute;
   }
   > .login {
+    //z-index: 999;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,4 +88,5 @@
 .moviePoster{
   height: 100%;
   width: 100%;
+  background-size: contain;
 }

@@ -111,7 +111,11 @@ const Login = () => {
       <Slider {...settings}>
       {!!movies&& movies.map((movie, index)=>{
         return(
-          <div ><img className={styles.moviePoster} src={movies[index].postImage}/></div>
+          <div >
+            <img className={styles.moviePoster} 
+            src={movies[index].postImage
+            }/>
+            </div>
         );  
       })}
       </Slider >
