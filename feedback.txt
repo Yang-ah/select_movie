@@ -1,18 +1,26 @@
-1. detail page 
-- 기능 추가 : 리뷰&댓글 삭제, 좋아요&북마크 추가/삭제
-- 문제 : detail.js > deps에 ‘reviews’ 넣으면 무한 랜더링이 납니다..
-어떻게 리뷰와 댓글을 실시간으로 반영할 수 있을지 궁금합니다 !
+테스트 유저
+a@a.com / a
 
-2.my page 제작중
-
+관리자 로그인 
+admin@a.com / admin
 
 
->>BackOffice page 
-//관리자 로그인은 [관리자 페이지]를 클릭하면 됩니다.
-//ID: admin@a.com  PW: admin
- >페이지네이션 추가
- >검색기능 추가
-? 시호 검색시, '시호' 외에 '네가 내가 되었으면 좋겠다' 두개가 검색됩니다...
+1.home page
+장르별 영화 로 캐러셀 출력
 
->수정 삭제 기능 구현 중
-index 값을 체크박스로 받고 싶은 데 방법이 있을까요?
+2. detail page 
+
+
+
+
+3.my page
+
+
+4.BackOffice page 
+try - catch 안에서 alert 가 작동을 안 함니다.
++소년들 영화 포스터 추가
+
+>> search page 추가
+header에 있는 검색 기능 사용시 출력
+
++review/me/paging 에 title,createAt 필요
