@@ -1,46 +1,35 @@
-import React, { useEffect, useState } from "react";
-import styles from "./login.module.scss";
-import { Link } from "react-router-dom";
-import Input from "../../../components/Common/Input";
+import React, { useEffect, useState } from 'react';
+import styles from './login.module.scss';
+import { Link, useLocation } from 'react-router-dom';
+import Input from '../../../components/Common/Input';
 //import Button from "../../../components/Common/Button";
 
-import { useNavigate } from "react-router-dom";
-import { login } from "../../../api/Auth";
-import { isValidateEmail } from "../../../utils";
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../../api/Auth';
+import { isValidateEmail } from '../../../utils';
 
 //recoil
-import { useRecoilState } from "recoil";
-import { isLoginAtom } from "../../../atom";
-import { getMoviesTop } from "../../../api/Movies";
-
-import Slider from "react-slick";
-
-const settings={
-  centerMode: true,
-  centerPadding: "0px",
-  dot: false,
-  arrow: false,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  slidesToScroll: 1,
-  slidesToShow: 1, //몇개씩 보여줌?,
-}
+import { useSetRecoilState } from 'recoil';
+import { isLoginAtom } from '../../../atom';
 
 const Login = () => {
   const navigate = useNavigate();
+  const locations = useLocation();
 
   //recoil
-  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  //NOTE: useSetRecoilState => set 함수
+  const setIsLogin = useSetRecoilState(isLoginAtom);
+  //NOTE: useRecoilValue => value만 뽑아올 수 있다~
+  // const isLogin = useRecoilValue(isLoginAtom);
 
   const [form, setForm] = useState({
-    userId: "",
-    password: "",
+    userId: '',
+    password: '',
   });
 
   const [err, setErr] = useState({
-    userId: "",
-    password: "",
+    userId: '',
+    password: '',
   });
 
   const onChange = (e) => {
@@ -52,16 +41,16 @@ const Login = () => {
     e.preventDefault();
 
     if (!form.userId) {
-      return setErr({ ...err, userId: "이메일을 입력해주세요" });
+      return setErr({ ...err, userId: '이메일을 입력해주세요' });
     }
     if (!isValidateEmail(form.userId)) {
-      return setErr({ ...err, userId: "이메일 양식이 틀립니다" });
+      return setErr({ ...err, userId: '이메일 양식이 틀립니다' });
     }
     if (!form.password) {
       return setErr({
         ...err,
-        userId: "",
-        password: "비밀번호를 입력해주세요",
+        userId: '',
+        password: '비밀번호를 입력해주세요',
       });
     }
 
@@ -77,12 +66,17 @@ const Login = () => {
       if (response.data) {
         const { accessToken, refreshToken } = response.data;
         //NOTE: 토큰 저장
-        localStorage.setItem("ACCESS_TOKEN", accessToken);
-        localStorage.setItem("REFRESH_TOKEN", refreshToken);
+        localStorage.setItem('ACCESS_TOKEN', accessToken);
+        localStorage.setItem('REFRESH_TOKEN', refreshToken);
 
         //setIsLogin은 recoil state
         setIsLogin(true);
-        navigate(-1);
+        //NOTE: location의 state를 이용해서 분기처리
+        if (locations.state.prev === 'register') {
+          navigate('/');
+        } else {
+          navigate(-1);
+        }
       }
     } catch (err) {
       const errData = err.response.data;
@@ -94,32 +88,9 @@ const Login = () => {
       } //"message": "존재하지 않는 유저입니다."
     }
   };
-  const [movies,setMovies] = useState();
-
-  const showMoviesTop = async () => {
-    const response = await getMoviesTop();
-    setMovies(response.data.data);
-  };
-  
-  useEffect(() => {
-    showMoviesTop();
-  }, []);
 
   return (
     <main className={styles.wrapper}>
-      {/* <section className={styles.movies}>
-      <Slider {...settings}>
-      {!!movies&& movies.map((movie, index)=>{
-        return(
-          <div >
-            <img className={styles.moviePoster} 
-            src={movies[index].postImage
-            }/>
-            </div>
-        );  
-      })}
-      </Slider >
-      </section> */}
       <section className={styles.login}>
         <h1>로그인</h1>
         <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
@@ -142,12 +113,12 @@ const Login = () => {
             value={form.password}
             onChange={onChange}
           />
-          <Link to="/auth/register" style={{ textDecoration: "none" }}>
+          <Link to="/auth/register" style={{ textDecoration: 'none' }}>
             <p className={styles.registerLink}>회원가입</p>
           </Link>
           <button
             className={styles.submitButton}
-            children={"로그인"}
+            children={'로그인'}
             type="submit"
             form="loginForm"
           />

@@ -135,10 +135,10 @@ const DetailInfo = ({ id }) => {
                 </article>
                 <article>
                   <h3>제작 / 스태프</h3>
-                  <p>
+                  <p className={styles.staffs}>
                     <span> {movieDetail?.company} | </span>
                     {movieDetail?.staffs.map((staff) => {
-                      return <span key={staff.id}> {staff.name} </span>;
+                      return <span key={staff.id}>{staff.name}</span>;
                     })}
                   </p>
                 </article>

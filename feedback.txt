@@ -10,11 +10,7 @@ admin@a.com / admin
 
 2. detail page 
 
-
-
-
-3.my page
-
+3. my page
 
 4.BackOffice page 
 try - catch 안에서 alert 가 작동을 안 함니다.
@@ -23,4 +19,4 @@ try - catch 안에서 alert 가 작동을 안 함니다.
 >> search page 추가
 header에 있는 검색 기능 사용시 출력
 
-+review/me/paging 에 title,createAt 필요
++review/me/paging 에 title,createdAt 필요
