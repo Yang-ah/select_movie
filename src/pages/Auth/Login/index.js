@@ -107,7 +107,7 @@ const Login = () => {
 
   return (
     <main className={styles.wrapper}>
-      <section className={styles.movies}>
+      {/* <section className={styles.movies}>
       <Slider {...settings}>
       {!!movies&& movies.map((movie, index)=>{
         return(
@@ -119,7 +119,7 @@ const Login = () => {
         );  
       })}
       </Slider >
-      </section>
+      </section> */}
       <section className={styles.login}>
         <h1>로그인</h1>
         <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>

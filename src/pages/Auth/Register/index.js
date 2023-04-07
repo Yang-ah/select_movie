@@ -108,7 +108,7 @@ const Register = () => {
 
   return (
     <main className={styles.wrapper}>
-      <section className={styles.movies}>
+      {/* <section className={styles.movies}>
       <Slider {...settings}>
       {!!movies&& movies.map((movie, index)=>{
         return(
@@ -116,7 +116,7 @@ const Register = () => {
         );  
       })}
       </Slider >
-      </section>
+      </section> */}
       <section className={styles.register}>
         <h1>회원가입</h1>
         <form
