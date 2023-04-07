@@ -74,7 +74,9 @@ const Info = () => {
         </div>
         <div className={styles.rating}>
           <p className={styles.top}>⭐ 평균 평점 ⭐</p>
-          <p className={styles.middle}>{userInfo?.averageScore.toFixed(1)}</p>
+          {!!userInfo?.averageScore ?
+          <p className={styles.middle}>{userInfo?.averageScore.toFixed(1)}</p>:
+          <p className={styles.middle}>0</p>}
         </div>
         <div className={styles.review}>
           <p className={styles.top}>✍ 내가 남긴 리뷰 수 ✍</p>
