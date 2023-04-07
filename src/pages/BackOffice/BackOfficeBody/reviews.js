@@ -104,7 +104,7 @@ const BackOfficeReviews = ()=>{
             for(const element of ids){
                 const response = deleteReviewAdmin(element);
                 if(response.status===200){
-                    return alert('리뷰 일괄 삭제 완료')//작동을 안함
+                    alert('리뷰 일괄 삭제 완료')//작동을 안함
                 }
             }
         }catch(err){
