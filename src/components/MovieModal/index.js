@@ -10,12 +10,40 @@ import {
   SolidBookmarkIcon,
   SolidHeartIcon,
   SolidStarIcon,
-} from '../../assets/icon';
-import Button from '../Common/Button';
-import dayjs from 'dayjs';
-import { Preview } from '../Comment';
+} from "../../assets/icon";
+import Button from "../Common/Button";
+import dayjs from "dayjs";
 
-const MovieModal = ({ onModalClose, movieId }) => {
+import { Preview } from "../Comment"
+import { getReviewsMovie } from "../../api/Reviews";
+
+
+
+const MovieModal = ({ onModalClose ,movieId }) => {
+
+  //리뷰관련 내용 
+
+  const [ reviews , setReviews ] = useState();
+
+  const fetchReviews = async () => {
+
+    const response = await getReviewsMovie(movieId.id);
+    //  console.log(response.data);
+    setReviews(response.data);
+    console.log(response.data)
+   
+  };
+  console.log(movieId.id)
+  useEffect(() => {
+    fetchReviews();
+  }, [movieId.id]);
+
+  const setUserName = (user) => {
+    return user.nickName ?? user.name ?? '닉네임없음';
+  };
+
+  //ㅇ
+  
   const backdropVariants = {
     visible: { opacity: 1, scale: 1 },
     hidden: { opacity: 0, scale: 0.3, backgroundColor: 'rgba(0, 0, 0, 0.5)' },
@@ -43,18 +71,9 @@ const MovieModal = ({ onModalClose, movieId }) => {
     isBookmarked: false,
   });
 
-  const {
-    title,
-    postImage,
-    runtime,
-    releasedAt,
-    plot,
-    actors,
-    genres,
-    staffs,
-    company,
-  } = movieId;
 
+  const { title , postImage ,runtime , releasedAt , plot  ,actors , genres , staffs, company} = movieId;
+``
   const modalRef1 = useRef(null);
 
   useEffect((onModalClose) => {
@@ -75,7 +94,12 @@ const MovieModal = ({ onModalClose, movieId }) => {
   //NOTE: tag depth가 조금 깊다~
 
   return (
-    <AnimatePresence initial="hidden" animate="visible" exit="exit">
+
+   <AnimatePresence
+   initial="hidden"
+   animate="visible"
+   exit="exit"
+   >
       <div className={styles.modal_overlay}>
         <div ref={modalRef1} className={styles.modal}>
           <motion.div
@@ -164,37 +188,48 @@ const MovieModal = ({ onModalClose, movieId }) => {
                         </p>
                       </h3>
 
-                      <h3 className={styles.actors}>
-                        | 제작 / 스태프 |
-                        <p>
-                          <span>{company} / </span>
-                          {staffs.map((staff) => {
-                            return <span key={staff.id}> {staff.name} </span>;
-                          })}
-                        </p>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-              <p className={styles.close} onClick={onModalClose}>
-                x
-              </p>
-              <div className={styles.moveSection}>
-                <div
-                  className={styles.moveDetail}
-                  onClick={() => {
-                    navigate(`/detail/${movieId.id}`, {
-                      to: true,
-                    });
-                  }}
-                >
-                  <DoubleChevronRightIcon />
-                </div>
-                <div className={styles.moveBox}></div>
-                <Preview />
+                <h3 className={styles.actors}>
+                  | 제작 / 스태프 |
+                  <p>
+                    <span>{company} / </span>
+                    {staffs.map((staff) => {
+                      return <span key={staff.id}> {staff.name} </span>;
+                    })}
+                  </p>
+                </h3>
               </div>
             </div>
+          </div>
+          </motion.div>        
+            <p className={styles.close} onClick={onModalClose}>
+              x
+            </p>
+            <div className={styles.moveSection}>
+          <div className={styles.moveDetail}
+            onClick={() => {
+            navigate(`/detail/${movieId.id}`, {
+              to: true,
+            });
+         }}>
+          <DoubleChevronRightIcon/>
+          </div>
+          </div>
+          <div className={styles.moveReview}>
+          {reviews &&
+          reviews.slice(0, 2).map((review)=>{
+            return(
+              <Preview 
+              userName={setUserName(review.user)}
+              date={dayjs(review.createdAt).format('YYYY.MM.DD')}
+              comment={review.content}
+              rating={review.score}
+              />
+              )
+          })}
+          </div>
+          </div>
+          
+          {movieId.averageScore} 
           </motion.div>
         </div>
       </div>
@@ -203,3 +238,5 @@ const MovieModal = ({ onModalClose, movieId }) => {
 };
 
 export default MovieModal;
+
+//  {movieId.averageScore} 평균평점

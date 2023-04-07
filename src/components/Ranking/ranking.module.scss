@@ -35,3 +35,17 @@
   .slideActive {
     opacity: 1;
   }
+
+  .rankingNum{
+    font-size: 13rem;
+    text-shadow: 5px 5px #558ABB;
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+    top : 62%;
+    z-index: 999;
+
+    &:hover{
+      transition: .5s;
+    }
+  }

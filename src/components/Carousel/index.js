@@ -38,7 +38,10 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
+
 export const HomeCarousel = () => {
+ 
+ // 모달 관련 변수
   const navigate = useNavigate;
   const [isShow, setIsShow] = useState(false);
   const [moviesTop, setMoviesTop] = useState({ data: [] });
@@ -49,6 +52,7 @@ export const HomeCarousel = () => {
     setMoviesTop(response.data);
   };
 
+  
   useEffect(() => {
     fetchMoviesTop();
   }, []);
