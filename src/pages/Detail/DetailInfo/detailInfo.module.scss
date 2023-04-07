@@ -1,5 +1,5 @@
-@use "../../../styles/constants/" as c;
-@use "../../../styles/mixins" as m;
+@use '../../../styles/constants/' as c;
+@use '../../../styles/mixins' as m;
 
 $HEADER_INFO_PADDING_L: 40px;
 $HEADER_INFO_PADDING_M: 20px;
@@ -57,6 +57,8 @@ $HEADER_INFO_PADDING_S: 12px;
       width: 88px;
       height: 40px;
       font-size: 16px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
       &:hover > svg {
         transform: translateY(-2px) scale(1.1);
@@ -82,27 +84,30 @@ $HEADER_INFO_PADDING_S: 12px;
 }
 
 .rightWrap {
-  max-width: 500px;
+  max-width: 650px;
+  line-height: 40px;
 
+  > h1 {
+    @include m.flex(flex-start, flex-end);
+    font-size: 52px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    > p {
+      font-size: 20px;
+      margin-bottom: 6px;
+      font-weight: 400;
+      padding: 0 4px;
+    }
+  }
   > .info {
     width: 100%;
-    height: 100%;
-
-    > h1 {
-      @include m.flex(flex-start, flex-end);
-      font-size: 52px;
-      font-weight: 800;
-      > p {
-        font-size: 20px;
-        margin-bottom: 6px;
-        font-weight: 400;
-        padding: 0 4px;
-      }
-    }
+    max-height: 300px;
+    overflow-y: auto;
 
     > h2 {
       font-size: 24px;
-      padding: $HEADER_INFO_PADDING_S 0 $HEADER_INFO_PADDING_L 0;
+      padding: 0 8px;
+      // padding: $HEADER_INFO_PADDING_S 0 $HEADER_INFO_PADDING_L 0;
       > span:first-of-type {
         margin-right: 12px;
       }
