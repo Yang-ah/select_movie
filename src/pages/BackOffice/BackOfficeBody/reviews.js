@@ -102,15 +102,13 @@ const BackOfficeReviews = () => {
       for (const element of ids) {
         const response = deleteReviewAdmin(element);
         if (response.status === 204) {
-          alert('리뷰 일괄 삭제 완료');
-          closeModal;
+          alert('리뷰 일괄 삭제 완료');//왜 출력이 안되는 가...
         }
       }
     } catch (err) {
       const errData = err.response.data;
         alert(errData.message);
     }
-    closeModal();
   };
 
   useEffect(() => {
@@ -119,7 +117,7 @@ const BackOfficeReviews = () => {
     } else {
       onSearchPageChange();
     }
-  }, [pageNumber, modalOpen, modalOpen2]);
+  }, [pageNumber, modalOpen, modalOpen2, deleteChecked]);
 
   return (
     <>

@@ -6,20 +6,7 @@ import Input from '../../../components/Common/Input';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../../api/Auth';
 import { saveTokens, isValidateEmail } from '../../../utils';
-import Slider from 'react-slick';
 import { getMoviesTop } from '../../../api/Movies';
-
-const settings = {
-  centerMode: true,
-  centerPadding: '0px',
-  dot: false,
-  arrow: false,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  slidesToScroll: 1,
-  slidesToShow: 1, //몇개씩 보여줌?,
-};
 
 const Register = () => {
   const navigate = useNavigate();

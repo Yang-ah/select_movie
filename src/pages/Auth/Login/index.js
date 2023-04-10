@@ -75,17 +75,12 @@ const Login = () => {
         if (locations.state.prev === 'register') {
           navigate('/');
         } else {
-          navigate(-1);
+          navigate(-1); //동작을 안함...
         }
       }
     } catch (err) {
       const errData = err.response.data;
-      if (errData.statusCode === 400) {
         alert(errData.message);
-      } //"message": "비밀번호가 일치하지 않습니다."
-      if (errData.statusCode === 404) {
-        alert(errData.message);
-      } //"message": "존재하지 않는 유저입니다."
     }
   };
 

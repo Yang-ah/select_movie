@@ -12,11 +12,20 @@ admin@a.com / admin
 
 3. my page
 
-4.BackOffice page 
-try - catch 안에서 alert 가 작동을 안 함니다.
-+소년들 영화 포스터 추가
+4.BackOffice page
++>alert를 출력해야 하지만, 리랜더링 때문에 alert가 출력이 안됩니다.
+(/users /reviews)
 
->> search page 추가
-header에 있는 검색 기능 사용시 출력
++>삭제 후, BackOfficeHeader 에 있는 전체 회원수, 전체 리뷰수 가 리랜더링이 안되는 상황입니다.
+이를 위해서, 
+1. BackOfficeHeader의 useEffect에 state를 추가 해야 할것 같은 데,
+2. backOfficeBody의 state를 리코일을 사용하지 않고 header로 보내는 방법이 있을 까요?
 
-+review/me/paging 에 title,createdAt 필요
+>로그인 페이지에서 로그인 완료 후, 뒤로가기가 안 됩니다. (75번 줄)
+```
+if (locations.state.prev === 'register') {
+    navigate('/');
+} else {
+    navigate(-1); //동작을 안함...
+}
+```

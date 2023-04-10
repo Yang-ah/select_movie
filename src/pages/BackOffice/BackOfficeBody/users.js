@@ -104,15 +104,13 @@ const BackOfficeUsers = ()=>{
             for(const element of ids){
                 const response = deleteUsers(element);
                 if(response.status===204){
-                    alert('회원 일괄 삭제 완료')//안나옴
-                    responseData();
+                    alert('회원 일괄 삭제 완료');//왜 출력이 안되는 가...
                 }
             }
         }catch(err){
             const errData = err.response.data;
             alert(errData.message);
         }
-        closeModal();
     }
 
     useEffect(()=>{
@@ -121,7 +119,7 @@ const BackOfficeUsers = ()=>{
         }else{
             onSearchPageChange()
         }
-    },[pageNumber, modalOpen, modalOpen2]);
+    },[pageNumber, modalOpen, modalOpen2,deleteChecked]);
 
 return(
 <>

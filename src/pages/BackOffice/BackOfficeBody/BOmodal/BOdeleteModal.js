@@ -50,7 +50,7 @@ const BOdeleteModal = ({
       try {
         const response2 = await deleteReviewAdmin(ID);
           if(response2.status===204){
-            alert('리뷰를 삭제를 완료했습니다.')//리렌더링 때문에 사라짐
+            alert('리뷰를 삭제를 완료했습니다.')
             closeModal();
           }
       } catch(err) {
