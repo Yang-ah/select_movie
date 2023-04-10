@@ -22,6 +22,7 @@ admin@a.com / admin
 2. backOfficeBody의 state를 리코일을 사용하지 않고 header로 보내는 방법이 있을 까요?
 
 >로그인 페이지에서 로그인 완료 후, 뒤로가기가 안 됩니다. (75번 줄)
+다른 page의 경우 locations.state가 지정이 안되서 if문이 작동을 안하는 경우인가요?
 ```
 if (locations.state.prev === 'register') {
     navigate('/');
