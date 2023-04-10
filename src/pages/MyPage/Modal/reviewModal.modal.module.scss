@@ -1,5 +1,5 @@
-@use "../../../styles/constants" as c;
-@use "../../../styles/mixins" as m;
+@use '../../../styles/constants' as c;
+@use '../../../styles/mixins' as m;
 
 //CSSTransition
 .modalEnterActive {
@@ -35,8 +35,8 @@
 //FIXMODAL
 .containerFix {
   /* 모달창 크기 */
-  min-width: 50%;
-  height: 600px;
+  min-width: 40%;
+  height: 500px;
 
   /* 모달창 디자인 */
   background-color: c.$C_WHITE;
@@ -61,60 +61,22 @@
     align-items: center;
     white-space: nowrap;
   }
-  > .contentFix {
-    padding: 5%;
+  > .box {
+    padding: 35px;
     width: 100%;
     height: 100%;
-    align-items: flex-start;
-    height: calc(100% - 70px);
-  }
-}
-
-//DELETEMODAL
-.containerDelete {
-  /* 모달창 크기 */
-  min-width: 20%;
-  height: 400px;
-
-  /* 모달창 디자인 */
-  background-color: c.$C_WHITE;
-  border-radius: c.$S_RADIUS;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  > .titleDelete {
-    height: 40px;
-    min-width: 100%;
-    font-size: 24px;
-    font-weight: 600;
-    padding: 30px;
-    background-color: c.$C_FOOTER;
-    color: c.$C_WHITE;
-    border-radius: c.$S_RADIUS c.$S_RADIUS 0 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-  }
-  > .contentDelete {
-    padding: 5% auto;
-    min-width: 100%;
-    height: calc(100% - 70px);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: black;
-    font-size: 24px;
-    font-weight: 600;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    .textarea {
+      padding: 12px;
+      font-size: 20px;
+      font-weight: 500;
+      background-color: rgba(78, 63, 112, 0.082);
+      line-height: 30px;
+      border: none;
+      border-radius: 12px;
+      width: 100%;
+      height: 100%;
+      align-items: flex-start;
+    }
   }
 }
 

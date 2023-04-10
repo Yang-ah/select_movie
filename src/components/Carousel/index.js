@@ -1,31 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../atom';
+import './carousel.scss';
+import styles from './my.module.scss';
 import {
   getMoviesTop,
   getMovies,
   getMoviesMeLike,
-  getBookmarksMe,
+  postMovieLike,
+  deleteMovieLike,
 } from '../../api/Movies';
+import Button from '../Common/Button';
 import { getBookmarksPage } from '../../api/Boorkmarks';
-import { getReviewsMe } from '../../api/Reviews';
-import { useNavigate } from 'react-router-dom';
-import './carousel.scss';
-import styles from './myCarousel.module.scss';
 import {
   CaretLeftIcon,
   CaretRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  HeartIcon,
   SolidHeartIcon,
+  BookmarkIcon,
   SolidBookmarkIcon,
-  ModifyIcon,
-  TrashIcon,
-  SolidStarIcon,
 } from '../../assets/icon';
 
 import PosterH from '../PosterH';
-import { PosterHeart, PosterMark } from '../PosterM';
+import { PosterM } from '../PosterM';
 import MovieModal from '../MovieModal';
 
 export const PrevArrow = (props) => {
@@ -64,7 +65,7 @@ export const HomeCarousel = () => {
   };
   const settings = {
     dots: false,
-    arrows: false,
+    arrow: false,
     infinite: false,
     speed: 600,
     slidesToShow: 6,
@@ -98,25 +99,44 @@ export const HomeCarousel = () => {
   );
 };
 
-export const MyCarousel = () => {
-  const [moviesLike, setMoviesLike] = useState();
-  const [moviesMark, setMoviesMark] = useState([]);
+export const MyCarousel = ({ id, name }) => {
+  const isLogin = useRecoilValue(isLoginAtom);
+  const [moviesLike, setMoviesLike] = useState(); //좋아요 목록
+  const [moviesMark, setMoviesMark] = useState([]); //북마크 목록
+  const [cancelLike, setCancelLike] = useState(false); //좋아요 취소
+  const [cancelBookmark, setCancelBookmark] = useState(false); //북마크 취소
 
+  //좋아요 목록
   const fetchMoviesLike = async () => {
-    const response = await getMoviesMeLike();
+    const response = await getMoviesMeLike(id);
     setMoviesLike(response.data);
-    console.log(response.data);
+    console.log('좋아요 리스트', response.data);
+    setCancelLike(response.data.isLike);
+    console.log('좋아요 여부', response.data.isLike);
   };
+  //북마크 목록
   const fetchMoviesMark = async () => {
     const response = await getBookmarksPage(1, 20);
     setMoviesMark(response.data.data);
-    console.log(response.data.data);
+    console.log('북마크 리스트', response.data.data);
+  };
+
+  //좋아요 취소
+  const onClick = async (e) => {
+    const { name } = e.currentTarget;
+
+    if (name === 'cancelLike') {
+      cancelLike ? await postMovieLike(id) : await deleteMovieLike(id);
+      setCancelLike((cur) => !cur);
+      await fetchMoviesLike();
+      //console.log('좋아요 취소');
+    }
   };
 
   useEffect(() => {
     fetchMoviesLike();
     fetchMoviesMark();
-  }, []);
+  }, [id]);
 
   const settings = {
     dots: false,
@@ -124,159 +144,71 @@ export const MyCarousel = () => {
     infinite: false,
     speed: 600,
     slidesToShow: 6,
-    slidesToScroll: 4,
+    slidesToScroll: 5,
     prevArrow: <ChevronLeftIcon />,
     nextArrow: <ChevronRightIcon />,
   };
 
   return (
     <>
-      <p>
-        <SolidHeartIcon className={styles.myIcon} />
+      <p className={styles.category}>
+        <SolidHeartIcon className={styles.categoryIcon} />
         내가 좋아하는 컨텐츠
       </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesLike &&
             moviesLike?.map((index) => (
-              <div className={styles.wrapper}>
-                <div className={styles.screen}>
-                  <article className={styles.layerUp}>
-                    <div className={styles.title}>{index.title}</div>
-                    <button className={styles.icon}>
-                      {moviesLike ? <SolidHeartIcon /> : <HeartIcon />}
-                    </button>
-                  </article>
-                  <Link to={`/detail/${index.id}`}>
-                    <article className={styles.layerDown}>
-                      <img
-                        className={styles.postImage}
-                        src={index.postImage}
-                        alt={index.title}
-                      />
-                    </article>
-                  </Link>
-                </div>
-              </div>
+              <PosterM
+                className={styles.like}
+                name="cancelLike"
+                id={index.id}
+                title={index.title}
+                postImage={index.postImage}
+                children={
+                  cancelLike ? (
+                    <HeartIcon className={styles.icon} />
+                  ) : (
+                    <SolidHeartIcon className={styles.icon} />
+                  )
+                }
+                onClick={onClick}
+              >
+                {cancelLike ? (
+                  <HeartIcon className={styles.icon} />
+                ) : (
+                  <SolidHeartIcon className={styles.icon} />
+                )}
+              </PosterM>
             ))}
         </Slider>
       </div>
 
-      <p>
-        <SolidBookmarkIcon className={styles.myIcon} />
+      <p className={styles.category}>
+        <SolidBookmarkIcon className={styles.categoryIcon} />
         내가 북마크 한 컨텐츠
       </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesMark &&
             moviesMark?.map((index) => (
-              <div className={styles.wrapper}>
-                <div className={styles.screen}>
-                  <article className={styles.layerUp}>
-                    <div className={styles.title}>{index.movie.title}</div>
-                    <button className={styles.icon}>
-                      {moviesMark ? <SolidHeartIcon /> : <HeartIcon />}
-                    </button>
-                  </article>
-                  <Link to={`/detail/${index.movie.id}`}>
-                    <article className={styles.layerDown}>
-                      <img
-                        className={styles.postImage}
-                        src={index.movie.postImage}
-                        alt={index.movie.title}
-                      />
-                    </article>
-                  </Link>
-                </div>
-              </div>
+              <PosterM
+                className={styles.bookMark}
+                id={index.movie.id}
+                title={index.movie.title}
+                postImage={index.movie.postImage}
+                children={
+                  cancelBookmark ? (
+                    <BookmarkIcon className={styles.icon} />
+                  ) : (
+                    <SolidBookmarkIcon className={styles.icon} />
+                  )
+                }
+                onClick={onClick}
+              />
             ))}
         </Slider>
       </div>
-    </>
-  );
-};
-
-export const ReviewCarousel = () => {
-  const [reviews, setReviews] = useState([]);
-
-  const fetchMyReviews = async () => {
-    const response = await getReviewsMe(1, 20);
-    setReviews(response.data.data);
-  };
-
-  useEffect(() => {
-    fetchMyReviews();
-  }, []);
-
-  const settings = {
-    rows: 2,
-    swipe: true,
-    swipeToScroll: false,
-    dots: true,
-    dotsClass: 'slick-dots',
-    arrows: false,
-    infinite: false,
-    speed: 600,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    draggable: false,
-    appendDots: (dots) => <ul> {dots} </ul>,
-    customPaging: (i) => <div>{i + 1}</div>,
-  };
-
-  return (
-    <>
-      <p>
-        <ModifyIcon className={styles.myIcon} />
-        내가 작성한 리뷰
-      </p>
-      <section className={styles.wrapR}>
-        <Slider {...settings}>
-          {reviews.map((item, index) => {
-            return (
-              <div>
-                <div className={styles.wrapperR}>
-                  <section className={styles.screenR}>
-                    <article className={styles.layerUpR}>
-                      <button className={styles.fixModalR}>
-                        <ModifyIcon className={styles.iconR} />
-                      </button>
-                      <button className={styles.deleteModalR}>
-                        <TrashIcon className={styles.iconR} />
-                      </button>
-                    </article>
-
-                    <article className={styles.layerDownR}>
-                      <aside className={styles.topR}>
-                        <div className={styles.leftR}>
-                          <p className={styles.titleR}>
-                            id:{reviews[index].id}
-                          </p>
-                          <p className={styles.titleR}>
-                            title:{reviews[index].titleR}
-                          </p>
-                          <p className={styles.createAtR}>
-                            createAt:{reviews[index].createAtR}
-                          </p>
-                        </div>
-                        <div className={styles.scoreR}>
-                          <SolidStarIcon className={styles.starR} />
-                          {reviews[index].score}
-                        </div>
-                      </aside>
-                      <p className={styles.contentR}>
-                        {reviews[index].content.length > 200
-                          ? reviews[index].content.substring(0, 200) + '...'
-                          : reviews[index].content}
-                      </p>
-                    </article>
-                  </section>
-                </div>
-              </div>
-            );
-          })}
-        </Slider>
-      </section>
     </>
   );
 };
