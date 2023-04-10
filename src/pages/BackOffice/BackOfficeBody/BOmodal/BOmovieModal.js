@@ -64,15 +64,13 @@ const BOmovieModal = ({
     e.preventDefault();
     try{
       const responsePatch = await patchMovie(ID,postForm);
-      if(responsePatch.status===200){
-        responseData();
+      if(responsePatch.status===204){
+        closeModal();
         alert('수정완료'); //alert 동작을 안함
       }
     } catch(err) {
       const errData = err.response.data;
-      if (errData.statusCode !== 200){
         alert(errData.message);
-      }
     }
   };
 

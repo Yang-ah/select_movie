@@ -8,7 +8,6 @@ import {
     TrashIcon 
 } from "../../../assets/icon";
 import { getUsers, deleteUsers } from "../../../api/Users";
-//import BOmovieModal from "./BOmodal/BOuserModal";
 import BOpageNation from "./BOpageNation/BOpageNation";
 import BOuserModal from "./BOmodal/BOuserModal";
 import BOdeleteModal from "./BOmodal/BOdeleteModal";
@@ -18,7 +17,6 @@ const LIMIT =10;
 
 const BackOfficeUsers = ()=>{
     const [pageNumber, setPageNumber] = useState(1);
-    //const [SearchPageNumber, setSearchPageNumber] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalOpen2, setModalOpen2] = useState(false);
     const [usersData, setUsersData] = useState();
@@ -105,18 +103,15 @@ const BackOfficeUsers = ()=>{
         try{
             for(const element of ids){
                 const response = deleteUsers(element);
-                if(response.status===200){
+                if(response.status===204){
                     alert('회원 일괄 삭제 완료')//안나옴
                     responseData();
                 }
             }
         }catch(err){
             const errData = err.response.data;
-            if (errData.statusCode !== 200){
-                alert(errData.message);
-            }
+            alert(errData.message);
         }
-        alert('회원 일괄 삭제 완료');
         closeModal();
     }
 
