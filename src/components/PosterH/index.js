@@ -15,8 +15,8 @@ const PosterH = ({ title , postImage , onModalClick , id  , rating}) => {
               <SolidStarIcon className={styles.star} />
               {rating}
             </div>
-            <button className={styles.heart}>
-              <SolidHeartIcon />
+            <button className={styles.icon}>
+              <SolidHeartIcon height="24px" />
             </button>
           </div>
         </article>

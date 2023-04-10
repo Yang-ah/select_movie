@@ -2,15 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./modal.module.scss";
 import { useNavigate } from "react-router-dom";
 import { motion ,AnimatePresence  } from "framer-motion";
+import { deleteMovieLike, getMovie, postMovieLike } from '../../api/Movies';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../atom';
 
 import {
-  DoubleChevronRightIcon,
   BookmarkIcon,
   HeartIcon,
   SolidBookmarkIcon,
   SolidHeartIcon,
   SolidStarIcon,
+  DoubleChevronRightIcon
 } from "../../assets/icon";
+import {
+  postBookmark,
+  deleteBookmark,
+  getMyBookmarks,
+} from '../../api/Boorkmarks';
+
 import Button from "../Common/Button";
 import dayjs from "dayjs";
 
@@ -20,6 +29,59 @@ import { getReviewsMovie } from "../../api/Reviews";
 
 
 const MovieModal = ({ onModalClose ,movieId }) => {
+
+  //북마크 관련내용
+
+  const isLogin = useRecoilValue(isLoginAtom);
+  const [movieDetail, setMovieDetail] = useState();
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const fetchMovieData = async () => {
+    const response = await getMovie(id);
+    setMovieDetail(response.data);
+
+    if (isLogin) {
+      setIsLiked(response.data.isLiked);
+    } else {
+      setIsLiked(false);
+    }
+    // console.log('like', isLogin && response.data.isLiked);
+  };
+
+  const fetchBookmarks = async () => {
+    const response = await getMyBookmarks();
+    const bookmarkIdArr = response.data.map((dataArr) => {
+      return dataArr.movie.id;
+    });
+
+    if (isLogin && bookmarkIdArr.includes(id)) {
+      setIsBookmarked(true);
+    } else {
+      setIsBookmarked(false);
+    }
+
+    //  console.log('bookmark', isLogin && bookmarkIdArr.includes(id));
+  };
+
+  const onClickButton = async (e) => {
+    if (!isLogin) {
+      return alert('로그인 후 이용 가능합니다!');
+    }
+    const { name } = e.currentTarget;
+
+    if (name === 'isLiked') {
+      isLiked ? await deleteMovieLike(movieId.id) : await postMovieLike(movieId.id);
+      setIsLiked((cur) => !cur);
+    }
+
+    if (name === 'isBookmarked') {
+      isBookmarked ? await deleteBookmark(movieId.id) : await postBookmark(movieId.id);
+      setIsBookmarked((cur) => !cur);
+    }
+  };
+
+
 
   //리뷰관련 내용 
 
@@ -84,6 +146,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
   const modalRef1 = useRef(null);
     
   useEffect((onModalClose) => {
+    
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef1.current && !modalRef1.current.contains(event.target)) {
@@ -134,29 +197,23 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               <img className={styles.thumbUrl} src={postImage} alt="detailPoster" />
               <div className={styles.buttonWrap}>
                 <Button
+                  name="isBookmarked"
                   option="secondary"
                   className={styles.button}
-                  children={
-                    <>
-                      북마크
-                      {isMyState.isLiked ? (
-                        <SolidBookmarkIcon />
-                      ) : (
-                        <BookmarkIcon />
-                      )}
-                    </>
-                  }
-                />
+                  onClick={onClickButton}
+                >
+                  북마크
+                  {isBookmarked ? <SolidBookmarkIcon /> : <BookmarkIcon />}
+                </Button>
                 <Button
                   option="secondary"
+                  name="isLiked"
                   className={styles.button}
-                  children={
-                    <>
-                      좋아요
-                      {isMyState.isLiked ? <SolidHeartIcon /> : <HeartIcon />}
-                    </>
-                  }
-                />
+                  onClick={onClickButton}
+                >
+                  좋아요
+                  {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+                </Button>
               </div>
             </div>
             <div className={styles.rightWrap}>
