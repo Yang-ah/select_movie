@@ -27,8 +27,12 @@ export const getUsers = (page, limit, name) => {
   });
 };
 
-//유저 수정하기
-export const patchUser = (id, body) => {
+//유저 수정하기 (Users)
+export const patchUser = () => {
+  return apiClient.patch(`/users`, body);
+};
+//유저 수정하기 (관리자)
+export const patchUserAdmin = (id, body) => {
   return apiClient.patch(`/users/${id}`, body);
 };
 
