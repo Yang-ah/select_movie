@@ -49,30 +49,26 @@ console.log(ID)
     if(userORreview==='review'){
       try{
         const response2 = await deleteReviewAdmin(ID);
-          if(response2.status===200){
-            alert('리뷰를 삭제를 완료했습니다.')
+          if(response2.status===204){
+            alert('리뷰를 삭제를 완료했습니다.')//리렌더링 때문에 사라짐
             closeModal();
           }
       } catch(err) {
         const errData = err.response.data;
-        if (errData.statusCode !== 200){
           alert(errData.message);
-        }
       }
     }
     
     if(userORreview==='user'){
       try{
         const response = await deleteUser(ID);
-          if(response.status===200){
+          if(response.status===204){
             alert('회원을 삭제를 완료했습니다.')
             closeModal();
           }
       } catch(err) { 
         const errData = err.response.data;
-        if (errData.statusCode !== 200){
           alert(errData.message);
-        }
       }
     }
     

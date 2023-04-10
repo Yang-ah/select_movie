@@ -20,12 +20,12 @@
   }
 */
   &.secondary {
-    background-color: c.$C_WHITE;
-    color: c.$C_ORANGE;
-    border: 1px solid c.$C_ORANGE;
+    background-color: #232c4d;
+
+    color: c.$C_WHITE;
 
     > svg {
-      fill: c.$C_ORANGE;
+      fill: c.$C_WHITE;
     }
 
     /* &:hover {
@@ -52,7 +52,7 @@
     color: c.$C_PURPLE1;
     border: 1px solid c.$C_PURPLE1;
   }*/
-  &.third{
+  &.third {
     background-color: c.$C_ORANGE;
     color: c.$C_WHITE;
   }

@@ -177,11 +177,11 @@ const BackOfficeReviews = () => {
 
               <li> {ReviewsData[index].createdAt.slice(0, 10)} </li>
               <li> {ReviewsData[index].user.name} </li>
-              <li> {ReviewsData[index].content} </li>
+              <li className={styles.content}> {ReviewsData[index].content} </li>
 
               <li>
                 <Button
-                  children="더보기"
+                  children="수정"
                   onClick={showModal(item, index)}
                   id={index}
                 />

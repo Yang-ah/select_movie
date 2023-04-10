@@ -65,9 +65,11 @@ const BOmovieModal = ({
     try{
       const responsePatch = await patchMovie(ID,postForm);
       if(responsePatch.status===204){
-        closeModal();
-        alert('수정완료'); //alert 동작을 안함
+        //closeModal();
+        alert('수정완료');//출력은 되지만 리렌더링으로 바로 사라짐
+        responseData();
       }
+      
     } catch(err) {
       const errData = err.response.data;
         alert(errData.message);

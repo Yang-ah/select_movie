@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./commentBox.module.scss";
-import Comment from "./comment";
-import { SolidStarIcon, TrashIcon, ModifyIcon } from "../../../assets/icon";
-import { ChevronLeftIcon, ChevronRightIcon } from "../../../assets/icon";
-import { FixModal, DeleteModal } from "../CommentModal";
-import { getReviewsMe } from "../../../api/Reviews";
-import { isLoginAtom } from "../../../atom";
-import { useRecoilValue } from "recoil";
+import React, { useState, useEffect } from 'react';
+import styles from './commentBox.module.scss';
+import { SolidStarIcon, TrashIcon, ModifyIcon } from '../../../assets/icon';
+import { ChevronLeftIcon, ChevronRightIcon } from '../../../assets/icon';
+import { FixModal, DeleteModal } from '../CommentModal';
+import { getReviewsMe } from '../../../api/Reviews';
+import { isLoginAtom } from '../../../atom';
+import { useRecoilValue } from 'recoil';
 
-const Pagination = () => {
-  const navigate = useNavigate;
-  const isLogin = useRecoilValue(isLoginAtom);
+const MyComment = () => {
   const [reviews, setReviews] = useState([]);
 
   const fetchMyReviews = async () => {
@@ -34,7 +30,7 @@ const Pagination = () => {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 8;
+  const recordsPerPage = 4;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = reviews.slice(firstIndex, lastIndex);
@@ -58,50 +54,59 @@ const Pagination = () => {
   return (
     <>
       <section className={styles.wrap}>
+        <p>
+          <ModifyIcon className={styles.rr} /> 내가 작성한 리뷰
+        </p>
         <ul className={styles.ul}>
           <li className={styles.li}>
-            {reviews?.map((item, index) => {
-              return (
-                <div className={styles.wrapper}>
-                  <section className={styles.screen}>
-                    <article className={styles.layerUp}>
-                      <button
-                        className={styles.fixModal}
-                        onClick={showFixModal}
-                      >
-                        <ModifyIcon className={styles.icon} height="24px" />
-                      </button>
-                      <button
-                        className={styles.deleteModal}
-                        onClick={showDeleteModal}
-                      >
-                        <TrashIcon className={styles.icon} height="24px" />
-                      </button>
-                    </article>
+            {reviews &&
+              records.map((item, index) => {
+                return (
+                  <div className={styles.wrapper} key={item}>
+                    <section className={styles.screen}>
+                      <article className={styles.layerUp}>
+                        <button
+                          className={styles.fixModal}
+                          onClick={showFixModal}
+                        >
+                          <ModifyIcon className={styles.icon} />
+                        </button>
+                        <button
+                          className={styles.deleteModal}
+                          onClick={showDeleteModal}
+                        >
+                          <TrashIcon className={styles.icon} />
+                        </button>
+                      </article>
 
-                    <article className={styles.layerDown}>
-                      <aside className={styles.top}>
-                        <div className={styles.left}>
-                          <p className={styles.title}>{reviews[index].id}</p>
-                          <p className={styles.createAt}>
-                            {reviews[index].createAt}
-                          </p>
-                        </div>
-                        <div className={styles.score}>
-                          <SolidStarIcon className={styles.star} />
-                          {reviews[index].score}
-                        </div>
-                      </aside>
-                      <p className={styles.content}>
-                        {reviews[index].content.length > 200
-                          ? reviews[index].content.substring(0, 200) + "..."
-                          : reviews[index].content}
-                      </p>
-                    </article>
-                  </section>
-                </div>
-              );
-            })}
+                      <article className={styles.layerDown}>
+                        <aside className={styles.top}>
+                          <div className={styles.left}>
+                            <p className={styles.title}>
+                              id : {reviews[index].id}
+                            </p>
+                            <p className={styles.title}>
+                              title : {reviews[index].title}
+                            </p>
+                            <p className={styles.createAt}>
+                              createAt : {reviews[index].createAt}
+                            </p>
+                          </div>
+                          <div className={styles.score}>
+                            <SolidStarIcon className={styles.star} />
+                            {reviews[index].score}
+                          </div>
+                        </aside>
+                        <p className={styles.content}>
+                          {reviews[index].content.length > 200
+                            ? reviews[index].content.substring(0, 200) + '...'
+                            : reviews[index].content}
+                        </p>
+                      </article>
+                    </section>
+                  </div>
+                );
+              })}
           </li>
         </ul>
 
@@ -142,7 +147,7 @@ const Pagination = () => {
         modalOpen1={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}
         notion="리뷰 삭제"
-        children={"삭제?"}
+        children={'삭제?'}
         buttonChildren="완료"
         color="red"
       />
@@ -150,4 +155,4 @@ const Pagination = () => {
   );
 };
 
-export default Pagination;
+export default MyComment;

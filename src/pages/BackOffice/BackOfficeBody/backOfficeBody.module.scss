@@ -54,7 +54,7 @@
     display: grid;
     grid-template-columns: 40px 2fr 1fr 1fr 1fr ;
     margin-bottom: 8px;
-    max-height: 100px;
+    max-height: 80px;
     background-color: c.$C_WHITE_10;
     &.users{
         grid-template-columns: 40px 2fr 2fr 1fr 1fr 1fr ;
@@ -68,7 +68,14 @@
       max-height: 80px;
       padding: 8px 4px;
       overflow: scroll;
-    } 
+    }
+    >.content{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: scroll;
+      padding: 16px 4px;
+    }
 }
 
 .checkBox {
@@ -145,32 +152,5 @@
   }
 }
 
-.pagination {
-  margin: 20px 0px;
-  height: 100%;
-  color: c.$C_ARROW;
-  fill: c.$C_ARROW;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 
-  :hover,
-  :active {
-    color: c.$C_ORANGE;
-    fill: c.$C_ORANGE;
-    transform: scale(1.2);
-    cursor: pointer;
-  }
-
-  li {
-    font-size: 16px;
-    margin: 0 1%;
-  }
-
-  .Icon {
-    height: 16px;
-    width: 16px;
-  }
-}
 

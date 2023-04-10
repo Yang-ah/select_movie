@@ -5,7 +5,7 @@
 }
 */
 import React, { useState, useEffect, useRef } from "react";
-import { Button, Input } from "../../../../components";
+import { Button, Input,Stars } from "../../../../components";
 import styles from "./BOmovieModal.module.scss";
 import { CSSTransition } from "react-transition-group";
 import cx from "classnames";
@@ -48,17 +48,16 @@ const BOreviewModal = ({
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
+    if(postForm.score){}
     try{
       const responsePatch = await patchReviewAdmin(ID,postForm);
-      if(responsePatch.status===200){
+      if(responsePatch.status===204){
         alert('수정완료');
         responseData();
       }
     } catch(err) {
       const errData = err.response.data;
-      if (errData.statusCode !== 200){
         alert(errData.message);
-      }
     }
   };
 
@@ -73,7 +72,7 @@ const BOreviewModal = ({
         setModalOpen(false); setSelectedIDs([]);
         setPostForm({
           content: "",
-          score: "",
+          score: 0,
         })
         responseData();
       }
@@ -106,6 +105,7 @@ return (
       <div className={styles.content}>
       <ul className={styles.inputForm}>
         <li>ID : {ID}</li>
+        {/* <Stars value={postForm.score*2}/> */}
         <Input
             className={styles.inputClass}
             label="별점"

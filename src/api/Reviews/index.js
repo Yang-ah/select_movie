@@ -37,7 +37,7 @@ export const getMyReview = (movieId) => {
 export const getReviewMe = () => {
   return apiClient.get(`/reviews/me`);
 };
-export const getReviewsMe = (page = 1, limit = 20) => {
+export const getReviewsMe = (page = 1, limit) => {
   return apiClient.get(`/reviews/me/paging`, {
     params: {
       page,
@@ -110,4 +110,3 @@ export const patchReviewAdmin = (reviewId, body) => {
 export const patchReviewComment = (commentId, body) => {
   return apiClient.patch(`/reviews/comments/${commentId}`, body);
 };
-

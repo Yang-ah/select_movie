@@ -6,9 +6,9 @@ import { SolidStarIcon, SolidHeartIcon } from "../../assets/icon";
 
 const PosterH = ({ title , postImage , onModalClick , id  , rating}) => {
   return (
-    <div className={styles.wrapper} onClick={() => onModalClick(id)} >
-      <div className={styles.screen}>
-        <article className={styles.layerUp}>
+    <div className={styles.wrapper}  >
+      <div className={styles.screen} onClick={() => onModalClick(id)}>
+        <article className={styles.layerUp} >
           <div className={styles.title}>{title}</div>
           <div className={styles.bottom}>
             <div className={styles.rating}>

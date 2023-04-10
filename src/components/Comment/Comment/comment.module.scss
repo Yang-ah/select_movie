@@ -1,5 +1,5 @@
-@use "../../../styles/mixins" as m;
-@use "../../../styles/constants" as c;
+@use '../../../styles/mixins' as m;
+@use '../../../styles/constants' as c;
 
 .wrap {
   min-width: 500px;
@@ -46,4 +46,33 @@
 }
 .modal {
   color: black;
+}
+
+.modifyMain {
+  @include m.flex();
+  width: calc(100% - 40px);
+
+  > textarea {
+    flex-grow: 1;
+    height: 76px;
+    background-color: c.$C_WHITE_50;
+    padding: 4px;
+    margin: 4px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  > button {
+    width: 60px;
+    height: 76px;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    transition: 0.1s background-color ease-in;
+
+    &:hover {
+      background-color: c.$C_ORANGE;
+    }
+  }
 }

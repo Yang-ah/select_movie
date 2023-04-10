@@ -1,10 +1,11 @@
-@use "../../../../styles/mixins" as m;
-@use "../../../../styles/constants" as c;
+@use '../../../../styles/mixins' as m;
+@use '../../../../styles/constants' as c;
 
 // 공통
 .left {
   @include m.flex();
   height: 100%;
+  cursor: pointer;
 
   > .profileIcon {
     background-color: pink;

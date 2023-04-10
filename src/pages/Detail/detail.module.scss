@@ -1,5 +1,5 @@
-@use "../../styles/constants/" as c;
-@use "../../styles/mixins" as m;
+@use '../../styles/constants/' as c;
+@use '../../styles/mixins' as m;
 
 .sectionWrap {
   @include m.flex(center, flex-start);
@@ -37,7 +37,7 @@
     width: 100%;
     padding: 40px 0;
     > p:first-of-type {
-      font-family: "Black Han Sans";
+      font-family: 'Black Han Sans';
       font-size: 120px;
       padding-bottom: 4px;
     }
@@ -47,7 +47,7 @@
 // aside
 .relatedWrap {
   width: 280px;
-  margin-left: 20px;
+  margin-left: 40px;
   max-height: 200vh;
   overflow: scroll;
   position: relative;

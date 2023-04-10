@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { ModifyIcon, TrashIcon } from '../../../assets/icon';
 import Modal from '../../Common/Modal';
 import { deleteReviewComment, patchReviewComment } from '../../../api/Reviews';
+import Button from '../../Common/Button';
 
 const Comment = ({
   comment,
@@ -41,9 +42,9 @@ const Comment = ({
     setModalOpen(true);
   };
 
-  const onClickDeleteComment = () => {
-    deleteReviewComment(commentId);
-    fetchReviews();
+  const onClickDeleteComment = async () => {
+    await deleteReviewComment(commentId);
+    await fetchReviews();
     setModalOpen(false);
   };
 
@@ -104,7 +105,9 @@ const Comment = ({
             value={modifiedComment}
             onChange={onChangeModifiedComment}
           />
-          <button onClick={onPatchComment}>수정</button>
+          <Button option="secondary" onClick={onPatchComment}>
+            수정
+          </Button>
         </main>
       )}
     </section>

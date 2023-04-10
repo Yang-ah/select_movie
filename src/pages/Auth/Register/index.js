@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./register.module.scss";
 import Input from "../../../components/Common/Input";
 //import Button from "../../../components/Common/Button";
@@ -6,6 +6,20 @@ import Input from "../../../components/Common/Input";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../../api/Auth";
 import { saveTokens, isValidateEmail } from "../../../utils";
+import Slider from "react-slick";
+import { getMoviesTop } from "../../../api/Movies";
+
+const settings={
+  centerMode: true,
+  centerPadding: "0px",
+  dot: false,
+  arrow: false,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  slidesToScroll: 1,
+  slidesToShow: 1, //몇개씩 보여줌?,
+}
 
 const Register = () => {
   const navigate = useNavigate();
@@ -81,10 +95,29 @@ const Register = () => {
     }
   };
   
+  const [movies,setMovies] = useState();
+
+  const showMoviesTop = async () => {
+    const response = await getMoviesTop();
+    setMovies(response.data.data);
+  };
+  
+  useEffect(() => {
+    showMoviesTop();
+  }, []);
 
   return (
     <main className={styles.wrapper}>
-      <section>
+      {/* <section className={styles.movies}>
+      <Slider {...settings}>
+      {!!movies&& movies.map((movie, index)=>{
+        return(
+          <div ><img className={styles.moviePoster} src={movies[index].postImage}/></div>
+        );  
+      })}
+      </Slider >
+      </section> */}
+      <section className={styles.register}>
         <h1>회원가입</h1>
         <form
           id="registerForm"

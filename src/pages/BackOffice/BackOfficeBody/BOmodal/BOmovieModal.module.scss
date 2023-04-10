@@ -47,18 +47,27 @@
     }
   }
 }
-.labelText {
-  font-size: 12px;
-  color: c.$C_WHITE;
-}
-.textArea {
+.inputForm{
   width: 100%;
-  min-height: 100px;
-  border: 1px solid c.$C_WHITE;
-  border-radius: 4px;
-  padding: 12px;
-  margin: 4px 0px;
+
+  >.inputClass{
+    max-height: 80px;
+  }
+
+  >.labelText {
+    font-size: 12px;
+    color: c.$C_WHITE;
+  }
+  >.textArea {
+    width: 100%;
+    min-height: 240px;
+    border: 1px solid c.$C_WHITE;
+    border-radius: 4px;
+    padding: 12px;
+    margin: 4px 0px;
+  }
 }
+
 
 .buttonBox {
   display: flex;

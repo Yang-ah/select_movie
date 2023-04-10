@@ -28,7 +28,7 @@ const Stars = ({ movieId, onChange, className, value = 0 }) => {
 
   useEffect(() => {
     setClickedStarIndex(value);
-  }, [movieId]);
+  }, [movieId, value]);
 
   return (
     <div className={cx(styles.starRateContainer, className)}>

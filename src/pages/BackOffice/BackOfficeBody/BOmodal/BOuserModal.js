@@ -69,15 +69,13 @@ const BOuserModal = ({
     e.preventDefault();
     try{
       const responsePatch = await patchUser(ID,postForm);
-      if(responsePatch.status===200){
-        alert('수정완료'); //not work...
+      if(responsePatch.status===204){
+        alert('수정완료');
         responseData();
       }
     } catch(err) {
       const errData = err.response.data;
-      if (errData.statusCode !== 200){
         alert(errData.message);
-      }
     }
   };
 

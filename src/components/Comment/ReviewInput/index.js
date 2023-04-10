@@ -63,7 +63,7 @@ const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
           minLength="10"
           value={newReview.content}
         />
-        <Button onClick={onClick} children="리뷰 등록" option="comment" />
+        <Button onClick={onClick} children="리뷰 등록" option="secondary" />
       </main>
     </section>
   );

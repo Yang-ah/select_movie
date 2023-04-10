@@ -35,7 +35,9 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
   }, [review.comments]);
 
   // 리뷰의 '댓글' 등록 버튼 클릭 이벤트
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
     if (!newReviewComment.content) {
       return alert('댓글을 입력해주세요.');
     }
@@ -61,7 +63,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
 
       {/* 로그인 상태의 댓글 input */}
       {isLogin && (
-        <div className={styles.commentInputWrap}>
+        <form className={styles.commentInputWrap} onSubmit={onSubmit}>
           <p className={styles.userName}>{me && setUserName(me)}</p>
           <Input
             className={styles.input}
@@ -72,7 +74,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
           <button type="button" onClick={onSubmit}>
             등록
           </button>
-        </div>
+        </form>
       )}
 
       {/* 로그아웃 상태의 댓글 input */}

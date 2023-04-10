@@ -1,5 +1,5 @@
-@use "../../styles/constants" as c;
-@use "../../styles/mixins" as m;
+@use '../../../styles/constants' as c;
+@use '../../../styles/mixins' as m;
 
 .wrap {
   @include m.flex(space-between);
@@ -18,7 +18,7 @@
   .left {
     > .logo {
       font-size: 24px;
-      font-family: "Black Han Sans";
+      font-family: 'Black Han Sans';
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-use-select: none;
