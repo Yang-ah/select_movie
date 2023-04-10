@@ -127,13 +127,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
       transition: { type: "spring", delayduration : 0.5 , bounce: 0.4,}
     },
   };
-
-  const closeVariants = {
-    hidden: { backgroundColor: "rgba(0, 0, 0, 0)" },
-    visible: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
-    exit: { backgroundColor: "rgba(0, 0, 0, 0)" },
-    
-  }
+  
   const navigate = useNavigate();
   const [isMyState, setMyState] = useState({
     isLiked: false,
@@ -232,7 +226,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
                 </h2>
 
                 <h3>
-                  | 작품정보 |<p>{plot}</p>
+                  | 작품정보 |<p className={styles.contents}>{plot}</p>
                 </h3>
 
                 <h3 className={styles.actors}>

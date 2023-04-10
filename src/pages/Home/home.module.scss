@@ -37,23 +37,3 @@
     transform: translateY(-150%);
   }
 }
-
-.progress_bar{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: red;
-  transform-origin: 0%;
-}
-
-.privacy-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: red;
-  z-index: 2;
-}
