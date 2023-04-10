@@ -128,7 +128,7 @@ $HEADER_INFO_PADDING: 20px;
         text-overflow: ellipsis;
         letter-spacing: 0.5px;
         overflow-y: auto;
-        font-size: 12px;
+        font-size: 14px;
       }
     }
   }
@@ -154,7 +154,8 @@ $HEADER_INFO_PADDING: 20px;
 }
 
 //TODO: 제작/스태프 부분 스타일 변경
-.staffs {
+.staffs,
+.genres {
   width: 100%;
   max-height: 60px;
   overflow-y: auto;

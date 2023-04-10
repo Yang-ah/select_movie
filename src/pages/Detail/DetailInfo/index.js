@@ -115,7 +115,7 @@ const DetailInfo = ({ id }) => {
               <section className={styles.info}>
                 <article>
                   <h3>장르</h3>
-                  <p>
+                  <p className={styles.genres}>
                     {movieDetail?.genres.map((genre) => {
                       return <span key={genre.id}>{genre.name}</span>;
                     })}
