@@ -110,15 +110,9 @@ $HEADER_INFO_PADDING: 20px;
   .info {
     > article {
       width: 100%;
-
       padding-bottom: $HEADER_INFO_PADDING;
       color: c.$C_WHITE_80;
       font-size: 14px;
-
-      > span {
-        margin-right: 4px;
-        letter-spacing: 0.5px;
-      }
 
       > h3 {
         font-size: 18px;
@@ -134,6 +128,7 @@ $HEADER_INFO_PADDING: 20px;
         text-overflow: ellipsis;
         letter-spacing: 0.5px;
         overflow-y: auto;
+        font-size: 14px;
       }
     }
   }
@@ -155,5 +150,20 @@ $HEADER_INFO_PADDING: 20px;
       width: 18px;
       fill: c.$C_ORANGE;
     }
+  }
+}
+
+//TODO: 제작/스태프 부분 스타일 변경
+.staffs {
+  width: 100%;
+  max-height: 60px;
+  overflow-y: auto;
+  text-overflow: ellipsis;
+
+  > span {
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    padding-right: 4px;
+    font-size: 14px;
   }
 }

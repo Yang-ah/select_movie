@@ -17,7 +17,7 @@ import {
   postBookmark,
   deleteBookmark,
   getMyBookmarks,
-} from '../../../api/Boorkmarks';
+} from '../../../api/Bookmarks';
 
 const DetailInfo = ({ id }) => {
   const isLogin = useRecoilValue(isLoginAtom);
@@ -127,7 +127,7 @@ const DetailInfo = ({ id }) => {
                 </article>
                 <article>
                   <h3>출연</h3>
-                  <p>
+                  <p className={styles.staffs}>
                     {movieDetail?.actors.map((actor) => {
                       return <span key={actor.id}> {actor.name} </span>;
                     })}
@@ -135,10 +135,10 @@ const DetailInfo = ({ id }) => {
                 </article>
                 <article>
                   <h3>제작 / 스태프</h3>
-                  <p>
+                  <p className={styles.staffs}>
                     <span> {movieDetail?.company} | </span>
                     {movieDetail?.staffs.map((staff) => {
-                      return <span key={staff.id}> {staff.name} </span>;
+                      return <span key={staff.id}>{staff.name}</span>;
                     })}
                   </p>
                 </article>
