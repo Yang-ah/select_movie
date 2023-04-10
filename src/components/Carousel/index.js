@@ -7,7 +7,7 @@ import {
   getMoviesMeLike,
   getBookmarksMe,
 } from '../../api/Movies';
-import { getBookmarksPage } from '../../api/Boorkmarks';
+import { getBookmarksPage } from '../../api/Bookmarks';
 import { getReviewsMe } from '../../api/Reviews';
 import { useNavigate } from 'react-router-dom';
 import './carousel.scss';
@@ -38,10 +38,8 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-
 export const HomeCarousel = () => {
- 
- // 모달 관련 변수
+  // 모달 관련 변수
   const navigate = useNavigate;
   const [isShow, setIsShow] = useState(false);
   const [moviesTop, setMoviesTop] = useState({ data: [] });
@@ -52,7 +50,6 @@ export const HomeCarousel = () => {
     setMoviesTop(response.data);
   };
 
-  
   useEffect(() => {
     fetchMoviesTop();
   }, []);

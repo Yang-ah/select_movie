@@ -8,7 +8,9 @@ const HeaderLeft = ({ className, type, userName, date, writtenId }) => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate(`/user/${writtenId}`);
+    type === 'reviewInput'
+      ? navigate('/auth/login')
+      : navigate(`/user/${writtenId}`);
   };
 
   return (

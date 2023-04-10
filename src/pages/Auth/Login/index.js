@@ -8,19 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/Auth';
 import { isValidateEmail } from '../../../utils';
 
-//recoil
 import { useSetRecoilState } from 'recoil';
 import { isLoginAtom } from '../../../atom';
+import { Button } from '../../../components';
 
 const Login = () => {
   const navigate = useNavigate();
   const locations = useLocation();
 
-  //recoil
-  //NOTE: useSetRecoilState => set 함수
   const setIsLogin = useSetRecoilState(isLoginAtom);
-  //NOTE: useRecoilValue => value만 뽑아올 수 있다~
-  // const isLogin = useRecoilValue(isLoginAtom);
 
   const [form, setForm] = useState({
     userId: '',
@@ -35,6 +31,10 @@ const Login = () => {
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
+  };
+
+  const onClick = (path) => {
+    navigate(`/${path}`);
   };
 
   const onSubmit = async (e) => {
@@ -95,7 +95,7 @@ const Login = () => {
         <h1>로그인</h1>
         <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="이메일"
             errorText={!!err.userId && err.userId}
             onChange={onChange}
@@ -104,7 +104,7 @@ const Login = () => {
             value={form.userId}
           />
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="비밀번호"
             errorText={!!err.password && err.password}
             type="password"
@@ -113,15 +113,23 @@ const Login = () => {
             value={form.password}
             onChange={onChange}
           />
-          <Link to="/auth/register" style={{ textDecoration: 'none' }}>
-            <p className={styles.registerLink}>회원가입</p>
-          </Link>
-          <button
-            className={styles.submitButton}
-            children={'로그인'}
-            type="submit"
-            form="loginForm"
-          />
+          <Button className={styles.button} type="submit" form="loginForm">
+            로그인
+          </Button>
+          <Button
+            className={styles.button}
+            type="button"
+            onClick={() => onClick('backoffice/admin')}
+          >
+            관리자 로그인 페이지로 이동
+          </Button>
+          <Button
+            className={styles.button}
+            type="button"
+            onClick={() => onClick('auth/register')}
+          >
+            회원가입 페이지로 이동
+          </Button>
         </form>
       </section>
     </main>

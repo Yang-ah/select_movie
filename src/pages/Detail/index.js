@@ -95,6 +95,7 @@ const Detail = () => {
         transition={{ duration: 1, type: 'spring' }}
       >
         <DetailInfo id={id} />
+
         <section className={styles.sectionWrap}>
           <main className={styles.mainWrap}>
             {/* 영화 리뷰를 입력하는 input  */}
