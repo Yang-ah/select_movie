@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Slider from 'react-slick';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../atom';
-import './carousel.scss';
-import styles from './my.module.scss';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
 import {
-  getMoviesTop,
-  getMovies,
+  getMoviesGenre ,
   getMoviesMeLike,
-  postMovieLike,
-  deleteMovieLike,
-} from '../../api/Movies';
-import { getBookmarksPage } from '../../api/Bookmarks';
-import { getReviewsMe } from '../../api/Reviews';
-
-
+  getBookmarksMe,
+} from "../../api/Movies";
 
 import {
   CaretLeftIcon,
@@ -28,9 +18,13 @@ import {
   SolidBookmarkIcon,
 } from '../../assets/icon';
 
-import PosterH from '../PosterH';
-import { PosterM } from '../PosterM';
-import MovieModal from '../MovieModal';
+import styles from "./myCarousel.module.scss";
+import "./carousel.scss";
+
+import { PosterHeart, PosterMark } from "../PosterM";
+import PosterH from "../PosterH";
+import MovieModal from "../MovieModal";
+
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -42,75 +36,75 @@ export const NextArrow = (props) => {
   return <div className={className} onClick={onClick} />;
 };
 
-export const HomeCarousel = () => {
+export const HomeCarousel = ({GenreId}) => {
+  
   // 모달 관련 변수
+   const [isShow, setIsShow] = useState(false);
+   const [moviesGenre, setMoviesGenre] = useState({ data:[ ]});
+   const [movieId , setMovieId] = useState(null);
+   
+   const fetchMoviesGenre = async () => {
+     const responseAction = await getMoviesGenre(1,GenreId);
+     setMoviesGenre(responseAction.data);
+   };
+   
+   useEffect(() => {
+     fetchMoviesGenre();
+   }, []);
+ 
+   const onModalClick = (id) => {
+     const num = moviesGenre.data.findIndex((item) => item.id === id); // id값 추출
+     setIsShow(true);
+     setMovieId(moviesGenre.data[num]) //data값에 아이디값 대입 
+   };
+ 
+   const onModalClose = () => {
+     setIsShow(false);
+   };
+   
+   const settings = {
+     dot: false,
+     arrow: false,
+     infinite: false,
+     speed: 600,
+     slidesToShow: 6,
+     slidesToScroll: 5,
+     prevArrow: <CaretLeftIcon />,
+     nextArrow: <CaretRightIcon />,
+   };
+ 
+   return (
+     <div>
+     {isShow && (
+           <MovieModal 
+             onModalClose={onModalClose}
+             onModalClick={onModalClick}
+             movieId ={movieId}
+           />
+         )
+     }
+       <Slider {...settings}>
+         {moviesGenre?.data.map((movie) => (
+           <PosterH
+           key={movie.id}
+           title={movie.title}
+           id={movie.id}
+           postImage={movie.postImage}
+           onModalClick={onModalClick}
+           movieId ={movieId}
+           />
+         ))}
+       </Slider>
+     </div>
+   );
+ };
+
+
+ export const MyCarousel = () => {
   const navigate = useNavigate;
-  const [isShow, setIsShow] = useState(false);
-  const [moviesTop, setMoviesTop] = useState({ data: [] });
-  const [movieId, setMovieId] = useState(null);
+  const [moviesLike, setMoviesLike] = useState();
+  const [moviesMark, setMoviesMark] = useState();
 
-  const fetchMoviesTop = async () => {
-    const response = await getMoviesTop();
-    setMoviesTop(response.data);
-  };
-
-  useEffect(() => {
-    fetchMoviesTop();
-  }, []);
-
-  const onModalClick = (id) => {
-    const num = moviesTop.data.findIndex((item) => item.id === id); // id값 추출
-    setIsShow(true);
-    setMovieId(moviesTop.data[num]); //data값에 아이디값 대입
-  };
-
-  const onModalClose = () => {
-    setIsShow(false);
-  };
-  const settings = {
-    dots: false,
-    arrow: false,
-    infinite: false,
-    speed: 600,
-    slidesToShow: 6,
-    slidesToScroll: 5,
-    prevArrow: <CaretLeftIcon />,
-    nextArrow: <CaretRightIcon />,
-  };
-
-  return (
-    <div>
-      {isShow && (
-        <MovieModal
-          onModalClose={onModalClose}
-          onModalClick={onModalClick}
-          movieId={movieId}
-        />
-      )}
-      <Slider {...settings}>
-        {moviesTop?.data.map((movie) => (
-          <PosterH
-            key={movie.id}
-            title={movie.title}
-            id={movie.id}
-            postImage={movie.postImage}
-            onModalClick={onModalClick}
-            movieId={movieId}
-          />
-        ))}
-      </Slider>
-    </div>
-  );
-};
-
-export const MyCarousel = ({ id, name }) => {
-  const isLogin = useRecoilValue(isLoginAtom);
-  const [moviesLike, setMoviesLike] = useState(); //좋아요 목록
-  const [moviesMark, setMoviesMark] = useState([]); //북마크 목록
-  const [cancelLike, setCancelLike] = useState(false); //좋아요 취소
-  const [cancelBookmark, setCancelBookmark] = useState(false); //북마크 취소
-
-  //좋아요 목록
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike(id);
     setMoviesLike(response.data);
@@ -216,3 +210,5 @@ export const MyCarousel = ({ id, name }) => {
     </>
   );
 };
+
+

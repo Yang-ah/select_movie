@@ -24,7 +24,7 @@
     .layerUp {
       z-index: 5;
       .bottom {
-        .heart {
+        .icon {
           &:hover,
           :active {
             z-index: 999;
@@ -82,7 +82,7 @@
         height: 20px;
       }
     }
-    .heart {
+    .icon {
       height: 22px;
       width: 22px;
       margin-right: 5%;

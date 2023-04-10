@@ -1,10 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./poster.module.scss";
-import { SolidStarIcon, SolidHeartIcon } from "../../assets/icon";
+import { deleteMovieLike, getMovie, postMovieLike } from '../../api/Movies';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../atom';
+
+import {
+  BookmarkIcon,
+  HeartIcon,
+  SolidBookmarkIcon,
+  SolidHeartIcon,
+  SolidStarIcon,
+  DoubleChevronRightIcon
+} from "../../assets/icon";
+import {
+  postBookmark,
+  deleteBookmark,
+  getMyBookmarks,
+} from '../../api/Bookmarks';
+
+import Button from "../Common/Button";
+import dayjs from "dayjs";
+
 
 
 
 const PosterH = ({ title , postImage , onModalClick , id  , rating}) => {
+
+const isLogin = useRecoilValue(isLoginAtom);
+  const [movieDetail, setMovieDetail] = useState();
+  const [isLiked, setIsLiked] = useState(false);
+
+  const fetchMovieData = async () => {
+    const response = await getMovie(id);
+    setMovieDetail(response.data);
+
+    if (isLogin) {
+      setIsLiked(response.data.isLiked);
+    } else {
+      setIsLiked(false);
+    }
+    // console.log('like', isLogin && response.data.isLiked);
+  };
+
+  const onClickButton = async (e) => {
+    if (!isLogin) {
+      return alert('로그인 후 이용 가능합니다!');
+    }
+    const { name } = e.currentTarget;
+
+    if (name === 'isLiked') {
+      isLiked ? await deleteMovieLike(movieId.id) : await postMovieLike(movieId.id);
+      setIsLiked((cur) => !cur);
+    }
+  };
+
   return (
     <div className={styles.wrapper}  >
       <div className={styles.screen} onClick={() => onModalClick(id)}>
@@ -15,9 +64,15 @@ const PosterH = ({ title , postImage , onModalClick , id  , rating}) => {
               <SolidStarIcon className={styles.star} />
               {rating}
             </div>
-            <button className={styles.heart}>
-              <SolidHeartIcon />
-            </button>
+            <Button
+                  option="secondary"
+                  name="isLiked"
+                  className={styles.button}
+                  onClick={onClickButton}
+                >
+                  
+                  {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+                </Button>
           </div>
         </article>
         <article className={styles.layerDown} >

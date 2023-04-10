@@ -131,6 +131,15 @@ $HEADER_INFO_PADDING_S: 12px;
               margin-right: 12px;
             }
           }
+
+          .contents{
+            height: 80px;
+            overflow-y: scroll;
+          }
+          .actors{
+            height: 40px;
+            overflow-y: scroll;            
+          }
       
           >h3 {
             font-size: 16px;
