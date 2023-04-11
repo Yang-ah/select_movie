@@ -117,8 +117,8 @@ const BackOfficeMovies = () => {
           </button>
         </form>
         <Button>
-          {/* 삭제
-        <TrashIcon /> */}
+          삭제
+          <TrashIcon />
         </Button>
       </header>
 

@@ -3,10 +3,7 @@ import styles from './backOfficeBody.module.scss';
 import cx from 'classnames';
 import { Button, Input, Modal } from '../../../components';
 import { CheckIcon, SearchIcon, TrashIcon } from '../../../assets/icon';
-import {
-  deleteReviewAdmin,
-  getReviews,
-} from '../../../api/Reviews';
+import { deleteReviewAdmin, getReviews } from '../../../api/Reviews';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOreviewModal from './BOmodal/BOreviewModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
@@ -96,18 +93,17 @@ const BackOfficeReviews = () => {
       }
     };
   };
-  const deleteChecked = () => {
+  const deleteChecked = async () => {
     const ids = selectedIDs;
     try {
       for (const element of ids) {
-        const response = deleteReviewAdmin(element);
-        if (response.status === 204) {
-          alert('리뷰 일괄 삭제 완료');//왜 출력이 안되는 가...
-        }
+        await deleteReviewAdmin(element);
       }
+
+      alert('리뷰 일괄 삭제 완료'); //왜 출력이 안되는 가...
     } catch (err) {
       const errData = err.response.data;
-        alert(errData.message);
+      alert(errData.message);
     }
   };
 

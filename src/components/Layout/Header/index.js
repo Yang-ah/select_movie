@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import styles from './header.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, SearchInput } from '../../Common';
 import { useRecoilState } from 'recoil';
 import { isLoginAtom } from '../../../atom';
 import { LogoutIcon, UserIcon } from '../../../assets/icon';
+import useMe from '../../../hooks/useMe';
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  //NOTE: recoil을 사용하면 새로고침 시 다시 초기화가 된다.
+  //NOTE: useMe 안에서 사용을 하고, useMe를 import해서 사용하면 된다!
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [keyword, setKeyword] = useState('');
 
@@ -20,6 +24,10 @@ const Header = () => {
   const onClick = () => {
     navigate(`/search/${keyword}`);
     setKeyword('');
+  };
+  const onClickLogin = () => {
+    const url = location.pathname;
+    navigate(`/auth/login?prev=${url}`);
   };
 
   const onChange = (e) => {
@@ -42,9 +50,11 @@ const Header = () => {
           value={keyword}
         />
         {!isLogin && (
-          <Link to="/auth/login">
-            <Button children={'로그인'} className={styles.headerSign} />
-          </Link>
+          <Button
+            children={'로그인'}
+            className={styles.headerSign}
+            onClick={onClickLogin}
+          />
         )}
         {isLogin && (
           <aside className={styles.login}>

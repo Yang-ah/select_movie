@@ -3,7 +3,7 @@ import styles from './login.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import Input from '../../../components/Common/Input';
 //import Button from "../../../components/Common/Button";
-
+import qs from 'query-string';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/Auth';
 import { isValidateEmail } from '../../../utils';
@@ -71,16 +71,21 @@ const Login = () => {
 
         //setIsLogin은 recoil state
         setIsLogin(true);
+        //NOTE: query를 객체로 변환하는 코드
+        const query = qs.parse(locations.search);
+
         //NOTE: location의 state를 이용해서 분기처리
-        if (locations.state.prev === 'register') {
+        if (query.prev) {
+          navigate(query.prev);
+        } else if (locations.state.prev === 'register') {
           navigate('/');
         } else {
           navigate(-1); //동작을 안함...
         }
       }
     } catch (err) {
-      const errData = err.response.data;
-        alert(errData.message);
+      const errData = err.response?.data;
+      alert(errData.message);
     }
   };
 

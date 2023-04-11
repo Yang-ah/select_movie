@@ -19,7 +19,13 @@ admin@a.com / admin
 +>삭제 후, BackOfficeHeader 에 있는 전체 회원수, 전체 리뷰수 가 리랜더링이 안되는 상황입니다.
 이를 위해서, 
 1. BackOfficeHeader의 useEffect에 state를 추가 해야 할것 같은 데,
-2. backOfficeBody의 state를 리코일을 사용하지 않고 header로 보내는 방법이 있을 까요?
+2. backOfficeBody의 state를 리코일을 사용하지 않고 header로 보내는 방법이 있을까요?
+=> useEffect(사이드 이펙트)를 통해서 특정 상황에만 데이터를 불러오는 방법이 좋은 방법은 아니다.
+
+-해결방법
+ 1) 부모 컴포넌트에서 state를 body와 header에 공유 or 부모 컴포넌트에서 totalCount를 불러오는 함수를 선언
+ 2) totalCount 자체를 recoil로 변환
+-> react-query 데이터 패칭 라이브러리 (SWR)
 
 >로그인 페이지에서 로그인 완료 후, 뒤로가기가 안 됩니다. (75번 줄)
 다른 page의 경우 locations.state가 지정이 안되서 if문이 작동을 안하는 경우인가요?
@@ -30,3 +36,13 @@ if (locations.state.prev === 'register') {
     navigate(-1); //동작을 안함...
 }
 ```
+BOM : 브라우저에서 한 페이지에서 다른 페이지로 이동 => 브라우저 내에서  [홈] - [디테일] - [홈] - [로그인]
+
+
+1) 헤더 로그인 버튼 / 관리자 로그인 버튼 -> 로그인 이후에도 "로그인 버튼"으로 남아있음.
+2) 관리자 로그인 모달 -> 로그인 완료 시 모달 삭제
+3) MyCarousel -> cancelLike, cancelBookmark state 불필요
+4) 등록된 영화 -> 숫자와 "개" 사이 간격 넓히기
+5) 관리자 로그인 이후 -> totalCount fetching이 필요하다.
+6) 관리자 영화 페이지인데 등록된 영화 카드가 하이라이트 (주황색으로) 되어있지 않다.
+7) 영화관리, 회원관리, 리뷰관리 텍스트 색을 흰색으로 교체하는 것은 어떨까요?
