@@ -43,7 +43,7 @@ const Header = () => {
       setLoginAtom(true);
       setIsLogin(true);
     } else {
-      setIsLogin(false);
+      setLoginAtom(false);
       setIsLogin(false);
     }
   }, [me]);
