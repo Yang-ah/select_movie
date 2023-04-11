@@ -75,9 +75,7 @@ const Register = (setModalOpen) => {
       }
     } catch(err) { //서버에서 주는 에러 메세지 띄우기 
       const errData = err.response.data;
-      if (errData.statusCode === 409){
         alert(errData.message);
-      }
     }
   };
   

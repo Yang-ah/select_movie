@@ -77,16 +77,11 @@ const CMSLogin = () => {
         //setIsLogin은 recoil state
         setIsLogin(true);
         closeModal();
-        alert('관리자 로그인을 성공했습니다.');
+        navigate('/backoffice/movies');
       }
     } catch (err) {
       const errData = err.response.data;
-      if (errData.statusCode === 400) {
         alert(errData.message);
-      } //"message": "비밀번호가 일치하지 않습니다."
-      if (errData.statusCode === 404) {
-        alert(errData.message);
-      } //"message": "존재하지 않는 유저입니다."
     }
   };
 

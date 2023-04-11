@@ -14,6 +14,7 @@ import {
   RegisterPage,
 } from '../pages';
 import { Layout } from '../components';
+import CMSLogin from '../pages/BackOffice/CMS/cmsAuth/Login';
 
 const route = (
   <Route element={<Layout />}>
@@ -24,6 +25,7 @@ const route = (
     <Route path="auth">
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
+      <Route path="admin" element={<CMSLogin />} />
     </Route>
     <Route path="search/:keyword" element={<SearchPage />} />
     <Route path="backoffice/:id" element={<BackOfficePage />} />

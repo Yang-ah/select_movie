@@ -2,20 +2,14 @@
 @use "../../../styles/mixins" as m;
 
 .header {
-  @include m.flex(space-between);
+  @include m.flex(space-between, center);
 
   > h1 {
     font-size: 42px;
+    padding-bottom: 20px;
   }
 
-  > .today {
-    @include m.flex(center, center, column);
-    border-radius: 4px;
-    font-size: 24px;
-    padding: 20px;
-    color: black;
-    background-color: white;
-  }
+  
 }
 
 .nav {
@@ -40,7 +34,6 @@
     > h2 {
       font-size: 20px;
       align-self: flex-end;
-      color: black;
     }
 
     > h3 {

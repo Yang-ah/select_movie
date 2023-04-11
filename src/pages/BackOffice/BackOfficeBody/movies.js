@@ -116,10 +116,7 @@ const BackOfficeMovies = () => {
             <SearchIcon />
           </button>
         </form>
-        <Button>
-          삭제
-          <TrashIcon />
-        </Button>
+        <div className={styles.buttonPosition}></div>
       </header>
 
       {/* 표머리 */}
