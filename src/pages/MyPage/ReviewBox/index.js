@@ -80,7 +80,7 @@ const MyComment = () => {
     <>
       <p className={styles.category}>
         <ModifyIcon className={styles.icon} />
-        내가 작성한 리뷰ccc
+        내가 작성한 리뷰
       </p>
       <section className={styles.wrapper}>
         <ul className={styles.ul}>

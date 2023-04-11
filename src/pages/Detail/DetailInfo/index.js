@@ -31,6 +31,7 @@ const DetailInfo = ({ id }) => {
 
     if (isLogin) {
       setIsLiked(response.data.isLiked);
+      console.log('like', isLogin && response.data.isLiked);
     } else {
       setIsLiked(false);
     }
@@ -53,6 +54,7 @@ const DetailInfo = ({ id }) => {
   };
 
   const onClickButton = async (e) => {
+    console.log(isLiked);
     if (!isLogin) {
       return alert('로그인 후 이용 가능합니다!');
     }

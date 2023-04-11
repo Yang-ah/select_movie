@@ -1,37 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import styles from './login.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Input from '../../../components/Common/Input';
 //import Button from "../../../components/Common/Button";
-
+import qs from 'query-string';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/Auth';
 import { isValidateEmail } from '../../../utils';
 
-//recoil
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { isLoginAtom } from '../../../atom';
-import { getMoviesTop } from '../../../api/Movies';
-
-import Slider from 'react-slick';
-
-const settings = {
-  centerMode: true,
-  centerPadding: '0px',
-  dot: false,
-  arrow: false,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  slidesToScroll: 1,
-  slidesToShow: 1, //몇개씩 보여줌?,
-};
+import { Button } from '../../../components';
 
 const Login = () => {
   const navigate = useNavigate();
+  const locations = useLocation();
 
-  //recoil
-  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  const setIsLogin = useSetRecoilState(isLoginAtom);
 
   const [form, setForm] = useState({
     userId: '',
@@ -46,6 +31,10 @@ const Login = () => {
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
+  };
+
+  const onClick = (path) => {
+    navigate(`/${path}`);
   };
 
   const onSubmit = async (e) => {
@@ -82,49 +71,31 @@ const Login = () => {
 
         //setIsLogin은 recoil state
         setIsLogin(true);
-        navigate(-1);
+        //NOTE: query를 객체로 변환하는 코드
+        const query = qs.parse(locations.search);
+
+        //NOTE: location의 state를 이용해서 분기처리
+        if (query.prev) {
+          navigate(query.prev);
+        } else if (locations.state.prev === 'register') {
+          navigate('/');
+        } else {
+          navigate(-1); //동작을 안함...
+        }
       }
     } catch (err) {
-      const errData = err.response.data;
-      if (errData.statusCode === 400) {
-        alert(errData.message);
-      } //"message": "비밀번호가 일치하지 않습니다."
-      if (errData.statusCode === 404) {
-        alert(errData.message);
-      } //"message": "존재하지 않는 유저입니다."
+      const errData = err.response?.data;
+      alert(errData.message);
     }
   };
-  const [movies, setMovies] = useState();
-
-  const showMoviesTop = async () => {
-    const response = await getMoviesTop();
-    setMovies(response.data.data);
-  };
-
-  useEffect(() => {
-    showMoviesTop();
-  }, []);
 
   return (
     <main className={styles.wrapper}>
-      {/* <section className={styles.movies}>
-      <Slider {...settings}>
-      {!!movies&& movies.map((movie, index)=>{
-        return(
-          <div >
-            <img className={styles.moviePoster} 
-            src={movies[index].postImage
-            }/>
-            </div>
-        );  
-      })}
-      </Slider >
-      </section> */}
       <section className={styles.login}>
         <h1>로그인</h1>
         <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="이메일"
             errorText={!!err.userId && err.userId}
             onChange={onChange}
@@ -133,7 +104,7 @@ const Login = () => {
             value={form.userId}
           />
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="비밀번호"
             errorText={!!err.password && err.password}
             type="password"
@@ -142,15 +113,23 @@ const Login = () => {
             value={form.password}
             onChange={onChange}
           />
-          <Link to="/auth/register" style={{ textDecoration: 'none' }}>
-            <p className={styles.registerLink}>회원가입</p>
-          </Link>
-          <button
-            className={styles.submitButton}
-            children={'로그인'}
-            type="submit"
-            form="loginForm"
-          />
+          <Button className={styles.button} type="submit" form="loginForm">
+            로그인
+          </Button>
+          <Button
+            className={styles.button}
+            type="button"
+            onClick={() => onClick('backoffice/admin')}
+          >
+            관리자 로그인 페이지로 이동
+          </Button>
+          <Button
+            className={styles.button}
+            type="button"
+            onClick={() => onClick('auth/register')}
+          >
+            회원가입 페이지로 이동
+          </Button>
         </form>
       </section>
     </main>

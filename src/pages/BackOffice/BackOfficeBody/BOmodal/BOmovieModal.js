@@ -16,12 +16,12 @@
   "actors": "string[] | null"
 }
 */
-import React, { useState, useEffect, useRef } from "react";
-import { Button, Input } from "../../../../components";
-import styles from "./BOmovieModal.module.scss";
-import { CSSTransition } from "react-transition-group";
-import cx from "classnames";
-import { patchMovie } from "../../../../api/Movies";
+import React, { useState, useEffect, useRef } from 'react';
+import { Button, Input } from '../../../../components';
+import styles from './BOmovieModal.module.scss';
+import { CSSTransition } from 'react-transition-group';
+import cx from 'classnames';
+import { patchMovie } from '../../../../api/Movies';
 
 const BOmovieModal = ({
   className,
@@ -31,28 +31,31 @@ const BOmovieModal = ({
   setModalOpen,
   ID,
   selectedData,
-  setSelectedIDs
+  setSelectedIDs,
 }) => {
   // Modal 창을 useRef로 취득
   const modalRef = useRef(null);
 
-    const [postForm, setPostForm] = useState(
-    {
-      title:'',
-      plot:'',
-      releasedAt:'',
-      runtime:'',
-      company:''
-    }
-  );
-  
-  const closeModal = ()=>{
+  const [postForm, setPostForm] = useState({
+    title: '',
+    plot: '',
+    releasedAt: '',
+    runtime: '',
+    company: '',
+  });
+
+  const closeModal = () => {
     setSelectedIDs([]);
-    setPostForm({title:'',plot:'',releasedAt:'',runtime:'',company:''})
+    setPostForm({
+      title: '',
+      plot: '',
+      releasedAt: '',
+      runtime: '',
+      company: '',
+    });
     setModalOpen(false);
     responseData();
-  }
-  
+  };
 
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -62,119 +65,125 @@ const BOmovieModal = ({
   const onSubmit = async (e) => {
     //NOTE: try catch로 err 잡기
     e.preventDefault();
-    try{
-      const responsePatch = await patchMovie(ID,postForm);
-      if(responsePatch.status===204){
+    try {
+      const responsePatch = await patchMovie(ID, postForm);
+      if (responsePatch.status === 204) {
         //closeModal();
-        alert('수정완료');//출력은 되지만 리렌더링으로 바로 사라짐
+        alert('수정완료'); //출력은 되지만 리렌더링으로 바로 사라짐
         responseData();
       }
-      
-    } catch(err) {
+    } catch (err) {
       const errData = err.response.data;
-        alert(errData.message);
+      alert(errData.message);
     }
   };
 
   useEffect(() => {
     setPostForm({
-      title:selectedData.title,
-      plot:selectedData.plot,
-      releasedAt:selectedData.releasedAt,
-      runtime:selectedData.runtime,
-      company:selectedData.company,
+      title: selectedData.title,
+      plot: selectedData.plot,
+      releasedAt: selectedData.releasedAt,
+      runtime: selectedData.runtime,
+      company: selectedData.company,
     });
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setModalOpen(false); setSelectedIDs([]);
-        setPostForm({title:'',plot:'',releasedAt:'',runtime:'',company:''});
+        setModalOpen(false);
+        setSelectedIDs([]);
+        setPostForm({
+          title: '',
+          plot: '',
+          releasedAt: '',
+          runtime: '',
+          company: '',
+        });
         responseData();
       }
     };
     // 이벤트 핸들러 등록
-    document.addEventListener("mousedown", handler);
+    document.addEventListener('mousedown', handler);
     return () => {
       // 이벤트 핸들러 해제
-      document.removeEventListener("mousedown", handler);
+      document.removeEventListener('mousedown', handler);
     };
-  },[modalOpen]);
-return (
-<CSSTransition
-  in={modalOpen}
-  timeout={300}
-  classNames={{
-    enterActive: styles.modalEnterActive,
-    enterDone: styles.modalEnterDone,
-    exitActive: styles.modalExit,
-    exitDone: styles.modalExitActive,
-  }}
-  unmountOnExit
->
-  <div className={styles.overlay}>
-    <section
-      ref={modalRef}
-      className={cx(styles.container, className, styles[option])}
+  }, [modalOpen]);
+  return (
+    <CSSTransition
+      in={modalOpen}
+      timeout={300}
+      classNames={{
+        enterActive: styles.modalEnterActive,
+        enterDone: styles.modalEnterDone,
+        exitActive: styles.modalExit,
+        exitDone: styles.modalExitActive,
+      }}
+      unmountOnExit
     >
-      <header className={styles.title}>안내</header>
-      <div className={styles.content}>
-      <ul className={styles.inputForm}>
-        <li>ID : {ID}</li>
-        <Input
-            className={styles.inputClass}
-            label="영화제목"
-            onChange={onChange}
-            name="title"
-            value={postForm.title}
-          />
-        <li className={styles.labelText}>줄거리</li>
-        <textarea 
-            className={styles.textArea}
-            label="줄거리"
-            onChange={onChange}
-            name="plot"
-            value={postForm.plot}
-          />
-        <Input
-            className={styles.inputClass}
-            label="상영일"
-            onChange={onChange}
-            name="releasedAt"
-            value={postForm.releasedAt}
-          />
-          <Input
-            className={styles.inputClass}
-            label='상영시간'
-            onChange={onChange}
-            name="runtime"
-            value={postForm.runtime}
-          />
-          <Input
-            className={styles.inputClass}
-            label='제작사'
-            onChange={onChange}
-            name="company"
-            value={postForm.company}
-          />
-      </ul>
+      <div className={styles.overlay}>
+        <section
+          ref={modalRef}
+          className={cx(styles.container, className, styles[option])}
+        >
+          <header className={styles.title}>안내</header>
+          <div className={styles.content}>
+            <ul className={styles.inputForm}>
+              <li>ID : {ID}</li>
+              <Input
+                className={styles.inputClass}
+                label="영화제목"
+                onChange={onChange}
+                name="title"
+                value={postForm.title}
+              />
+              <li className={styles.labelText}>줄거리</li>
+              <textarea
+                className={styles.textArea}
+                label="줄거리"
+                onChange={onChange}
+                name="plot"
+                value={postForm.plot}
+              />
+              <Input
+                className={styles.inputClass}
+                label="상영일"
+                onChange={onChange}
+                name="releasedAt"
+                value={postForm.releasedAt}
+              />
+              <Input
+                className={styles.inputClass}
+                label="상영시간"
+                onChange={onChange}
+                name="runtime"
+                value={postForm.runtime}
+              />
+              <Input
+                className={styles.inputClass}
+                label="제작사"
+                onChange={onChange}
+                name="company"
+                value={postForm.company}
+              />
+            </ul>
+          </div>
+
+          <footer className={styles.buttonBox}>
+            <Button
+              className={styles.cancelButton}
+              children={'취소'}
+              onClick={closeModal}
+            />
+            <Button
+              className={styles.deleteButton}
+              children={buttonChildren}
+              onClick={onSubmit}
+            />
+          </footer>
+        </section>
       </div>
-      
-      <footer className={styles.buttonBox}>
-        <Button
-          className={styles.cancelButton}
-          children={"취소"}
-          onClick={closeModal}
-        />
-        <Button
-          className={styles.deleteButton}
-          children={buttonChildren}
-          onClick={onSubmit}
-        />
-      </footer>
-    </section>
-  </div>
-</CSSTransition>
-);
+    </CSSTransition>
+  );
 };
 
 export default BOmovieModal;

@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
+import { useRecoilValue } from 'recoil';
+import useMe from '../../hooks/useMe';
+import { isLoginAtom } from '../../atom';
+
+import { getUsersMe, patchUser } from '../../api/Users';
 import {
   getMoviesGenre,
   getMoviesMeLike,
-  getBookmarksMe,
   postMovieLike,
   deleteMovieLike,
 } from '../../api/Movies';
+import { getBookmarksPage } from '../../api/Bookmarks';
 
 import {
   CaretLeftIcon,
@@ -23,10 +28,11 @@ import {
 import styles from './myCarousel.module.scss';
 import './carousel.scss';
 
-import { PosterHeart, PosterM, PosterMark } from '../PosterM';
 import PosterH from '../PosterH';
+import { PosterM, PosterHeart, PosterBookmark } from '../PosterM';
 import MovieModal from '../MovieModal';
-import { getBookmarksPage } from '../../api/Bookmarks';
+import { useMount } from 'react-use';
+//
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -100,19 +106,17 @@ export const HomeCarousel = ({ GenreId }) => {
 };
 
 export const MyCarousel = () => {
-  const navigate = useNavigate;
-  const [moviesLike, setMoviesLike] = useState();
-  const [moviesMark, setMoviesMark] = useState();
-  //NOTE: 에러 발생 중
-  const [cancelLike, setCancelLike] = useState(false);
-  const [cancelBookmark, setCancelBookmark] = useState(false);
+  const me = useMe();
+  const isLogin = useRecoilValue(isLoginAtom);
 
+  const [moviesLike, setMoviesLike] = useState([]);
+  const [moviesMark, setMoviesMark] = useState();
+
+  //좋아요 목록
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
     setMoviesLike(response.data);
     console.log('좋아요 리스트', response.data);
-    setCancelLike(response.data.isLike);
-    console.log('좋아요 여부', response.data.isLike);
   };
   //북마크 목록
   const fetchMoviesMark = async () => {
@@ -121,17 +125,14 @@ export const MyCarousel = () => {
     console.log('북마크 리스트', response.data.data);
   };
 
-  //좋아요 취소
-  const onClick = async (e) => {
-    const { name } = e.currentTarget;
-
-    if (name === 'cancelLike') {
-      cancelLike ? await postMovieLike(id) : await deleteMovieLike(id);
-      setCancelLike((cur) => !cur);
-      await fetchMoviesLike();
-      //console.log('좋아요 취소');
-    }
+  //내정보로 보내..?
+  const onGetMe = async () => {
+    const response = await getUsersMe();
+    setMe(response.data);
   };
+  useMount(() => {
+    onGetMe();
+  });
 
   useEffect(() => {
     fetchMoviesLike();
@@ -157,30 +158,13 @@ export const MyCarousel = () => {
       </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
-          {moviesLike &&
-            moviesLike?.map((index) => (
-              <PosterM
-                className={styles.like}
-                name="cancelLike"
-                id={index.id}
-                title={index.title}
-                postImage={index.postImage}
-                children={
-                  cancelLike ? (
-                    <HeartIcon className={styles.icon} />
-                  ) : (
-                    <SolidHeartIcon className={styles.icon} />
-                  )
-                }
-                onClick={onClick}
-              >
-                {cancelLike ? (
-                  <HeartIcon className={styles.icon} />
-                ) : (
-                  <SolidHeartIcon className={styles.icon} />
-                )}
-              </PosterM>
-            ))}
+          {moviesLike.map((index) => (
+            <PosterHeart
+              key={index.id}
+              index={index}
+              onClick={fetchMoviesLike}
+            />
+          ))}
         </Slider>
       </div>
 
@@ -197,14 +181,6 @@ export const MyCarousel = () => {
                 id={index.movie.id}
                 title={index.movie.title}
                 postImage={index.movie.postImage}
-                children={
-                  cancelBookmark ? (
-                    <BookmarkIcon className={styles.icon} />
-                  ) : (
-                    <SolidBookmarkIcon className={styles.icon} />
-                  )
-                }
-                onClick={onClick}
               />
             ))}
         </Slider>

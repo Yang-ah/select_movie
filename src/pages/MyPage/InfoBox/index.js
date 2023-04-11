@@ -5,7 +5,7 @@ import useMe from '../../../hooks/useMe';
 
 import { getUsersMeInfo } from '../../../api/Users';
 import InfoModal from '../Modal/infoModal';
-import { SettingIcon } from '../../../assets/icon';
+import { UserIcon, SettingIcon } from '../../../assets/icon';
 
 const Info = () => {
   const me = useMe();
@@ -43,13 +43,14 @@ const Info = () => {
   return (
     <section className={styles.wrapper}>
       <article className={styles.info}>
-        <div className={styles.img}>😊</div>
+        <div className={styles.profile}>
+          {/* <UserIcon className={styles.nickname} /> */}
+          {/*<p className={styles.nickname}>{me && me.nickname}</p>*/}
+          <p className={styles.nickname}>😭</p>
+        </div>
         <div className={styles.text}>
           <div className={styles.left}>
-            <li className={styles.nickname}>
-              {me && me.nickname}
-              <a className={styles.name}> ( {me && me.name} )</a>
-            </li>
+            <li className={styles.nickname}>{me && me.name}</li>
             <li className={styles.description}>{me && me.description}</li>
           </div>
 

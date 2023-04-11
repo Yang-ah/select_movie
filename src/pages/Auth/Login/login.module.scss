@@ -1,19 +1,33 @@
 @use '../../../styles/constants' as c;
-@use '../../../styles/mixins' as m;
 
 .wrapper {
-  @include m.flex();
   width: 100vw;
-  height: calc(100vh - 148px);
+  height:  calc(100vh - 148px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   background-color: c.$C_BACKGROUND;
-
+  >.movies{
+    width: 252px;
+    height: 360px;
+    background-color: c.$C_BACKGROUND;
+    //height: 100%;
+    //width: 100%;
+    //position: absolute;
+  }
   > .login {
-    @include m.flex(center, center, column);
     //z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     width: 240px;
-    height: 400px;
+    height: 360px;
     padding: 20px;
     background-color: c.$C_PURPLE1;
+    box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.46);
     border-radius: 4px;
 
     > h1 {
@@ -25,42 +39,54 @@
 }
 
 .loginForm {
-  @include m.flex(center, center, column);
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  > .inputWrap {
+  .inputWrapper {
+    color: white;
     width: 100%;
-    margin-bottom: 24px;
+    > p {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
     > input {
-      padding: 12px;
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      background-color: c.$C_PURPLE2;
     }
   }
+  .inputWrapper + .inputWrapper {
+    margin-top: 12px;
+  }
 
-  > .button {
-    width: 100%;
+  .submitButton {
+    width: 176px;
+    padding: 8px 0px;
+    margin-top: 20px;
+    background-color: c.$C_ORANGE;
+    border: 0px;
     border-radius: 4px;
-    margin-bottom: 8px;
-    background-color: c.$C_WHITE_10;
-    transition: 0.2s background-color ease-in;
-    &:hover {
-      background-color: c.$C_ORANGE;
-    }
+    cursor: pointer;
+    color: white;
   }
 }
+.registerLink {
+  color: c.$C_ORANGE;
+  margin-top: 16px;
+}
 
-/*
+.inputClass {
+  margin-bottom: 25px;
+}
 
-.moviePoster {
+.moviePoster{
   height: 100%;
   width: 100%;
   background-size: contain;
 }
-> .movies {
-  width: 252px;
-  height: 360px;
-  background-color: c.$C_BACKGROUND;
-  //height: 100%;
-  //width: 100%;
-  //position: absolute;
-}
-*/
