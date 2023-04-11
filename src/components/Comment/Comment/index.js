@@ -2,8 +2,6 @@ import styles from './comment.module.scss';
 import cx from 'classnames';
 import { HeaderLeft, HeaderRightButtons } from '../_shared';
 import useMe from '../../../hooks/useMe';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../atom';
 import { useEffect, useState } from 'react';
 import { ModifyIcon, TrashIcon } from '../../../assets/icon';
 import Modal from '../../Common/Modal';
@@ -22,7 +20,6 @@ const Comment = ({
 }) => {
   const me = useMe();
 
-  const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [canModify, setCanModify] = useState(false);
@@ -30,10 +27,10 @@ const Comment = ({
 
   useEffect(() => {
     isUserMeToggle();
-  }, [isLogin, me]);
+  }, [me]);
 
   const isUserMeToggle = () => {
-    if (isLogin && me && me.id === written) {
+    if (me && me.id === written) {
       setIsUserMe(true);
     }
   };

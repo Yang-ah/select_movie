@@ -3,8 +3,6 @@ import styles from './review.module.scss';
 import cx from 'classnames';
 import { HeaderLeft, HeaderRightRating, HeaderRightButtons } from '../_shared';
 import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../atom';
-import { useRecoilValue } from 'recoil';
 import { ModifyIcon, TrashIcon } from '../../../assets/icon';
 import Modal from '../../Common/Modal';
 import { deleteReview, getMyReview, patchReview } from '../../../api/Reviews';
@@ -23,8 +21,6 @@ const Review = ({
   movieId,
 }) => {
   const me = useMe();
-
-  const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [canModify, setCanModify] = useState(false);
@@ -33,29 +29,18 @@ const Review = ({
     score: rating,
   });
 
+  const onClickDelete = () => setModalOpen(true);
+  const onClickModify = () => setCanModify(true);
+
   const isMyReview = async () => {
     const response = await getMyReview(movieId);
     response.data && setIsUserMe(response.data.user.id === written);
-  };
-
-  const onClickReport = () => {};
-
-  useEffect(() => {
-    isMyReview();
-  }, [isLogin, me]);
-
-  const onClickDelete = () => {
-    setModalOpen(true);
   };
 
   const onClickDeleteReview = async () => {
     await deleteReview(reviewId);
     await fetchReviews();
     setModalOpen(false);
-  };
-
-  const onClickModify = () => {
-    setCanModify(true);
   };
 
   const onChangeModifiedReview = (e) => {
@@ -70,6 +55,10 @@ const Review = ({
     await fetchReviews();
     setCanModify(false);
   };
+
+  useEffect(() => {
+    isMyReview();
+  }, [me]);
 
   return (
     <section className={cx(styles.wrap, { [styles.myReview]: isUserMe })}>

@@ -6,26 +6,21 @@ import { getMoviesRelated, postMovieLike } from '../../api/Movies';
 import { getReviewsMovie } from '../../api/Reviews';
 import RelatedCard from './RelatedCard';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../atom';
 import useMe from '../../hooks/useMe';
 import Accordion from './Accordion';
 import ReviewInput from '../../components/Comment/ReviewInput';
+import { motion } from 'framer-motion';
 
 // review dropdown list
 const dropdownItems = () => {
   return ['별점높은순', '별점낮은순', '최신순'];
 };
 
-import { motion } from 'framer-motion';
-
 const Detail = () => {
   const navigate = useNavigate();
+  const me = useMe();
   const { id } = useParams();
   const ref = useRef(null);
-
-  const me = useMe();
-  const isLogin = useRecoilValue(isLoginAtom);
 
   const [relatedMovies, setRelatedMovies] = useState(); // 관련 영화가 들어있는 배열
   const [reviews, setReviews] = useState([]); // review 객체가 들어있는 배열
@@ -59,21 +54,21 @@ const Detail = () => {
     });
     fetchRelatedMovies();
     fetchReviews();
-  }, [id]);
+  }, [id, me]);
 
   // 로그인 상태에 따라 reviewInput의 placeholder 변경
   const inputPlaceholder = () => {
-    return isLogin
+    return me
       ? '10자 이상 입력 시 등록 가능합니다.'
       : '로그인 후 작성하실 수 있습니다.';
   };
 
   // 로그인 상태에 따라 reviewInput의 userName 변경
   const inputUsername = () => {
-    if (me && isLogin) {
+    if (me) {
       return me.nickname ?? me.name;
     }
-    if (!me || !isLogin) {
+    if (!me) {
       return <Link to="/auth/login">로그인 후 작성가능</Link>;
     }
   };
@@ -101,7 +96,7 @@ const Detail = () => {
             {/* 영화 리뷰를 입력하는 input  */}
             <ReviewInput
               id={id}
-              disabled={!isLogin}
+              disabled={me ? false : true}
               placeholder={inputPlaceholder()}
               fetchReviews={fetchReviews}
               userName={inputUsername()}
