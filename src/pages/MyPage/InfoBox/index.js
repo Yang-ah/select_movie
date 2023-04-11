@@ -2,30 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './infoBox.module.scss';
 import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../atom';
-import { useRecoilValue } from 'recoil';
 
-import Stars from '../../../components/Common/Stars';
-import { SettingIcon } from '../../../assets/icon';
-import InfoModal from '../InfoModal';
 import { getUsersMeInfo } from '../../../api/Users';
+import InfoModal from '../Modal/infoModal';
+import { SettingIcon } from '../../../assets/icon';
 
 const Info = () => {
   const me = useMe();
-  const isLogin = useRecoilValue(isLoginAtom);
-
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState();
+  const [usersData, setUsersData] = useState();
 
   const fetchUserInfo = async () => {
     const response = await getUsersMeInfo();
     setUserInfo(response.data);
-    //    console.log(response.data);
   };
 
+  //모달
   const [modalOpen, setModalOpen] = useState(false);
+  const [form, setForm] = useState();
+
+  const onChange = (e) => {
+    const { value } = e.currentTarget;
+    setForm(value);
+  };
   const showModal = () => {
     setModalOpen(true);
+  };
+  const closeModal = () => {
+    setSelectedIDs([]);
+    setModalOpen(false);
+    setModalOpen2(false);
+    responseData();
   };
 
   useEffect(() => {
@@ -37,34 +45,31 @@ const Info = () => {
       <article className={styles.info}>
         <div className={styles.img}>😊</div>
         <div className={styles.text}>
-          <div className={styles.infoTop}>
-            {/*} {!isLogin && <p className={styles.userName}>누군가의 name</p>}
-            {isLogin && (*/}
-            <div>
-              <p className={styles.userName}>이름 : {me && me.name}</p>
-              <p className={styles.userName}>닉네임 : {me && me.nickName}</p>
-              <p className={styles.userName}>이메일 : {me && me.email}</p>
-            </div>
-            {/*} )} */}
-            {isLogin && (
-              <button
-                className={styles.setting}
-                type="submit"
-                value="modify"
-                onClick={showModal}
-              >
-                <SettingIcon />
-              </button>
-            )}
-            <InfoModal
-              className={styles.inputModal}
-              modalOpen1={modalOpen}
-              setModalOpen={setModalOpen}
-              notion="소개글 수정"
-              buttonChildren="완료"
-            />
+          <div className={styles.left}>
+            <li className={styles.nickname}>
+              {me && me.nickname}
+              <a className={styles.name}> ( {me && me.name} )</a>
+            </li>
+            <li className={styles.description}>{me && me.description}</li>
           </div>
-          <div className={styles.introduce}>{me && isLogin && me.email}</div>
+
+          <button
+            className={styles.setting}
+            type="submit"
+            value="modify"
+            onClick={showModal}
+          >
+            <SettingIcon />
+          </button>
+          <InfoModal
+            className={styles.inputModal}
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            closeModal={closeModal}
+            selectedData={usersData}
+            notion="소개글 수정"
+            buttonChildren="완료"
+          />
         </div>
       </article>
       <article className={styles.category}>
@@ -74,9 +79,11 @@ const Info = () => {
         </div>
         <div className={styles.rating}>
           <p className={styles.top}>⭐ 평균 평점 ⭐</p>
-          {!!userInfo?.averageScore ?
-          <p className={styles.middle}>{userInfo?.averageScore.toFixed(1)}</p>:
-          <p className={styles.middle}>0</p>}
+          {!!userInfo?.averageScore ? (
+            <p className={styles.middle}>{userInfo?.averageScore.toFixed(1)}</p>
+          ) : (
+            <p className={styles.middle}>0</p>
+          )}
         </div>
         <div className={styles.review}>
           <p className={styles.top}>✍ 내가 남긴 리뷰 수 ✍</p>

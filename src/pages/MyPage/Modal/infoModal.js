@@ -1,53 +1,49 @@
-/*
-{
-  "content": "string | null",
-  "score": "number | null"
-}
-*/
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Input } from '../../../../components';
-import styles from './BOmovieModal.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import cx from 'classnames';
-import { patchReviewAdmin } from '../../../../api/Reviews';
+import styles from './infoModal.module.scss';
+import useMe from '../../../hooks/useMe';
+import { patchUser } from '../../../api/Users';
+import { Button, Input } from '../../../components';
+import { TrashIcon } from '../../../assets/icon';
 
-const BOreviewModal = ({
+const InfoModal = ({
   className,
   option,
   buttonChildren,
   modalOpen,
   setModalOpen,
-  ID,
-  selectedData,
-  setSelectedIDs,
 }) => {
-  // Modal 창을 useRef로 취득
+  const me = useMe();
   const modalRef = useRef(null);
   const [postForm, setPostForm] = useState({
-    content: '',
-    score: '',
+    name: '',
+    nickname: '',
+    description: '',
   });
-
-  const closeModal = () => {
-    setSelectedIDs([]);
-    setPostForm({
-      content: '',
-      score: '',
-    });
-    setModalOpen(false);
-    responseData();
-  };
 
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setPostForm({ ...postForm, [name]: value });
   };
 
+  const closeModal = () => {
+    setPostForm({
+      name: '',
+      nickname: '',
+      description: '',
+    });
+    setModalOpen(false);
+  };
+  const onReset = (e) => {
+    const { name } = e.currentTarget;
+    setPostForm({ ...postForm, [name]: '' });
+  };
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
     try {
-      const responsePatch = await patchReviewAdmin(ID, postForm);
+      const responsePatch = await patchUser(postForm);
       if (responsePatch.status === 200) {
         alert('수정완료');
         responseData();
@@ -62,17 +58,18 @@ const BOreviewModal = ({
 
   useEffect(() => {
     setPostForm({
-      content: selectedData.content,
-      score: selectedData.score,
+      name: me?.name,
+      nickname: me?.nickname,
+      description: me?.description,
     });
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setModalOpen(false);
-        setSelectedIDs([]);
         setPostForm({
-          content: '',
-          score: '',
+          name: '',
+          nickname: '',
+          description: '',
         });
         responseData();
       }
@@ -84,6 +81,7 @@ const BOreviewModal = ({
       document.removeEventListener('mousedown', handler);
     };
   }, [modalOpen]);
+
   return (
     <CSSTransition
       in={modalOpen}
@@ -101,27 +99,40 @@ const BOreviewModal = ({
           ref={modalRef}
           className={cx(styles.container, className, styles[option])}
         >
-          <header className={styles.title}>안내</header>
-          <div className={styles.content}>
-            <ul className={styles.inputForm}>
-              <li>ID : {ID}</li>
+          <header className={styles.title}>
+            🤗 당신을 어떻게 소개하고 싶나요? 🤗
+          </header>
+          <main className={styles.content}>
+            <ul>
+              <p className={styles.label}>이름</p>
               <Input
-                className={styles.inputClass}
-                label="별점"
+                className={styles.input}
                 onChange={onChange}
-                name="score"
-                value={postForm.score}
+                name="name"
+                value={postForm.name}
+                maxLength={10}
               />
-              <li className={styles.labelText}>리뷰</li>
-              <textarea
-                className={styles.textArea}
-                label="리뷰"
+              <p className={styles.label}>닉네임</p>
+              <Input
+                className={styles.input}
                 onChange={onChange}
-                name="content"
-                value={postForm.content}
+                name="nickname"
+                value={postForm.nickname}
+              />
+              <p className={styles.label}>소개글</p>
+              <textarea
+                className={styles.textarea}
+                onChange={onChange}
+                name="description"
+                value={postForm.description}
+                maxLength={100}
               />
             </ul>
-          </div>
+            {/*<button className={styles.deleteUser}>
+              <TrashIcon />
+              계정을 삭제하시겠습니까?
+    </button>*/}
+          </main>
 
           <footer className={styles.buttonBox}>
             <Button
@@ -129,6 +140,9 @@ const BOreviewModal = ({
               children={'취소'}
               onClick={closeModal}
             />
+            {/* <Button className={styles.resetButton} onClick={onReset}>
+              초기화
+            </Button> */}
             <Button
               className={styles.deleteButton}
               children={buttonChildren}
@@ -141,4 +155,4 @@ const BOreviewModal = ({
   );
 };
 
-export default BOreviewModal;
+export default InfoModal;

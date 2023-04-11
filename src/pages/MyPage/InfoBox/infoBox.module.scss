@@ -4,6 +4,7 @@
 .info {
   @include m.flex(space-between, flex-start);
   padding: 0 7%;
+  width: 100%;
 
   .img {
     margin-right: 4%;
@@ -21,6 +22,7 @@
 }
 
 .text {
+  @include m.flex(space-between, flex-start);
   width: 100%;
   height: 250px;
   padding: 3% 4%;
@@ -29,46 +31,54 @@
   overflow: hidden;
 }
 
-.infoTop {
-  @include m.flex(space-between, flex-start);
-  min-width: 100%;
-  height: 20%;
-  padding: 0 1%; //소개글보다 약간 안쪽으로 들어옴
-  padding-bottom: 20px;
-  .userName {
-    min-width: 100%;
-    font-size: 26px;
+.left {
+  width: calc(100% - 40px);
+  height: 100%;
+
+  .nickname {
+    font-size: 22px;
     font-weight: 600;
-    padding: 5px;
+    margin-bottom: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    .name {
+      font-size: 20px;
+      font-weight: 400;
+    }
   }
-  .setting {
-    > svg {
-      height: 26px;
-    }
-    :hover {
-      cursor: pointer;
-      fill: c.$C_ORANGE;
-    }
+  .description {
+    background-color: c.$C_REVIEWBOX_20;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 100%;
+    height: 70%;
+    font-size: 20px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; //라인수
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 30px;
+    height: 135px; //변경X!!!!!
   }
 }
-
-.introduce {
-  background-color: c.$C_REVIEWBOX_20;
-  padding: 1.5%;
-  border-radius: 8px;
-  height: 70%;
-  font-size: 21px;
-  line-height: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.setting {
+  > svg {
+    height: 28px;
+  }
+  :hover {
+    cursor: pointer;
+    fill: c.$C_ORANGE;
+  }
 }
 
 .category {
   @include m.flex(space-between, flex-start);
   padding: 4% 0;
+
   .rating,
   .isliked,
   .review {
@@ -76,47 +86,38 @@
     height: 100%;
     border-radius: 20px;
     background-color: c.$C_REVIEWBOX;
-    border: 3px dashed white; //리뷰박스랑 비슷해서 임시로 넣은것. 이후 삭제.
+    filter: drop-shadow(0 0 3px orange);
 
     .top,
     .middle,
     .bottom {
       height: 40px;
       min-width: 100%;
+      padding: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      white-space: nowrap;
       gap: 4px;
-      padding: 30px 0;
+      padding: 35px 0;
+      word-break: keep-all;
     }
     .top {
-      font-size: 18px;
+      font-size: 1vw;
     }
     .middle {
-      padding-bottom: 40px;
+      padding-bottom: 60px;
       font-size: 36px;
       font-weight: 700;
       color: c.$C_ORANGE;
+      letter-spacing: 2px;
       &:hover {
         transform: scale(1.2);
       }
     }
     .bottom {
       font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
   }
-}
-
-//inputModal
-.inputModal {
-  color: red;
-  background-color: black;
-  width: 50%;
 }
 
 //inputModal

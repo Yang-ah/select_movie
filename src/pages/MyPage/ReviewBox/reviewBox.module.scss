@@ -1,0 +1,74 @@
+@use '../../../styles/constants' as c;
+@use '../../../styles/mixins' as m;
+
+//Category
+.category {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  .icon {
+    fill: orange;
+    height: 20px;
+    margin-right: 5px;
+  }
+}
+
+//Box
+.wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  animation-delay: 0.3ms;
+  width: 100%;
+  gap: 2% 1%;
+}
+
+.li {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+//modal
+.deleteModal {
+  color: red;
+  .container {
+    background-color: aquamarine;
+  }
+}
+
+//nav
+.pagination {
+  margin-top: 20px;
+  height: 100%;
+  color: c.$C_ARROW;
+  fill: c.$C_ARROW;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  :hover,
+  :active {
+    color: c.$C_ORANGE;
+    fill: c.$C_ORANGE;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+
+  li {
+    font-size: 16px;
+    margin: 0 1%;
+  }
+
+  .Icon {
+    height: 16px;
+    width: 16px;
+  }
+}
