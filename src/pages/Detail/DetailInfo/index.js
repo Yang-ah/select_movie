@@ -4,8 +4,6 @@ import Button from '../../../components/Common/Button';
 import Chart from '../Chart';
 import dayjs from 'dayjs';
 import { deleteMovieLike, getMovie, postMovieLike } from '../../../api/Movies';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../atom';
 import {
   BookmarkIcon,
   HeartIcon,
@@ -18,9 +16,10 @@ import {
   deleteBookmark,
   getMyBookmarks,
 } from '../../../api/Bookmarks';
+import useMe from '../../../hooks/useMe';
 
 const DetailInfo = ({ id }) => {
-  const isLogin = useRecoilValue(isLoginAtom);
+  const me = useMe();
   const [movieDetail, setMovieDetail] = useState();
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -29,12 +28,11 @@ const DetailInfo = ({ id }) => {
     const response = await getMovie(id);
     setMovieDetail(response.data);
 
-    if (isLogin) {
+    if (me) {
       setIsLiked(response.data.isLiked);
     } else {
       setIsLiked(false);
     }
-    // console.log('like', isLogin && response.data.isLiked);
   };
 
   const fetchBookmarks = async () => {
@@ -43,17 +41,15 @@ const DetailInfo = ({ id }) => {
       return dataArr.movie.id;
     });
 
-    if (isLogin && bookmarkIdArr.includes(id)) {
+    if (me && bookmarkIdArr.includes(id)) {
       setIsBookmarked(true);
     } else {
       setIsBookmarked(false);
     }
-
-    //  console.log('bookmark', isLogin && bookmarkIdArr.includes(id));
   };
 
   const onClickButton = async (e) => {
-    if (!isLogin) {
+    if (!me) {
       return alert('로그인 후 이용 가능합니다!');
     }
     const { name } = e.currentTarget;
@@ -72,7 +68,7 @@ const DetailInfo = ({ id }) => {
   useEffect(() => {
     fetchMovieData();
     fetchBookmarks();
-  }, [id]);
+  }, [id, me]);
 
   return (
     <>
