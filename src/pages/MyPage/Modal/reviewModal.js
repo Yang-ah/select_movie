@@ -5,12 +5,6 @@ import styles from './reviewModal.modal.module.scss';
 import useMe from '../../../hooks/useMe';
 import { Button, Input } from '../../../components';
 import { patchReview, deleteReview } from '../../../api/Reviews';
-//modify
-import {
-  HeaderLeft,
-  HeaderRightRating,
-  HeaderRightButtons,
-} from '../../../components/Comment/_shared';
 import Stars from '../../../components/Common/Stars';
 
 export const FixModal = ({
@@ -27,6 +21,7 @@ export const FixModal = ({
   const modalRef = useRef(null);
   const [postForm, setPostForm] = useState({
     content: '',
+    score: '',
   });
 
   const onChange = (e) => {
@@ -37,6 +32,7 @@ export const FixModal = ({
   const closeModal = () => {
     setPostForm({
       content: '',
+      score: '',
     });
     setModalOpen(false);
   };
@@ -50,7 +46,7 @@ export const FixModal = ({
     try {
       const responsePatch = await patchReview(postForm);
       if (responsePatch.status === 200) {
-        alert('수정완료'); //not work...
+        alert('수정완료');
         responseData();
       }
     } catch (err) {
@@ -63,14 +59,16 @@ export const FixModal = ({
 
   useEffect(() => {
     setPostForm({
-      content: me && me.content,
+      content: me?.content,
+      score: me?.score,
     });
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setFixModalOpen(false);
+        setModalOpen(false);
         setPostForm({
           content: '',
+          score: '',
         });
         responseData();
       }
@@ -106,6 +104,7 @@ export const FixModal = ({
               value={postForm.content}
               maxLength={300}
             />
+
             {/*}
             <Input
               className={styles.contentFix}
@@ -138,6 +137,7 @@ export const DeleteModal = ({
   className,
   option,
   buttonChildren,
+  fetchReviews,
   deleteModalOpen,
   setDeleteModalOpen,
   userORreview,
@@ -147,40 +147,11 @@ export const DeleteModal = ({
   const closeModal = () => {
     setDeleteModalOpen(false);
   };
-  const onSubmit = async (e) => {
-    //NOTE: 새로고침 방지
-    e.preventDefault();
 
-    //리뷰 삭제
-    if (userORreview === 'review') {
-      try {
-        const response2 = await deleteReview();
-        if (response2.status === 200) {
-          alert('리뷰 삭제를 완료했습니다.');
-          closeModal();
-        }
-      } catch (err) {
-        const errData = err.response.data;
-        if (errData.statusCode !== 200) {
-          alert(errData.message);
-        }
-      }
-    }
-    //유저 삭제
-    if (userORreview === 'user') {
-      try {
-        const response = await deleteUser();
-        if (response.status === 200) {
-          alert('회원을 삭제를 완료했습니다.');
-          closeModal();
-        }
-      } catch (err) {
-        const errData = err.response.data;
-        if (errData.statusCode !== 200) {
-          alert(errData.message);
-        }
-      }
-    }
+  const onSubmit = async () => {
+    await deleteReview(reviewId);
+    await fetchReviews();
+    setDeleteModalOpen(false);
   };
 
   useEffect(() => {

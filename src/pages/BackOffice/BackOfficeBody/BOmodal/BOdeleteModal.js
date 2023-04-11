@@ -49,26 +49,26 @@ const BOdeleteModal = ({
     if (userORreview === 'review') {
       try {
         const response2 = await deleteReviewAdmin(ID);
-          if(response2.status===204){
-            alert('리뷰를 삭제를 완료했습니다.')
-            closeModal();
-          }
-      } catch(err) {
+        if (response2.status === 204) {
+          alert('리뷰를 삭제를 완료했습니다.');
+          closeModal();
+        }
+      } catch (err) {
         const errData = err.response.data;
-          alert(errData.message);
+        alert(errData.message);
       }
     }
 
     if (userORreview === 'user') {
       try {
         const response = await deleteUser(ID);
-          if(response.status===204){
-            alert('회원을 삭제를 완료했습니다.')
-            closeModal();
-          }
-      } catch(err) { 
+        if (response.status === 204) {
+          alert('회원을 삭제를 완료했습니다.');
+          closeModal();
+        }
+      } catch (err) {
         const errData = err.response.data;
-          alert(errData.message);
+        alert(errData.message);
       }
     }
   };

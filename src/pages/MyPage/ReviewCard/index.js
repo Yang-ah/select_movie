@@ -22,25 +22,18 @@ const Review = ({
           <TrashIcon className={styles.icon} />
         </button>
       </article>
-
       <article className={styles.layerDown}>
         <aside className={styles.top}>
           <div className={styles.left}>
             <p className={styles.title}>title : {title}</p>
-            <p className={styles.createdAt}>
-              createdAt : {createdAt.slice(0, 10)}
-            </p>
+            <p className={styles.createdAt}>{createdAt}</p>
           </div>
           <div className={styles.right}>
             <SolidStarIcon className={styles.star} />
             {score}
           </div>
         </aside>
-
-        <p className={styles.content}>
-          {content}
-          {/* {content.length > 200 ? content.substring(0, 200) + '...' : content} */}
-        </p>
+        <p className={styles.content}>{content}</p>
       </article>
     </section>
   );

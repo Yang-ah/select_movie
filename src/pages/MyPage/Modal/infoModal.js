@@ -45,7 +45,7 @@ const InfoModal = ({
     try {
       const responsePatch = await patchUser(postForm);
       if (responsePatch.status === 200) {
-        alert('수정완료'); //not work...
+        alert('수정완료');
         responseData();
       }
     } catch (err) {
@@ -58,9 +58,9 @@ const InfoModal = ({
 
   useEffect(() => {
     setPostForm({
-      name: me && me.name,
-      nickname: me && me.nickname,
-      description: me && me.description,
+      name: me?.name,
+      nickname: me?.nickname,
+      description: me?.description,
     });
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
