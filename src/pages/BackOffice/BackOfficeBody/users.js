@@ -3,7 +3,7 @@ import styles from './backOfficeBody.module.scss';
 import cx from 'classnames';
 import { Button, Input } from '../../../components';
 import { CheckIcon, SearchIcon, TrashIcon } from '../../../assets/icon';
-import { getUsers, deleteUsers } from '../../../api/Users';
+import { getUsers, deleteUsers, getUsersCount } from '../../../api/Users';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOuserModal from './BOmodal/BOuserModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
@@ -26,18 +26,21 @@ const BackOfficeUsers = () => {
   const [selectIndex, setSelectIndex] = useState();
   const [totalCount, setTotalCount] = useRecoilState(backOfficeTotalCount);
 
-  const onSetData = (data, total, reviewTotal) => {
+  const onSetData = (data, total) => {
     const totalPage = Math.ceil(total / LIMIT);
     setUsersData(data);
-    setTotalCount({...totalCount, users:total, reviews:reviewTotal});
     setPageNationNumber(totalPage);
   };
 
   const responseData = async () => {
     const response1 = await getUsers(pageNumber, LIMIT);
+    const usersCount = await getUsersCount();
     const reviewsCount = await getReviewsCount();
-    onSetData(response1.data.data, response1.data.paging.total, 
-      reviewsCount.data.count);
+    onSetData(response1.data.data, response1.data.paging.total);
+    setTotalCount({...totalCount, 
+      users:usersCount.data.count, 
+      reviews:reviewsCount.data.count,
+    });
     //console.log(reviewsCount.data.count);
   };
 
@@ -106,8 +109,9 @@ const BackOfficeUsers = () => {
         //NOTE: await 가 없어서 alert가 안떴다.
         await deleteUsers(element);
       }
-
-      alert('회원 일괄 삭제 완료'); //왜 출력이 안되는 가...
+      alert('회원 일괄 삭제 완료');
+      responseData();
+      onSearch();
     } catch (err) {
       const errData = err.response.data;
       alert(errData.message);

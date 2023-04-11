@@ -1,42 +1,47 @@
->일괄 삭제 시, alert 출력 되게 만들기
-1. 삭제 버튼(일괄 삭제) : alert출력 x. 리랜더링은 되는 상황
-
-+> 삭제 시, 헤더의 수 변경
+2) 관리자 로그인 모달 -> 로그인 완료 시 모달 삭제
 
 
 
 
-
-
-
-리뷰에서 글이 긴 경우 윗부분이 짤림 > 수정완료
-
-1.>>patchUser 500 오류 발생 [CMS]유저수정하기
-2.>>review 수정,삭제 관리자도 가능하게 수정요청
-3.>>회원가입시, body에 
-{
-  "email": "string",
-  "password": "string",
-  "name": "string | null",
-  "birth": "string | null",
-  "nickname": "string | null"
-}
-중 생일, 닉네임이 서버에 등록되지 않음
-
-3. 삭제 기능 구현
-삭제는 하나만 되게 되있으므로 프론트에서 맵으로 여러번 보내기
 
 
 +>페이지네이션 길이 조절
 
 
 
-수정 기능 구현 -완
-1. 체크박스 및 버튼을 눌렀을 때, 체크박스가 포함된 줄의 index 정보를 받아야함
-HOW? index만 받으면 data처리 가능, index를 어떻게 받아야?
+=====완=====
+>로그인 페이지에서 로그인 완료 후, 뒤로가기가 안 됩니다.
 ```
-const [SelectedIDs, setSelectedIDs] = useState([]);
-const [SelectIndex, setSelectIndex] = useState();
+import qs from 'query-string';
+
+//NOTE: query를 객체로 변환하는 코드
+const query = qs.parse(locations.search);
+
+//NOTE: location의 state를 이용해서 분기처리
+if (query.prev) {
+    query.prev.includes('register')
+    ? navigate('/')
+    : navigate(query.prev);
+}
+```
+
+>일괄 삭제 시, alert 출력 되게 만들기
+    1. 삭제 버튼(일괄 삭제) : alert출력 x. 리랜더링은 되는 상황
+    >>await 추가로 출력 및 리랜더링 됨
+    2. 삭제 시, 헤더의 수 변경
+    >>recoil로 backOfficeTotalCount를 따로 만들어서 해결
+        -해결방법
+        1) 부모 컴포넌트에서 state를 body와 header에 공유 or 부모 컴포넌트에서 
+           totalCount를 불러오는 함수를 선언
+        2) totalCount 자체를 recoil로 변환
+        3) react-query 데이터 패칭 라이브러리 (SWR)
+
+수정 기능 구현 -완
+    1. 체크박스 및 버튼을 눌렀을 때, 체크박스가 포함된 줄의 index 정보를 받아야함
+    HOW? index만 받으면 data처리 가능, index를 어떻게 받아야?
+    ```
+    const [SelectedIDs, setSelectedIDs] = useState([]);
+    const [SelectIndex, setSelectIndex] = useState();
     const showModal = (item, index) => {
         return()=>{
             setSelectedIDs([item.id]);
@@ -44,15 +49,11 @@ const [SelectIndex, setSelectIndex] = useState();
             setModalOpen(true);
         }
     };
-onClick={showModal(item, index)} 
-```
->> 시호 검색시 
--시호
--네가 내가 되었으면 좋겠다
-가 검색 되는이유??? >> 타이틀 + 다른것도 검색 되서
+    onClick={showModal(item, index)} 
+    ```
 
 페이지네이션 완
->> 현재 페이지 표시 완
-검색시 전체 검색 수 많큼만 page로 완
-컴포넌트로 빼면 좋음-완
-페이지네이션 max 못 넘어가게 완
+    현재 페이지 표시 완
+    검색시 전체 검색 수 많큼만 page로 완
+    컴포넌트로 빼면 좋음-완
+    페이지네이션 max 못 넘어가게 완

@@ -3,7 +3,7 @@ import styles from './backOfficeBody.module.scss';
 import cx from 'classnames';
 import { Button, Input, Modal } from '../../../components';
 import { CheckIcon, SearchIcon, TrashIcon } from '../../../assets/icon';
-import { deleteReviewAdmin, getReviews } from '../../../api/Reviews';
+import { deleteReviewAdmin, getReviews, getReviewsCount } from '../../../api/Reviews';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOreviewModal from './BOmodal/BOreviewModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
@@ -18,7 +18,6 @@ const BackOfficeReviews = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
   const [ReviewsData, setReviewsData] = useState();
-  const [Count, setCount] = useState();
   const [form, setForm] = useState();
   const [pageNationNumber, setPageNationNumber] = useState();
   const [selectedIDs, setSelectedIDs] = useState([]);
@@ -28,14 +27,16 @@ const BackOfficeReviews = () => {
   const onSetData = (data, total) => {
     const totalPage = Math.ceil(total / LIMIT);
     setReviewsData(data);
-    setTotalCount({...totalCount, reviews:total});
     setPageNationNumber(totalPage);
   };
 
   const responseData = async () => {
     const response1 = await getReviews(pageNumber, LIMIT);
-    //const responseCount = await getReviewsCount();
+    const responseCount = await getReviewsCount();
     onSetData(response1.data.data, response1.data.paging.total);
+    setTotalCount({...totalCount, 
+      reviews:responseCount.data.count,
+    });
   };
 
   const onSearch = async (e) => {
@@ -102,7 +103,9 @@ const BackOfficeReviews = () => {
       for (const element of ids) {
         await deleteReviewAdmin(element);
       }
-      alert('리뷰 일괄 삭제 완료'); //리랜더링 되게하기
+      alert('리뷰 일괄 삭제 완료');
+      responseData();
+      onSearch();
     } catch (err) {
       const errData = err.response.data;
       alert(errData.message);
