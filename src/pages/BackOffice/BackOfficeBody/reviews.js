@@ -7,6 +7,8 @@ import { deleteReviewAdmin, getReviews } from '../../../api/Reviews';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOreviewModal from './BOmodal/BOreviewModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
+import { useRecoilState } from 'recoil';
+import { backOfficeTotalCount } from '../../../atom';
 
 const title = ['작성일', '작성자', '작성내용', '더보기', '삭제'];
 const LIMIT = 10;
@@ -21,11 +23,12 @@ const BackOfficeReviews = () => {
   const [pageNationNumber, setPageNationNumber] = useState();
   const [selectedIDs, setSelectedIDs] = useState([]);
   const [selectIndex, setSelectIndex] = useState();
+  const [totalCount, setTotalCount] = useRecoilState(backOfficeTotalCount);
 
   const onSetData = (data, total) => {
     const totalPage = Math.ceil(total / LIMIT);
     setReviewsData(data);
-    setCount(total);
+    setTotalCount({...totalCount, reviews:total});
     setPageNationNumber(totalPage);
   };
 
@@ -99,8 +102,7 @@ const BackOfficeReviews = () => {
       for (const element of ids) {
         await deleteReviewAdmin(element);
       }
-
-      alert('리뷰 일괄 삭제 완료'); //왜 출력이 안되는 가...
+      alert('리뷰 일괄 삭제 완료'); //리랜더링 되게하기
     } catch (err) {
       const errData = err.response.data;
       alert(errData.message);
@@ -113,7 +115,7 @@ const BackOfficeReviews = () => {
     } else {
       onSearchPageChange();
     }
-  }, [pageNumber, modalOpen, modalOpen2, deleteChecked]);
+  }, [pageNumber, modalOpen, modalOpen2]);
 
   return (
     <>

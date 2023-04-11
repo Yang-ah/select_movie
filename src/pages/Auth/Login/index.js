@@ -115,7 +115,7 @@ const Login = () => {
           <Button
             className={styles.button}
             type="button"
-            onClick={() => onClick('backoffice/admin')}
+            onClick={() => onClick('auth/admin')}
           >
             관리자 로그인 페이지로 이동
           </Button>

@@ -7,9 +7,13 @@ import { AdminLoginPage } from '../CMS/cmsAuth';
 import { getMoviesCount } from '../../../api/Movies';
 import { getUsersCount } from '../../../api/Users';
 import { getReviewsCount } from '../../../api/Reviews';
+import { backOfficeTotalCount, isLoginAtom } from '../../../atom';
+import { useRecoilState } from 'recoil';
 
 const BackOfficeHeader = ({ path }) => {
   const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  const [totalCount, setTotalCount] = useRecoilState(backOfficeTotalCount);
 
   const [isClick, setIsClick] = useState({
     movies: 'secondary',
@@ -17,15 +21,15 @@ const BackOfficeHeader = ({ path }) => {
     reviews: 'secondary',
   });
 
-  const [totalCount, setTotalCount] = useState({
+  /* const [totalCount, setTotalCount] = useState({
     movies: '0',
     users: '1',
     reviews: '2',
-  });
+  }); */
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [adminLoginModalOpen, setAdminLoginModalOpen] = useState(false);
   const showModal = () => {
-    setModalOpen(true);
+    setAdminLoginModalOpen(true);
   };
 
   const responseCount = async () => {
@@ -51,6 +55,12 @@ const BackOfficeHeader = ({ path }) => {
     navigate(`/backoffice/reviews`);
   };
 
+  const logout = () => {
+    localStorage.clear();
+    setIsLogin(false);
+    alert('로그아웃 되었습니다');
+  };
+
   useEffect(() => {
     responseCount();
     if (location.pathname === '/backoffice/movies') {
@@ -67,12 +77,15 @@ const BackOfficeHeader = ({ path }) => {
   return (
     <>
       <header className={styles.header}>
-        <h1 onClick={showModal}>관리자 페이지</h1>
-        <Button onClick={showModal}>관리자 로그인</Button>
+        <h1>관리자 페이지</h1>
+        {!isLogin && (
+          <Button onClick={showModal}>관리자 로그인</Button>
+        )}
+        {isLogin && (<Button onClick={logout}>로그아웃</Button>)}
         {/* //TODO: 로그인 완료 시 모달 닫기 */}
         <CmsModal
-          modalOpen1={modalOpen}
-          setModalOpen={setModalOpen}
+          modalOpen1={adminLoginModalOpen}
+          setModalOpen={setAdminLoginModalOpen}
           title="관리자 로그인"
           children={<AdminLoginPage />}
         />
@@ -85,7 +98,7 @@ const BackOfficeHeader = ({ path }) => {
         >
           <h3>등록된 영화</h3>
           <h1>
-            <span> {totalCount.movies}</span>개
+            <span> {totalCount.movies}  </span> 개
           </h1>
           <h2>영화관리</h2>
         </Button>
@@ -97,7 +110,7 @@ const BackOfficeHeader = ({ path }) => {
         >
           <h3>전체 이용자</h3>
           <h1>
-            <span> {totalCount.users} </span>개
+            <span> {totalCount.users}  </span>개
           </h1>
           <h2>회원관리</h2>
         </Button>
@@ -108,7 +121,7 @@ const BackOfficeHeader = ({ path }) => {
         >
           <h3>전체 리뷰</h3>
           <h1>
-            <span> {totalCount.reviews} </span>개
+            <span> {totalCount.reviews}  </span>개
           </h1>
           <h2>리뷰관리</h2>
         </Button>

@@ -7,6 +7,9 @@ import { getUsers, deleteUsers } from '../../../api/Users';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOuserModal from './BOmodal/BOuserModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
+import { backOfficeTotalCount } from '../../../atom';
+import { useRecoilState } from 'recoil';
+import { getReviewsCount } from '../../../api/Reviews';
 
 const title = ['가입일', '이메일', '닉네임', '수정', '탈퇴'];
 const LIMIT = 10;
@@ -19,20 +22,23 @@ const BackOfficeUsers = () => {
   const [Count, setCount] = useState();
   const [form, setForm] = useState();
   const [pageNationNumber, setPageNationNumber] = useState();
-  const [SelectedIDs, setSelectedIDs] = useState([]);
-  const [SelectIndex, setSelectIndex] = useState();
+  const [selectedIDs, setSelectedIDs] = useState([]);
+  const [selectIndex, setSelectIndex] = useState();
+  const [totalCount, setTotalCount] = useRecoilState(backOfficeTotalCount);
 
-  const onSetData = (data, total) => {
+  const onSetData = (data, total, reviewTotal) => {
     const totalPage = Math.ceil(total / LIMIT);
     setUsersData(data);
-    setCount(total);
+    setTotalCount({...totalCount, users:total, reviews:reviewTotal});
     setPageNationNumber(totalPage);
   };
 
   const responseData = async () => {
     const response1 = await getUsers(pageNumber, LIMIT);
-    //const responseCount = await getUsersCount();
-    onSetData(response1.data.data, response1.data.paging.total);
+    const reviewsCount = await getReviewsCount();
+    onSetData(response1.data.data, response1.data.paging.total, 
+      reviewsCount.data.count);
+    //console.log(reviewsCount.data.count);
   };
 
   const onSearch = async (e) => {
@@ -87,14 +93,14 @@ const BackOfficeUsers = () => {
     return (e) => {
       const { checked } = e.currentTarget;
       if (checked) {
-        setSelectedIDs([...SelectedIDs, id]);
+        setSelectedIDs([...selectedIDs, id]);
       } else {
-        setSelectedIDs(SelectedIDs.filter((x) => x !== id));
+        setSelectedIDs(selectedIDs.filter((x) => x !== id));
       }
     };
   };
   const deleteChecked = async () => {
-    const ids = SelectedIDs;
+    const ids = selectedIDs;
     try {
       for (const element of ids) {
         //NOTE: await 가 없어서 alert가 안떴다.
@@ -114,7 +120,7 @@ const BackOfficeUsers = () => {
     } else {
       onSearchPageChange();
     }
-  }, [pageNumber, modalOpen, modalOpen2, deleteChecked]);
+  }, [pageNumber, modalOpen, modalOpen2]);
 
   return (
     <>
@@ -163,7 +169,7 @@ const BackOfficeUsers = () => {
                     type="checkbox"
                     readOnly
                     hidden
-                    checked={SelectedIDs.includes(item.id)}
+                    checked={selectedIDs.includes(item.id)}
                     onClick={onClickCheckBox(item.id)}
                   />
                   <CheckIcon />
@@ -192,26 +198,26 @@ const BackOfficeUsers = () => {
             </ul>
           );
         })}
-      {SelectIndex !== undefined && (
+      {selectIndex !== undefined && (
         <BOuserModal
           className={styles.modal}
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           closeModal={closeModal}
           buttonChildren="수정"
-          ID={SelectedIDs[0]}
+          ID={selectedIDs[0]}
           setMovieData={setUsersData}
-          selectedData={usersData[SelectIndex]}
+          selectedData={usersData[selectIndex]}
           setSelectedIDs={setSelectedIDs}
         />
       )}
-      {SelectIndex !== undefined && (
+      {selectIndex !== undefined && (
         <BOdeleteModal
           className={styles.modal}
           modalOpen2={modalOpen2}
           setModalOpen2={setModalOpen2}
           buttonChildren="삭제"
-          ID={SelectedIDs[0]}
+          ID={selectedIDs[0]}
           setSelectedIDs={setSelectedIDs}
           userORreview="user"
         />
