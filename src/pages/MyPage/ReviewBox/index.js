@@ -7,16 +7,17 @@ import {
   TrashIcon,
   SolidStarIcon,
 } from '../../../assets/icon';
+import useMe from '../../../hooks/useMe';
 import { FixModal } from '../Modal/reviewModal';
 import { DeleteModal } from '../Modal/deleteModal';
 import { getReviewsMe } from '../../../api/Reviews';
 import dayjs from 'dayjs';
-import { Modal } from '../../../components';
 import ReviewCard from '../ReviewCard';
+import ModiModal from './Modal';
 
 const MyComment = () => {
   const [reviews, setReviews] = useState([]);
-
+  const me = useMe();
   const fetchMyReviews = async () => {
     const response = await getReviewsMe(1, 20);
     setReviews(response.data.data);
@@ -26,20 +27,21 @@ const MyComment = () => {
   //modal
   const [form, setForm] = useState();
   const [ReviewsData, setReviewsData] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const [fixModalOpen, setFixModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [selectedIDs, setSelectedIDs] = useState([]);
   const [selectIndex, setSelectIndex] = useState();
-
-  const showFixModal = () => {
+  const showModal = () => {
     setDeleteModalOpen(false);
-    setFixModalOpen(true);
+    setModalOpen(true);
   };
   const showDeleteModal = () => {
-    setFixModalOpen(false);
+    setModalOpen(false);
     setDeleteModalOpen(true);
   };
   const closeModal = () => {
-    setFixModalOpen(false);
+    setModalOpen(false);
     setDeleteModalOpen(false);
   };
   const onChange = (e) => {
@@ -72,7 +74,7 @@ const MyComment = () => {
 
   useEffect(() => {
     fetchMyReviews();
-  }, [fixModalOpen, deleteModalOpen]);
+  }, [modalOpen, deleteModalOpen]);
 
   return (
     <>
@@ -84,13 +86,12 @@ const MyComment = () => {
         <ul className={styles.ul}>
           {records.map((data, i) => {
             return (
-              <li className={styles.li} ket={i}>
+              <li className={styles.li} key={i}>
                 <ReviewCard
                   title={data.title}
                   content={data.content}
-                  createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
                   score={data.score}
-                  showFixModal={showFixModal}
+                  showFixModal={showModal}
                   showDeleteModal={showDeleteModal}
                 />
               </li>
@@ -122,7 +123,7 @@ const MyComment = () => {
           </li>
         </ul>
       </section>
-      <FixModal
+      {/* <FixModal
         className={styles.fixModal}
         fixModalOpen={fixModalOpen}
         setFixModalOpen={setFixModalOpen}
@@ -130,7 +131,25 @@ const MyComment = () => {
         notion="리뷰 수정"
         children="review"
         buttonChildren="완료"
+      /> */}
+      <ModiModal
+        className={styles.modal}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        closeModal={closeModal}
+        buttonChildren="수정"
+        setMovieData={setReviewsData}
+        setSelectedIDs={setSelectedIDs}
       />
+      {/* <BOreviewModal
+        className={styles.fixModal}
+        deleteModalOpen={fixModalOpen}
+        setDeleteModalOpen={setFixModalOpen}
+        closeModal={closeModal}
+        children={me?.comment}
+        buttonChildren="완ss료"
+        userORreview="review"
+      /> */}
       <DeleteModal
         className={styles.deleteModal}
         deleteModalOpen={deleteModalOpen}

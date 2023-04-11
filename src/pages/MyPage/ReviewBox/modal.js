@@ -1,17 +1,24 @@
-/*
-{
-  "content": "string | null",
-  "score": "number | null"
-}
-*/
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Input } from '../../../../components';
-import styles from './BOmovieModal.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import cx from 'classnames';
-import { patchReviewAdmin } from '../../../../api/Reviews';
+import styles from './modal.scss';
+import useMe from '../../../hooks/useMe';
+import { Button, Input } from '../../../components';
+import { deleteReview } from '../../../api/Reviews';
+import Review from '../ReviewCard';
 
-const BOreviewModal = ({
+import { Link } from 'react-router-dom';
+import { SolidStarIcon, ModifyIcon, TrashIcon } from '../../../assets/icon';
+
+const ModiModal = ({
+  id,
+  title,
+  content,
+  createdAt,
+  score,
+  showFixModal,
+  showDeleteModal,
+
   className,
   option,
   buttonChildren,
@@ -22,6 +29,7 @@ const BOreviewModal = ({
   setSelectedIDs,
 }) => {
   // Modal 창을 useRef로 취득
+  const me = useMe();
   const modalRef = useRef(null);
   const [postForm, setPostForm] = useState({
     content: '',
@@ -47,7 +55,7 @@ const BOreviewModal = ({
     //NOTE: 새로고침 방지
     e.preventDefault();
     try {
-      const responsePatch = await patchReviewAdmin(ID, postForm);
+      const responsePatch = await deleteReview(ID, postForm);
       if (responsePatch.status === 200) {
         alert('수정완료');
         responseData();
@@ -62,8 +70,8 @@ const BOreviewModal = ({
 
   useEffect(() => {
     setPostForm({
-      content: selectedData.content,
-      score: selectedData.score,
+      content: me?.content,
+      score: me?.score,
     });
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
@@ -101,44 +109,39 @@ const BOreviewModal = ({
           ref={modalRef}
           className={cx(styles.container, className, styles[option])}
         >
-          <header className={styles.title}>안내</header>
-          <div className={styles.content}>
-            <ul className={styles.inputForm}>
-              <li>ID : {ID}</li>
-              <Input
-                className={styles.inputClass}
-                label="별점"
-                onChange={onChange}
-                name="score"
-                value={postForm.score}
-              />
-              <li className={styles.labelText}>리뷰</li>
-              <textarea
-                className={styles.textArea}
-                label="리뷰"
-                onChange={onChange}
-                name="content"
-                value={postForm.content}
-              />
-            </ul>
-          </div>
-
-          <footer className={styles.buttonBox}>
-            <Button
-              className={styles.cancelButton}
-              children={'취소'}
-              onClick={closeModal}
-            />
-            <Button
-              className={styles.deleteButton}
-              children={buttonChildren}
-              onClick={onSubmit}
-            />
-          </footer>
+          <header className={styles.title}>리뷰 삭제</header>
+          <section className={styles.screen}>
+            <article className={styles.layerDown}>
+              <aside className={styles.top}>
+                <div className={styles.left}>
+                  <p className={styles.title}>title : {title}</p>
+                  <p className={styles.createdAt}>{createdAt}</p>
+                </div>
+                <div className={styles.right}>
+                  <SolidStarIcon
+                    className={styles.star}
+                    width={'20px'}
+                    fill="yellow"
+                  />
+                  {score}
+                </div>
+              </aside>
+              <p className={styles.content}>{content}</p>
+              <footer className={styles.buttonBox}>
+                <button className={styles.fixModal} onClick={showFixModal}>
+                  <ModifyIcon
+                    className={styles.icon}
+                    width={'20px'}
+                    fill="red"
+                  />
+                </button>
+              </footer>
+            </article>
+          </section>
         </section>
       </div>
     </CSSTransition>
   );
 };
 
-export default BOreviewModal;
+export default ModiModal;
