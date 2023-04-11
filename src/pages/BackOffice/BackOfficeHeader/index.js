@@ -7,27 +7,21 @@ import { AdminLoginPage } from '../CMS/cmsAuth';
 import { getMoviesCount } from '../../../api/Movies';
 import { getUsersCount } from '../../../api/Users';
 import { getReviewsCount } from '../../../api/Reviews';
-import { backOfficeTotalCount, isLoginAtom } from '../../../atom';
+import { AdminLoginModalOpen, backOfficeTotalCount, isLoginAtom } from '../../../atom';
 import { useRecoilState } from 'recoil';
 
 const BackOfficeHeader = ({ path }) => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [totalCount, setTotalCount] = useRecoilState(backOfficeTotalCount);
-
+  const [adminLoginModalOpen, setAdminLoginModalOpen] = useRecoilState(AdminLoginModalOpen);
   const [isClick, setIsClick] = useState({
     movies: 'secondary',
     users: 'secondary',
     reviews: 'secondary',
   });
 
-  /* const [totalCount, setTotalCount] = useState({
-    movies: '0',
-    users: '1',
-    reviews: '2',
-  }); */
-
-  const [adminLoginModalOpen, setAdminLoginModalOpen] = useState(false);
+  
   const showModal = () => {
     setAdminLoginModalOpen(true);
   };

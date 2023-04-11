@@ -19,7 +19,6 @@ const BackOfficeUsers = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
   const [usersData, setUsersData] = useState();
-  const [Count, setCount] = useState();
   const [form, setForm] = useState();
   const [pageNationNumber, setPageNationNumber] = useState();
   const [selectedIDs, setSelectedIDs] = useState([]);
@@ -226,8 +225,6 @@ const BackOfficeUsers = () => {
           userORreview="user"
         />
       )}
-      {/* 페이지네이션 
-TODO: 검색 후 페이지 변경시 검색한 데이터가 사라짐, 검색 후 페이지 변경이 안됨*/}
       <BOpageNation
         pageDown={pageDown}
         pageNationNumber={pageNationNumber}

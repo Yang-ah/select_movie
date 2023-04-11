@@ -5,10 +5,14 @@ import { Input } from "../../../../../components";
 import { useNavigate } from "react-router-dom";
 import { adminRegister } from "../../../../../api/Auth";
 import { saveTokens, isValidateEmail } from "../../../../../utils";
+import { AdminResistorModalOpen } from "../../../../../atom";
+import { useRecoilState } from "recoil";
 
 
 const Register = (setModalOpen) => {
   const navigate = useNavigate();
+  const [adminResistorModalOpen,setResistorModalOpen] = useRecoilState(AdminResistorModalOpen);
+
   const [form, setForm] = useState({
     userId: "",
     password: "",
@@ -56,7 +60,7 @@ const Register = (setModalOpen) => {
     if(!form.userNickName){
       return setErr({...err,userBirth:'', userNickName:'닉네임을 입력해주세요'})}
     
-    let body = {
+    const body = {
       email : form.userId,
       password : form.password,
       name : form.userName,
@@ -70,8 +74,9 @@ const Register = (setModalOpen) => {
       if (response.status === 200) {
         const data = response.data;
         saveTokens(data);
-        setModalOpen(false);
-        alert('관리자 회원가입을 성공했습니다.')
+        setResistorModalOpen(false);
+        alert('관리자 회원가입을 성공했습니다.');
+        console.log(ModalOpen);
       }
     } catch(err) { //서버에서 주는 에러 메세지 띄우기 
       const errData = err.response.data;

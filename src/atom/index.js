@@ -13,3 +13,13 @@ export const backOfficeTotalCount = atom({
         reviews: '2',
     }
 })
+
+export const AdminLoginModalOpen = atom({
+    key : 'adminLoginModalOpen',
+    default : false,
+})
+
+export const AdminResistorModalOpen = atom({
+    key : 'adminResistorModalOpen',
+    default : false,
+})

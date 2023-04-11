@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { adminlogin } from '../../../../../api/Auth';
 import { isValidateEmail } from '../../../../../utils';
 //recoil
-import { useRecoilState } from 'recoil';
-import { isLoginAtom } from '../../../../../atom';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { AdminLoginModalOpen,AdminResistorModalOpen, isLoginAtom } from '../../../../../atom';
 
 import CmsModal from '../../cmsModal';
 import { AdminRegisterPage } from '..';
@@ -16,8 +16,10 @@ const CMSLogin = () => {
   const navigate = useNavigate();
 
   //recoil
-  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
-
+  const setIsLogin = useSetRecoilState(isLoginAtom);
+  const setAdminLoginModalOpen = useSetRecoilState(AdminLoginModalOpen);
+  const [adminResistorModalOpen,setResistorModalOpen] = useRecoilState(AdminResistorModalOpen);
+ 
   const [form, setForm] = useState({
     userId: '',
     password: '',
@@ -37,10 +39,10 @@ const CMSLogin = () => {
   const [modalOpen, setModalOpen] = useState(false);
   // 모달창 노출
   const showModal = () => {
-    setModalOpen(true);
+    setResistorModalOpen(true);
   };
   const closeModal = () => {
-    setModalOpen(false);
+    setResistorModalOpen(false);
   };
 
   const onSubmit = async (e) => {
@@ -76,7 +78,7 @@ const CMSLogin = () => {
         localStorage.setItem('REFRESH_TOKEN', refreshToken);
         //setIsLogin은 recoil state
         setIsLogin(true);
-        closeModal();
+        setAdminLoginModalOpen(false);
         navigate('/backoffice/movies');
       }
     } catch (err) {
@@ -122,9 +124,9 @@ const CMSLogin = () => {
         </form>
       </section>
       <CmsModal
-        modalOpen1={modalOpen}
-        setModalOpen={setModalOpen}
-        children={<AdminRegisterPage setModalOpen={setModalOpen} />}
+        modalOpen1={adminResistorModalOpen}
+        setModalOpen={setResistorModalOpen}
+        children={<AdminRegisterPage setModalOpen={setResistorModalOpen} />}
       />
     </main>
   );
