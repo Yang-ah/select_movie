@@ -8,8 +8,11 @@ admin@a.com / admin
 1.home page
 
 2. detail page 
+detail page 요청사항 : 리뷰 정렬 기능 넣어주실수있을까요 ?
 
 3. my page
+정보 : 변경 후 새로고침 필요..
+리뷰 : title 안들어 옵니다. 수정 추가. 삭제 구현 안함. 
 
 4.BackOffice page
 1. 회원, 리뷰 삭제 후, BackOfficeHeader 에 있는 전체 회원수, 전체 리뷰수가 리랜더링 되도록 수정완료
@@ -30,8 +33,6 @@ admin@a.com / admin
 -BackOfficeHeader-CmsModal-CMSLogin의 라우터(?)구조로 recoil을 사용하는 것이 좋다고 판단하여
 recoil에 State { AdminLoginModalOpen, AdminResistorModalOpen }를 추가하여 기능을 구현했습니다.
 +recoil 사용시, 단점과 사용하면 안되는 경우를 알 수 있을까요?
-
-3) MyCarousel -> cancelLike, cancelBookmark state 불필요
 
 4) 등록된 영화 -> 숫자와 "개" 사이 간격 넓히기 <ok>
 5) 관리자 로그인 이후 -> totalCount fetching이 필요하다. <ok>
