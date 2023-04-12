@@ -5,13 +5,16 @@ import cx from 'classnames';
 import dayjs from 'dayjs';
 import Input from '../../../components/Common/Input';
 import useMe from '../../../hooks/useMe';
+import { isLoginAtom } from '../../../atom';
+import { useRecoilValue } from 'recoil';
 import { Link } from 'react-router-dom';
 import { createReviewComment } from '../../../api/Reviews';
 import { Comment, Review } from '../../../components/Comment';
 
 const Accordion = ({ review, movieId, fetchReviews }) => {
+  const isLogin = useRecoilValue(isLoginAtom);
   const me = useMe();
-  const [isLogin, setIsLogin] = useState(false);
+
   const [isClicked, setIsClicked] = useState(false);
   const [reviewComments, setReviewComments] = useState([]);
   const [newReviewComment, setNewReviewComment] = useState({
@@ -28,9 +31,8 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
   };
 
   useEffect(() => {
-    setIsLogin(me ? true : false);
     setReviewComments(review.comments);
-  }, [review.comments, me]);
+  }, [review.comments]);
 
   // 리뷰의 '댓글' 등록 버튼 클릭 이벤트
   const onSubmit = async (e) => {
