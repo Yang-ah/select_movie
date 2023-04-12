@@ -1,5 +1,5 @@
-@use "../../../styles/mixins" as m;
-@use "../../../styles/constants" as c;
+@use '../../../styles/mixins' as m;
+@use '../../../styles/constants' as c;
 
 .wrap {
   min-width: 300px;
@@ -17,5 +17,6 @@
   > main {
     padding: 8px 4px;
     font-size: 14px;
+    overflow: scroll;
   }
 }

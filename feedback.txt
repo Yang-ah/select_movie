@@ -6,7 +6,6 @@ admin@a.com / admin
 
 
 1.home page
-장르별 영화 로 캐러셀 출력
 
 2. detail page 
 
@@ -16,10 +15,12 @@ admin@a.com / admin
 1. 회원, 리뷰 삭제 후, BackOfficeHeader 에 있는 전체 회원수, 전체 리뷰수가 리랜더링 되도록 수정완료
 -recoil을 (backOfficeTotalCount) 사용하여 기능 구현 완료했습니다.
 
+2. backoffice pageNation 10개 단위로 보이게 수정 중...
+-review에서 정보가 없는 pageNation num이 출력이 되지 않게 수정 예정
+
 +>관리자 로그인 페이지 추가 (로그인 페이지 버튼으로 이동가능)
 +>회원가입, 관리자로그인, 관리자회원가입 페이지 scss 수정
 -button style 변경
-
 
 
 1) 헤더 로그인 버튼 / 관리자 로그인 버튼 -> 로그인 이후에도 "로그인 버튼"으로 남아있음. <ok>
