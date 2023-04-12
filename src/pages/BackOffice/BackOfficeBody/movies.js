@@ -17,8 +17,8 @@ const BackOfficeMovies = () => {
   const [Count, setCount] = useState();
   const [form, setForm] = useState();
   const [pageNationNumber, setPageNationNumber] = useState();
-  const [SelectedIDs, setSelectedIDs] = useState([]);
-  const [SelectIndex, setSelectIndex] = useState();
+  const [selectedIDs, setSelectedIDs] = useState([]);
+  const [selectIndex, setSelectIndex] = useState();
 
   const onSetData = (data, total) => {
     const totalPage = Math.ceil(total / LIMIT);
@@ -77,9 +77,9 @@ const BackOfficeMovies = () => {
     return (e) => {
       const { checked } = e.currentTarget;
       if (checked) {
-        setSelectedIDs([...SelectedIDs, id]);
+        setSelectedIDs([...selectedIDs, id]);
       } else {
-        setSelectedIDs(SelectedIDs.filter((x) => x !== id));
+        setSelectedIDs(selectedIDs.filter((x) => x !== id));
       }
     };
   };
@@ -137,7 +137,7 @@ const BackOfficeMovies = () => {
                     type="checkbox"
                     readOnly
                     hidden
-                    checked={SelectedIDs.includes(item.id)}
+                    checked={selectedIDs.includes(item.id)}
                     onClick={onClickCheckBox(item.id)}
                   />
                   <CheckIcon />
@@ -161,16 +161,16 @@ const BackOfficeMovies = () => {
             </ul>
           );
         })}
-      {SelectIndex !== undefined && (
+      {selectIndex !== undefined && (
         <BOmovieModal
           className={styles.modal}
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           closeModal={closeModal}
           buttonChildren="수정"
-          ID={SelectedIDs[0]}
+          ID={selectedIDs[0]}
           setMovieData={setMovieData}
-          selectedData={movieData[SelectIndex]}
+          selectedData={movieData[selectIndex]}
           setSelectedIDs={setSelectedIDs}
         />
       )}
