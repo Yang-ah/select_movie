@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from './mypage.module.scss';
 
 import Info from './InfoBox';
@@ -6,6 +7,8 @@ import { MyCarousel } from '../../components/Carousel';
 import ReviewBox from './ReviewBox';
 
 const MyPage = () => {
+  const { id } = useParams();
+  const ref = useRef(null);
   const [movies] = useState();
   const [movieInfo, setMovieInfo] = useState([0]);
   const [reviews] = useState();

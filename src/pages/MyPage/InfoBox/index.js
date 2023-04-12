@@ -5,13 +5,15 @@ import useMe from '../../../hooks/useMe';
 
 import { getUsersMeInfo } from '../../../api/Users';
 import InfoModal from '../Modal/infoModal';
-import { SettingIcon } from '../../../assets/icon';
+import { UserIcon, SettingIcon } from '../../../assets/icon';
 
 const Info = () => {
   const me = useMe();
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState();
   const [usersData, setUsersData] = useState();
+  const [SelectedIDs, setSelectedIDs] = useState([]);
+  const [SelectIndex, setSelectIndex] = useState();
 
   const fetchUserInfo = async () => {
     const response = await getUsersMeInfo();
@@ -43,13 +45,14 @@ const Info = () => {
   return (
     <section className={styles.wrapper}>
       <article className={styles.info}>
-        <div className={styles.img}>😊</div>
+        <div className={styles.profile}>
+          {/* <UserIcon className={styles.nickname} /> */}
+          {/*<p className={styles.nickname}>{me && me.nickname}</p>*/}
+          <p className={styles.nickname}>😭</p>
+        </div>
         <div className={styles.text}>
           <div className={styles.left}>
-            <li className={styles.nickname}>
-              {me && me.nickname}
-              <a className={styles.name}> ( {me && me.name} )</a>
-            </li>
+            <li className={styles.nickname}>{me && me.name}</li>
             <li className={styles.description}>{me && me.description}</li>
           </div>
 
@@ -66,9 +69,12 @@ const Info = () => {
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
             closeModal={closeModal}
-            selectedData={usersData}
             notion="소개글 수정"
             buttonChildren="완료"
+            ID={SelectedIDs[0]}
+            setMovieData={setUsersData}
+            selectedData={usersData}
+            setSelectedIDs={setSelectedIDs}
           />
         </div>
       </article>

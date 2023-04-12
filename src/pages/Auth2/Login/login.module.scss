@@ -1,0 +1,66 @@
+@use '../../../styles/constants' as c;
+@use '../../../styles/mixins' as m;
+
+.wrapper {
+  @include m.flex();
+  width: 100vw;
+  height: calc(100vh - 148px);
+  background-color: c.$C_BACKGROUND;
+
+  > .login {
+    @include m.flex(center, center, column);
+    //z-index: 999;
+    width: 240px;
+    height: 400px;
+    padding: 20px;
+    background-color: c.$C_PURPLE1;
+    border-radius: 4px;
+
+    > h1 {
+      margin-bottom: 24px;
+      font-size: 20px;
+      color: white;
+    }
+  }
+}
+
+.loginForm {
+  @include m.flex(center, center, column);
+  width: 100%;
+
+  > .inputWrap {
+    width: 100%;
+    margin-bottom: 24px;
+    > input {
+      padding: 12px;
+    }
+  }
+
+  > .button {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background-color: c.$C_WHITE_10;
+    transition: 0.2s background-color ease-in;
+    &:hover {
+      background-color: c.$C_ORANGE;
+    }
+  }
+}
+
+/*
+
+.moviePoster {
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+}
+> .movies {
+  width: 252px;
+  height: 360px;
+  background-color: c.$C_BACKGROUND;
+  //height: 100%;
+  //width: 100%;
+  //position: absolute;
+}
+*/

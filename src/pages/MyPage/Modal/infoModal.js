@@ -13,6 +13,10 @@ const InfoModal = ({
   buttonChildren,
   modalOpen,
   setModalOpen,
+
+  ID,
+  selectedData,
+  setSelectedIDs,
 }) => {
   const me = useMe();
   const modalRef = useRef(null);
@@ -34,25 +38,23 @@ const InfoModal = ({
       description: '',
     });
     setModalOpen(false);
+    responseData();
   };
   const onReset = (e) => {
     const { name } = e.currentTarget;
     setPostForm({ ...postForm, [name]: '' });
   };
   const onSubmit = async (e) => {
-    //NOTE: 새로고침 방지
     e.preventDefault();
     try {
-      const responsePatch = await patchUser(postForm);
-      if (responsePatch.status === 200) {
+      const responsePatch = await patchUser(ID, postForm);
+      if (responsePatch.status === 204) {
         alert('수정완료');
         responseData();
       }
     } catch (err) {
       const errData = err.response.data;
-      if (errData.statusCode !== 200) {
-        alert(errData.message);
-      }
+      alert(errData.message);
     }
   };
 
