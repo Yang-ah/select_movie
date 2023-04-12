@@ -79,12 +79,8 @@ const Review = ({
         />
         <article className={styles.right}>
           <HeaderRightRating rating={rating} />
-          <HeaderRightButtons type="review" reviewId={reviewId} />
-          {isUserMe || (
-            <button type="button" name="report">
-              신고하기
-            </button>
-          )}
+          <HeaderRightButtons reviewId={reviewId} />
+
           {isUserMe && (
             <div className={styles.myButtons}>
               <button type="button" name="modify" onClick={onClickModify}>

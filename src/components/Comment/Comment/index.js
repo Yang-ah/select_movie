@@ -1,6 +1,6 @@
 import styles from './comment.module.scss';
 import cx from 'classnames';
-import { HeaderLeft, HeaderRightButtons } from '../_shared';
+import { HeaderLeft } from '../_shared';
 import useMe from '../../../hooks/useMe';
 import { useRecoilValue } from 'recoil';
 import { isLoginAtom } from '../../../atom';
@@ -63,13 +63,6 @@ const Comment = ({
         <HeaderLeft type="comment" userName={userName} date={date} />
 
         <article className={styles.right}>
-          <HeaderRightButtons type="comment" commentId={commentId} />
-
-          {isUserMe || (
-            <button type="button" name="report">
-              신고하기
-            </button>
-          )}
           {isUserMe && (
             <div className={styles.myButtons}>
               <button type="button" name="modify" onClick={onClickModify}>
