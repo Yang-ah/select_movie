@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./register.module.scss";
 import Input from "../../../components/Common/Input";
-//import Button from "../../../components/Common/Button";
+import Button from "../../../components/Common/Button";
 
 import { useNavigate } from "react-router-dom";
 import { register } from "../../../api/Auth";
@@ -184,8 +184,8 @@ const Register = () => {
           value={form.userNickName}
           />
 
-          <button
-            className={styles.submitButton}
+          <Button
+            className={styles.button}
             children={"회원가입"}
             type="submit"
             form="registerForm"
