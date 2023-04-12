@@ -36,6 +36,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
   const [movieDetail, setMovieDetail] = useState();
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [getAver , setGetAver] = useState(movieId.averageScore) 
 
   const fetchMovieData = async () => {
     const response = await getMovie(id);
@@ -268,12 +269,21 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               comment={review.content}
               rating={review.score}
               />
+              
               )
           })}
           </div>
+          <div className={styles.starBox}>
+          <p className={styles.starTitle}>평균평점</p>
+         
+          <p className={styles.starNum}> <SolidStarIcon
+              className={styles.star}
+              height={'30px'}
+              fill="yellow" />
+              {getAver?.toFixed(1)}</p>
           </div>
+          </div> 
           
-          {movieId.averageScore} 
           </motion.div>
         </div>
       </div>

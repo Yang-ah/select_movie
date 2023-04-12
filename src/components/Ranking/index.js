@@ -56,7 +56,7 @@ export const RankingCarousel = () => {
         />
       )}
       <div className={styles.ranking}>
-        <h2 className={styles.header}>💪가장 HOT한 영화 1~10위💪</h2>
+        
         <div className={styles.slider}>
           <Slider {...settings}>
             {moviesTop &&
