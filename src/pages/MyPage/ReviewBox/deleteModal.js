@@ -1,24 +1,27 @@
-import { useEffect, useRef } from 'react';
-import styles from './modal.module.scss';
+import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import Button from '../../../../components/Common/Button';
 import cx from 'classnames';
+import styles from './deleteModal.modal.module.scss';
+import useMe from '../../../hooks/useMe';
+import { Button, Input } from '../../../components';
+import { deleteReview } from '../../../api/Reviews';
 
-const Modal = ({
+export const DeleteModal = ({
   className,
-  option,
-  children,
-  buttonChildren,
-  modalOpen1,
+  modalOpen,
   setModalOpen,
+  buttonChildren,
   onClick,
-  createdAt,
-  ...props
 }) => {
-  // Modal 창을 useRef로 취득
   const modalRef = useRef(null);
 
   const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const onSubmit = async () => {
+    await deleteReview(reviewId);
+    await fetchReviews();
     setModalOpen(false);
   };
 
@@ -35,12 +38,11 @@ const Modal = ({
       // 이벤트 핸들러 해제
       document.removeEventListener('mousedown', handler);
     };
-  });
-  //console.log(`컴포넌트 모달오픈${modalOpen1}`)
-  //if(modalOpen1===false){return null}
+  }, [modalOpen]);
+
   return (
     <CSSTransition
-      in={modalOpen1}
+      in={modalOpen}
       timeout={300}
       classNames={{
         enterActive: styles.modalEnterActive,
@@ -51,13 +53,10 @@ const Modal = ({
       unmountOnExit
     >
       <div className={styles.overlay}>
-        <section
-          ref={modalRef}
-          className={cx(styles.container, className, styles[option])}
-        >
-          <header className={styles.title}>안내</header>
-          <main>
-            <p className={styles.date}>{createdAt}</p>
+        <section ref={modalRef} className={cx(styles.container, className)}>
+          <header className={styles.title}>리뷰 삭제</header>
+          <main className={styles.content}>
+            <li> 리뷰를 삭제 하시겠습니까?</li>
           </main>
           <footer className={styles.buttonBox}>
             <Button
@@ -68,7 +67,7 @@ const Modal = ({
             <Button
               className={styles.deleteButton}
               children={buttonChildren}
-              onClick={onClick}
+              onClick={onSubmit}
             />
           </footer>
         </section>
@@ -76,5 +75,3 @@ const Modal = ({
     </CSSTransition>
   );
 };
-
-export default Modal;
