@@ -8,7 +8,7 @@ import { LogoutIcon, UserIcon } from '../../../assets/icon';
 import useMe from '../../../hooks/useMe';
 
 const Header = () => {
-  const me = useMe();
+  const { me } = useMe();
   const navigate = useNavigate();
   const location = useLocation();
 

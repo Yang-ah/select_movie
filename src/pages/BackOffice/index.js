@@ -24,6 +24,8 @@ const BackOffice = () => {
     }
   }, [location]);
 
+  //NOTE: 관리자로 로그인이 안되어있는 경우 => 경고창을 띄우거나, 혹은 관리자로그인 페이지로 이동을 시키는 로직이 필요해보입니다.
+
   return (
     <section className={styles.section}>
       <div className={styles.wrap}>

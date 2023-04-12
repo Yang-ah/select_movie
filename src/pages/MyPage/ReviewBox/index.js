@@ -21,13 +21,13 @@ import ReviewCard from '../ReviewCard';
 
 const MyComment = () => {
   const [reviews, setReviews] = useState([]);
-  const me = useMe();
+  const { me } = useMe();
   const [isUserMe, setIsUserMe] = useState(false);
 
   const fetchMyReviews = async () => {
     const response = await getReviewsMe(1, 20);
     setReviews(response.data.data);
-    console.log(response.data.data);
+    console.log('reviews', response.data.data);
   };
 
   //모달
@@ -151,7 +151,7 @@ const MyComment = () => {
             return (
               <li className={styles.li} key={i}>
                 <ReviewCard
-                  title={data.title}
+                  title={data.movie.title}
                   createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
                   content={data.content}
                   score={data.score}

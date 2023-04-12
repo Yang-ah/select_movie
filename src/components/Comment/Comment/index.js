@@ -20,7 +20,7 @@ const Comment = ({
   fetchReviews,
   ...props
 }) => {
-  const me = useMe();
+  const { me } = useMe();
 
   const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);

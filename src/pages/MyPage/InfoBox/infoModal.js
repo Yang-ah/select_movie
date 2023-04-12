@@ -17,7 +17,7 @@ const InfoModal = ({
   closeModal,
   callback,
 }) => {
-  const me = useMe();
+  const { me } = useMe();
   const modalRef = useRef(null);
   const [postForm, setPostForm] = useState({
     name: '',

@@ -29,7 +29,7 @@ const Review = ({
     score: '',
   });
 
-  const me = useMe();
+  const { me } = useMe();
   const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);
   const [canModify, setCanModify] = useState(false);

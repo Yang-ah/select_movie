@@ -8,7 +8,7 @@ import InfoModal from './infoModal';
 import { UserIcon, SettingIcon } from '../../../assets/icon';
 
 const Info = () => {
-  const me = useMe();
+  const { me, onGetMe } = useMe();
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState();
 
@@ -24,6 +24,8 @@ const Info = () => {
   const closeModal = () => {
     setModalOpen(false);
     fetchUserInfo();
+    //NOTE: 수정되는 정보를 가져오는 api를 호출해야합니다~
+    onGetMe();
   };
 
   const onChange = (e) => {
@@ -34,7 +36,7 @@ const Info = () => {
     setModalOpen(true);
   };
 
-  console.log('info', modalOpen);
+  console.log('info', { modalOpen, userInfo });
 
   useEffect(() => {
     fetchUserInfo();

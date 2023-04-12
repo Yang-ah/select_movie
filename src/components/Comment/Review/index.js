@@ -22,7 +22,7 @@ const Review = ({
   fetchReviews,
   movieId,
 }) => {
-  const me = useMe();
+  const { me } = useMe();
   const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);

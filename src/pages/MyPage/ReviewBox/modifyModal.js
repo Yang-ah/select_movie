@@ -16,7 +16,7 @@ export const ModifyModal = ({
   onClick,
   userORreview,
 }) => {
-  const me = useMe();
+  const { me } = useMe();
   const modalRef = useRef(null);
   const [postForm, setPostForm] = useState({
     content: '',

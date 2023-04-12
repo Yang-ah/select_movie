@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import useMe from '../../../../hooks/useMe';
 
 const HeaderRightButtons = ({ reviewId }) => {
-  const me = useMe();
+  const { me } = useMe();
   const [likeHateCount, setLikeHateCount] = useState({
     likeCount: 0,
     hateCount: 0,
