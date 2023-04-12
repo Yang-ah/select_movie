@@ -55,6 +55,7 @@ export const HomeCarousel = ({ GenreId }) => {
     const num = moviesGenre.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
     setMovieId(moviesGenre.data[num]); //data값에 아이디값 대입
+    console.log(moviesGenre.data[num])
   };
 
   const onModalClose = () => {

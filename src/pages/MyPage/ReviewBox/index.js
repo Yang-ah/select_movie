@@ -13,7 +13,7 @@ import { DeleteModal } from '../Modal/deleteModal';
 import { getReviewsMe } from '../../../api/Reviews';
 import dayjs from 'dayjs';
 import ReviewCard from '../ReviewCard';
-import ModiModal from './Modal';
+import ModiModal from './modal';
 
 const MyComment = () => {
   const [reviews, setReviews] = useState([]);
