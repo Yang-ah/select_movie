@@ -65,15 +65,15 @@ const BOuserModal = ({
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();
-    try{
-      const responsePatch = await patchUser(ID,postForm);
-      if(responsePatch.status===204){
+    try {
+      const responsePatch = await patchUserAdmin(ID, postForm);
+      if (responsePatch.status === 204) {
         alert('수정완료');
         responseData();
       }
     } catch (err) {
       const errData = err.response.data;
-        alert(errData.message);
+      alert(errData.message);
     }
   };
 

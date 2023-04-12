@@ -1,32 +1,91 @@
-import React, { useState } from "react";
-import styles from "./poster.module.scss";
-import { deleteMovieLike, getMovie, postMovieLike } from '../../api/Movies';
+import React, { useEffect, useState } from 'react';
+import styles from './poster.module.scss';
+import { getMovie, postMovieLike, deleteMovieLike } from '../../api/Movies';
 import { useRecoilValue } from 'recoil';
 import { isLoginAtom } from '../../atom';
 
 import {
-  BookmarkIcon,
-  HeartIcon,
-  SolidBookmarkIcon,
-  SolidHeartIcon,
   SolidStarIcon,
-  DoubleChevronRightIcon
-} from "../../assets/icon";
+  HeartIcon,
+  SolidHeartIcon,
+  BookmarkIcon,
+  SolidBookmarkIcon,
+  DoubleChevronRightIcon,
+} from '../../assets/icon';
 import {
   postBookmark,
   deleteBookmark,
   getMyBookmarks,
 } from '../../api/Bookmarks';
 
-import Button from "../Common/Button";
-import dayjs from "dayjs";
+import Button from '../Common/Button';
+import dayjs from 'dayjs';
 
+export const PosterH = ({ movie, id, onModalClick, callback }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [like, setLike] = useState(false);
 
+  const postLike = async () => {
+    const response = await postMovieLike(movie.id);
+    setIsLiked(true);
+  };
+  const deleteLike = async () => {
+    const response = await deleteMovieLike(movie.id);
+    setIsLiked(false);
+    callback && callback();
+  };
 
+  const onButtonClick = () => {
+    !isLiked ? postLike() : deleteLike();
+  };
 
-const PosterH = ({ title , postImage , onModalClick , id  , rating}) => {
+  useEffect(() => {
+    setIsLiked(movie?.isLiked ?? false);
+  }, [movie]);
 
-const isLogin = useRecoilValue(isLoginAtom);
+  useEffect(() => {
+    setLike(isLiked);
+  }, [isLiked]);
+
+  return (
+    <article className={styles.wrapper}>
+      <div className={styles.screen}>
+        <article className={styles.layerUp}>
+          <div className={styles.title} onClick={() => onModalClick(movie?.id)}>
+            {movie?.title}
+          </div>
+          <div className={styles.rating}>
+            <SolidStarIcon
+              className={styles.star}
+              height={'40px'}
+              fill="yellow"
+            />
+          </div>
+          <button className={styles.icon} onClick={onButtonClick}>
+            {like === true ? (
+              <SolidHeartIcon height={'40px'} fill="red" />
+            ) : (
+              <HeartIcon height={'40px'} fill="red" />
+            )}
+          </button>
+        </article>
+
+        <article className={styles.layerDown}>
+          <img
+            className={styles.postImage}
+            src={movie?.postImage}
+            alt={movie?.title}
+          />
+        </article>
+      </div>
+    </article>
+  );
+};
+
+{
+  /*
+const PosterH = ({ title, postImage, onModalClick, id, rating }) => {
+  const isLogin = useRecoilValue(isLoginAtom);
   const [movieDetail, setMovieDetail] = useState();
   const [isLiked, setIsLiked] = useState(false);
 
@@ -39,7 +98,6 @@ const isLogin = useRecoilValue(isLoginAtom);
     } else {
       setIsLiked(false);
     }
-    // console.log('like', isLogin && response.data.isLiked);
   };
 
   const onClickButton = async (e) => {
@@ -49,15 +107,17 @@ const isLogin = useRecoilValue(isLoginAtom);
     const { name } = e.currentTarget;
 
     if (name === 'isLiked') {
-      isLiked ? await deleteMovieLike(movieId.id) : await postMovieLike(movieId.id);
+      isLiked
+        ? await deleteMovieLike(movieId.id)
+        : await postMovieLike(movieId.id);
       setIsLiked((cur) => !cur);
     }
   };
 
   return (
-    <div className={styles.wrapper}  >
+    <div className={styles.wrapper}>
       <div className={styles.screen} onClick={() => onModalClick(id)}>
-        <article className={styles.layerUp} >
+        <article className={styles.layerUp}>
           <div className={styles.title}>{title}</div>
           <div className={styles.bottom}>
             <div className={styles.rating}>
@@ -65,17 +125,17 @@ const isLogin = useRecoilValue(isLoginAtom);
               {rating}
             </div>
             <Button
-                  option="secondary"
-                  name="isLiked"
-                  className={styles.button}
-                  onClick={onClickButton}
-                >
-                  
-                  {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
-                </Button>
+              option="secondary"
+              name="isLiked"
+              className={styles.button}
+              onClick={onClickButton}
+            >
+              {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+            </Button>
           </div>
         </article>
-        <article className={styles.layerDown} >
+        
+        <article className={styles.layerDown}>
           <img className={styles.postImage} src={postImage} alt={title} />
         </article>
       </div>
@@ -83,19 +143,5 @@ const isLogin = useRecoilValue(isLoginAtom);
   );
 };
 export default PosterH;
-
-// const PosterH = ({ title , postImage , onModalClick }) => {
-//   return (
-//     <div className={styles.wrapper} onClick={onModalClick}>
-//       <div
-//         className={styles.box}
-//       >
-//         <img className={styles.media} src={postImage} alt={title} />
-//         <div className={styles.rating}>
-//           <SolidStarIcon className={styles.star} />10점
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-// export default PosterH;
+*/
+}

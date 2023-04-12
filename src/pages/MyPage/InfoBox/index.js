@@ -12,6 +12,8 @@ const Info = () => {
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState();
   const [usersData, setUsersData] = useState();
+  const [SelectedIDs, setSelectedIDs] = useState([]);
+  const [SelectIndex, setSelectIndex] = useState();
 
   const fetchUserInfo = async () => {
     const response = await getUsersMeInfo();
@@ -67,9 +69,12 @@ const Info = () => {
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
             closeModal={closeModal}
-            selectedData={usersData}
             notion="소개글 수정"
             buttonChildren="완료"
+            ID={SelectedIDs[0]}
+            setMovieData={setUsersData}
+            selectedData={usersData}
+            setSelectedIDs={setSelectedIDs}
           />
         </div>
       </article>

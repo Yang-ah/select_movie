@@ -10,41 +10,23 @@ import {
   BookmarkIcon,
 } from '../../assets/icon';
 
-export const PosterM = ({ id, title, postImage }) => {
-  return (
-    <article className={styles.wrapper}>
-      <div className={styles.screen}>
-        <article className={styles.layerUp}>
-          <div className={styles.title}>{title}</div>
-          <button className={styles.icon}>
-            <SolidBookmarkIcon />
-          </button>
-        </article>
-        <Link to={`/detail/${id}`}>
-          <article className={styles.layerDown}>
-            <img className={styles.postImage} src={postImage} alt={title} />
-          </article>
-        </Link>
-      </div>
-    </article>
-  );
-};
-
-export const PosterHeart = ({ index }) => {
-  const [isLiked, setIsLiked] = useState(false);
+export const PosterHeart = ({ index, callback }) => {
+  const [isLiked, setIsLiked] = useState(true);
   const [like, setLike] = useState(false);
 
-  const postLike = async () => {
+  const onLike = async () => {
     const response = await postMovieLike(index.id);
     setIsLiked(true);
   };
-  const deleteLike = async () => {
+  const offLike = async () => {
     const response = await deleteMovieLike(index.id);
     setIsLiked(false);
+    callback && callback();
   };
 
   const onClick = () => {
-    isLiked === false ? postLike() : deleteLike();
+    !isLiked ? onLike() : offLike();
+    console.log(isLiked);
   };
 
   useEffect(() => {
@@ -60,12 +42,8 @@ export const PosterHeart = ({ index }) => {
       <div className={styles.screen}>
         <article className={styles.layerUp}>
           <div className={styles.title}>{index?.title}</div>
-          <button className={styles.click} onClick={onClick}>
-            {like === true ? (
-              <SolidHeartIcon height={'20px'} fill="red" />
-            ) : (
-              <HeartIcon height={'20px'} fill="red" />
-            )}
+          <button className={styles.icon} onClick={onClick}>
+            {like === true ? <SolidHeartIcon /> : <HeartIcon />}
           </button>
         </article>
 
@@ -83,61 +61,46 @@ export const PosterHeart = ({ index }) => {
   );
 };
 
-export const PosterBookmark = ({ index }) => {
-  const [isMarekd, setIsMarked] = useState(false);
+export const PosterBookmark = ({ id, title, postImage, callback }) => {
+  const [isMarekd, setIsMarked] = useState(true);
   const [mark, setMark] = useState(false);
 
-  const onCreateBookmark = async () => {
-    const response = await postBookmark(index.id);
-    if (response.status === 201) {
-      console.log('생성');
-      setIsMarked(true);
-      callback && callback();
-    }
+  const onBookmark = async () => {
+    const response = await postBookmark(id);
+    setIsMarked(true);
   };
 
-  const onDeleteBookmark = async () => {
-    const response = await deleteBookmark(index.id);
-    if (response.status === 204) {
-      console.log('삭제');
-      setIsMarked(false);
-      callback && callback();
-    }
+  const offBookmark = async () => {
+    const response = await deleteBookmark(id);
+    setIsMarked(false);
+    callback && callback();
   };
 
-  const onLikeBtn = () => {
-    isMarekd === false ? onCreateBookmark() : onDeleteBookmark();
+  const onClick = () => {
+    !isMarekd ? onBookmark() : offBookmark();
+    console.log(isMarekd);
   };
 
   useEffect(() => {
-    setIsMarked(index?.isMarekd ?? false);
-  }, [index]);
+    setIsMarked(isMarekd ?? false);
+  }, [id]);
 
   useEffect(() => {
-    setLike(isMarekd);
+    setMark(isMarekd);
   }, [isMarekd]);
 
   return (
     <article className={styles.wrapper}>
       <div className={styles.screen}>
         <article className={styles.layerUp}>
-          <div className={styles.title}>{index?.title}</div>
-          <button className={styles.click} onClick={onLikeBtn}>
-            {mark === true ? (
-              <SolidBookmarkIcon height={'20px'} fill="red" />
-            ) : (
-              <BookmarkIcon height={'20px'} fill="red" />
-            )}
+          <div className={styles.title}>{title}</div>
+          <button className={styles.icon} onClick={onClick}>
+            {mark === true ? <SolidBookmarkIcon /> : <BookmarkIcon />}
           </button>
         </article>
-
-        <Link to={`/detail/${index?.id}`}>
+        <Link to={`/detail/${id}`}>
           <article className={styles.layerDown}>
-            <img
-              className={styles.postImage}
-              src={index?.postImage}
-              alt={index?.title}
-            />
+            <img className={styles.postImage} src={postImage} alt={title} />
           </article>
         </Link>
       </div>

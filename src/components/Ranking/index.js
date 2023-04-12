@@ -64,8 +64,9 @@ export const RankingCarousel = () => {
                 <div
                   className={
                     idx === slideIndex ? styles.slideActive : styles.slideBefore
-                  }>
-                 <p className={styles.rankingNum}>{idx+1}</p>
+                  }
+                >
+                  <p className={styles.rankingNum}>{idx + 1}</p>
                   <PosterL
                     key={movie.id}
                     title={movie.title}

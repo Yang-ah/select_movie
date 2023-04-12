@@ -53,6 +53,11 @@
   .icon {
     width: 20px;
     fill: c.$C_HEART;
+    &:hover,
+    :active {
+      z-index: 999;
+      transform: scale(2);
+    }
   }
 }
 

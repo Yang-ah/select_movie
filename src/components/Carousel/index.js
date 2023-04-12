@@ -5,14 +5,8 @@ import { useRecoilValue } from 'recoil';
 import useMe from '../../hooks/useMe';
 import { isLoginAtom } from '../../atom';
 
-import { getUsersMe, patchUser } from '../../api/Users';
-import {
-  getMoviesGenre,
-  getMoviesMeLike,
-  postMovieLike,
-  deleteMovieLike,
-} from '../../api/Movies';
-import { getBookmarksPage } from '../../api/Bookmarks';
+import { getMoviesGenre, getMoviesMeLike } from '../../api/Movies';
+import { getMyBookmarks, getBookmarksPage } from '../../api/Bookmarks';
 
 import {
   CaretLeftIcon,
@@ -28,11 +22,9 @@ import {
 import styles from './myCarousel.module.scss';
 import './carousel.scss';
 
-import PosterH from '../PosterH';
+import { PosterH } from '../PosterH';
 import { PosterM, PosterHeart, PosterBookmark } from '../PosterM';
 import MovieModal from '../MovieModal';
-import { useMount } from 'react-use';
-//
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -93,11 +85,10 @@ export const HomeCarousel = ({ GenreId }) => {
         {moviesGenre?.data.map((movie) => (
           <PosterH
             key={movie.id}
-            title={movie.title}
-            id={movie.id}
-            postImage={movie.postImage}
+            movie={movie}
             onModalClick={onModalClick}
             movieId={movieId}
+            callback={fetchMoviesGenre}
           />
         ))}
       </Slider>
@@ -106,33 +97,20 @@ export const HomeCarousel = ({ GenreId }) => {
 };
 
 export const MyCarousel = () => {
-  const me = useMe();
-  const isLogin = useRecoilValue(isLoginAtom);
-
   const [moviesLike, setMoviesLike] = useState([]);
   const [moviesMark, setMoviesMark] = useState();
+  const [moviesMarks, setMoviesMarks] = useState([]);
 
-  //좋아요 목록
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
     setMoviesLike(response.data);
     console.log('좋아요 리스트', response.data);
   };
-  //북마크 목록
   const fetchMoviesMark = async () => {
     const response = await getBookmarksPage(1, 20);
     setMoviesMark(response.data.data);
     console.log('북마크 리스트', response.data.data);
   };
-
-  //내정보로 보내..?
-  const onGetMe = async () => {
-    const response = await getUsersMe();
-    setMe(response.data);
-  };
-  useMount(() => {
-    onGetMe();
-  });
 
   useEffect(() => {
     fetchMoviesLike();
@@ -162,7 +140,7 @@ export const MyCarousel = () => {
             <PosterHeart
               key={index.id}
               index={index}
-              onClick={fetchMoviesLike}
+              callback={fetchMoviesLike}
             />
           ))}
         </Slider>
@@ -176,11 +154,12 @@ export const MyCarousel = () => {
         <Slider {...settings}>
           {moviesMark &&
             moviesMark?.map((index) => (
-              <PosterM
+              <PosterBookmark
                 className={styles.bookMark}
                 id={index.movie.id}
                 title={index.movie.title}
                 postImage={index.movie.postImage}
+                callback={fetchMoviesMark}
               />
             ))}
         </Slider>
