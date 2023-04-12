@@ -37,6 +37,7 @@
   grid-template-columns: 40px 2fr 1fr 1fr 1fr ;
   margin-bottom: 8px;
   max-height: 80px;
+  font-weight: 600;
   &.users{
     grid-template-columns: 40px 2fr 2fr 1fr 1fr 1fr ;
   }
@@ -88,11 +89,11 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
-  background-color: c.$C_OB_YELLOW;
-  border: 1px solid #787878;
+  background-color: c.$C_WHITE;
+  //border: 1px solid #787878;
 
   input + svg {
-    fill: #787878;
+    fill: c.$C_PURPLE1;
     position: absolute;
     top: 50%;
     left: 50%;

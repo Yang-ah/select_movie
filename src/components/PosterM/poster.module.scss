@@ -52,7 +52,8 @@
   }
   .icon {
     width: 20px;
-    fill: c.$C_HEART;
+    height: 20px;
+    fill: c.$C_ORANGE;
     &:hover,
     :active {
       z-index: 999;

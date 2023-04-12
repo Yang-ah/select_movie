@@ -137,7 +137,7 @@ const BackOfficeUsers = () => {
             onChange={onChange}
             name="title"
             value={form}
-            placeholder="회원이름검색"
+            placeholder="회원 이름 검색"
             className={styles.inputWrapper}
           />
           <button

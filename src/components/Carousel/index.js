@@ -131,7 +131,7 @@ export const MyCarousel = () => {
   return (
     <>
       <p className={styles.category}>
-        <SolidHeartIcon className={styles.categoryIcon} />
+        {/* <SolidHeartIcon className={styles.categoryIcon} /> */}
         내가 좋아하는 컨텐츠
       </p>
       <div className={styles.mywrap}>
@@ -147,7 +147,7 @@ export const MyCarousel = () => {
       </div>
 
       <p className={styles.category}>
-        <SolidBookmarkIcon className={styles.categoryIcon} />
+       {/*  <SolidBookmarkIcon className={styles.categoryIcon} /> */}
         내가 북마크 한 컨텐츠
       </p>
       <div className={styles.mywrap}>

@@ -8,27 +8,13 @@ import { login } from '../../../api/Auth';
 import { isValidateEmail } from '../../../utils';
 import { useSetRecoilState } from 'recoil';
 import { isLoginAtom } from '../../../atom';
-import { getMoviesTop } from '../../../api/Movies';
-
-import Slider from 'react-slick';
-
-const settings = {
-  centerMode: true,
-  centerPadding: '0px',
-  dot: false,
-  arrow: false,
-  infinite: true,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  slidesToScroll: 1,
-  slidesToShow: 1, //몇개씩 보여줌?,
-};
+import { Button } from '../../../components';
 
 const Login = () => {
   const navigate = useNavigate();
+  const locations = useLocation();
 
-  //recoil
-  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  const setIsLogin = useSetRecoilState(isLoginAtom);
 
   const [form, setForm] = useState({
     userId: '',
@@ -43,6 +29,10 @@ const Login = () => {
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setForm({ ...form, [name]: value });
+  };
+
+  const onClick = (path) => {
+    navigate(`/${path}`);
   };
 
   const onSubmit = async (e) => {
@@ -90,46 +80,18 @@ const Login = () => {
         }
       }
     } catch (err) {
-      const errData = err.response.data;
-      if (errData.statusCode === 400) {
-        alert(errData.message);
-      } //"message": "비밀번호가 일치하지 않습니다."
-      if (errData.statusCode === 404) {
-        alert(errData.message);
-      } //"message": "존재하지 않는 유저입니다."
+      const errData = err.response?.data;
+      alert(errData.message);
     }
   };
-  const [movies, setMovies] = useState();
-
-  const showMoviesTop = async () => {
-    const response = await getMoviesTop();
-    setMovies(response.data.data);
-  };
-
-  useEffect(() => {
-    showMoviesTop();
-  }, []);
 
   return (
     <main className={styles.wrapper}>
-      {/* <section className={styles.movies}>
-      <Slider {...settings}>
-      {!!movies&& movies.map((movie, index)=>{
-        return(
-          <div >
-            <img className={styles.moviePoster} 
-            src={movies[index].postImage
-            }/>
-            </div>
-        );  
-      })}
-      </Slider >
-      </section> */}
       <section className={styles.login}>
         <h1>로그인</h1>
         <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="이메일"
             errorText={!!err.userId && err.userId}
             onChange={onChange}
@@ -138,7 +100,7 @@ const Login = () => {
             value={form.userId}
           />
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="비밀번호"
             errorText={!!err.password && err.password}
             type="password"

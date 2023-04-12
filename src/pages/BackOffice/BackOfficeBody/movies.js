@@ -104,7 +104,7 @@ const BackOfficeMovies = () => {
             onChange={onChange}
             name="title"
             value={form}
-            placeholder="영화 제목을 두글자 이상 검색해주세요"
+            placeholder="영화 제목을 두 글자 이상 검색해주세요"
             className={styles.inputWrapper}
           />
           <button
