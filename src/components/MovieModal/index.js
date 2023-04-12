@@ -272,9 +272,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               )
           })}
           </div>
-          </div>
-          
-          {movieId.averageScore} 
+          </div> 
           </motion.div>
         </div>
       </div>

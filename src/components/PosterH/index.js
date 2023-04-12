@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styles from './poster.module.scss';
 import { getMovie, postMovieLike, deleteMovieLike } from '../../api/Movies';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../atom';
 
 import {
   SolidStarIcon,
   HeartIcon,
   SolidHeartIcon,
-  BookmarkIcon,
-  SolidBookmarkIcon,
-  DoubleChevronRightIcon,
 } from '../../assets/icon';
-import {
-  postBookmark,
-  deleteBookmark,
-  getMyBookmarks,
-} from '../../api/Bookmarks';
-
-import Button from '../Common/Button';
-import dayjs from 'dayjs';
 
 export const PosterH = ({ movie, id, onModalClick, callback }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [like, setLike] = useState(false);
+  const [getAver , setGetAver] = useState(movie.averageScore) 
+
+  console.log(getAver)
+
 
   const postLike = async () => {
     const response = await postMovieLike(movie.id);
@@ -47,6 +38,7 @@ export const PosterH = ({ movie, id, onModalClick, callback }) => {
     setLike(isLiked);
   }, [isLiked]);
 
+
   return (
     <article className={styles.wrapper}>
       <div className={styles.screen}>
@@ -54,22 +46,24 @@ export const PosterH = ({ movie, id, onModalClick, callback }) => {
           <div className={styles.title} onClick={() => onModalClick(movie?.id)}>
             {movie?.title}
           </div>
+          <div className={styles.bodyContents}>
           <div className={styles.rating}>
             <SolidStarIcon
               className={styles.star}
-              height={'40px'}
+              height={'30px'}
               fill="yellow"
             />
+          <p ㅊㅁ>{getAver?.toFixed(1)}</p>
           </div>
           <button className={styles.icon} onClick={onButtonClick}>
             {like === true ? (
-              <SolidHeartIcon height={'40px'} fill="red" />
+              <SolidHeartIcon height={'35px'} fill="red" />
             ) : (
-              <HeartIcon height={'40px'} fill="red" />
+              <HeartIcon height={'35px'} fill="red" />
             )}
           </button>
+          </div>
         </article>
-
         <article className={styles.layerDown}>
           <img
             className={styles.postImage}
