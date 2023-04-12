@@ -53,7 +53,7 @@ export const PosterH = ({ movie, id, onModalClick, callback }) => {
               height={'30px'}
               fill="yellow"
             />
-          <p ㅊㅁ>{getAver?.toFixed(1)}</p>
+          <p className={styles.starNum}>{getAver?.toFixed(1)}</p>
           </div>
           <button className={styles.icon} onClick={onButtonClick}>
             {like === true ? (

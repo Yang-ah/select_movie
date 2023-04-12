@@ -36,6 +36,35 @@ $HEADER_INFO_PADDING_S: 12px;
      
     }
 
+    .starBox{
+      @include m.flex(flex-end);
+      position: absolute;
+      top : 60%;
+      left : 75%;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      height: 150px;
+      border-radius: 100%;
+      background-color: c.$C_WHITE;
+      box-shadow: 2px 2px 2px 2px gray;
+      flex-direction: column;
+
+      .starTitle{
+        font-size: 25px;
+        color: c.$C_BLACK;
+      }
+
+      .starNum{
+        font-size: 47px;
+        color: c.$C_BLACK;
+      }
+      .star{
+      }
+    }
+
+
+
     .popupBackground {
       border-radius: 20px;
       background-color: c.$C_BLACK;
