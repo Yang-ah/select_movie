@@ -2,36 +2,33 @@ import React, { useEffect, useState } from 'react';
 import styles from './header.module.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, SearchInput } from '../../Common';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { isLoginAtom } from '../../../atom';
 import { LogoutIcon, UserIcon } from '../../../assets/icon';
 import useMe from '../../../hooks/useMe';
 
 const Header = () => {
+  const me = useMe();
   const navigate = useNavigate();
   const location = useLocation();
-  const me = useMe();
-  //NOTE: recoil을 사용하면 새로고침 시 다시 초기화가 된다.
-  //NOTE: useMe 안에서 사용을 하고, useMe를 import해서 사용하면 된다!
-  const [isLogin, setIsLogin] = useState(false);
-  const [keyword, setKeyword] = useState('');
 
-  const setLoginAtom = useSetRecoilState(isLoginAtom);
+  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  const [keyword, setKeyword] = useState('');
 
   const logout = () => {
     localStorage.clear();
     setIsLogin(false);
-    setLoginAtom(false);
     alert('로그아웃 되었습니다');
+  };
+
+  const onClickLogin = () => {
+    const url = location.pathname;
+    navigate(`/auth/login?prev=${url}`);
   };
 
   const onClick = () => {
     navigate(`/search/${keyword}`);
     setKeyword('');
-  };
-  const onClickLogin = () => {
-    const url = location.pathname;
-    navigate(`/auth/login?prev=${url}`);
   };
 
   const onChange = (e) => {
@@ -40,10 +37,8 @@ const Header = () => {
 
   useEffect(() => {
     if (me) {
-      setLoginAtom(true);
       setIsLogin(true);
     } else {
-      setLoginAtom(false);
       setIsLogin(false);
     }
   }, [me]);

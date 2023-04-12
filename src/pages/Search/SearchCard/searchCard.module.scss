@@ -39,12 +39,26 @@
 }
 
 .overlay {
-  > h2 {
+  @include m.flex(center, center, column);
+
+  > .score {
+    @include m.flex(flex-start);
+    padding: 8px;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+
+    svg {
+      fill: c.$C_ORANGE;
+      width: 24px;
+      margin-right: 2px;
+    }
+  }
+  > .title {
     @include m.flex();
-    width: 100%;
-    height: 100%;
+
     font-family: 'Black Han Sans';
     font-size: 32px;
-    padding: 20px;
+    padding: 0px 8px;
   }
 }

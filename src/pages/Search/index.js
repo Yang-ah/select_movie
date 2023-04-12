@@ -21,17 +21,16 @@ const SearchPage = () => {
     const response = await getMovies(1, 20, searchResult.keyword);
     setSearchResult({ ...searchResult, results: response.data.data });
     setIsLoading(false);
-    console.log(searchResult.results);
   };
 
   useEffect(() => {
     fetchSearchedMovies();
   }, []);
 
-  const onClick = () => {
+  const onClick = async () => {
     navigate(`/search/${searchResult.keyword}`);
     setIsLoading(true);
-    fetchSearchedMovies();
+    await fetchSearchedMovies();
     setIsSearching(false);
   };
 
