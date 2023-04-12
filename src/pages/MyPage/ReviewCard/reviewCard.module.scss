@@ -3,7 +3,7 @@
 
 .screen {
   width: 100%;
-  height: 250px;
+  height: 500px;
   padding: 5%;
   background-color: c.$C_REVIEWBOX;
   display: block;
@@ -11,22 +11,22 @@
   line-height: normal;
   cursor: pointer;
 
-  &:hover {
-    .layerDown {
-      opacity: 0.2;
-      transition: 0.5s;
-    }
-    .layerUp {
-      z-index: 5;
-      .icon {
-        &:hover {
-          z-index: 999;
-          transform: scale(1.2);
-          fill: c.$C_ORANGE;
-        }
-      }
-    }
-  }
+  // &:hover {
+  //   .layerDown {
+  //     opacity: 0.2;
+  //     transition: 0.5s;
+  //   }
+  //   .layerUp {
+  //     z-index: 5;
+  //     .icon {
+  //       &:hover {
+  //         z-index: 999;
+  //         transform: scale(1.2);
+  //         fill: c.$C_ORANGE;
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 .layerUp {
@@ -90,7 +90,8 @@
     }
   }
   .content {
-    height: 176px; //전체 -screen/padding - top/height - content/padding
+    height: 20%;
+    //height: 176px; //전체 -screen/padding - top/height - content/padding
     width: 100%;
 
     font-weight: bold;
@@ -103,5 +104,14 @@
     -webkit-box-orient: vertical;
     word-wrap: break-word;
     line-height: 22px; //line-height?1.2em. 3라인을 자르기때문에 height? 1.2em*3 =3.6em;
+  }
+}
+.modal {
+  color: black;
+}
+
+.modifyMain {
+  .contentC {
+    width: 100%;
   }
 }

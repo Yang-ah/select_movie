@@ -1,53 +1,120 @@
 import React, { useState, useEffect } from 'react';
-import styles from './reviewBox.module.scss';
-import { ModifyIcon } from '../../../assets/icon';
+import styles from './index.module.scss';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
+  ModifyIcon,
   TrashIcon,
   SolidStarIcon,
 } from '../../../assets/icon';
 import useMe from '../../../hooks/useMe';
-import { FixModal } from '../Modal/reviewModal';
-import { DeleteModal } from '../Modal/deleteModal';
-import { getReviewsMe } from '../../../api/Reviews';
+import { ModifyModal } from './modifyModal';
+import { DeleteModal } from './deleteModal';
+import { Modal } from '../../../components';
+import {
+  getReviewsMe,
+  deleteReview,
+  fetchMyReviews,
+} from '../../../api/Reviews';
 import dayjs from 'dayjs';
 import ReviewCard from '../ReviewCard';
-import ModiModal from './modal';
 
 const MyComment = () => {
   const [reviews, setReviews] = useState([]);
   const me = useMe();
+  const [isUserMe, setIsUserMe] = useState(false);
+
   const fetchMyReviews = async () => {
     const response = await getReviewsMe(1, 20);
     setReviews(response.data.data);
     console.log(response.data.data);
   };
 
-  //modal
+  //모달
   const [form, setForm] = useState();
-  const [ReviewsData, setReviewsData] = useState();
   const [modalOpen, setModalOpen] = useState(false);
-  const [fixModalOpen, setFixModalOpen] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [selectedIDs, setSelectedIDs] = useState([]);
-  const [selectIndex, setSelectIndex] = useState();
-  const showModal = () => {
-    setDeleteModalOpen(false);
-    setModalOpen(true);
+  const [modalOpenM, setModalOpenM] = useState(false);
+  const [modalOpenD, setModalOpenD] = useState(false);
+  const [canModify, setCanModify] = useState(false);
+  const [modifiedReview, setModifiedReview] = useState({
+    // content: content,
+    // score: score,
+  });
+  const isMyReview = async () => {
+    const response = await getMyReview(movieId);
+    response.data && setIsUserMe(response.data.user.id === written);
   };
-  const showDeleteModal = () => {
-    setModalOpen(false);
-    setDeleteModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-    setDeleteModalOpen(false);
-  };
+
+  useEffect(() => {
+    isMyReview();
+  }, [me]);
+
   const onChange = (e) => {
     const { value } = e.currentTarget;
     setForm(value);
   };
+
+  const closeModal = () => {
+    setModalOpenM(false);
+    setModalOpenD(false);
+  };
+
+  const onClickModify = () => {
+    setModalOpenD(false);
+
+    setCanModify(true);
+    // setModalOpenM(true);
+  };
+  const onClickModifyReview = async () => {
+    await patchReview(reviews.id);
+    await fetchReviews();
+    setModalOpenM(false);
+  };
+
+  const onClickDelete = () => {
+    setModalOpenM(false);
+    setModalOpenD(true);
+    console.log(modalOpenD);
+  };
+  const onClickDeleteReview = async (e) => {
+    e.preventDefault();
+    try {
+      const responsePatch = await getReviewsMe();
+      if (responsePatch.status === 204) {
+        alert('수정완료');
+        closeModal();
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  //await deleteReview(reviews.id);
+  //await fetchMyReviews();
+  //setModalOpenD(false);
+
+  const onClickDeleteR = async () => {
+    await deleteReview(reviews.id);
+    await fetchMyReviews();
+    setModalOpen(false);
+  };
+
+  const onChangeModifiedReview = (e) => {
+    const { value } = e.currentTarget;
+    setModifiedReview((prev) => {
+      return { ...prev, ['content']: value };
+    });
+  };
+
+  const onPatchReview = async () => {
+    await patchReview(reviewId, modifiedReview);
+    await fetchReviews();
+    setCanModify(false);
+  };
+
+  useEffect(() => {
+    fetchMyReviews();
+  }, [modalOpen, modalOpenM, modalOpenD]);
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -72,10 +139,6 @@ const MyComment = () => {
     }
   };
 
-  useEffect(() => {
-    fetchMyReviews();
-  }, [modalOpen, deleteModalOpen]);
-
   return (
     <>
       <p className={styles.category}>
@@ -89,10 +152,13 @@ const MyComment = () => {
               <li className={styles.li} key={i}>
                 <ReviewCard
                   title={data.title}
+                  createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
                   content={data.content}
                   score={data.score}
-                  showFixModal={showModal}
-                  showDeleteModal={showDeleteModal}
+                  reviewId={data.id}
+                  onClickModify={onClickModify}
+                  onClickDelete={onClickDelete}
+                  fetchMyReviews={fetchMyReviews}
                 />
               </li>
             );
@@ -123,43 +189,32 @@ const MyComment = () => {
           </li>
         </ul>
       </section>
-      {/* <FixModal
-        className={styles.fixModal}
-        fixModalOpen={fixModalOpen}
-        setFixModalOpen={setFixModalOpen}
-        closeModal={closeModal}
-        notion="리뷰 수정"
-        children="review"
-        buttonChildren="완료"
-      /> */}
-      <ModiModal
+
+      <ModifyModal
         className={styles.modal}
-        modalOpen={modalOpen}
-        setModalOpen={setModalOpen}
+        modalOpen={modalOpenM}
+        setModalOpen={setModalOpenM}
         closeModal={closeModal}
         buttonChildren="수정"
-        setMovieData={setReviewsData}
-        setSelectedIDs={setSelectedIDs}
+        onClick={onClickModifyReview}
       />
-      {/* <BOreviewModal
-        className={styles.fixModal}
-        deleteModalOpen={fixModalOpen}
-        setDeleteModalOpen={setFixModalOpen}
-        closeModal={closeModal}
-        children={me?.comment}
-        buttonChildren="완ss료"
-        userORreview="review"
-      /> */}
       <DeleteModal
-        className={styles.deleteModal}
-        deleteModalOpen={deleteModalOpen}
-        setDeleteModalOpen={setDeleteModalOpen}
+        className={styles.modal}
+        modalOpen={modalOpenD}
+        setModalOpen={setModalOpenD}
         closeModal={closeModal}
-        notion="리뷰 삭제"
-        children={'삭제?'}
-        buttonChildren="완료"
-        userORreview="review"
+        buttonChildren="삭제"
+        onClick={onClickDeleteReview}
       />
+      <Modal
+        className={styles.modal}
+        modalOpen1={modalOpen}
+        setModalOpen={setModalOpen}
+        buttonChildren="삭제"
+        onClick={onClickDeleteR}
+      >
+        ???
+      </Modal>
     </>
   );
 };
