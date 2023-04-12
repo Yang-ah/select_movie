@@ -1,16 +1,25 @@
 import styles from './headerLeft.module.scss';
 import cx from 'classnames';
 import { ShareIcon } from '../../../../assets/icon';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../../../atom';
 
 // header > 왼쪽 프로필 공통
 const HeaderLeft = ({ className, type, userName, date, writtenId }) => {
   const navigate = useNavigate();
+  const isLogin = useRecoilValue(isLoginAtom);
 
   const onClick = () => {
-    type === 'reviewInput'
-      ? navigate('/auth/login')
-      : navigate(`/user/${writtenId}`);
+    if (type === 'reviewInput' && !isLogin) {
+      return navigate('/auth/login');
+    }
+
+    if (type === 'reviewInput' && isLogin) {
+      return navigate('/my');
+    }
+
+    navigate(`/user/${writtenId}`);
   };
 
   return (

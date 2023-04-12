@@ -37,22 +37,13 @@ const Review = ({
     response.data && setIsUserMe(response.data.user.id === written);
   };
 
-  useEffect(() => {
-    isMyReview();
-  }, [isLogin, me]);
-
-  const onClickDelete = () => {
-    setModalOpen(true);
-  };
+  const onClickModify = () => setCanModify(true);
+  const onClickDelete = () => setModalOpen(true);
 
   const onClickDeleteReview = async () => {
     await deleteReview(reviewId);
     await fetchReviews();
     setModalOpen(false);
-  };
-
-  const onClickModify = () => {
-    setCanModify(true);
   };
 
   const onChangeModifiedReview = (e) => {
@@ -67,6 +58,10 @@ const Review = ({
     await fetchReviews();
     setCanModify(false);
   };
+
+  useEffect(() => {
+    isMyReview();
+  }, [isLogin, me]);
 
   return (
     <section className={cx(styles.wrap, { [styles.myReview]: isUserMe })}>
