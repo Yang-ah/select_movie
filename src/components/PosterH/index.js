@@ -5,21 +5,12 @@ import { useRecoilValue } from 'recoil';
 import { isLoginAtom } from '../../atom';
 
 import {
-  BookmarkIcon,
   HeartIcon,
-  SolidBookmarkIcon,
   SolidHeartIcon,
   SolidStarIcon,
-  DoubleChevronRightIcon
 } from "../../assets/icon";
-import {
-  postBookmark,
-  deleteBookmark,
-  getMyBookmarks,
-} from '../../api/Bookmarks';
 
 import Button from "../Common/Button";
-import dayjs from "dayjs";
 
 
 
@@ -70,7 +61,6 @@ const isLogin = useRecoilValue(isLoginAtom);
                   className={styles.button}
                   onClick={onClickButton}
                 >
-                  
                   {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
                 </Button>
           </div>

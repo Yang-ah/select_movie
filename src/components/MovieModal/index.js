@@ -268,6 +268,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               comment={review.content}
               rating={review.score}
               />
+              
               )
           })}
           </div>
