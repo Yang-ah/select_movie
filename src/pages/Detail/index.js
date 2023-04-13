@@ -15,8 +15,8 @@ import { motion } from 'framer-motion';
 
 // review dropdown list
 const dropdownItems = [
-  { title: '별점높은순', value: 'LIKE_HIGH' },
-  { title: '별점낮은순', value: 'LIKE_LOW' },
+  { title: '별점높은순', value: 'SCORE_HIGH' },
+  { title: '별점낮은순', value: 'SCORE_LOW' },
   { title: '최신순', value: 'CREATED_AT' },
 ];
 
