@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import cx from 'classnames';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styles from './index.module.scss';
@@ -61,7 +62,11 @@ const UserReview = () => {
 
   return (
     <>
-      <p className={styles.category}>작성한 리뷰</p>
+      <p className={styles.category}>
+        <span className={styles.text}>
+          작성한 리뷰 (수정,삭제 대신 코멘트 쪽 누르면 디테일로 넘어가게!! )
+        </span>
+      </p>
       <section className={styles.wrapper}>
         <ul className={styles.ul}>
           {records.map((data, i) => {
@@ -98,7 +103,9 @@ const UserReview = () => {
           </li>
           {numbers.map((number, i) => (
             <li
-              className="currentPage"
+              className={cx(styles.page, {
+                [styles.currentPage]: number === currentPage,
+              })}
               key={i}
               onClick={() => onChangePage(number)}
             >

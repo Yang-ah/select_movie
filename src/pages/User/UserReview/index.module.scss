@@ -3,13 +3,11 @@
 
 //Category
 .category {
-  font-size: 22px;
-  font-weight: 500;
   margin-bottom: 10px;
-  .icon {
-    fill: orange;
-    height: 20px;
-    margin-right: 5px;
+  .text {
+    font-size: 22px;
+    font-weight: 500;
+    box-shadow: inset 0 -6px 0 rgba(255, 166, 0, 0.6);
   }
 }
 
@@ -71,6 +69,11 @@
   .Icon {
     height: 16px;
     width: 16px;
+  }
+}
+.page {
+  &.currentPage {
+    color: c.$C_ORANGE;
   }
 }
 

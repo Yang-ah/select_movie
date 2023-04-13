@@ -46,8 +46,12 @@ export const PosterHeart = ({ index, callback }) => {
       <div className={styles.screen}>
         <article className={styles.layerUp}>
           <div className={styles.title}>{index?.title}</div>
-          <button className={styles.icon} onClick={onClick}>
-            {like === true ? <SolidHeartIcon /> : <HeartIcon />}
+          <button onClick={onClick}>
+            {like === true ? (
+              <SolidHeartIcon className={styles.icon} />
+            ) : (
+              <HeartIcon className={styles.icon} />
+            )}
           </button>
         </article>
 
@@ -98,8 +102,12 @@ export const PosterBookmark = ({ id, title, postImage, callback }) => {
       <div className={styles.screen}>
         <article className={styles.layerUp}>
           <div className={styles.title}>{title}</div>
-          <button className={styles.icon} onClick={onClick}>
-            {mark === true ? <SolidBookmarkIcon /> : <BookmarkIcon />}
+          <button onClick={onClick}>
+            {mark === true ? (
+              <SolidBookmarkIcon className={styles.icon} />
+            ) : (
+              <BookmarkIcon className={styles.icon} />
+            )}
           </button>
         </article>
         <Link to={`/detail/${id}`}>

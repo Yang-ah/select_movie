@@ -42,7 +42,7 @@ const InfoModal = ({
     try {
       const responsePatch = await patchUser(postForm);
       if (responsePatch.status === 204) {
-        alert('수정완료');
+        alert(`[ ` + me.name + ' ] 님의 정보 수정 완료');
         onGetMe();
         closeModal();
       }

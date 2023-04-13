@@ -10,7 +10,11 @@ import {
   getMoviesMeLike,
   getMoviesUserLike,
 } from '../../api/Movies';
-import { getMyBookmarks, getBookmarksPage } from '../../api/Bookmarks';
+import {
+  getMyBookmarks,
+  getBookmarksPage,
+  getUserBookmarksPage,
+} from '../../api/Bookmarks';
 
 import {
   CaretLeftIcon,
@@ -56,7 +60,7 @@ export const HomeCarousel = ({ GenreId }) => {
     const num = moviesGenre.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
     setMovieId(moviesGenre.data[num]); //data값에 아이디값 대입
-    console.log(moviesGenre.data[num])
+    console.log(moviesGenre.data[num]);
   };
 
   const onModalClose = () => {
@@ -101,7 +105,6 @@ export const HomeCarousel = ({ GenreId }) => {
 export const MyCarousel = () => {
   const [moviesLike, setMoviesLike] = useState([]);
   const [moviesMark, setMoviesMark] = useState();
-  const [moviesMarks, setMoviesMarks] = useState([]);
 
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
@@ -133,8 +136,7 @@ export const MyCarousel = () => {
   return (
     <>
       <p className={styles.category}>
-        {/* <SolidHeartIcon className={styles.categoryIcon} /> */}
-        좋아하는 컨텐츠
+        <span className={styles.text}>좋아하는 컨텐츠</span>
       </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
@@ -147,10 +149,8 @@ export const MyCarousel = () => {
           ))}
         </Slider>
       </div>
-
       <p className={styles.category}>
-        {/*  <SolidBookmarkIcon className={styles.categoryIcon} /> */}
-        북마크 한 컨텐츠
+        <span className={styles.text}>북마크 한 컨텐츠</span>
       </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
@@ -172,16 +172,23 @@ export const MyCarousel = () => {
 
 export const UserCarousel = () => {
   const userId = useParams();
-  const [userData, setUserData] = useState([]);
+  const [moviesLike, setMoviesLike] = useState([]);
+  const [moviesMark, setMoviesMark] = useState([]);
 
   const fetchUserLike = async () => {
     const response = await getMoviesUserLike(userId.id);
-    setUserData(response.data);
+    setMoviesLike(response.data);
     console.log('좋아요:', response.data);
+  };
+  const fetchUserBookmark = async () => {
+    const response = await getUserBookmarksPage(userId.id);
+    setMoviesMark(response.data);
+    console.log('북마크:', response.data);
   };
 
   useEffect(() => {
     fetchUserLike();
+    fetchUserBookmark();
   }, []);
 
   const settings = {
@@ -191,21 +198,38 @@ export const UserCarousel = () => {
     speed: 600,
     slidesToShow: 6,
     slidesToScroll: 5,
+    prevArrow: <ChevronLeftIcon />,
+    nextArrow: <ChevronRightIcon />,
   };
 
   return (
     <>
-      <p className={styles.category}>좋아하는 컨텐츠</p>
+      <p className={styles.category}>
+        <span className={styles.text}>좋아하는 컨텐츠</span>
+      </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
-          {userData.map((index) => (
+          {moviesLike.map((index) => (
             <PosterU key={index.id} index={index} />
           ))}
         </Slider>
       </div>
 
-      <p className={styles.category}>북마크 한 컨텐츠</p>
-      <div className={styles.mywrap}></div>
+      <p className={styles.category}>
+        <span className={styles.text}>북마크 한 컨텐츠</span>
+      </p>
+      <div className={styles.mywrap}>
+        <Slider {...settings}>
+          {moviesMark.map((index) => (
+            <PosterBookmark
+              className={styles.bookMark}
+              id={index.movie.id}
+              title={index.movie.title}
+              postImage={index.movie.postImage}
+            />
+          ))}
+        </Slider>
+      </div>
     </>
   );
 };

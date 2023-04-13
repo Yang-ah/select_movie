@@ -38,12 +38,11 @@ const Info = () => {
   return (
     <section className={styles.info}>
       <div className={styles.profile}>
-        {/* <UserIcon className={styles.icon} /> */}
         <p className={styles.nickname}></p>
       </div>
       <div className={styles.text}>
         <div className={styles.left}>
-          <li className={styles.nickname}>{me && me.name}</li>
+          <li className={styles.name}>{me && me.name}</li>
           <li className={styles.description}>{me && me.description}</li>
         </div>
 

@@ -66,7 +66,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding-bottom: 8px;
+        padding-bottom: 2px;
       }
       .title {
         font-weight: bold;
@@ -106,12 +106,21 @@
     line-height: 22px; //line-height?1.2em. 3라인을 자르기때문에 height? 1.2em*3 =3.6em;
   }
 }
-.modal {
-  color: black;
-}
 
 .modifyMain {
-  .contentC {
-    width: 100%;
+  color: black;
+  width: 80%;
+  height: 80%;
+  .star {
+    margin: 0 auto;
+  }
+  .inputWrap {
+    .textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 5px;
+      border: none;
+      background-color: c.$C_REVIEWBOX_90;
+    }
   }
 }

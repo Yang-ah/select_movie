@@ -15,6 +15,11 @@ export const getBookmarksPage = (page = 1, limit = 20) => {
   });
 };
 
+// 다른 유저가 북마크한 영화 조회.
+export const getUserBookmarksPage = (userId) => {
+  return apiClient.get(`/bookmarks/users/${userId}`);
+};
+
 // 영화 북마크 생성
 export const postBookmark = (movieId) => {
   return apiClient.post(`/bookmarks/${movieId}`);

@@ -9,8 +9,7 @@ import { useRecoilValue } from 'recoil';
 import { deleteReview, getReviewsMe, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';
 import Button from '../../../components/Common/Button';
-import Modal from '../../../components/Common/Modal';
-
+import { ModifyModal, DeleteModal } from '../ReviewBox/reviewModal';
 const Review = ({
   title,
   createdAt,
@@ -56,6 +55,7 @@ const Review = ({
     await deleteReview(reviewId);
     await fetchMyReviews();
     setDeleteModalOpen(false);
+    return alert(`[ ` + title + ` ] 이/가 삭제되었습니다!`);
   };
 
   const onClickModify = () => {
@@ -116,8 +116,8 @@ const Review = ({
         </aside>
         <div className={styles.content}>{content}</div>
       </article>
-      <Modal
-        className={styles.modal}
+      <ModifyModal
+        className={styles.modifyModal}
         modalOpen1={modifyModalOpen}
         setModalOpen={setModifyModalOpen}
         buttonChildren="수정"
@@ -131,21 +131,22 @@ const Review = ({
           />
           <div className={styles.inputWrap}>
             <textarea
+              className={styles.textarea}
               value={modifiedReview.content}
               onChange={onChangeModifiedReview}
             />
           </div>
         </main>
-      </Modal>
-      <Modal
-        className={styles.modal}
+      </ModifyModal>
+      <DeleteModal
+        className={styles.deleteModal}
         modalOpen1={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}
         buttonChildren="삭제"
         onClick={onClickDeleteReview}
       >
         리뷰를 삭제하시겠습니까?
-      </Modal>
+      </DeleteModal>
     </section>
   );
 };

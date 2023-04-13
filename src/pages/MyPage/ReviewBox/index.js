@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.scss';
+import cx from 'classnames';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -18,7 +19,7 @@ import {
 import dayjs from 'dayjs';
 import Review from '../ReviewCard';
 
-const MyComment = () => {
+const MyReview = () => {
   const [reviews, setReviews] = useState([]);
   const { me, onGetMe } = useMe();
   const [isUserMe, setIsUserMe] = useState(false);
@@ -137,10 +138,15 @@ const MyComment = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+  const option = {
+    wrapAround: true,
+  };
 
   return (
     <>
-      <p className={styles.category}>작성한 리뷰</p>
+      <p className={styles.category}>
+        <span className={styles.text}>작성한 리뷰</span>
+      </p>
       <section className={styles.wrapper}>
         <ul className={styles.ul}>
           {records.map((data, i) => {
@@ -168,15 +174,19 @@ const MyComment = () => {
               onClick={onClickPrevPage}
             />
           </li>
+
           {numbers.map((number, i) => (
             <li
-              className="currentPage"
+              className={cx(styles.page, {
+                [styles.currentPage]: number === currentPage,
+              })}
               key={i}
               onClick={() => onChangePage(number)}
             >
               {number}
             </li>
           ))}
+
           <li className={styles.nextIcon}>
             <ChevronRightIcon
               className={styles.Icon}
@@ -206,4 +216,4 @@ const MyComment = () => {
   );
 };
 
-export default MyComment;
+export default MyReview;
