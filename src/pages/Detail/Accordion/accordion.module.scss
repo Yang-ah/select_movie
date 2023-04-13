@@ -1,5 +1,5 @@
-@use "../../../styles/mixins" as m;
-@use "../../../styles/constants" as c;
+@use '../../../styles/mixins' as m;
+@use '../../../styles/constants' as c;
 
 // 아코디언 전체를 감싸는 wrap
 .accordionWrap {
@@ -34,13 +34,16 @@
   padding: 32px 16px;
 
   > .userName {
+    @include m.flex();
+
+    max-width: 80px;
     padding: 4px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
   }
 
   > .input {
-    width: 100%;
+    flex-grow: 1;
     background-color: c.$C_WHITE_10;
     border-radius: 4px;
 

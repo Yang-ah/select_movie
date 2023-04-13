@@ -1,16 +1,14 @@
-import React, { memo, useEffect, useRef, useState } from "react";
-import cx from "classnames";
-import { ChevronDown } from "../../../assets/icon";
-import styles from "./dropdown.module.scss";
+import React, { memo, useEffect, useRef, useState } from 'react';
+import cx from 'classnames';
+import { ChevronDown } from '../../../assets/icon';
+import styles from './dropdown.module.scss';
 
-// items: string[]
-const Dropdown = ({ className, items, value, onClick }) => {
+// items: [{title:string, value:string},{...}]
+const Dropdown = ({ className, items, value, orderBy, setOrderBy }) => {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const onClickDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const onClickDropdown = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     if (!isOpen) {
@@ -21,9 +19,9 @@ const Dropdown = ({ className, items, value, onClick }) => {
         setIsOpen(false);
       }
     };
-    document.addEventListener("click", handleClick);
+    document.addEventListener('click', handleClick);
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener('click', handleClick);
     };
   }, [isOpen]);
 
@@ -34,18 +32,18 @@ const Dropdown = ({ className, items, value, onClick }) => {
         className={cx(styles.dropdownWrapper, { [styles.isOpen]: isOpen })}
         onClick={onClickDropdown}
       >
-        {value ?? "정렬"}
+        {orderBy.title}
         <ChevronDown className={styles.chevronDown} />
       </div>
       <menu className={cx(styles.itemsWrapper, { [styles.isOpen]: isOpen })}>
         {items.map((item) => {
           return (
             <li
-              key={item}
+              key={item.title}
               className={styles.item}
-              onClick={() => onClick(item)}
+              onClick={() => setOrderBy(item)}
             >
-              {item}
+              {item.title}
             </li>
           );
         })}

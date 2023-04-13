@@ -14,7 +14,7 @@ const SearchCard = ({ movieId, title, averageScore = 0, postImage }) => {
       <div className={styles.overlay}>
         <span className={styles.score}>
           <SolidStarIcon />
-          {averageScore}
+          {averageScore?.toFixed(1)}
         </span>
         <h2 className={styles.title}>{title}</h2>
       </div>

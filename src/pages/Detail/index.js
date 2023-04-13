@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './detail.module.scss';
 import DetailInfo from './DetailInfo';
 import Dropdown from '../../components/Common/Dropdown';
-import { getMoviesRelated, postMovieLike } from '../../api/Movies';
+import { getMoviesRelated } from '../../api/Movies';
 import { getReviewsMovie } from '../../api/Reviews';
 import RelatedCard from './RelatedCard';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isLoginAtom } from '../../atom';
 import useMe from '../../hooks/useMe';
@@ -14,9 +14,11 @@ import ReviewInput from '../../components/Comment/ReviewInput';
 import { motion } from 'framer-motion';
 
 // review dropdown list
-const dropdownItems = () => {
-  return ['별점높은순', '별점낮은순', '최신순'];
-};
+const dropdownItems = [
+  { title: '별점높은순', value: 'SCORE_HIGH' },
+  { title: '별점낮은순', value: 'SCORE_LOW' },
+  { title: '최신순', value: 'CREATED_AT' },
+];
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -28,6 +30,10 @@ const Detail = () => {
 
   const [relatedMovies, setRelatedMovies] = useState(); // 관련 영화가 들어있는 배열
   const [reviews, setReviews] = useState([]); // review 객체가 들어있는 배열
+  const [orderBy, setOrderBy] = useState({
+    title: '최신순',
+    value: 'CREATED_AT',
+  });
 
   // 해당 영화 '관련 영화' fetch
   const fetchRelatedMovies = async () => {
@@ -37,15 +43,9 @@ const Detail = () => {
 
   // 해당 영화 리뷰 fetch
   const fetchReviews = async () => {
-    const response = await getReviewsMovie(id);
-    //  console.log(response.data);
+    const response = await getReviewsMovie(id, orderBy.value);
     setReviews(response.data);
   };
-
-  useEffect(() => {
-    fetchRelatedMovies();
-    fetchReviews();
-  }, [id]);
 
   // 영화 이동시 scroll top으로 이동
   useEffect(() => {
@@ -56,9 +56,14 @@ const Detail = () => {
       block: 'start',
       inline: 'nearest',
     });
+
     fetchRelatedMovies();
     fetchReviews();
   }, [id]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, [orderBy]);
 
   // 로그인 상태에 따라 reviewInput의 placeholder 변경
   const inputPlaceholder = () => {
@@ -73,7 +78,7 @@ const Detail = () => {
       return me.nickname ?? me.name;
     }
     if (!me || !isLogin) {
-      return <Link to="/auth/login">로그인 후 작성가능</Link>;
+      return '로그인 후 작성가능';
     }
   };
 
@@ -107,7 +112,12 @@ const Detail = () => {
             />
             <header>
               <h1>Reviews</h1>
-              <Dropdown items={dropdownItems()} className={styles.dropdown} />
+              <Dropdown
+                items={dropdownItems}
+                className={styles.dropdown}
+                orderBy={orderBy}
+                setOrderBy={setOrderBy}
+              />
             </header>
 
             <article className={styles.reviewsWrap}>

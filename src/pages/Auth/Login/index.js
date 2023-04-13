@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styles from './login.module.scss';
 import { useLocation } from 'react-router-dom';
 import Input from '../../../components/Common/Input';
-import qs from 'query-string';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/Auth';
 import { isValidateEmail } from '../../../utils';
@@ -11,10 +10,9 @@ import { isLoginAtom } from '../../../atom';
 import { Button } from '../../../components';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const locations = useLocation();
-
   const setIsLogin = useSetRecoilState(isLoginAtom);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [form, setForm] = useState({
     userId: '',
@@ -31,12 +29,11 @@ const Login = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const onClick = (path) => {
-    navigate(`/${path}`);
-  };
+  const onClick = (path) => navigate(`/${path}`);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const { userId, password } = form;
 
     if (!form.userId) {
       return setErr({ ...err, userId: '이메일을 입력해주세요' });
@@ -51,8 +48,6 @@ const Login = () => {
         password: '비밀번호를 입력해주세요',
       });
     }
-
-    const { userId, password } = form;
 
     try {
       //NOTE: 로그인 성공
@@ -69,14 +64,15 @@ const Login = () => {
         localStorage.setItem('REFRESH_TOKEN', refreshToken);
 
         setIsLogin(true);
-        //NOTE: query를 객체로 변환하는 코드
-        const query = qs.parse(locations.search);
 
-        //NOTE: location의 state를 이용해서 분기처리
-        if (query.prev) {
-          query.prev.includes('register')
-            ? navigate('/')
-            : navigate(query.prev);
+        if (!location.state) {
+          navigate(-1);
+        }
+
+        if (location.state.prev === 'register') {
+          navigate('/');
+        } else {
+          navigate(-1);
         }
       }
     } catch (err) {
