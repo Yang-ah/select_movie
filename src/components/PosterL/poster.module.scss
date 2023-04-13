@@ -57,22 +57,22 @@
     white-space: nowrap;
   }
   .bottom {
-    @include m.flex(space-between, flex-start);
+    @include m.flex(flex-end, flex-end);
     position: absolute;
-    bottom: 10%;
-    left: 5%;
-    right: 5%;
+    top: 5%;
+    right: 8%;
     width: 90%;
 
     white-space: nowrap;
     .rating {
-      font-size: 20px;
+     
+      font-size: 40px;
       white-space: nowrap;
       color: white;
       .star {
         margin-right: 5%;
         fill: c.$C_STAR;
-        height: 20px;
+        height: 40px;
       }
     }
     .heart {

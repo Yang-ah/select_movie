@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./poster.module.scss";
 import { SolidStarIcon, SolidHeartIcon } from "../../assets/icon";
 
-const PosterL = ({ title , postImage , onModalClick , id  , rating , movieId}) => {
-
+const PosterL = ({ title , postImage , onModalClick , id  , rating , movieId, movie}) => {
+  const [getAver , setGetAver] = useState(movie.averageScore) 
 
   return (
     <div className={styles.wrapper} onClick={() => onModalClick(id)} >
@@ -13,7 +13,7 @@ const PosterL = ({ title , postImage , onModalClick , id  , rating , movieId}) =
           <div className={styles.bottom}>
             <div className={styles.rating}>
               <SolidStarIcon className={styles.star} />
-              {rating}
+              <p className={styles.starNum}>{getAver?.toFixed(1)}</p>
             </div>
           </div>
         </article>

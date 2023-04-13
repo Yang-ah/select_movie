@@ -74,6 +74,7 @@ export const RankingCarousel = () => {
                     postImage={movie.postImage}
                     onModalClick={onModalClick}
                     movieId={movieId}
+                    movie={movie}
                   />
                 </div>
               ))}
