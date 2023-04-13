@@ -2,10 +2,12 @@
 @use '../../../styles/constants' as c;
 
 .wrap {
-  min-width: 300px;
+  width: 600px;
+  position: relative;
+  top: 9%;
   color: c.$C_BLACK;
   padding: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-color: c.$C_WHITE;
   box-shadow: 2px 2px 4px 1px #333;
   border-radius: 4px;

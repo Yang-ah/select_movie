@@ -4,6 +4,7 @@
 $HEADER_INFO_PADDING_L: 40px;
 $HEADER_INFO_PADDING_M: 20px;
 $HEADER_INFO_PADDING_S: 12px;
+$HEADER_INFO_PADDING: 20px;
 
 
 .modal {  
@@ -27,14 +28,6 @@ $HEADER_INFO_PADDING_S: 12px;
     border-radius: 20px;
     box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
 
-    .moveReview{
-      position: absolute;
-      top: 58%;
-      width : 500px ;
-      height: 100px;
-      border: 100px soild red;
-     
-    }
 
     .starBox{
       @include m.flex(flex-end);
@@ -58,8 +51,6 @@ $HEADER_INFO_PADDING_S: 12px;
       .starNum{
         font-size: 47px;
         color: c.$C_BLACK;
-      }
-      .star{
       }
     }
 
@@ -135,63 +126,59 @@ $HEADER_INFO_PADDING_S: 12px;
       }
       
       .rightWrap {
-        max-width: 550px;
+        max-width: 650px;
+        height: 300px;
+        @include m.flex(space-between, flex-start, column);
+        
+        
       
-         .info {
+        > header {
           width: 100%;
-          height: 100%;
-      
-          >h1 {
-            @include m.flex(flex-start, flex-end);
-            font-size: 52px;
-            font-weight: 800;
-            > p {
-              font-size: 20px;
-              margin-bottom: 6px;
-              font-weight: 400;
-              padding: 0 4px;
-            }
+          font-weight: 600;
+          padding-bottom: $HEADER_INFO_PADDING;
+          border-bottom: 1px solid white;
+          margin-bottom: $HEADER_INFO_PADDING;
+          > .title {
+            font-size: 36px;
+            margin-right: 12px;
           }
-      
-          >h2 {
-            font-size: 24px;
-            padding: $HEADER_INFO_PADDING_S 0 $HEADER_INFO_PADDING_L 0;
-            > span:first-of-type {
-              margin-right: 12px;
-            }
-          }
-
-          .contents{
-            height: 80px;
-            overflow-y: scroll;
-          }
-          .actors{
-            height: 40px;
-            overflow-y: scroll;            
-          }
-      
-          >h3 {
-            font-size: 16px;
-            font-weight: 800;
-            padding-bottom: $HEADER_INFO_PADDING_M;
-            > p {
-              padding-top: 4px;
-              font-size: 14px;
-              font-weight: 400;
-              line-height: 1.2;
-            }
-      
-            &.actors {
-              span {
-                padding-right: 8px;
-              }
-              span:first-of-type {
-                font-weight: 600;
-              }
-            }
+          > .runtime {
+            margin-right: 4px;
           }
         }
+      
+        .info {
+          width: 100%;
+          max-height: 420px;
+          overflow-y: scroll;
+      
+          > article {
+            width: 100%;
+            padding-bottom: $HEADER_INFO_PADDING;
+            color: c.$C_WHITE_80;
+            font-size: 15px;
+      
+            > h3 {
+              font-size: 18px;
+              font-weight: 600;
+              margin: 0 8px 6px 0;
+              color: white;
+              letter-spacing: 0.5px;
+            }
+      
+            .plot {
+              width: 100%;
+              letter-spacing: 1px;
+              font-size: 14px;
+            
 
+
+            }
+            .staffs{
+              letter-spacing: 20px;
+              font-size: 14px;
+            }
+          }
         }
       }
       
@@ -207,6 +194,7 @@ $HEADER_INFO_PADDING_S: 12px;
           fill: c.$C_STAR;
         }
       }
+    }
 
   .close {
     position: absolute;
@@ -234,7 +222,7 @@ $HEADER_INFO_PADDING_S: 12px;
   .moveDetail{
     position: absolute;
     top: 40%;
-    right: -31%;
+    right: -25%;
     font-size: 140px;
     height: 120px;
     width: 120px;
@@ -258,15 +246,15 @@ $HEADER_INFO_PADDING_S: 12px;
 
   @keyframes shake{
     0%{
-        right : -280px;
+        right : -225px;
         transform: .5s;
       }
       50%{
-        right : -260px;
+        right : -205px;
         transform: .5s;
       }
       100%{
-        right : -280px;
+        right : -225px;
         transform: .5s;
       }
   }

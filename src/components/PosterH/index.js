@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './poster.module.scss';
 import { getMovie, postMovieLike, deleteMovieLike } from '../../api/Movies';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../atom';
 
 import {
   SolidStarIcon,
@@ -8,35 +10,43 @@ import {
   SolidHeartIcon,
 } from '../../assets/icon';
 
+import Button from "../Common/Button";
+
 export const PosterH = ({ movie, id, onModalClick, callback }) => {
+  const isLogin = useRecoilValue(isLoginAtom);
+  const [movieDetail, setMovieDetail] = useState();
   const [isLiked, setIsLiked] = useState(false);
-  const [like, setLike] = useState(false);
   const [getAver , setGetAver] = useState(movie.averageScore) 
 
-  console.log(getAver)
+  const fetchMovieData = async () => {
+    const response = await getMovie(movie.id);
+    setMovieDetail(response.data);
 
-
-  const postLike = async () => {
-    const response = await postMovieLike(movie.id);
-    setIsLiked(true);
+    if (isLogin) {
+      setIsLiked(response.data.isLiked);
+    } else {
+      setIsLiked(false);
+    }
+    // console.log('like', isLogin && response.data.isLiked);
   };
-  const deleteLike = async () => {
-    const response = await deleteMovieLike(movie.id);
-    setIsLiked(false);
-    callback && callback();
-  };
 
-  const onButtonClick = () => {
-    !isLiked ? postLike() : deleteLike();
+
+  const onClickButton = async (e) => {
+    if (!isLogin) {
+      return alert('로그인 후 이용 가능합니다!');
+    }
+    const { name } = e.currentTarget;
+
+    if (name === 'isLiked') {
+      isLiked ? await deleteMovieLike(movie.id) : await postMovieLike(movie.id);
+      setIsLiked((cur) => !cur);
+    }
   };
 
   useEffect(() => {
-    setIsLiked(movie?.isLiked ?? false);
-  }, [movie]);
+    fetchMovieData();
+  }, [movie.id]);
 
-  useEffect(() => {
-    setLike(isLiked);
-  }, [isLiked]);
 
 
   return (
@@ -55,13 +65,15 @@ export const PosterH = ({ movie, id, onModalClick, callback }) => {
             />
           <p className={styles.starNum}>{getAver?.toFixed(1)}</p>
           </div>
-          <button className={styles.icon} onClick={onButtonClick}>
-            {like === true ? (
-              <SolidHeartIcon height={'35px'} fill="red" />
-            ) : (
-              <HeartIcon height={'35px'} fill="red" />
-            )}
-          </button>
+          <Button
+            option="third"
+            name="isLiked"
+            className={styles.icon}
+             onClick={onClickButton}
+                >
+             {isLiked ? <SolidHeartIcon height={'35px'} fill="red" /> :
+              <HeartIcon height={'35px'} fill="red" />}
+          </Button>
           </div>
         </article>
         <article className={styles.layerDown}>

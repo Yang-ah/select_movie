@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./poster.module.scss";
 import { SolidStarIcon, SolidHeartIcon } from "../../assets/icon";
 
-const PosterL = ({ title , postImage , onModalClick , id  , rating}) => {
+const PosterL = ({ title , postImage , onModalClick , id  , rating , movieId}) => {
+
+
   return (
     <div className={styles.wrapper} onClick={() => onModalClick(id)} >
       <div className={styles.screen}>
@@ -13,9 +15,6 @@ const PosterL = ({ title , postImage , onModalClick , id  , rating}) => {
               <SolidStarIcon className={styles.star} />
               {rating}
             </div>
-            <button className={styles.heart}>
-              <SolidHeartIcon />
-            </button>
           </div>
         </article>
         <article className={styles.layerDown} >
