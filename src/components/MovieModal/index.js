@@ -39,7 +39,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
   const [getAver , setGetAver] = useState(movieId.averageScore) 
 
   const fetchMovieData = async () => {
-    const response = await getMovie(id);
+    const response = await getMovie(movieId.id);
     setMovieDetail(response.data);
 
     if (isLogin) {
@@ -56,7 +56,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
       return dataArr.movie.id;
     });
 
-    if (isLogin && bookmarkIdArr.includes(id)) {
+    if (isLogin && bookmarkIdArr.includes(movieId.id)) {
       setIsBookmarked(true);
     } else {
       setIsBookmarked(false);
@@ -86,18 +86,17 @@ const MovieModal = ({ onModalClose ,movieId }) => {
 
   //리뷰관련 내용 
 
-  const [ reviews , setReviews ] = useState();
+  const [ reviews , setReviews ] = useState([]);
 
   const fetchReviews = async () => {
-
     const response = await getReviewsMovie(movieId.id);
     //  console.log(response.data);
     setReviews(response.data);
-    console.log(response.data)
-   
+
   };
-  console.log(movieId.id)
   useEffect(() => {
+    fetchMovieData();
+    fetchBookmarks();
     fetchReviews();
   }, [movieId.id]);
 
@@ -206,45 +205,48 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               </div>
             </div>
             <div className={styles.rightWrap}>
-              <div className={styles.info}>
-                <h1>
-                  {title} <p>{runtime}분</p>
-                </h1>
-                <h2>
-                  <span>
-                    {dayjs(releasedAt + "").format("YYYY.MM.DD")}
-                  </span>
-
-                        {genres.map((genre) => {
-                          return <span key={genre.id}> {genre.name} /</span>;
-                        })}
-                      </h2>
-
-                <h3>
-                  | 작품정보 |<p className={styles.contents}>{plot}</p>
-                </h3>
-
-                      <h3 className={styles.actors}>
-                        | 출연 |
-                        <p>
-                          {actors.map((actor) => {
-                            return <span key={actor.id}> {actor.name} </span>;
-                          })}
-                        </p>
-                      </h3>
-
-                <h3 className={styles.actors}>
-                  | 제작 / 스태프 |
-                  <p>
-                    <span>{company} / </span>
-                    {staffs.map((staff) => {
-                      return <span key={staff.id}> {staff.name} </span>;
+            <header>
+                <span className={styles.title}>{title}</span>
+                <span className={styles.runtime}>
+                  {runtime}분 |
+                </span>
+                <span>
+                  {dayjs(releasedAt).format('YYYY.MM.DD')}
+                </span>
+              </header>
+              <section className={styles.info}>
+                <article>
+                  <h3>장르</h3>
+                  <p className={styles.genres}>
+                    {genres.map((genre) => {
+                      return <span key={genre.id}>{genre.name}</span>;
                     })}
                   </p>
-                </h3>
+                </article>
+                <article>
+                  <h3>줄거리</h3>
+                  <p className={styles.plot}>{plot}</p>
+                </article>
+                <article>
+                  <h3>출연</h3>
+                  <p className={styles.staffs}>
+                    {actors.map((actor) => {
+                      return <span key={actor.id}> {actor.name} </span>;
+                    })}
+                  </p>
+                </article>
+                <article>
+                  <h3>제작 / 스태프</h3>
+                  <p className={styles.staffs}>
+                    <span> {company} | </span>
+                    {staffs.map((staff) => {
+                      return <span key={staff.id}>{staff.name}</span>;
+                    })}
+                  </p>
+                </article>
+              </section>
               </div>
             </div>
-          </div>
           </motion.div>        
             <p className={styles.close} onClick={onModalClose}>
               x
@@ -259,9 +261,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
           <DoubleChevronRightIcon/>
           </div>
           </div>
-          <div className={styles.moveReview}>
-          {reviews &&
-          reviews.slice(0, 2).map((review)=>{
+          {reviews?.slice(0,2).map((review)=>{
             return(
               <Preview 
               userName={setUserName(review.user)}
@@ -269,13 +269,10 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               comment={review.content}
               rating={review.score}
               />
-              
               )
           })}
-          </div>
           <div className={styles.starBox}>
           <p className={styles.starTitle}>평균평점</p>
-         
           <p className={styles.starNum}> <SolidStarIcon
               className={styles.star}
               height={'30px'}
