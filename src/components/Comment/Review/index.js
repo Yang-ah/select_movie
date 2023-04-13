@@ -22,7 +22,7 @@ const Review = ({
   fetchReviews,
   movieId,
 }) => {
-  const me = useMe();
+  const { me } = useMe();
   const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,22 +37,13 @@ const Review = ({
     response.data && setIsUserMe(response.data.user.id === written);
   };
 
-  useEffect(() => {
-    isMyReview();
-  }, [isLogin, me]);
-
-  const onClickDelete = () => {
-    setModalOpen(true);
-  };
+  const onClickModify = () => setCanModify(true);
+  const onClickDelete = () => setModalOpen(true);
 
   const onClickDeleteReview = async () => {
     await deleteReview(reviewId);
     await fetchReviews();
     setModalOpen(false);
-  };
-
-  const onClickModify = () => {
-    setCanModify(true);
   };
 
   const onChangeModifiedReview = (e) => {
@@ -68,6 +59,10 @@ const Review = ({
     setCanModify(false);
   };
 
+  useEffect(() => {
+    isMyReview();
+  }, [isLogin, me]);
+
   return (
     <section className={cx(styles.wrap, { [styles.myReview]: isUserMe })}>
       <header>
@@ -79,12 +74,8 @@ const Review = ({
         />
         <article className={styles.right}>
           <HeaderRightRating rating={rating} />
-          <HeaderRightButtons type="review" reviewId={reviewId} />
-          {isUserMe || (
-            <button type="button" name="report">
-              신고하기
-            </button>
-          )}
+          <HeaderRightButtons reviewId={reviewId} />
+
           {isUserMe && (
             <div className={styles.myButtons}>
               <button type="button" name="modify" onClick={onClickModify}>

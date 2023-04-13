@@ -55,6 +55,7 @@ export const HomeCarousel = ({ GenreId }) => {
     const num = moviesGenre.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
     setMovieId(moviesGenre.data[num]); //data값에 아이디값 대입
+    console.log(moviesGenre.data[num])
   };
 
   const onModalClose = () => {
@@ -147,7 +148,7 @@ export const MyCarousel = () => {
       </div>
 
       <p className={styles.category}>
-       {/*  <SolidBookmarkIcon className={styles.categoryIcon} /> */}
+        {/*  <SolidBookmarkIcon className={styles.categoryIcon} /> */}
         내가 북마크 한 컨텐츠
       </p>
       <div className={styles.mywrap}>

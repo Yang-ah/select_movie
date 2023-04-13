@@ -11,8 +11,8 @@ import {
 import { useEffect, useState } from 'react';
 import useMe from '../../../../hooks/useMe';
 
-const HeaderRightButtons = ({ reviewId, type }) => {
-  const me = useMe();
+const HeaderRightButtons = ({ reviewId }) => {
+  const { me } = useMe();
   const [likeHateCount, setLikeHateCount] = useState({
     likeCount: 0,
     hateCount: 0,
@@ -41,9 +41,6 @@ const HeaderRightButtons = ({ reviewId, type }) => {
     if (!me) {
       return alert('로그인 후 이용 가능합니다!');
     }
-    if (type === 'comment') {
-      return;
-    }
 
     const { name } = e.currentTarget;
 
@@ -67,7 +64,7 @@ const HeaderRightButtons = ({ reviewId, type }) => {
   }, [me]);
 
   return (
-    <div className={cx(styles.upDown, styles[type])}>
+    <div className={cx(styles.upDown)}>
       <button
         name="isLiked"
         onClick={onClick}

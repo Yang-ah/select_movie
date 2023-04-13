@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './infoBox.module.scss';
+import styles from './info.module.scss';
 import useMe from '../../../hooks/useMe';
 
 import { getUsersMeInfo } from '../../../api/Users';
-import InfoModal from '../Modal/infoModal';
+import InfoModal from './infoModal';
 import { UserIcon, SettingIcon } from '../../../assets/icon';
 
 const Info = () => {
-  const me = useMe();
+  const { me, onGetMe } = useMe();
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState();
-  const [usersData, setUsersData] = useState();
-  const [SelectedIDs, setSelectedIDs] = useState([]);
-  const [SelectIndex, setSelectIndex] = useState();
 
   const fetchUserInfo = async () => {
     const response = await getUsersMeInfo();
@@ -24,6 +21,13 @@ const Info = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState();
 
+  const closeModal = () => {
+    setModalOpen(false);
+    fetchUserInfo();
+    //NOTE: 수정되는 정보를 가져오는 api를 호출해야합니다~
+    onGetMe();
+  };
+
   const onChange = (e) => {
     const { value } = e.currentTarget;
     setForm(value);
@@ -31,16 +35,12 @@ const Info = () => {
   const showModal = () => {
     setModalOpen(true);
   };
-  const closeModal = () => {
-    setSelectedIDs([]);
-    setModalOpen(false);
-    setModalOpen2(false);
-    responseData();
-  };
+
+  console.log('info', { modalOpen, userInfo });
 
   useEffect(() => {
     fetchUserInfo();
-  }, [id]);
+  }, [id, modalOpen]);
 
   return (
     <section className={styles.wrapper}>
@@ -48,7 +48,7 @@ const Info = () => {
         <div className={styles.profile}>
           {/* <UserIcon className={styles.nickname} /> */}
           {/*<p className={styles.nickname}>{me && me.nickname}</p>*/}
-          <p className={styles.nickname}>😭</p>
+          <p className={styles.nickname}></p>
         </div>
         <div className={styles.text}>
           <div className={styles.left}>
@@ -71,10 +71,7 @@ const Info = () => {
             closeModal={closeModal}
             notion="소개글 수정"
             buttonChildren="완료"
-            ID={SelectedIDs[0]}
-            setMovieData={setUsersData}
-            selectedData={usersData}
-            setSelectedIDs={setSelectedIDs}
+            callback={fetchUserInfo}
           />
         </div>
       </article>

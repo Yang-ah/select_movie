@@ -23,7 +23,7 @@ const Detail = () => {
   const { id } = useParams();
   const ref = useRef(null);
 
-  const me = useMe();
+  const { me } = useMe();
   const isLogin = useRecoilValue(isLoginAtom);
 
   const [relatedMovies, setRelatedMovies] = useState(); // 관련 영화가 들어있는 배열

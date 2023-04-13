@@ -51,16 +51,6 @@ const BackOfficeReviews = () => {
     onSetData(response2.data.data, response2.data.paging.total);
   };
 
-  const pageUp = () => {
-    if (pageNumber < pageNationNumber) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-  const pageDown = () => {
-    if (pageNumber > 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
   const showModal = (item, index) => {
     return () => {
       setSelectedIDs([item.id]);
@@ -222,11 +212,9 @@ const BackOfficeReviews = () => {
 
       {/* 페이지네이션 */}
       <BOpageNation
-        pageDown={pageDown}
         pageNationNumber={pageNationNumber}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
-        pageUp={pageUp}
       />
     </>
   );

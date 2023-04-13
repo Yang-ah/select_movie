@@ -5,19 +5,12 @@
   @include m.flex();
   column-gap: 8px;
   padding: 0 8px;
-  border-left: 1px solid c.$C_WHITE;
-  border-right: 1px solid c.$C_WHITE;
 
-  &.comment,
-  &.preview {
-    border-left: none;
-
-    button {
-      font-size: 12px;
-    }
-    svg {
-      width: 12px;
-    }
+  button {
+    font-size: 12px;
+  }
+  svg {
+    width: 12px;
   }
 
   > button {

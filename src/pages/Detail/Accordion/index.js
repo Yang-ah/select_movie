@@ -13,7 +13,7 @@ import { Comment, Review } from '../../../components/Comment';
 
 const Accordion = ({ review, movieId, fetchReviews }) => {
   const isLogin = useRecoilValue(isLoginAtom);
-  const me = useMe();
+  const { me } = useMe();
 
   const [isClicked, setIsClicked] = useState(false);
   const [reviewComments, setReviewComments] = useState([]);

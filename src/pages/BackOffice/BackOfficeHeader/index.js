@@ -7,21 +7,26 @@ import { AdminLoginPage } from '../CMS/cmsAuth';
 import { getMoviesCount } from '../../../api/Movies';
 import { getUsersCount } from '../../../api/Users';
 import { getReviewsCount } from '../../../api/Reviews';
-import { AdminLoginModalOpen, backOfficeTotalCount, isLoginAtom } from '../../../atom';
+import {
+  AdminLoginModalOpen,
+  backOfficeTotalCount,
+  isLoginAtom,
+} from '../../../atom';
 import { useRecoilState } from 'recoil';
 
 const BackOfficeHeader = ({ path }) => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [totalCount, setTotalCount] = useRecoilState(backOfficeTotalCount);
-  const [adminLoginModalOpen, setAdminLoginModalOpen] = useRecoilState(AdminLoginModalOpen);
+  //NOTE: useState를 사용해도 무방하다.
+  const [adminLoginModalOpen, setAdminLoginModalOpen] =
+    useRecoilState(AdminLoginModalOpen);
   const [isClick, setIsClick] = useState({
     movies: 'secondary',
     users: 'secondary',
     reviews: 'secondary',
   });
 
-  
   const showModal = () => {
     setAdminLoginModalOpen(true);
   };
@@ -72,17 +77,16 @@ const BackOfficeHeader = ({ path }) => {
     <>
       <header className={styles.header}>
         <h1>관리자 페이지</h1>
-        {!isLogin && (
-          <Button onClick={showModal}>관리자 로그인</Button>
-        )}
-        {isLogin && (<Button onClick={logout}>로그아웃</Button>)}
+        {!isLogin && <Button onClick={showModal}>관리자 로그인</Button>}
+        {isLogin && <Button onClick={logout}>로그아웃</Button>}
         {/* //TODO: 로그인 완료 시 모달 닫기 */}
         <CmsModal
           modalOpen1={adminLoginModalOpen}
           setModalOpen={setAdminLoginModalOpen}
           title="관리자 로그인"
-          children={<AdminLoginPage />}
-        />
+        >
+          <AdminLoginPage />
+        </CmsModal>
       </header>
       <nav className={styles.nav}>
         <Button
@@ -92,7 +96,7 @@ const BackOfficeHeader = ({ path }) => {
         >
           <h3>등록된 영화</h3>
           <h1>
-            <span> {totalCount.movies}  </span> 개
+            <span> {totalCount.movies} </span> 개
           </h1>
           <h2>영화관리</h2>
         </Button>
@@ -104,7 +108,7 @@ const BackOfficeHeader = ({ path }) => {
         >
           <h3>전체 이용자</h3>
           <h1>
-            <span> {totalCount.users}  </span>개
+            <span> {totalCount.users} </span>개
           </h1>
           <h2>회원관리</h2>
         </Button>
@@ -115,7 +119,7 @@ const BackOfficeHeader = ({ path }) => {
         >
           <h3>전체 리뷰</h3>
           <h1>
-            <span> {totalCount.reviews}  </span>개
+            <span> {totalCount.reviews} </span>개
           </h1>
           <h2>리뷰관리</h2>
         </Button>

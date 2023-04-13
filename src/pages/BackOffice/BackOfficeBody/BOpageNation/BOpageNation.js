@@ -4,30 +4,38 @@ import styles from "./BOpageNation.module.scss";
 import {range} from 'lodash-es';
 import cx from "classnames";
 import { number } from "prop-types";
-const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNumber, SearchPageNumber})=>{
-    const maxNum = 10;
+const BOpageNation =({ pageNationNumber, setPageNumber, pageNumber, SearchPageNumber})=>{
+    const maxNum = 6;
     const lastPage = Math.ceil(pageNationNumber/maxNum);
     //console.log(lastPage);
     const [navNum, setNavNum] =useState({
         start : 1,
         end : maxNum,
     });
-
+    const pageUp = () => {
+        if (pageNumber < pageNationNumber) {
+          setPageNumber(pageNumber + 1);
+          if(pageNumber%maxNum ===0){
+            navUp();
+          }
+        }
+      };
+      const pageDown = () => {
+        if (pageNumber > 1) {
+          setPageNumber(pageNumber - 1);
+          if(pageNumber%maxNum ===1){
+            navDown();
+            setPageNumber(navNum.start  -1);
+          }
+        }
+      };
     const navUp = () => {
         if (navNum.end < pageNationNumber) {
-            if(navNum.end + maxNum > pageNationNumber){
-                setNavNum({
-                    start : navNum.start+maxNum,
-                    end : pageNationNumber,
-                })
-                
-            }else{
-                setNavNum({
-                    start : navNum.start+maxNum,
-                    end : navNum.end+maxNum,
-                })
-            }
-  
+            setNavNum({
+                start : navNum.start + maxNum,
+                end : navNum.end + maxNum,
+            })
+            setPageNumber(navNum.start+maxNum);          
         }
       };
       const navDown = () => {
@@ -36,14 +44,14 @@ const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNum
                 start : navNum.start - maxNum,
                 end : navNum.end - maxNum,
             })
-         
+            setPageNumber(navNum.start - maxNum);
         }
       };
 
     return(
 
     <ul className={styles.pagination}>
-        { pageNationNumber>maxNum+1 && 
+        { pageNationNumber>maxNum+1 && navNum.start !== 1 &&
         <li onClick={navDown}>-{maxNum}</li>}
 
         <li className={styles.prevIcon}>
@@ -53,8 +61,8 @@ const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNum
             />
         </li>
 
-        {pageNationNumber<maxNum+1 ?
-        range(1, pageNationNumber+1).map((number, i) => (
+        {pageNationNumber<navNum.end ?
+        range(navNum.start, pageNationNumber+1).map((number, i) => (
             <li
                 value={i}
                 onClick={()=>setPageNumber(number)}
@@ -79,7 +87,8 @@ const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNum
                 onClick={pageUp}
             />
         </li>
-        { pageNationNumber>maxNum+1 && <li onClick={navUp}>+{maxNum}</li>}
+        { pageNationNumber>maxNum+1 && navNum.end < pageNationNumber &&
+        <li onClick={navUp}>+{maxNum}</li>}
     </ul>
     )
 }

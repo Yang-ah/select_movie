@@ -6,6 +6,7 @@ import useMe from '../../../hooks/useMe';
 import { patchUser } from '../../../api/Users';
 import { Button, Input } from '../../../components';
 import { TrashIcon } from '../../../assets/icon';
+import { getUsersMeInfo } from '../../../api/Users';
 
 const InfoModal = ({
   className,
@@ -13,33 +14,25 @@ const InfoModal = ({
   buttonChildren,
   modalOpen,
   setModalOpen,
-
-  ID,
-  selectedData,
-  setSelectedIDs,
+  closeModal,
+  callback,
 }) => {
-  const me = useMe();
+  const { me } = useMe();
   const modalRef = useRef(null);
   const [postForm, setPostForm] = useState({
     name: '',
     nickname: '',
     description: '',
   });
+  const fetchUserInfo = async () => {
+    const response = await getUsersMeInfo();
+  };
 
   const onChange = (e) => {
     const { name, value } = e.currentTarget;
     setPostForm({ ...postForm, [name]: value });
   };
 
-  const closeModal = () => {
-    setPostForm({
-      name: '',
-      nickname: '',
-      description: '',
-    });
-    setModalOpen(false);
-    responseData();
-  };
   const onReset = (e) => {
     const { name } = e.currentTarget;
     setPostForm({ ...postForm, [name]: '' });
@@ -47,15 +40,16 @@ const InfoModal = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const responsePatch = await patchUser(ID, postForm);
+      const responsePatch = await patchUser(postForm);
       if (responsePatch.status === 204) {
         alert('수정완료');
-        responseData();
+        closeModal();
       }
     } catch (err) {
       const errData = err.response.data;
       alert(errData.message);
     }
+    callback && callback();
   };
 
   useEffect(() => {
@@ -64,6 +58,7 @@ const InfoModal = ({
       nickname: me?.nickname,
       description: me?.description,
     });
+    fetchUserInfo();
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -73,7 +68,6 @@ const InfoModal = ({
           nickname: '',
           description: '',
         });
-        responseData();
       }
     };
     // 이벤트 핸들러 등록
