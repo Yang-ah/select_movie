@@ -28,6 +28,11 @@
       height: 16px;
       width: 16px;
     }
+    .IconR {
+      height: 16px;
+      width: 16px;
+      transform: rotateY(-180deg);
+    }
     .page{
         &.currentPage{
         color: c.$C_ORANGE;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "../../../../assets/icon";
+import { ChevronLeftIcon, ChevronRightIcon, DoubleChevronRightIcon } from "../../../../assets/icon";
 import styles from "./BOpageNation.module.scss";
 import {range} from 'lodash-es';
 import cx from "classnames";
 import { number } from "prop-types";
 const BOpageNation =({ pageNationNumber, setPageNumber, pageNumber, SearchPageNumber})=>{
-    const maxNum = 6;
+    const maxNum = 10;
     const lastPage = Math.ceil(pageNationNumber/maxNum);
     //console.log(lastPage);
     const [navNum, setNavNum] =useState({
@@ -52,7 +52,7 @@ const BOpageNation =({ pageNationNumber, setPageNumber, pageNumber, SearchPageNu
 
     <ul className={styles.pagination}>
         { pageNationNumber>maxNum+1 && navNum.start !== 1 &&
-        <li onClick={navDown}>-{maxNum}</li>}
+        <li><DoubleChevronRightIcon className={styles.IconR} onClick={navDown}/></li>}
 
         <li className={styles.prevIcon}>
             <ChevronLeftIcon
@@ -88,7 +88,7 @@ const BOpageNation =({ pageNationNumber, setPageNumber, pageNumber, SearchPageNu
             />
         </li>
         { pageNationNumber>maxNum+1 && navNum.end < pageNationNumber &&
-        <li onClick={navUp}>+{maxNum}</li>}
+        <li ><DoubleChevronRightIcon className={styles.Icon} onClick={navUp}/></li>}
     </ul>
     )
 }
