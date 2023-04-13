@@ -15,10 +15,19 @@ const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNum
 
     const navUp = () => {
         if (navNum.end < pageNationNumber) {
-          setNavNum({
-            start : navNum.start+maxNum,
-            end : navNum.end + maxNum,
-        })
+            if(navNum.end + maxNum > pageNationNumber){
+                setNavNum({
+                    start : navNum.start+maxNum,
+                    end : pageNationNumber,
+                })
+                
+            }else{
+                setNavNum({
+                    start : navNum.start+maxNum,
+                    end : navNum.end+maxNum,
+                })
+            }
+  
         }
       };
       const navDown = () => {
@@ -27,6 +36,7 @@ const BOpageNation =({pageDown, pageNationNumber, setPageNumber, pageUp, pageNum
                 start : navNum.start - maxNum,
                 end : navNum.end - maxNum,
             })
+         
         }
       };
 
