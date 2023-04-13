@@ -10,7 +10,6 @@ import useMe from '../../../hooks/useMe';
 const Header = () => {
   const { me } = useMe();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [keyword, setKeyword] = useState('');
@@ -22,11 +21,10 @@ const Header = () => {
   };
 
   const onClickLogin = () => {
-    const url = location.pathname;
-    navigate(`/auth/login?prev=${url}`);
+    navigate(`/auth/login`);
   };
 
-  const onClick = () => {
+  const onClickSearch = () => {
     navigate(`/search/${keyword}`);
     setKeyword('');
   };
@@ -34,6 +32,8 @@ const Header = () => {
   const onChange = (e) => {
     setKeyword(e.currentTarget.value);
   };
+
+  const goMy = () => navigate('/my');
 
   useEffect(() => {
     if (me) {
@@ -54,7 +54,7 @@ const Header = () => {
           option="iconLocation"
           className={styles.searchInput}
           placeholder="검색어를 입력하세요."
-          onClick={onClick}
+          onClick={onClickSearch}
           onChange={onChange}
           value={keyword}
         />
@@ -67,9 +67,9 @@ const Header = () => {
         )}
         {isLogin && (
           <aside className={styles.login}>
-            <Link to="/my">
+            <button onClick={goMy}>
               <UserIcon />
-            </Link>
+            </button>
             <button onClick={logout}>
               <LogoutIcon />
             </button>

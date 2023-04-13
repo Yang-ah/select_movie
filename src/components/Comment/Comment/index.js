@@ -28,19 +28,16 @@ const Comment = ({
   const [canModify, setCanModify] = useState(false);
   const [modifiedComment, setModifiedComment] = useState(comment);
 
-  useEffect(() => {
-    isUserMeToggle();
-  }, [isLogin, me]);
+  const onClickDelete = () => setModalOpen(true);
+  const onClickModify = () => setCanModify(true);
+  const onChangeModifiedComment = (e) =>
+    setModifiedComment(e.currentTarget.value);
 
   const isUserMeToggle = () => {
     if (isLogin && me && me.id === written) {
       setIsUserMe(true);
     }
   };
-
-  const onClickDelete = () => setModalOpen(true);
-  const onClickModify = () => setCanModify(true);
-
   const onClickDeleteComment = async () => {
     await deleteReviewComment(commentId);
     await fetchReviews();
@@ -53,10 +50,11 @@ const Comment = ({
     setCanModify(false);
   };
 
-  const onChangeModifiedComment = (e) => {
-    setModifiedComment(e.currentTarget.value);
-  };
+  useEffect(() => {
+    isUserMeToggle();
+  }, [isLogin, me]);
 
+  //jsx
   return (
     <section className={cx(styles.wrap, { [styles.myComment]: isUserMe })}>
       <header>

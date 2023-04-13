@@ -7,13 +7,14 @@ import Input from '../../../components/Common/Input';
 import useMe from '../../../hooks/useMe';
 import { isLoginAtom } from '../../../atom';
 import { useRecoilValue } from 'recoil';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createReviewComment } from '../../../api/Reviews';
 import { Comment, Review } from '../../../components/Comment';
 
 const Accordion = ({ review, movieId, fetchReviews }) => {
-  const isLogin = useRecoilValue(isLoginAtom);
   const { me } = useMe();
+  const isLogin = useRecoilValue(isLoginAtom);
+  const navigate = useNavigate();
 
   const [isClicked, setIsClicked] = useState(false);
   const [reviewComments, setReviewComments] = useState([]);
@@ -21,23 +22,19 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
     content: '',
   });
 
+  const onClickLogin = () => navigate('/auth/login');
   const onClickCommentAccordion = () => setIsClicked(!isClicked);
 
   const onChangeInput = (e) =>
     setNewReviewComment({ content: e.currentTarget.value });
 
   const setUserName = (user) => {
-    return user.nickName ?? user.name ?? '닉네임없음';
+    return user.nickname ?? user.name ?? '닉네임없음';
   };
-
-  useEffect(() => {
-    setReviewComments(review.comments);
-  }, [review.comments]);
 
   // 리뷰의 '댓글' 등록 버튼 클릭 이벤트
   const onSubmit = async (e) => {
     e.preventDefault();
-
     if (!newReviewComment.content) {
       return alert('댓글을 입력해주세요.');
     }
@@ -47,6 +44,11 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
     setReviewComments(review.comments);
   };
 
+  useEffect(() => {
+    setReviewComments(review.comments);
+  }, [review.comments]);
+
+  // jsx
   return (
     <li className={cx(styles.accordionWrap)}>
       {/* 리뷰 */}
@@ -79,14 +81,12 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
 
       {/* 로그아웃 상태의 댓글 input */}
       {isLogin || (
-        <Link to="/auth/login">
-          <div className={styles.logout}>
-            ✨ 로그인 후 댓글 작성 가능합니다.
-          </div>
-        </Link>
+        <div className={styles.logout} onClick={onClickLogin}>
+          ✨ 로그인 후 댓글 작성 가능합니다.
+        </div>
       )}
 
-      {/* 댓글들 accordion */}
+      {/* 댓글 accordion */}
       {review.comments.length === 0 || (
         <>
           <button

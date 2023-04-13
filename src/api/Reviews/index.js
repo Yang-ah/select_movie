@@ -3,8 +3,10 @@ import apiClient from '../apiClient';
 // ******** get *********
 
 // 영화 리뷰 목록 조회
-export const getReviewsMovie = (movieId) => {
-  return apiClient.get(`/reviews/movie/${movieId}`);
+export const getReviewsMovie = (movieId, orderBy = 'CREATED_AT') => {
+  return apiClient.get(`/reviews/movie/${movieId}`, {
+    params: { orderBy },
+  });
 };
 
 // 리뷰 수 구하기
