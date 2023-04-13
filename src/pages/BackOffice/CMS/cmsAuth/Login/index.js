@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './login.module.scss';
-import { Input } from '../../../../../components';
+import { Button, Input } from '../../../../../components';
 import { useNavigate } from 'react-router-dom';
 //API
 import { adminlogin } from '../../../../../api/Auth';
@@ -89,11 +89,11 @@ const CMSLogin = () => {
 
   return (
     <main className={styles.wrapper}>
-      <section>
+      <section className={styles.login}>
         <h1>관리자 로그인</h1>
         <form id="loginForm" className={styles.loginForm} onSubmit={onSubmit}>
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="이메일"
             errorText={!!err.userId && err.userId}
             onChange={onChange}
@@ -102,7 +102,7 @@ const CMSLogin = () => {
             value={form.userId}
           />
           <Input
-            className={styles.inputClass}
+            className={styles.inputWrap}
             label="비밀번호"
             errorText={!!err.password && err.password}
             type="password"
@@ -112,15 +112,12 @@ const CMSLogin = () => {
             onChange={onChange}
           />
 
-          <p className={styles.registerLink} onClick={showModal}>
-            회원가입
-          </p>
-          <button
-            className={styles.submitButton}
-            children={'로그인'}
-            type="submit"
-            form="loginForm"
-          />
+          <Button className={styles.button} onClick={showModal}>
+            관리자 회원가입
+          </Button>
+          <Button className={styles.button} type="submit" form="loginForm">
+            관리자 로그인
+          </Button>
         </form>
       </section>
       <CmsModal

@@ -1,3 +1,11 @@
+@use '../../styles/constants/' as c;
+
 .wrap {
-  min-height: calc(100vh - 148px);
+  background-color: c.$C_BACKGROUND;
+  margin: 4vh 20vw;
+  color: c.$C_WHITE;
+}
+
+.sectionBody {
+  width: 500px;
 }

@@ -48,62 +48,14 @@
 }
 
 //임시 버튼 컴포넌트 type 문제로 인한 잠시
-.submitButton {
-  @include m.flex();
-  width: 200px;
-  min-width: 60px;
-  min-height: 32px;
-  background-color: c.$C_ORANGE;
-  color: c.$C_WHITE;
-  padding: 0 12px;
-  border-radius: c.$S_RADIUS;
-  border: 1px solid c.$C_WHITE;
-  cursor: pointer;
-  border: 1px solid transparent;
-
-  &:hover {
-    background-color: c.$C_WHITE;
-    border: 1px solid c.$C_ORANGE;
-    color: c.$C_ORANGE;
-  }
-
-  &.secondary {
-    background-color: c.$C_WHITE;
-    color: c.$C_ORANGE;
-    border: 1px solid c.$C_ORANGE;
-
-    > svg {
-      fill: c.$C_ORANGE;
-    }
-
-    &:hover {
-      background-color: c.$C_ORANGE;
-      color: c.$C_WHITE;
-      > svg {
-        fill: c.$C_WHITE;
-      }
-    }
-  }
-
-  &.comment {
-    background-color: #232c4d;
-
-    &:hover {
-      border: none;
-      background-color: #232c4d;
-      color: c.$C_WHITE;
-    }
-  }
-
-  &:hover {
-    background-color: c.$C_WHITE;
-    color: c.$C_PURPLE1;
-    border: 1px solid c.$C_PURPLE1;
-  }
-}
-
-.moviePoster{
-  height: 100%;
+.button {
   width: 100%;
-  background-size: contain;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: c.$C_WHITE_10;
+  transition: 0.2s background-color ease-in;
+  &:hover {
+    background-color: c.$C_ORANGE;
+  }
 }
+

@@ -17,7 +17,7 @@ const useMe = () => {
     onGetMe();
   }, []);
 
-  return me;
+  return { me, onGetMe };
 };
 
 export default useMe;

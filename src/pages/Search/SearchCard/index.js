@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './searchCard.module.scss';
+import { SolidStarIcon } from '../../../assets/icon';
 
-const SearchCard = ({ movieId, title, averageScore, isLiked, postImage }) => {
+const SearchCard = ({ movieId, title, averageScore = 0, postImage }) => {
   const navigate = useNavigate();
   const onClick = () => {
     navigate(`/detail/${movieId}`);
@@ -11,6 +12,10 @@ const SearchCard = ({ movieId, title, averageScore, isLiked, postImage }) => {
     <article className={styles.wrap} onClick={onClick}>
       <img className={styles.postImage} src={postImage} alt={title} />
       <div className={styles.overlay}>
+        <span className={styles.score}>
+          <SolidStarIcon />
+          {averageScore}
+        </span>
         <h2 className={styles.title}>{title}</h2>
       </div>
     </article>

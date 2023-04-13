@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './poster.module.scss';
+import useMe from '../../hooks/useMe';
 import { postMovieLike, deleteMovieLike } from '../../api/Movies';
 import { postBookmark, deleteBookmark } from '../../api/Bookmarks';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../assets/icon';
 
 export const PosterHeart = ({ index, callback }) => {
+  const { me, onGetMe } = useMe();
   const [isLiked, setIsLiked] = useState(true);
   const [like, setLike] = useState(false);
 
@@ -31,10 +33,12 @@ export const PosterHeart = ({ index, callback }) => {
 
   useEffect(() => {
     setIsLiked(index?.isLiked ?? false);
+    onGetMe();
   }, [index]);
 
   useEffect(() => {
     setLike(isLiked);
+    onGetMe();
   }, [isLiked]);
 
   return (

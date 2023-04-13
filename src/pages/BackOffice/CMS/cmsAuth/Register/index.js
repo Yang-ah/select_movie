@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./register.module.scss";
-import { Input } from "../../../../../components";
+import { Button, Input } from "../../../../../components";
 
 import { useNavigate } from "react-router-dom";
 import { adminRegister } from "../../../../../api/Auth";
@@ -153,13 +153,11 @@ const Register = (setModalOpen) => {
           name="userNickName"
           value={form.userNickName}
           />
-
-          <button
-            className={styles.submitButton}
-            children={"회원가입"}
+          <Button className={styles.button} 
             type="submit"
-            form="registerForm"
-          />
+            form="registerForm">
+            관리자 회원가입
+          </Button>
         </form>
       </section>
     </main>

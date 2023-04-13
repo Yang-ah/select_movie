@@ -50,7 +50,11 @@ export const deleteUsers = (userIds) => {
   });
 };
 
-// 유저 자세히 불러오기
+// 유저 자세히 불러오기 (인포) : name,nickname,description,profileImage...
 export const getUserDetail = (userId) => {
   return apiClient.get(`/users/${userId}/detail`);
+};
+// 유저 추가 정보 불러오기 (인포 디테일)
+export const getUserInfo = (userId) => {
+  return apiClient.get(`/users/${userId}/info`);
 };
