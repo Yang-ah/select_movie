@@ -3,7 +3,7 @@
 
 .screen {
   width: 100%;
-  height: 500px;
+  height: 300px;
   padding: 5%;
   background-color: c.$C_REVIEWBOX;
   display: block;
@@ -11,22 +11,22 @@
   line-height: normal;
   cursor: pointer;
 
-  // &:hover {
-  //   .layerDown {
-  //     opacity: 0.2;
-  //     transition: 0.5s;
-  //   }
-  //   .layerUp {
-  //     z-index: 5;
-  //     .icon {
-  //       &:hover {
-  //         z-index: 999;
-  //         transform: scale(1.2);
-  //         fill: c.$C_ORANGE;
-  //       }
-  //     }
-  //   }
-  // }
+  &:hover {
+    .layerDown {
+      opacity: 0.2;
+      transition: 0.5s;
+    }
+    .layerUp {
+      z-index: 5;
+      .icon {
+        &:hover {
+          z-index: 999;
+          transform: scale(1.2);
+          fill: c.$C_ORANGE;
+        }
+      }
+    }
+  }
 }
 
 .layerUp {
@@ -55,25 +55,25 @@
 
   .top {
     @include m.flex(space-between, flex-start);
-    height: 20%;
+    height: 60px;
 
     .left {
       width: calc(100% - 50px);
       padding-right: 6px;
-      padding-bottom: 6px;
 
       .title,
       .createdAt {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        padding-bottom: 8px;
       }
       .title {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 20px;
       }
       .createdAt {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
     .right {
@@ -83,6 +83,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      //float: right;
       .star {
         width: 18px;
         fill: c.$C_STAR;
@@ -93,7 +94,6 @@
     height: 20%;
     //height: 176px; //전체 -screen/padding - top/height - content/padding
     width: 100%;
-
     font-weight: bold;
     font-size: 16px;
     overflow: hidden;

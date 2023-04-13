@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom';
 import styles from './reviewCard.module.scss';
 import { SolidStarIcon, ModifyIcon, TrashIcon } from '../../../assets/icon';
 
-import cx from 'classnames';
-import {
-  HeaderLeft,
-  HeaderRightRating,
-  HeaderRightButtons,
-} from '../../../components/Comment/_shared';
 import useMe from '../../../hooks/useMe';
 import { isLoginAtom } from '../../../atom';
 import { useRecoilValue } from 'recoil';
 import { deleteReview, getReviewsMe, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';
 import Button from '../../../components/Common/Button';
+import Modal from '../../../components/Common/Modal';
 
 const Review = ({
   title,
@@ -29,7 +24,7 @@ const Review = ({
     score: '',
   });
 
-  const { me } = useMe();
+  const { me, onGetMe } = useMe();
   const isLogin = useRecoilValue(isLoginAtom);
   const [isUserMe, setIsUserMe] = useState(false);
   const [canModify, setCanModify] = useState(false);
@@ -37,7 +32,8 @@ const Review = ({
     content: me?.content,
     score: me?.score,
   });
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modifyModalOpen, setModifyModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   useEffect(() => {
     isMyReview();
   }, [isLogin, me]);
@@ -46,17 +42,24 @@ const Review = ({
     const response = await getReviewsMe(movieId);
     response.data && setIsUserMe(response.data.user.id === written);
   };
+
+  const onClickModifyReview = async () => {
+    await deleteReview(reviewId);
+    await fetchMyReviews();
+    setModifyModalOpen(false);
+  };
+
   const onClickDelete = () => {
-    setModalOpen(true);
+    setDeleteModalOpen(true);
   };
   const onClickDeleteReview = async () => {
     await deleteReview(reviewId);
     await fetchMyReviews();
-    setModalOpen(false);
+    setDeleteModalOpen(false);
   };
 
   const onClickModify = () => {
-    setCanModify(true);
+    setModifyModalOpen(true);
   };
 
   const onChangeModifiedReview = (e) => {
@@ -70,27 +73,40 @@ const Review = ({
     await patchReview(reviewId, modifiedReview);
     await fetchMyReviews();
     setCanModify(false);
+    setModifyModalOpen(false);
   };
+
   useEffect(() => {
     setPostForm({
       content: me?.content,
       score: me?.score,
     });
   }, []);
+
   return (
     <section className={styles.screen}>
       <article className={styles.layerUp}>
-        <button className={styles.fixModal}>
+        <button
+          className={styles.fixModal}
+          type="button"
+          name="modify"
+          onClick={onClickModify}
+        >
           <ModifyIcon className={styles.icon} />
         </button>
-        <button className={styles.deleteModal}>
+        <button
+          className={styles.deleteModal}
+          type="button"
+          name="delete"
+          onClick={onClickDelete}
+        >
           <TrashIcon className={styles.icon} />
         </button>
       </article>
       <article className={styles.layerDown}>
         <aside className={styles.top}>
           <div className={styles.left}>
-            <p className={styles.title}>title : {title}</p>
+            <p className={styles.title}>{title}</p>
             <p className={styles.createdAt}>{createdAt}</p>
           </div>
           <div className={styles.right}>
@@ -98,31 +114,39 @@ const Review = ({
             {score}
           </div>
         </aside>
-
-        {canModify || <main>{content}</main>}
-        {canModify && (
-          <main className={styles.modifyMain}>
-            <div className={styles.inputWrap}>
-              <textarea
-                value={modifiedReview.content}
-                onChange={onChangeModifiedReview}
-              />
-              <Button option="secondary" onClick={onPatchReview}>
-                수정
-              </Button>
-            </div>
-          </main>
-        )}
-
-        <button type="button" name="modify" onClick={onClickModify}>
-          <ModifyIcon width={'40px'} fill="pink" />
-        </button>
-        <button type="button" name="delete" onClick={onClickDelete}>
-          <TrashIcon width={'40px'} fill="pink" />
-        </button>
+        <div className={styles.content}>{content}</div>
       </article>
+      <Modal
+        className={styles.modal}
+        modalOpen1={modifyModalOpen}
+        setModalOpen={setModifyModalOpen}
+        buttonChildren="수정"
+        onClick={onPatchReview}
+      >
+        <main className={styles.modifyMain}>
+          <Stars
+            className={styles.star}
+            value={modifiedReview.score * 2}
+            onChange={setModifiedReview}
+          />
+          <div className={styles.inputWrap}>
+            <textarea
+              value={modifiedReview.content}
+              onChange={onChangeModifiedReview}
+            />
+          </div>
+        </main>
+      </Modal>
+      <Modal
+        className={styles.modal}
+        modalOpen1={deleteModalOpen}
+        setModalOpen={setDeleteModalOpen}
+        buttonChildren="삭제"
+        onClick={onClickDeleteReview}
+      >
+        리뷰를 삭제하시겠습니까?
+      </Modal>
     </section>
   );
 };
-
 export default Review;

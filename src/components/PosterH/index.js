@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './poster.module.scss';
 import { getMovie, postMovieLike, deleteMovieLike } from '../../api/Movies';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../atom';
 
 import {
   SolidStarIcon,
@@ -11,6 +9,8 @@ import {
 } from '../../assets/icon';
 
 import Button from "../Common/Button";
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../atom';
 
 export const PosterH = ({ movie, id, onModalClick, callback }) => {
   const isLogin = useRecoilValue(isLoginAtom);

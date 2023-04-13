@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { useRecoilValue } from 'recoil';
 import useMe from '../../hooks/useMe';
 import { isLoginAtom } from '../../atom';
 
-import { getMoviesGenre, getMoviesMeLike } from '../../api/Movies';
+import {
+  getMoviesGenre,
+  getMoviesMeLike,
+  getMoviesUserLike,
+} from '../../api/Movies';
 import { getMyBookmarks, getBookmarksPage } from '../../api/Bookmarks';
 
 import {
@@ -13,10 +17,6 @@ import {
   CaretRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  HeartIcon,
-  SolidHeartIcon,
-  BookmarkIcon,
-  SolidBookmarkIcon,
 } from '../../assets/icon';
 
 import styles from './myCarousel.module.scss';
@@ -24,6 +24,7 @@ import './carousel.scss';
 
 import { PosterH } from '../PosterH';
 import { PosterM, PosterHeart, PosterBookmark } from '../PosterM';
+import { PosterU } from '../PosterU';
 import MovieModal from '../MovieModal';
 
 export const PrevArrow = (props) => {
@@ -133,7 +134,7 @@ export const MyCarousel = () => {
     <>
       <p className={styles.category}>
         {/* <SolidHeartIcon className={styles.categoryIcon} /> */}
-        내가 좋아하는 컨텐츠
+        좋아하는 컨텐츠
       </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
@@ -149,7 +150,7 @@ export const MyCarousel = () => {
 
       <p className={styles.category}>
         {/*  <SolidBookmarkIcon className={styles.categoryIcon} /> */}
-        내가 북마크 한 컨텐츠
+        북마크 한 컨텐츠
       </p>
       <div className={styles.mywrap}>
         <Slider {...settings}>
@@ -165,6 +166,46 @@ export const MyCarousel = () => {
             ))}
         </Slider>
       </div>
+    </>
+  );
+};
+
+export const UserCarousel = () => {
+  const userId = useParams();
+  const [userData, setUserData] = useState([]);
+
+  const fetchUserLike = async () => {
+    const response = await getMoviesUserLike(userId.id);
+    setUserData(response.data);
+    console.log('좋아요:', response.data);
+  };
+
+  useEffect(() => {
+    fetchUserLike();
+  }, []);
+
+  const settings = {
+    dots: false,
+    arrows: true,
+    infinite: false,
+    speed: 600,
+    slidesToShow: 6,
+    slidesToScroll: 5,
+  };
+
+  return (
+    <>
+      <p className={styles.category}>좋아하는 컨텐츠</p>
+      <div className={styles.mywrap}>
+        <Slider {...settings}>
+          {userData.map((index) => (
+            <PosterU key={index.id} index={index} />
+          ))}
+        </Slider>
+      </div>
+
+      <p className={styles.category}>북마크 한 컨텐츠</p>
+      <div className={styles.mywrap}></div>
     </>
   );
 };

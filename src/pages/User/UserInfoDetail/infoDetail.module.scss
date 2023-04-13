@@ -1,0 +1,55 @@
+@use '../../../styles/constants' as c;
+@use '../../../styles/mixins' as m;
+
+.category {
+  @include m.flex(space-between, flex-start);
+  margin: 3vh 0;
+
+  .rating,
+  .isliked,
+  .review {
+    width: 30%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: c.$C_REVIEWBOX;
+    filter: drop-shadow(0 0 4px orange);
+
+    .top,
+    .middle,
+    .bottom {
+      height: 40px;
+      min-width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 35px 0;
+      word-break: keep-all;
+    }
+    .top {
+      font-size: 1vw;
+    }
+    .middle {
+      padding-bottom: 60px;
+      font-size: 36px;
+      font-weight: 700;
+      color: c.$C_ORANGE;
+      letter-spacing: 2px;
+    }
+    .bottom {
+      font-size: 14px;
+    }
+  }
+}
+
+//inputModal
+.inputModal {
+  color: red;
+  background-color: black;
+  width: 50%;
+}
+
+.modal {
+  color: black;
+}

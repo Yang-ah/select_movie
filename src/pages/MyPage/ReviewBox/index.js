@@ -8,8 +8,7 @@ import {
   SolidStarIcon,
 } from '../../../assets/icon';
 import useMe from '../../../hooks/useMe';
-import { ModifyModal } from './modifyModal';
-import { DeleteModal } from './deleteModal';
+import { ModifyModal, DeleteModal } from './reviewModal';
 import { Modal } from '../../../components';
 import {
   getReviewsMe,
@@ -17,11 +16,11 @@ import {
   fetchMyReviews,
 } from '../../../api/Reviews';
 import dayjs from 'dayjs';
-import ReviewCard from '../ReviewCard';
+import Review from '../ReviewCard';
 
 const MyComment = () => {
   const [reviews, setReviews] = useState([]);
-  const { me } = useMe();
+  const { me, onGetMe } = useMe();
   const [isUserMe, setIsUserMe] = useState(false);
 
   const fetchMyReviews = async () => {
@@ -141,16 +140,13 @@ const MyComment = () => {
 
   return (
     <>
-      <p className={styles.category}>
-        <ModifyIcon className={styles.icon} />
-        내가 작성한 리뷰
-      </p>
+      <p className={styles.category}>작성한 리뷰</p>
       <section className={styles.wrapper}>
         <ul className={styles.ul}>
           {records.map((data, i) => {
             return (
               <li className={styles.li} key={i}>
-                <ReviewCard
+                <Review
                   title={data.movie.title}
                   createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
                   content={data.content}
@@ -206,15 +202,6 @@ const MyComment = () => {
         buttonChildren="삭제"
         onClick={onClickDeleteReview}
       />
-      <Modal
-        className={styles.modal}
-        modalOpen1={modalOpen}
-        setModalOpen={setModalOpen}
-        buttonChildren="삭제"
-        onClick={onClickDeleteR}
-      >
-        ???
-      </Modal>
     </>
   );
 };

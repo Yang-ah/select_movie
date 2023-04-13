@@ -1,23 +1,19 @@
-import { useParams } from 'react-router-dom';
-import { getUserDetail } from '../../api/Users';
+import React from 'react';
 import styles from './user.module.scss';
-import { useEffect, useState } from 'react';
+import UserInfo from './UserInfo';
+import UserInfoDetail from './UserInfoDetail';
+import { UserCarousel } from '../../components/Carousel';
+import UserReview from './UserReview';
 
 const User = () => {
-  const userId = useParams();
-  const [userData, setUserData] = useState();
-
-  const fetchUserDetail = async () => {
-    const response = await getUserDetail(userId.id);
-    console.log('유저페이지 유저디테일:', response.data);
-    setUserData(response.data);
-  };
-
-  useEffect(() => {
-    fetchUserDetail();
-  }, []);
-
-  return <section className={styles.wrap}>UserPage</section>;
+  return (
+    <section className={styles.wrap}>
+      <UserInfo />
+      <UserInfoDetail />
+      <UserCarousel />
+      <UserReview />
+    </section>
+  );
 };
 
 export default User;

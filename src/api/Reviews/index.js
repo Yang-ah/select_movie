@@ -47,6 +47,12 @@ export const getReviewsMe = (page = 1, limit) => {
     },
   });
 };
+
+//유저 리뷰 보기
+export const getReviewsUser = (userId) => {
+  return apiClient.get(`/reviews/users/${userId}`);
+};
+
 // ******** post *********
 
 // 영화 리뷰 생성

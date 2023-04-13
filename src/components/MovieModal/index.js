@@ -269,6 +269,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
               comment={review.content}
               rating={review.score}
               />
+              
               )
           })}
           <div className={styles.starBox}>
@@ -281,6 +282,7 @@ const MovieModal = ({ onModalClose ,movieId }) => {
           </div>
           </div> 
           
+          {movieId.averageScore} 
           </motion.div>
         </div>
       </div>

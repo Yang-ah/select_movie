@@ -2,25 +2,8 @@
 
 .wrap {
   background-color: c.$C_BACKGROUND;
-  margin: 10px 20vw;
-  margin-top: 4vh;
+  margin: 4vh 20vw;
   color: c.$C_WHITE;
-}
-//좋아요,북마크,댓글 scss 통일!!
-// .category {
-//   font-size: 22px;
-//   font-weight: 500;
-//   margin-bottom: 10px;
-//   .icon {
-//     fill: orange;
-//     height: 20px;
-//     margin-right: 5px;
-//   }
-// }
-.contents {
-  //  padding: 10px 0;
-  min-height: 100%;
-  margin-bottom: 20px;
 }
 
 .sectionBody {

@@ -1,0 +1,81 @@
+@use '../../../styles/constants' as c;
+@use '../../../styles/mixins' as m;
+
+.info {
+  @include m.flex(space-between, flex-start);
+  margin: 3vh 0;
+  padding: 0 7%;
+  width: 100%;
+  height: 20vh;
+
+  .profile {
+    margin-right: 4%;
+    height: 100%;
+    width: 20%;
+    flex-shrink: 0;
+    border-radius: 50%;
+
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: c.$C_ORANGE;
+
+    .icon {
+      width: 50%;
+      height: 50%;
+      margin-bottom: 10%;
+      fill: white;
+    }
+    .nickname {
+      display: inline-block;
+      bottom: 15%;
+      position: absolute;
+      font-size: 220px;
+    }
+  }
+}
+
+.top {
+  width: 100%;
+  height: 100%;
+  padding: 3% 4%;
+  border-radius: 20px;
+  background-color: c.$C_REVIEWBOX;
+  overflow: hidden;
+
+  .text {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 5px 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    .name {
+      font-size: 25px;
+      margin: 5px 0;
+      margin-right: 5px;
+      height: 100%;
+      white-space: nowrap;
+    }
+  }
+  .description {
+    background-color: c.$C_REVIEWBOX_20;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 100%;
+    height: 60%;
+    font-size: 20px;
+    font-weight: 500;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; //라인수
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 30px;
+    height: 135px; //변경X!!!!!
+  }
+}

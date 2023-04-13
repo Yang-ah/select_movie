@@ -30,6 +30,11 @@ export const getBookmarksMe = (page = 1, limit = 20) => {
   });
 };
 
+//유저가 좋아요 한 영화 불러오기
+export const getMoviesUserLike = (userId) => {
+  return apiClient.get(`/movies/users/${userId}/likes`);
+};
+
 // 영화 장르별로 불러오기
 export const getMoviesGenre = (page = 1, genreIds) => {
   return apiClient.get(`/movies/genre`, {
@@ -78,5 +83,5 @@ export const deleteMovieLike = (id) => {
 
 // 영화 수정하기
 export const patchMovie = (id, body) => {
-  return apiClient.patch(`/movies/${id}`,body);
+  return apiClient.patch(`/movies/${id}`, body);
 };

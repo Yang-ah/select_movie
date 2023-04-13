@@ -17,7 +17,7 @@ const InfoModal = ({
   closeModal,
   callback,
 }) => {
-  const { me } = useMe();
+  const { me, onGetMe } = useMe();
   const modalRef = useRef(null);
   const [postForm, setPostForm] = useState({
     name: '',
@@ -43,6 +43,7 @@ const InfoModal = ({
       const responsePatch = await patchUser(postForm);
       if (responsePatch.status === 204) {
         alert('수정완료');
+        onGetMe();
         closeModal();
       }
     } catch (err) {
