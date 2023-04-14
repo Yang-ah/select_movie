@@ -50,7 +50,7 @@ const BOdeleteModal = ({
       try {
         const response2 = await deleteReviewAdmin(ID);
         if (response2.status === 204) {
-          alert('리뷰를 삭제를 완료했습니다.');
+          alert('리뷰 삭제를 완료했습니다.');
           closeModal();
         }
       } catch (err) {
@@ -63,7 +63,7 @@ const BOdeleteModal = ({
       try {
         const response = await deleteUser(ID);
         if (response.status === 204) {
-          alert('회원을 삭제를 완료했습니다.');
+          alert('회원 삭제를 완료했습니다.');
           closeModal();
         }
       } catch (err) {
