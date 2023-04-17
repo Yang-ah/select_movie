@@ -50,7 +50,7 @@
 ### 🖥 **Communication** </span>
 
 Notion|Github|Discord|Fimga|
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| :--: | :--: | :--: | :--: |
 | <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /> | 
 
 <br/>
