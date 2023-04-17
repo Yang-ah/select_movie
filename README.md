@@ -9,9 +9,6 @@
 - **`Functional Requirement`:** [사용자 요구사항 정의서]( 구글 시트 링크 )
 - **`API Specification`:** [API 명세서]( 노션 . pdf 파일)
 <br/>
-# 38-2nd-WeFrip-backend
-- 프로젝트 사이트 -> **Frip**
-- WeFrip은 누구나 원하는 취미 여가 생활을 쉽고 당연하게 즐길 수 있는 환경을 만들고자 합니다.
 
 ## 기획의도
 - WeFrip은 구매력이 높고 건강한 라이프 스타일을 추구하는 MZ세대들의 커뮤니티입니다.
@@ -98,9 +95,6 @@
 
 `main` : 서비스 운영 브랜치 </br>
 `dev` : 메인 브랜치 배포전 릴리즈 브랜치  </br>
-`front-dev` : FE 개발 환경 브랜치 </br>
-`back-dev` : BE 개발 환경 브랜치  </br>
-`feat/개발명` : 기능 개발 브랜치 ex) feat/Login  </br>
 
 <br/>
 <br/>
@@ -163,20 +157,6 @@
 |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/111448985?v=4" alt="avatar" />                |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/110589528?v=4" alt="avatar" />              |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/100663230?v=4" alt="avatar" />                 |
 | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/Eunsong-Park) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/ShinInHuck) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/csongin) |
 
-## Project Archive
-
-- [Notion](https://www.notion.so/4-WeFrip-4c38f40624814f47bfaebaa9ba5c09ee)
-- [Trello](https://trello.com/b/1nfFkHGw/frip)
-- [ERD](https://dbdiagram.io/d/635f86925170fb6441c8d65b)
-- [API - Products Request](https://documenter.getpostman.com/view/22962796/2s8YYJr3W2#f5c3d354-1929-4ae7-abd1-b2ca3092bc5e)
-- [API - Users Request](https://documenter.getpostman.com/view/24184557/2s8YemtDeG)
-- [API - Wishlists Request](https://documenter.getpostman.com/view/20680731/2s8YemtDiX)
-
-
-## Demo Video
-
-- https://drive.google.com/file/d/1x0dBhn2STadj-iYMPrWgG7CDr7_ViGWC/view
-- https://drive.google.com/file/d/19HN7vaGPeEn3buyPKMLY9M1j57C_rYrA/view
 
 ---
 
@@ -184,8 +164,8 @@
 
 ### Front-End
 
-|JavaScript|React|Styled Component|esLint|Prettier|
-| :--: | :--: | :--: | :--: | :--: |
+Html|css||JavaScript|React|Styled Component|esLint|Prettier|
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 | <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://i.ibb.co/ydkG6cv/img.png" alt="icon" width="65" height="65" /></div> | <img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /> |
 
 ### Back-End
