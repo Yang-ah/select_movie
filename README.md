@@ -1,3 +1,6 @@
+![https://user-images.githubusercontent.com/122377401/232436671-ecf393a2-e919-444a-b6be-de451a795a02.png](https://user-images.githubusercontent.com/122377401/232436671-ecf393a2-e919-444a-b6be-de451a795a02.png)
+
+
 
 - **`Team name` :** 🐉 무비셀렉터 (영화 평점사이트 제작 )
 - **`Project` :** 애정하는 영화 리뷰 및 평점 등록사이트
@@ -116,6 +119,11 @@ Html|css|JavaScript|React|esLint|Prettier|
 
 <br/>
 <br/>
+
+
+https://www.notion.so/yangah/01d7f72d8fee44119c1635f47e0b3870?pvs=4#a0bd09824d4a44d299895fc0c0f37c0e
+https://www.notion.so/yangah/01d7f72d8fee44119c1635f47e0b3870?pvs=4#a0bd09824d4a44d299895fc0c0f37c0e
+https://file.notion.so/f/s/67264bb5-73e2-4d0e-a5bc-2f0b96c38a5e/FireShot_Capture_002_-_%E1%84%89%E1%85%B3%E1%84%8C%E1%85%B3%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%86%E1%85%AE%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A9%E1%86%A8_(2022)_-_%E1%84%8B%E1%85%AA%E1%86%BA%E1%84%8E%E1%85%A3%E1%84%91%E1%85%B5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A1_-_pedia.watcha.com.png?id=a0bd0982-4d4a-44d2-9989-5fc0c0f37c0e&table=block&spaceId=e3eb46cc-7dbb-4bcd-9273-f78b6332e15c&expirationTimestamp=1681807168413&signature=HRb8ZJEPgVjwppnpyelZzcx6Go4rst1jz6Ku4bsz74w&downloadName=FireShot+Capture+002+-+%E1%84%89%E1%85%B3%E1%84%8C%E1%85%B3%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B4+%E1%84%86%E1%85%AE%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A9%E1%86%A8+%282022%29+-+%E1%84%8B%E1%85%AA%E1%86%BA%E1%84%8E%E1%85%A3%E1%84%91%E1%85%B5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A1+-+pedia.watcha.com.png
 
 
 
