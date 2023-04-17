@@ -43,8 +43,6 @@ Notion|Github|Discord|Figma|
 
 <br/>
 
-## 적용 기술
-
 ### Front-End
 
 Html|css|JavaScript|React|esLint|Prettier|
