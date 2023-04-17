@@ -67,13 +67,10 @@ Html|css|JavaScript|React|esLint|Prettier|
 
 
 
-|JavaScript|Nodejs|AWS|Rest|
+|JavaScript|Nodejs|AWS|
 | :--: | :--: | :--: | :--: |
-| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/restapi-icon.svg" alt="icon" width="65" height="65" /> |
+| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /> |
 
-
-- <img src="https://img.shields.io/badge/ AWS EC2-FF9900?style=flat&logo=Amazon EC2&logoColor=white"/> AWS EC2
-- <img src="https://img.shields.io/badge/ AWS S3-FF6666?style=flat&logo=Amazon S3&logoColor=white"/> AWS S3
 <br/>
 
 <br/>
@@ -117,42 +114,5 @@ Html|css|JavaScript|React|esLint|Prettier|
 <br/>
 <br/>
 
-
-
-
-
-
-
-
-## 개발 기간
-
-- 2022/10/31 ~ 2022/11/11
-
-## 참여 개발자
-
-### Front-end Developers
-
-|김온누리|이진혁|최규흠|
-| :--: | :--: | :--: |
-|<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/83803971?v=4" alt="avatar" />               |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/97172321?v=4" alt="avatar" />                |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/93311025?v=4" alt="avatar" />               |
-| [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/onnuring) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/zinukk) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/EDGEPECT) |
-
-### Back-end Developers
-
-|박은송|신인혁|천송인|
-| :--: | :--: | :--: |
-|<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/111448985?v=4" alt="avatar" />                |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/110589528?v=4" alt="avatar" />              |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/100663230?v=4" alt="avatar" />                 |
-| [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/Eunsong-Park) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/ShinInHuck) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/csongin) |
-
-
----
-
-
-
-
-### Common
-
-- common : <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=AmazonAWS&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=AmazonAWS&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=prettier&logoColor=white"/>
-- 협업툴 : <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white"/> <img src="https://img.shields.io/badge/Slack-4A154B?style=flat&logo=Slack&logoColor=white"/> <img src="https://img.shields.io/badge/Trello-0052CC?style=flat&logo=Trello&logoColor=white"/> <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white"/> <img src="https://img.shields.io/badge/PostMan-FF6C37?style=flat&logo=PostMan&logoColor=white"/>
 
 
