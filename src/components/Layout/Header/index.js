@@ -22,6 +22,7 @@ const Header = () => {
     localStorage.clear();
     setIsLogin(false);
     alert('로그아웃 되었습니다');
+    location.reload();
   };
 
   const onClickSearch = (e) => {

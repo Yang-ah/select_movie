@@ -58,7 +58,12 @@ const Comment = ({
   return (
     <section className={cx(styles.wrap, { [styles.myComment]: isUserMe })}>
       <header>
-        <HeaderLeft type="comment" userName={userName} date={date} />
+        <HeaderLeft
+          type="comment"
+          userName={userName}
+          date={date}
+          writtenId={written}
+        />
 
         <article className={styles.right}>
           {isUserMe && (

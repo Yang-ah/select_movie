@@ -4,14 +4,22 @@ import Stars from '../../Common/Stars';
 import { HeaderLeft } from '../_shared';
 import styles from './reviewInput.module.scss';
 import { createReview } from '../../../api/Reviews';
+import { isLoginAtom } from '../../../atom';
+import { useRecoilValue } from 'recoil';
 
 const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
+  const isLogin = useRecoilValue(isLoginAtom);
+
   const [newReview, setNewReview] = useState({
     content: '',
     score: 0,
   });
 
   const onClick = async () => {
+    if (!isLogin) {
+      return alert('로그인 후 리뷰 등록 가능합니다.');
+    }
+
     if (!newReview.score) {
       return alert('별점을 선택해주세요.');
     }
