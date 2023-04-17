@@ -1,3 +1,14 @@
+
+- **`Team name` :** 🐉 무비셀렉터 (영화 평점사이트 제작 )
+- **`Project` :** 애정하는 영화 리뷰 및 평점 등록사이트
+- **`Project duration` :** 2023.03.13 - 2023.04.14
+- **`Team members` :** 주양아(팀장), 이인국 , 구성미 , 신현중
+- **`Link` :** [😎 무비셀렉터](http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/) [**관리자 구글계정:** Email: 이메일 고민중 ]
+- **`Service overview`:** [서비스 메뉴얼]( 노션 . pdf 파일)
+- **`Tech presentation`:** [기술발표영상]( 발표 : youtube 링크)
+- **`Functional Requirement`:** [사용자 요구사항 정의서]( 구글 시트 링크 )
+- **`API Specification`:** [API 명세서]( 노션 . pdf 파일)
+<br/>
 # 38-2nd-WeFrip-backend
 - 프로젝트 사이트 -> **Frip**
 - WeFrip은 누구나 원하는 취미 여가 생활을 쉽고 당연하게 즐길 수 있는 환경을 만들고자 합니다.
@@ -17,16 +28,6 @@
 - 매일 반복되는 일상에 지쳐있다. -> 새로운 일상에 기대감이 가득 차게 된다.
 - 나와 같은 취미를 가진 사람들을 만날 기회가 적다. -> 나와 같은 취미를 가진 사람들과 커뮤니티를 형성할 수 있다.
 - 건강한 삶과는 거리가 멀다. -> 취미활동을 통해 건강한 삶을 영위할 수 있다.
-
-- **`Team name` :** 🐉 무비셀렉터 (영화 평점사이트 제작 )
-- **`Project` :** 애정하는 영화 리뷰 및 평점 등록사이트
-- **`Project duration` :** 2023.03.13 - 2023.04.14
-- **`Team members` :** 주양아(팀장), 이인국 , 구성미 , 신현중
-- **`Link` :** [😎 무비셀렉터](http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/) [**관리자 구글계정:** Email: 이메일 고민중 ]
-- **`Service overview`:** [서비스 메뉴얼]( 노션 . pdf 파일)
-- **`Tech presentation`:** [기술발표영상]( 발표 : youtube 링크)
-- **`Functional Requirement`:** [사용자 요구사항 정의서]( 구글 시트 링크 )
-- **`API Specification`:** [API 명세서]( 노션 . pdf 파일)
 <br/>
 
 ### 관리자로 로그인할 수 있는 구글계정 — 추후 등록
