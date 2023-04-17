@@ -1,10 +1,8 @@
-# 😎무비셀렉터
-👍 애정하는 영화 리뷰 및 평점 등록사이트<br />
-배포링크 : http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/<br />
-
----
+# 무비셀렉터
+애정하는 영화 리뷰 및 평점 등록사이트<br />
 
 ![https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png](https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png)
+배포링크 : http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/<br />
 
 
 - **`Team name` :** 🐉 무비셀렉터 ( 영화 평점사이트 제작 )
@@ -75,7 +73,7 @@ Html|css|JavaScript|React|esLint|Prettier|
 
 
 |JavaScript|Nodejs|AWS|
-| :--: | :--: | :--: | :--: |
+| :--: | :--: | :--: | 
 | <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /> |
 
 <br/>
@@ -115,9 +113,7 @@ Html|css|JavaScript|React|esLint|Prettier|
 |Category Page & Filter|![Category Page & Filter](https://k.kakaocdn.net/dn/npsJq/btrQ9bvq0sc/XhgGxksWoLreVoAonfF1u1/img.gif)| - queryString 을 활용한 필터링 기능 구현 | **FRONT-END** </br> `김온누리`  </br> **BACK-END** </br> `천송인` |
 | Mypage |![Mypage](https://k.kakaocdn.net/dn/EF9G3/btrQ0G5czKh/5RenKR0VA4T4GkW31cxlZ0/img.gif)| - 마이페이지 설명 |**FRONT-END** </br>`최규흠` </br> **BACK-END** </br> `박은송` |
 |Host Page|![Host Page](https://k.kakaocdn.net/dn/EDwtn/btrQ6IAkJuM/ojLgUrvbYTXfrjtWVDQeXk/img.gif)| - 상품 등록을 위한 단계별 Tab bar 구현 </br> - kakao map을 커스텀하여 키워드 검색시 해당 키워드와 관련이 있는 장소를 리스팅하고 마커로 표시  </br> - 누리님 부분 설명 | **FRONT-END** </br> `김온누리` </br> `이진혁` </br> **BACK-END** </br> `박은송` |
-| List Page |![List Page](https://k.kakaocdn.net/dn/RKB9l/btrQ0uX7ncr/AU1uF4rM4EE5CiW8wSphsk/img.gif)| - 유저가 등록한 상품들을 조회 및 삭제 기능 </br> - 해당 상품 클릭시 상품에 대한 detail page로 이동 | **FRONT-END** </br> `이진혁` </br> **BACK-END** </br> `박은송` | 
-                                                      |
-
+| List Page |![List Page](https://k.kakaocdn.net/dn/RKB9l/btrQ0uX7ncr/AU1uF4rM4EE5CiW8wSphsk/img.gif)| - 유저가 등록한 상품들을 조회 및 삭제 기능 </br> - 해당 상품 클릭시 상품에 대한 detail page로 이동 | **FRONT-END** </br> `이진혁` </br> **BACK-END** </br> `박은송` |
 <br/>
 <br/>
 
