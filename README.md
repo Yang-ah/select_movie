@@ -27,7 +27,7 @@
 
 ### **`Team members`**
 
-|주양아<br>(FE, Team lead)|이인국<br>(FE)|구성미<br>(FE)|신현중<br>(FE)|                      
+주양아<br>(FE, Team lead)|이인국<br>(FE)|구성미<br>(FE)|신현중<br>(FE)|                      
 | :--: | :--: | :--: | :--: |
 | <img src="https://cdn.discordapp.com/attachments/109091277dj1551539210/1090913577608679474/image.png" height="100" width="100"> | 
 <img src="https://cdn.discordapp.com/attachments/793349137596284930/1097386861791559710/ae34bba849941470.jpeg?width=800&height=785" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912798348943460/image.png?width=870&height=842" height="100" width="100"> | 
