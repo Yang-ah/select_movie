@@ -1,4 +1,4 @@
-![https://user-images.githubusercontent.com/122377401/232436671-ecf393a2-e919-444a-b6be-de451a795a02.png](https://user-images.githubusercontent.com/122377401/232436671-ecf393a2-e919-444a-b6be-de451a795a02.png)
+![https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png](https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png)
 
 
 
@@ -50,9 +50,9 @@
 
 ### 🖥 **Communication** </span>
 
-Notion|Github|Discord|Fimga|
+Notion|Github|Discord|Figma|
 | :--: | :--: | :--: | :--: |
-| <img alt="Notion logo" src="https://www.notion.so/cdn-cgi/image/format=auto,width=640,quality=100/front-static/shared/icons/notion-app-icon-3d.png" height="65" width="65">| <img alt="github logo" src="https://techstack-generator.vercel.app/github-icon.svg" width="65" height="65">| <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /> | 
+| <img alt="Notion logo" src="https://www.notion.so/cdn-cgi/image/format=auto,width=640,quality=100/front-static/shared/icons/notion-app-icon-3d.png" height="65" width="65">| <img alt="github logo" src="https://techstack-generator.vercel.app/github-icon.svg" width="65" height="65">| <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <img src="https://i.pinimg.com/originals/a5/58/b4/a558b426cb8973523f37bbed94cf0f09.png" alt="icon" width="65" height="65" /> | 
 
 <br/>
 
@@ -62,7 +62,7 @@ Notion|Github|Discord|Fimga|
 
 Html|css|JavaScript|React|esLint|Prettier|
 | :--: | :--: | :--: | :--: | :--: | :--: |
-| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />  | <img src="https://i.ibb.co/ydkG6cv/img.png" alt="icon" width="65" height="65" /></div> | <img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /> |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" />| <img src="https://user-images.githubusercontent.com/111227745/210204643-4c3d065c-59ec-481d-ac13-cea795730835.png" alt="CSS" width="50" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />  | <img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" />| <img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /> |
 
 <br/>
 
@@ -70,13 +70,10 @@ Html|css|JavaScript|React|esLint|Prettier|
 
 
 
-|JavaScript|Nodejs|AWS|Rest|
+|JavaScript|Nodejs|AWS|
 | :--: | :--: | :--: | :--: |
-| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/restapi-icon.svg" alt="icon" width="65" height="65" /> |
+| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /> |
 
-
-- <img src="https://img.shields.io/badge/ AWS EC2-FF9900?style=flat&logo=Amazon EC2&logoColor=white"/> AWS EC2
-- <img src="https://img.shields.io/badge/ AWS S3-FF6666?style=flat&logo=Amazon S3&logoColor=white"/> AWS S3
 <br/>
 
 <br/>
@@ -119,48 +116,4 @@ Html|css|JavaScript|React|esLint|Prettier|
 
 <br/>
 <br/>
-
-
-https://www.notion.so/yangah/01d7f72d8fee44119c1635f47e0b3870?pvs=4#a0bd09824d4a44d299895fc0c0f37c0e
-https://www.notion.so/yangah/01d7f72d8fee44119c1635f47e0b3870?pvs=4#a0bd09824d4a44d299895fc0c0f37c0e
-https://file.notion.so/f/s/67264bb5-73e2-4d0e-a5bc-2f0b96c38a5e/FireShot_Capture_002_-_%E1%84%89%E1%85%B3%E1%84%8C%E1%85%B3%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%86%E1%85%AE%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A9%E1%86%A8_(2022)_-_%E1%84%8B%E1%85%AA%E1%86%BA%E1%84%8E%E1%85%A3%E1%84%91%E1%85%B5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A1_-_pedia.watcha.com.png?id=a0bd0982-4d4a-44d2-9989-5fc0c0f37c0e&table=block&spaceId=e3eb46cc-7dbb-4bcd-9273-f78b6332e15c&expirationTimestamp=1681807168413&signature=HRb8ZJEPgVjwppnpyelZzcx6Go4rst1jz6Ku4bsz74w&downloadName=FireShot+Capture+002+-+%E1%84%89%E1%85%B3%E1%84%8C%E1%85%B3%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B4+%E1%84%86%E1%85%AE%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A9%E1%86%A8+%282022%29+-+%E1%84%8B%E1%85%AA%E1%86%BA%E1%84%8E%E1%85%A3%E1%84%91%E1%85%B5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A1+-+pedia.watcha.com.png
-
-
-
-
-
-
-
-
-## 개발 기간
-
-- 2022/10/31 ~ 2022/11/11
-
-## 참여 개발자
-
-### Front-end Developers
-
-|김온누리|이진혁|최규흠|
-| :--: | :--: | :--: |
-|<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/83803971?v=4" alt="avatar" />               |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/97172321?v=4" alt="avatar" />                |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/93311025?v=4" alt="avatar" />               |
-| [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/onnuring) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/zinukk) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/EDGEPECT) |
-
-### Back-end Developers
-
-|박은송|신인혁|천송인|
-| :--: | :--: | :--: |
-|<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/111448985?v=4" alt="avatar" />                |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/110589528?v=4" alt="avatar" />              |<img width="95px" height="95px" src="https://avatars.githubusercontent.com/u/100663230?v=4" alt="avatar" />                 |
-| [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/Eunsong-Park) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/ShinInHuck) | [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>](https://github.com/csongin) |
-
-
----
-
-
-
-
-### Common
-
-- common : <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=AmazonAWS&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=AmazonAWS&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=prettier&logoColor=white"/>
-- 협업툴 : <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white"/> <img src="https://img.shields.io/badge/Slack-4A154B?style=flat&logo=Slack&logoColor=white"/> <img src="https://img.shields.io/badge/Trello-0052CC?style=flat&logo=Trello&logoColor=white"/> <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white"/> <img src="https://img.shields.io/badge/PostMan-FF6C37?style=flat&logo=PostMan&logoColor=white"/>
-
 
