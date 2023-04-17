@@ -37,9 +37,7 @@ const Info = () => {
 
   return (
     <section className={styles.info}>
-      <div className={styles.profile}>
-        <p className={styles.nickname}></p>
-      </div>
+      <div className={styles.profile}>🙂</div>
       <div className={styles.text}>
         <div className={styles.left}>
           <li className={styles.name}>{me && me.name}</li>
