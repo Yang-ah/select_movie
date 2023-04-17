@@ -1,8 +1,10 @@
+<br/>
+
 # 무비셀렉터
 애정하는 영화 리뷰 및 평점 등록사이트<br />
 - **`Team name` :** 무비셀렉터 ( 영화 평점사이트 제작 )
 - **`Project duration` :** 2023.03.13 - 2023.04.14
-- **`Team members` :** 주양아(팀장), 이인국 , 구성미 , 신현중
+- **`Team members` :** 주양아(팀장) , 이인국 , 구성미 , 신현중
 
 
 ![https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png](https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png)
@@ -22,16 +24,11 @@
 - 호스트가 되어 수익을 창출할 수 있습니다.
 - 나와 같은 취미를 가진 사람들과 커뮤니티를 형성할 수 있습니다.
 
-## 기대 효과
-- 매일 반복되는 일상에 지쳐있다. -> 새로운 일상에 기대감이 가득 차게 된다.
-- 나와 같은 취미를 가진 사람들을 만날 기회가 적다. -> 나와 같은 취미를 가진 사람들과 커뮤니티를 형성할 수 있다.
-- 건강한 삶과는 거리가 멀다. -> 취미활동을 통해 건강한 삶을 영위할 수 있다.
-<br/>
 
 ### **`Team members`**
 
-|                  주양아<br>(FE, Team lead)                   |                        이인국<br>(FE)                        |                        구성미<br>(FE)                        |                   신현중<br>(FE)                   |                      
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|주양아<br>(FE, Team lead)|이인국<br>(FE)|구성미<br>(FE)|신현중<br>(FE)|                      
+| :--: | :--: | :--: | :--: |
 | <img src="https://cdn.discordapp.com/attachments/1090912771551539210/1090913577608679474/image.png" height="100" width="100"> | <img src="https://cdn.discordapp.com/attachments/793349137596284930/1097386861791559710/ae34bba849941470.jpeg?width=800&height=785" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912798348943460/image.png?width=870&height=842" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090913004033421372/image.png?width=642&height=595" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912919249752124/image.png?width=817&height=810" height="100" width="100"> |
 | <p align="left">**Pages**<br/>- 로그인 / 회원가입<br/>- 계정복구 <br />- 관리자 (신고처리)<br/>- 닉네임 설정<br/>- 공공대출추천<br/>- 임대주택 공고<br/>**Features**<br/>- Google OAuth login<br/>- 멤버 CD<br/>- 신고 글, 댓글, 답글 RD<br/>- 임대주택 R<br/></p> | <p align="left">**Pages**<br/>- 게시글 상세<br/>- 게시글 작성<br/>- 게시글 수정<br/></br>**Features**<br/>- 게시글 CRUD<br/>- 댓글 CRUD<br/>- 답글 CRUD<br/>- 좋아요, 싫어요 RCD<br/>- 북마크 CRD<br/>- 태그 CRD</p> | <p align="left">**Pages**<br/>- 커뮤니티<br/>- 마이페이지<br/>- 서울 전월세<br/><br/>**Features**<br/>- 게시글 검색<br/>- 페이지네이션<br/>- 게시글, 댓글, 답글 R<br/>- 멤버 RU<br/>- 서울전월세 R<br/><br/> </p> | <p align="left">**Features**<br/>- Google OAuth2.0 login<br/>- Spring security<br />- 인증 처리<br/>- 권한 처리<br/>- 회원 CRUD<br/>-마이페이지<br />- 신고 CRUD (관리자 기능)<br/>- 북마크 기능<br/></p> |
 
@@ -74,7 +71,6 @@ Html|css|JavaScript|React|esLint|Prettier|
 `main` : 서비스 운영 브랜치 </br>
 `dev` : 메인 브랜치 배포전 릴리즈 브랜치  </br>
 
-<br/>
 <br/>
 
 
