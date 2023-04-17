@@ -47,7 +47,7 @@
 
 ### 🖥 **Communication** </span>
 
-Notion|Github|Discord|Fimga|
+Notion|Github|Discord|Figma|
 | :--: | :--: | :--: | :--: |
 | <img alt="Notion logo" src="https://www.notion.so/cdn-cgi/image/format=auto,width=640,quality=100/front-static/shared/icons/notion-app-icon-3d.png" height="65" width="65">| <img alt="github logo" src="https://techstack-generator.vercel.app/github-icon.svg" width="65" height="65">| <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <img src="https://i.pinimg.com/originals/a5/58/b4/a558b426cb8973523f37bbed94cf0f09.png" alt="icon" width="65" height="65" /> | 
 
@@ -59,7 +59,7 @@ Notion|Github|Discord|Fimga|
 
 Html|css|JavaScript|React|esLint|Prettier|
 | :--: | :--: | :--: | :--: | :--: | :--: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" />| <img src="https://user-images.githubusercontent.com/111227745/210204643-4c3d065c-59ec-481d-ac13-cea795730835.png" alt="CSS" width="50" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />  | <img src="https://i.ibb.co/ydkG6cv/img.png" alt="icon" width="65" height="65" /></div> | <img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /> |
+| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" />| <img src="https://user-images.githubusercontent.com/111227745/210204643-4c3d065c-59ec-481d-ac13-cea795730835.png" alt="CSS" width="50" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />  | <img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /></div>" alt="icon" width="65" height="65" /></div> | <img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /> |
 
 <br/>
 
