@@ -14,7 +14,7 @@
 .container {
   /* 모달창 크기 */
   width: 70%;
-  height: 70%;
+  height: 80%;
 
   /* 모달창 디자인 */
   background-color: c.$C_FOOTER;
@@ -60,7 +60,7 @@
   }
   >.textArea {
     width: 100%;
-    min-height: 240px;
+    min-height: 200px;
     border: 1px solid c.$C_WHITE;
     border-radius: 4px;
     padding: 12px;

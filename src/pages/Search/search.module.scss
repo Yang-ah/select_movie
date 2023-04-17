@@ -1,13 +1,27 @@
+@use '../../styles/constants/' as c;
+@use '../../styles/mixins' as m;
+
 .wrap {
+  position: relative;
   min-height: calc(100vh - 148px);
   padding: 40px 80px;
   color: white;
+
   > .searchInput {
     opacity: 0.3;
     transition: 0.2s opacity ease-in;
 
     &:focus-within {
       opacity: 1;
+    }
+
+    input {
+      padding: 12px 40px;
+      font-size: 20px;
+    }
+
+    svg {
+      width: 24px;
     }
   }
 }
@@ -18,4 +32,34 @@
   gap: 16px;
   padding: 20px 0;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.statusText {
+  @include m.flex(center, center, column);
+  position: absolute;
+  font-size: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &.isLoading {
+    font-size: 20px;
+  }
+
+  > .empty {
+    font-family: 'Black Han Sans';
+    font-size: 120px;
+  }
+
+  > p {
+    margin-top: 12px;
+    color: c.$C_WHITE_50;
+
+    > span {
+      color: white;
+      letter-spacing: 1px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
 }

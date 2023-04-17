@@ -10,12 +10,17 @@
 
   > .right {
     @include m.flex();
+    > .headerSign {
+      padding: 8px;
+      font-size: 16px;
+    }
   }
 }
 
 .searchInput {
+  @include m.flex();
   margin-right: 8px;
-  width: 300px;
+  width: 400px;
 
   input {
     border: none;
@@ -23,7 +28,8 @@
     color: white;
     opacity: 0.6;
     transition: 0.2s opacity ease-in;
-
+    padding: 12px;
+    font-size: 16px;
     &:focus {
       opacity: 1;
     }

@@ -2,12 +2,15 @@
 @use '../../../styles/mixins' as m;
 
 .wrap {
-  height: 360px;
-  color: white;
+  height: 420px;
   position: relative;
-  cursor: pointer;
+  color: white;
+  background-color: c.$C_WHITE_10; // 포스터 없는 영화
+  border-radius: c.$S_RADIUS;
+  overflow: hidden;
   transition: 0.2s transform ease-in;
-  background-color: c.$C_WHITE_10;
+  cursor: pointer;
+
   &:hover {
     transform: scale(1.1) translateY(-10px);
 

@@ -61,6 +61,11 @@ const BackOfficeMovies = () => {
   };
   const onChange = (e) => {
     const { value } = e.currentTarget;
+
+    //NOTE: 검색어가 있다가 사라지면 다시 데이터를 불러오는 로직
+    if (value.length === 0) {
+      responseData();
+    }
     setForm(value);
   };
   const onClickCheckBox = (id) => {
