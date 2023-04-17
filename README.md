@@ -1,14 +1,12 @@
 # 무비셀렉터
 애정하는 영화 리뷰 및 평점 등록사이트<br />
-
-![https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png](https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png)
-- **`Link` :** [😎 무비셀렉터](http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/)<br /><br />
-
-
 - **`Team name` :** 무비셀렉터 ( 영화 평점사이트 제작 )
 - **`Project duration` :** 2023.03.13 - 2023.04.14
 - **`Team members` :** 주양아(팀장), 이인국 , 구성미 , 신현중
 
+
+![https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png](https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png)
+배포링크 : http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/<br /><br />
 
 <br/>
 
