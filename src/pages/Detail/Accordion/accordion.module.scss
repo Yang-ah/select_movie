@@ -21,6 +21,8 @@
   color: white;
   opacity: 0.5;
   transition: 0.2s opacity ease-in-out;
+  cursor: pointer;
+
   &:hover {
     opacity: 1;
   }

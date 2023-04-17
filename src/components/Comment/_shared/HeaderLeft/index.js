@@ -11,6 +11,10 @@ const HeaderLeft = ({ className, type, userName, date, writtenId }) => {
   const isLogin = useRecoilValue(isLoginAtom);
 
   const onClick = () => {
+    if (type === 'preview') {
+      return;
+    }
+
     if (type === 'reviewInput' && !isLogin) {
       return navigate('/auth/login');
     }
