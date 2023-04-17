@@ -27,7 +27,7 @@
 |주양아<br>(FE, Team lead)|이인국<br>(FE)|구성미<br>(FE)|신현중<br>(FE)|                      
 | :--: | :--: | :--: | :--: |
 | <img src="https://cdn.discordapp.com/attachments/1090912771551539210/1090913577608679474/image.png" height="100" width="100"> | <img src="https://cdn.discordapp.com/attachments/793349137596284930/1097386861791559710/ae34bba849941470.jpeg?width=800&height=785" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912798348943460/image.png?width=870&height=842" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090913004033421372/image.png?width=642&height=595" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912919249752124/image.png?width=817&height=810" height="100" width="100"> |
-| <p align="left">**Pages**<br/>- 상세페이지<br/>- 검색페이지 <br />- 레이아웃 헤더<br/>**Features**<br/>- 댓글,답글 CRUD<br/>- 좋아요, 싫어요,북마크 CRCD<br/>- 영화 검색</p> | <p align="left">**Pages**<br/>- 메인 홈페이지<br/>- 프리뷰 구현<br/>- 애니메이션<br/>**Features**<br/>- framer-motion<br/>- 북마크 <br/> slick-캐러셀 구현<br/> </p> | <p align="left">**Pages**<br/>- 마이페이지<br/>- 유저페이지<br/>**Features**<br/>- 페이지네이션<br/>slick-캐러셀 구현<br/>- 리뷰 CRUD <br/>- 사용자 조회기능 </p> | <p align="left">**Pages**<br/>- 회원 로그인/회원가입<br/>- 관리자 로그인/회원가입<br/>- 관리자(BackOffice 제작)<br />**Features**<br/>OAuth login<br/>- 회원관리 표<br/>- 페이지네이션<br />- 신고 CRUD (관리자 기능)<br/></p> |
+| <p align="left">**Pages**<br/>- 상세페이지<br/>- 검색페이지 <br />- 레이아웃 헤더<br/>**Features**<br/>- 댓글,답글 CRUD<br/>- 좋아요, 싫어요,북마크 CRCD<br/>- 영화 검색</p> | <p align="left">**Pages**<br/>- 메인 홈페이지<br/>- 프리뷰 구현<br/>- 애니메이션<br/>**Features**<br/>- framer-motion 라이브러리 <br/> - slick-캐러셀 구현<br/> </p> | <p align="left">**Pages**<br/>- 마이페이지<br/>- 유저페이지<br/>**Features**<br/>- 페이지네이션<br/>- slick-캐러셀 구현<br/>- 리뷰 CRUD <br/>- 사용자 조회기능 </p> | <p align="left">**Pages**<br/>- 회원 로그인/회원가입<br/>- 관리자 로그인/회원가입<br/>- 관리자(BackOffice 제작)<br />**Features**<br/>OAuth login<br/>- 회원관리 표<br/>- 페이지네이션<br />- 신고 CRUD (관리자 기능)<br/></p> |
 
 
 
@@ -41,15 +41,12 @@ Notion|Github|Discord|Figma|
 | :--: | :--: | :--: | :--: |
 | <img alt="Notion logo" src="https://www.notion.so/cdn-cgi/image/format=auto,width=640,quality=100/front-static/shared/icons/notion-app-icon-3d.png" height="65" width="65">| <img alt="github logo" src="https://techstack-generator.vercel.app/github-icon.svg" width="65" height="65">| <img alt="Discord logo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384e89d1d54d704ece7_3437c10597c1526c3dbd98c737c2bcae.svg" height="65" width="65"> | <img src="https://i.pinimg.com/originals/a5/58/b4/a558b426cb8973523f37bbed94cf0f09.png" alt="icon" width="65" height="65" /> | 
 
-<br/>
-
 ### Front-End
 
 Html|css|JavaScript|React|esLint|Prettier|
 | :--: | :--: | :--: | :--: | :--: | :--: |
 | <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" />| <img src="https://user-images.githubusercontent.com/111227745/210204643-4c3d065c-59ec-481d-ac13-cea795730835.png" alt="CSS" width="50" height="65" />| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" />  | <img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" />| <img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /> |
 
-<br/>
 
 ### Back-End
 
