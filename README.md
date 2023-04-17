@@ -45,8 +45,6 @@
 
 ## <span style=""> ⚙️ **Tools** </span>
 
-**`기술발표영상`:** [기술발표영상](https://www.youtube.com/watch?v=WSenS382Kbs)
-
 ### 🖥 **Communication** </span>
 
 Notion|Github|Discord|Fimga|
@@ -65,26 +63,17 @@ Html|css|JavaScript|React|Styled Component|esLint|Prettier|
 
 <br/>
 
-### 🖥 **Back-end** </span>
+### Back-End
 
-|                             Java                             |                             AWS                              |                            NginX                             |                            MySQL                             |                       Spring Security                        |                        Spring<br>Boot                        | Spring Data<br>JPA                                           | Gradle                                                       | Query DSL                                                    |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/java-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://img.icons8.com/color/48/null/nginx.png" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://media.discordapp.net/attachments/1090258986688843897/1091283675410346044/spring-security-project.png?width=500&height=500" alt="icon" width="65" height="65" /></div> | <img alt="spring-boot logo" src="https://t1.daumcdn.net/cfile/tistory/27034D4F58E660F616" width="65" height="65" > | <div style="display: flex; align-items: flex-start;"><img src="https://cdn.discordapp.com/attachments/1080464895268638743/1090900997271994448/spring-data.png" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://media.discordapp.net/attachments/1090258986688843897/1091283978385903687/gradle-knowledge-graph-logo.png?width=640&height=640" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://pbs.twimg.com/profile_images/378800000264014940/da8da0c0e6dfbfc596f787ade49381a6_400x400.png" alt="icon" width="65" height="65" /></div> |
 
-`주요 사용 기술` <br/>
-- <img src="https://img.shields.io/badge/JAVA-007396?style=flat&logo=java&logoColor=white">  Java 11
-- <img src="https://img.shields.io/badge/Gradle-바탕색?style=flat&logo=Gradle&logoColor=white"/>  Gradle v7.6.1
-- <img src="https://img.shields.io/badge/Spring boot-바탕색?style=flat&logo=Spring boot&logoColor=white"/>  Spring Boot v2.7.9
-- <img src="https://img.shields.io/badge/Spring Data JPA-바탕색?style=flat&logo=Spring&logoColor=white"/>  Spring Data JPA
-- <img src="https://img.shields.io/badge/Spring Security-바탕색?style=flat&logo=Spring Security&logoColor=white"/>  Spring Security 
-- <img src="https://img.shields.io/badge/Query DSL-527FFF?style=flat&logoColor=white"/> Query DSL v5.0.0
-- <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white"/> MySQL v8.0.3
-- <img src="https://img.shields.io/badge/ NGINX-009639?style=flat&logo=NGINX&logoColor=white"/> NGINX
+
+|JavaScript|Nodejs|AWS|Rest|
+| :--: | :--: | :--: | :--: |
+| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/aws-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/restapi-icon.svg" alt="icon" width="65" height="65" /> |
+
+
 - <img src="https://img.shields.io/badge/ AWS EC2-FF9900?style=flat&logo=Amazon EC2&logoColor=white"/> AWS EC2
 - <img src="https://img.shields.io/badge/ AWS S3-FF6666?style=flat&logo=Amazon S3&logoColor=white"/> AWS S3
-- <img src="https://img.shields.io/badge/ AWS RDS-527FFF?style=flat&logo=Amazon RDS&logoColor=white"/> AWS RDS
-- <img src="https://img.shields.io/badge/ AWS CodeDeploy-527FFF?style=flat&logo=Amazon AWS&logoColor=white"/> AWS CodeDeploy
-
 <br/>
 
 <br/>
@@ -160,11 +149,6 @@ Html|css|JavaScript|React|Styled Component|esLint|Prettier|
 
 
 
-### Back-End
-
-|JavaScript|Nodejs|MySql|Rest|
-| :--: | :--: | :--: | :--: |
-| <img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/nginx-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/mysql-icon.svg" alt="icon" width="65" height="65" /> | <img src="https://techstack-generator.vercel.app/restapi-icon.svg" alt="icon" width="65" height="65" /> |
 
 ### Common
 
