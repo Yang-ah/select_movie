@@ -2,24 +2,24 @@
 애정하는 영화 리뷰 및 평점 등록사이트<br />
 
 ![https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png](https://user-images.githubusercontent.com/122377401/232440342-4ff41ad6-b3ca-439c-8c71-35e27ddc322c.png)
-배포링크 : http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/<br />
+배포링크 : http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/<br /><br />
 
 
-- **`Team name` :** 🐉 무비셀렉터 ( 영화 평점사이트 제작 )
+- **`Team name` :** 무비셀렉터 ( 영화 평점사이트 제작 )
 - **`Project duration` :** 2023.03.13 - 2023.04.14
 - **`Team members` :** 주양아(팀장), 이인국 , 구성미 , 신현중
 - **`Link` :** [😎 무비셀렉터](http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/) [**관리자 구글계정:** Email: 이메일 고민중 ]
-- **`Service overview`:** [서비스 메뉴얼]( 노션 . pdf 파일)
-- **`Tech presentation`:** [기술발표영상]( 발표 : youtube 링크)
-- **`Functional Requirement`:** [사용자 요구사항 정의서]( 구글 시트 링크 )
-- **`API Specification`:** [API 명세서]( 노션 . pdf 파일)
+
 <br/>
 
 ## 기획의도
 - WeFrip은 구매력이 높고 건강한 라이프 스타일을 추구하는 MZ세대들의 커뮤니티입니다.
 - 이전 세대와는 다르게 워라밸과 건강한 여가생활에 대한 관심이 높아짐에 따라 이러한 서비스의 필요성이 대두되었습니다.
 - WeFrip은 단순히 보여주는 것이 아닌 직접 찹여하고 경험하는 것입니다.
-
+- **`Service overview`:** [서비스 메뉴얼]( 노션 . pdf 파일)
+- **`Tech presentation`:** [기술발표영상]( 발표 : youtube 링크)
+- **`Functional Requirement`:** [사용자 요구사항 정의서]( 구글 시트 링크 )
+- **`API Specification`:** [API 명세서]( 노션 . pdf 파일)
 ## 핵심 기능
 - 누구나 호스트가 되어 프로그램을 진행할 수 있습니다.
 - 편리하고 쉽게 상품을 등록할 수 있습니다.
@@ -34,7 +34,7 @@
 
 ### 관리자로 로그인할 수 있는 구글계정 — 추후 등록
 
-## 🐉 Teamgi
+## Teamgi
 
 |                  주양아<br>(FE, Team lead)                   |                        이인국<br>(FE)                        |                        구성미<br>(FE)                        |                   신현중<br>(FE)                   |                      
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
