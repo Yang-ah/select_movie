@@ -14,26 +14,24 @@ const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [keyword, setKeyword] = useState('');
 
+  const goMy = () => navigate('/my');
+  const onChange = (e) => setKeyword(e.currentTarget.value);
+  const onClickLogin = () => navigate(`/auth/login`);
+
   const logout = () => {
     localStorage.clear();
     setIsLogin(false);
     alert('로그아웃 되었습니다');
   };
 
-  const onClickLogin = () => {
-    navigate(`/auth/login`);
-  };
-
-  const onClickSearch = () => {
+  const onClickSearch = (e) => {
+    if (keyword.length === 0) {
+      e.preventDefault();
+      return alert('검색어를 입력해주세요 :)');
+    }
     navigate(`/search/${keyword}`);
     setKeyword('');
   };
-
-  const onChange = (e) => {
-    setKeyword(e.currentTarget.value);
-  };
-
-  const goMy = () => navigate('/my');
 
   useEffect(() => {
     if (me) {

@@ -23,9 +23,8 @@ const dropdownItems = [
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const ref = useRef(null);
-
   const { me } = useMe();
+  const ref = useRef(null);
   const isLogin = useRecoilValue(isLoginAtom);
 
   const [relatedMovies, setRelatedMovies] = useState(); // 관련 영화가 들어있는 배열
@@ -38,7 +37,8 @@ const Detail = () => {
   // 해당 영화 '관련 영화' fetch
   const fetchRelatedMovies = async () => {
     const response = await getMoviesRelated(id);
-    setRelatedMovies(response.data);
+    const relatedArr = response.data.filter((related) => related.id !== id);
+    setRelatedMovies(relatedArr);
   };
 
   // 해당 영화 리뷰 fetch
@@ -46,24 +46,6 @@ const Detail = () => {
     const response = await getReviewsMovie(id, orderBy.value);
     setReviews(response.data);
   };
-
-  // 영화 이동시 scroll top으로 이동
-  useEffect(() => {
-    if (!ref.current) return;
-
-    ref.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    });
-
-    fetchRelatedMovies();
-    fetchReviews();
-  }, [id]);
-
-  useEffect(() => {
-    fetchReviews();
-  }, [orderBy]);
 
   // 로그인 상태에 따라 reviewInput의 placeholder 변경
   const inputPlaceholder = () => {
@@ -90,6 +72,24 @@ const Detail = () => {
       });
     };
   };
+
+  // 영화 이동시 scroll top으로 이동
+  useEffect(() => {
+    if (!ref.current) return;
+
+    ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
+
+    fetchRelatedMovies();
+    fetchReviews();
+  }, [id]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, [orderBy]);
 
   return (
     <main ref={ref}>
