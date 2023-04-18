@@ -21,6 +21,11 @@
     align-items: center;
     justify-content: center;
     background-color: c.$C_ORANGE;
+
+    .userIcon {
+      fill: rgb(255, 223, 165);
+      height: 60%;
+    }
   }
 }
 
@@ -62,19 +67,18 @@
       // -webkit-line-clamp: 3; //라인수
       // -webkit-box-orient: vertical;
       line-height: 28px;
-      height: 100px; //변경X!!!!!
+      //height: 100px; //변경X!!!!!
     }
   }
   .setting {
     > svg {
       height: 28px;
-      transition: 3s;
     }
     :hover,
     :active {
       cursor: pointer;
       fill: c.$C_ORANGE;
-      transform: rotate(45deg);
+      transform: scale(1.05);
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './poster.module.scss';
 import useMe from '../../hooks/useMe';
@@ -70,41 +70,43 @@ export const PosterHeart = ({ index, callback }) => {
   );
 };
 
-export const PosterBookmark = ({ id, title, postImage, callback }) => {
+export const PosterBookmark = ({ index, callback }) => {
+  const { me, onGetMe } = useMe();
   const [isMarekd, setIsMarked] = useState(true);
   const [mark, setMark] = useState(true);
+  const buttonRef = useRef();
 
   const onBookmark = async () => {
-    const response = await postBookmark(id);
+    const response = await postBookmark(index.id);
     setIsMarked(true);
   };
 
   const offBookmark = async () => {
-    const response = await deleteBookmark(id);
-    setIsMarked(false);
-    console.log('setIsMarked', setIsMarked);
+    const response = await deleteBookmark(index.id);
+    buttonRef.current.setIsMarked = false;
     callback && callback();
   };
 
   const onClick = () => {
     !isMarekd ? onBookmark() : offBookmark();
-    console.log('onclick', isMarekd);
   };
 
   useEffect(() => {
-    setIsMarked(isMarekd ?? false);
-  }, [id]);
+    setIsMarked(index?.isMarekd ?? true);
+    onGetMe();
+  }, [index]);
 
   useEffect(() => {
     setMark(isMarekd);
+    onGetMe();
   }, [isMarekd]);
 
   return (
     <article className={styles.wrapper}>
       <div className={styles.screen}>
         <article className={styles.layerUp}>
-          <div className={styles.title}>{title}</div>
-          <button onClick={onClick}>
+          <div className={styles.title}>{index?.title}</div>
+          <button ref={buttonRef} onClick={onClick}>
             {mark === true ? (
               <SolidBookmarkIcon className={styles.icon} />
             ) : (
@@ -112,9 +114,13 @@ export const PosterBookmark = ({ id, title, postImage, callback }) => {
             )}
           </button>
         </article>
-        <Link to={`/detail/${id}`}>
+        <Link to={`/detail/${index?.id}`}>
           <article className={styles.layerDown}>
-            <img className={styles.postImage} src={postImage} alt={title} />
+            <img
+              className={styles.postImage}
+              src={index?.postImage}
+              alt={index?.title}
+            />
           </article>
         </Link>
       </div>

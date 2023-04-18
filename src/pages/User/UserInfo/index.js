@@ -21,11 +21,9 @@ const Info = () => {
 
   return (
     <section className={styles.info}>
-      <div className={styles.profile}>
-        {/* <UserIcon className={styles.icon} /> */}
-      </div>
-      <div className={styles.top}>
-        <li className={styles.text}>
+      <div className={styles.profile}>🙂</div>
+      <div className={styles.text}>
+        <li className={styles.left}>
           <a className={styles.name}>
             {userData?.nickname} ( {userData?.name} )
           </a>

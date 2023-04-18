@@ -63,9 +63,7 @@ const UserReview = () => {
   return (
     <>
       <p className={styles.category}>
-        <span className={styles.text}>
-          작성한 리뷰 (수정,삭제 대신 코멘트 쪽 누르면 디테일로 넘어가게!! )
-        </span>
+        <span className={styles.text}>작성한 리뷰</span>
       </p>
       <section className={styles.wrapper}>
         <ul className={styles.ul}>
@@ -85,9 +83,9 @@ const UserReview = () => {
                       {data.score}
                     </div>
                   </aside>
-                  <Link to={`/detail/${data.movie?.id}`}>
-                    <main>{data.content}</main>
-                  </Link>
+                  {/* <Link to={`/detail/${data.movie?.id}`}> */}
+                  <main classname={styles.content}>{data.content}</main>
+                  {/* </Link> */}
                 </section>
               </li>
             );

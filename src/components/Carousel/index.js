@@ -156,13 +156,7 @@ export const MyCarousel = () => {
         <Slider {...settings}>
           {moviesMark &&
             moviesMark?.map((index) => (
-              <PosterBookmark
-                className={styles.bookMark}
-                id={index.movie.id}
-                title={index.movie.title}
-                postImage={index.movie.postImage}
-                callback={fetchMoviesMark}
-              />
+              <PosterBookmark index={index.movie} callback={fetchMoviesMark} />
             ))}
         </Slider>
       </div>

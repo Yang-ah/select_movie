@@ -8,11 +8,11 @@ import { isLoginAtom } from '../../../atom';
 import { useRecoilValue } from 'recoil';
 import { deleteReview, getReviewsMe, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';
-import Button from '../../../components/Common/Button';
-import { ModifyModal, DeleteModal } from '../ReviewBox/reviewModal';
+import { ReviewModal } from './reviewModal';
 const Review = ({
   title,
   createdAt,
+  movieId,
   reviewId,
   content,
   score,
@@ -40,12 +40,6 @@ const Review = ({
   const isMyReview = async () => {
     const response = await getReviewsMe(movieId);
     response.data && setIsUserMe(response.data.user.id === written);
-  };
-
-  const onClickModifyReview = async () => {
-    await deleteReview(reviewId);
-    await fetchMyReviews();
-    setModifyModalOpen(false);
   };
 
   const onClickDelete = () => {
@@ -116,9 +110,9 @@ const Review = ({
         </aside>
         <div className={styles.content}>{content}</div>
       </article>
-      <ModifyModal
+      <ReviewModal
         className={styles.modifyModal}
-        modalOpen1={modifyModalOpen}
+        modalOpen={modifyModalOpen}
         setModalOpen={setModifyModalOpen}
         buttonChildren="수정"
         onClick={onPatchReview}
@@ -137,16 +131,16 @@ const Review = ({
             />
           </div>
         </main>
-      </ModifyModal>
-      <DeleteModal
+      </ReviewModal>
+      <ReviewModal
         className={styles.deleteModal}
-        modalOpen1={deleteModalOpen}
+        modalOpen={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}
         buttonChildren="삭제"
         onClick={onClickDeleteReview}
       >
         리뷰를 삭제하시겠습니까?
-      </DeleteModal>
+      </ReviewModal>
     </section>
   );
 };
