@@ -75,7 +75,7 @@ AWS|
 
 
 | |페이지 및 기능 구현| 설명 | 
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: 
 |Main Page|![Main Page](https://user-images.githubusercontent.com/122377401/232974475-da31f4ba-88d7-426d-8052-7e2790befba7.gif)| - react-slick 캐러셀 구현 <br/>마우스 오버 시 평점확인 <br/>클릭 시 해당영화 프리뷰 | **FRONT-END** </br> `이인국`,`구성미` </br>|
 |Preview|![Preview](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| </br> - 마우스 오버 시<br/> 평점확인 </br> - 클릭시 해당영화 프리뷰 | **FRONT-END** </br> `이인국` </br> |
 |Detail Page|![Detail Page](https://user-images.githubusercontent.com/122377401/232982321-8ef0b3b5-24f0-4b96-9292-de65df648279.gif)| - 댓글,답글 기능 구현 </br> - 좋아요 , 북마크 구현 </br> - 공감 , 비공감<br/> 구현 | **FRONT-END** </br> `주양아` |
