@@ -74,14 +74,15 @@ AWS|
 ## 구현 기능 ( Front-end )
 
 
-| |페이지 및 기능 구현| 설명 | 담당 개발자 |
-| :--: | :--: | :--: | :--: |
+| |페이지 및 기능 구현| 설명 | 
+| :--: | :--: | :--: | :--: | :--: |
 |Main Page|![Main Page](https://user-images.githubusercontent.com/122377401/232974475-da31f4ba-88d7-426d-8052-7e2790befba7.gif)| - react-slick 캐러셀 구현 <br/>마우스 오버 시 평점확인 <br/>클릭 시 해당영화 프리뷰 | **FRONT-END** </br> `이인국`,`구성미` </br>|
 |Preview|![Preview](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| </br> - 마우스 오버 시<br/> 평점확인 </br> - 클릭시 해당영화 프리뷰 | **FRONT-END** </br> `이인국` </br> |
 |Detail Page|![Detail Page](https://user-images.githubusercontent.com/122377401/232982321-8ef0b3b5-24f0-4b96-9292-de65df648279.gif)| - 댓글,답글 기능 구현 </br> - 좋아요 , 북마크 구현 </br> - 공감 , 비공감<br/> 구현 | **FRONT-END** </br> `주양아` |
 |Detail page2 |![Detail page2](https://user-images.githubusercontent.com/122377401/233066445-fdb05d38-2f57-44e4-92f1-7bce6721a4d4.gif)| - 댓글,답글 기능 구현 <br/> - 호감도 체크 구현 <br/>- 댓글 정렬 기능  | **FRONT-END** </br> `주양아` </br> |
+|Search page |![Search page](https://user-images.githubusercontent.com/122377401/233069880-857164ce-b7d9-4b36-b094-245687194534.gif)| - 영화 검색기능 구현 <br/>| **FRONT-END** </br> `주양아` </br> |
 |My Page<br/>| ![My Page](https://user-images.githubusercontent.com/122377401/233066451-9f1ae44d-0de6-4d7f-90a4-77066ff62cc2.gif)| - 카테고리별 캐러셀 구현 <br /> - 호버시 좋아요<br/> 기능 구현 |  **FRONT-END** </br> `구성미` </br> |
-| User Page |![UserPage](https://user-images.githubusercontent.com/122377401/233066451-9f1ae44d-0de6-4d7f-90a4-77066ff62cc2.gif)| - 타 사용자 리뷰 및 댓글 확인 기능 |**FRONT-END** </br>`구성미` </br>|
+| User Page |![User Page](https://user-images.githubusercontent.com/122377401/233066451-9f1ae44d-0de6-4d7f-90a4-77066ff62cc2.gif)| - 타 사용자 리뷰 및 댓글 확인 기능 |**FRONT-END** </br>`구성미` </br>|
 |Backoffice Page|![Backoffice Page](https://user-images.githubusercontent.com/122377401/233066447-3f488a89-ebf8-4365-89ae-f4e715eaa5d5.gif)| -  영화,리뷰,유저 수정, 삭제 구현 </br> - 페이지네이션<br/> 구현  </br> - modal 기능<br/> 구현 | **FRONT-END** </br> `신현중`|
 | Login Page |![Login Page](https://user-images.githubusercontent.com/122377401/233066447-3f488a89-ebf8-4365-89ae-f4e715eaa5d5.gif)| - Sign in/up 기능| **FRONT-END** </br> `신현중` |
 <br/><br/>
@@ -89,7 +90,10 @@ AWS|
 
 ## 👩🏻‍🎨 Wireframe
 
-
-![wireframe](https://user-images.githubusercontent.com/113220012/228159810-aaab3fbf-ad39-47e8-b505-f5b3fa5ea0a8.png)
-
-<br/>
+| |각 기능별 배치|
+| :--: | :--: | :--: | :--: | :--: |
+|Common|![Common](https://user-images.githubusercontent.com/122377401/233072429-c8a09ffe-e11b-4c63-89ec-04ebaaa7d002.png)|
+|Home & Preview|![Home & Preview](https://user-images.githubusercontent.com/122377401/233072426-3177b9fa-e992-4d40-91f3-cd372d3cdbae.png)| 
+|Detail Page|![Detail Page](https://user-images.githubusercontent.com/122377401/233072424-b855b592-797c-4fc9-828c-2d9dba372fb3.png)| 
+|My & User |![My & User](https://user-images.githubusercontent.com/122377401/233072422-e4ffc00a-c2bb-4833-bdea-f9e70e922801.png)| 
+|BackOffice |![BackOffice](https://user-images.githubusercontent.com/122377401/233072414-091c8f1a-a03b-447e-b267-d7197ab1aa42.png)| 
