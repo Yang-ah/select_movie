@@ -77,13 +77,13 @@ AWS|
 | |페이지 및 기능 구현| 설명 | 담당 개발자 |
 | :--: | :--: | :--: | :--: |
 |Main Page|![Main Page](https://user-images.githubusercontent.com/122377401/232974475-da31f4ba-88d7-426d-8052-7e2790befba7.gif)| - react-slick 캐러셀 구현 <br/>마우스 오버 시 평점확인 <br/>클릭 시 해당영화 프리뷰 | **FRONT-END** </br> `이인국`,`구성미` </br>|
-|Preview|![Preview](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| - react-slick을 이용한 랭킹케러셀 </br> - 마우스 오버 시 평점확인 </br> - 클릭시 해당영화 프리뷰 | **FRONT-END** </br> `이인국` </br> |
+|Preview|![Preview](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| </br> - 마우스 오버 시 평점확인 </br> - 클릭시 해당영화 프리뷰 | **FRONT-END** </br> `이인국` </br> |
 |Detail Page|![Detail Page](https://user-images.githubusercontent.com/122377401/232982321-8ef0b3b5-24f0-4b96-9292-de65df648279.gif)| - 댓글,답글 기능 구현 </br> - 좋아요 , 북마크 구현 </br> - 공감 , 비공감 구현 | **FRONT-END** </br> `주양아` |
-|Detail page2 |![Detail page2](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| - 댓글,답글 기능 구현 <br/> - 호감도 체크 구현 <br/>- 댓글 정렬 기능  | **FRONT-END** </br> `주양아` </br> |
-|My Page<br/>| ![My Page](https://user-images.githubusercontent.com/122377401/232978373-51b5a1a3-d897-44c2-ac3f-02b6c0a1aee6.gif)| - 카테고리별 캐러셀 구현 <br /> - 호버시 좋아요 기능 구현 |  **FRONT-END** </br> `구성미` </br> |
-| Mypage |![Mypage](https://k.kakaocdn.net/dn/EF9G3/btrQ0G5czKh/5RenKR0VA4T4GkW31cxlZ0/img.gif)| - 마이페이지 설명 |**FRONT-END** </br>`최규흠` </br> **BACK-END** </br> `박은송` |
-|Host Page|![Host Page](https://k.kakaocdn.net/dn/EDwtn/btrQ6IAkJuM/ojLgUrvbYTXfrjtWVDQeXk/img.gif)| - 상품 등록을 위한 단계별 Tab bar 구현 </br> - kakao map을 커스텀하여 키워드 검색시 해당 키워드와 관련이 있는 장소를 리스팅하고 마커로 표시  </br> - 누리님 부분 설명 | **FRONT-END** </br> `김온누리` </br> `이진혁` </br> **BACK-END** </br> `박은송` |
-| List Page |![List Page](https://k.kakaocdn.net/dn/RKB9l/btrQ0uX7ncr/AU1uF4rM4EE5CiW8wSphsk/img.gif)| - 유저가 등록한 상품들을 조회 및 삭제 기능 </br> - 해당 상품 클릭시 상품에 대한 detail page로 이동 | **FRONT-END** </br> `이진혁` </br> **BACK-END** </br> `박은송` |
+|Detail page2 |![Detail page2](https://user-images.githubusercontent.com/122377401/233066445-fdb05d38-2f57-44e4-92f1-7bce6721a4d4.gif)| - 댓글,답글 기능 구현 <br/> - 호감도 체크 구현 <br/>- 댓글 정렬 기능  | **FRONT-END** </br> `주양아` </br> |
+|My Page<br/>| ![My Page](https://user-images.githubusercontent.com/122377401/233066451-9f1ae44d-0de6-4d7f-90a4-77066ff62cc2.gif)| - 카테고리별 캐러셀 구현 <br /> - 호버시 좋아요 기능 구현 |  **FRONT-END** </br> `구성미` </br> |
+| User Page |![UserPage](https://user-images.githubusercontent.com/122377401/233066451-9f1ae44d-0de6-4d7f-90a4-77066ff62cc2.gif)| - 타 사용자 리뷰 및 댓글 확인 기능 |**FRONT-END** </br>`구성미` </br>|
+|Backoffice Page|![Backoffice Page](https://user-images.githubusercontent.com/122377401/233066447-3f488a89-ebf8-4365-89ae-f4e715eaa5d5.gif)| -  영화,리뷰,유저 수정, 삭제 구현 </br> - 페이지네이션 구현  </br> - modal 기능 구현 | **FRONT-END** </br> `신현중`|
+| Login Page |![Login Page](https://user-images.githubusercontent.com/122377401/233066447-3f488a89-ebf8-4365-89ae-f4e715eaa5d5.gif)| - Sign in/up 기능| **FRONT-END** </br> `신현중` |
 <br/><br/>
 <br/>
 
