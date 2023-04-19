@@ -5,12 +5,27 @@
   @include m.flex(space-between);
   min-height: 60px;
   padding: 10px c.$S_LAYOUT_PADDING;
-  column-gap: 10px;
+  column-gap: 20px;
   background-color: c.$C_WHITE_10;
 
-  > .right {
-    @include m.flex();
-    > .headerSign {
+  .logo {
+    height: 100%;
+    width: 180px !important;
+    font-size: 42px;
+    color: c.$C_LOGO;
+    font-family: 'Black Han Sans';
+    padding-top: 5px; // 로고가 정 중앙에 안와서, padding-top 넣음
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-use-select: none;
+    user-select: none;
+  }
+
+  .right {
+    @include m.flex(right);
+    width: calc(100% - 200px); //전체-갭-로고
+    float: right;
+    .headerSign {
       padding: 8px;
       font-size: 16px;
     }
@@ -19,8 +34,10 @@
 
 .searchInput {
   @include m.flex();
-  margin-right: 8px;
-  width: 400px;
+  margin-right: 16px;
+
+  width: 500px;
+  max-width: 50%;
 
   input {
     border: none;
@@ -44,21 +61,9 @@
   }
 }
 
-.logo {
-  height: 100%;
-  font-size: 42px;
-  color: c.$C_LOGO;
-  font-family: 'Black Han Sans';
-  padding-top: 5px; // 로고가 정 중앙에 안와서, padding-top 넣음
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-use-select: none;
-  user-select: none;
-}
-
 .login {
   @include m.flex();
-  gap: 8px;
+  gap: 16px;
 
   svg {
     fill: white;

@@ -153,13 +153,7 @@ export const MyCarousel = () => {
         <Slider {...settings}>
           {moviesMark &&
             moviesMark?.map((index) => (
-              <PosterBookmark
-                className={styles.bookMark}
-                id={index.movie.id}
-                title={index.movie.title}
-                postImage={index.movie.postImage}
-                callback={fetchMoviesMark}
-              />
+              <PosterBookmark index={index.movie} callback={fetchMoviesMark} />
             ))}
         </Slider>
       </div>
@@ -216,12 +210,7 @@ export const UserCarousel = () => {
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesMark.map((index) => (
-            <PosterBookmark
-              className={styles.bookMark}
-              id={index.movie.id}
-              title={index.movie.title}
-              postImage={index.movie.postImage}
-            />
+            <PosterBookmark className={styles.bookMark} index={index.movie} />
           ))}
         </Slider>
       </div>

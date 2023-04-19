@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import styles from './index.module.scss';
+import styles from './userReview.module.scss';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -10,6 +10,7 @@ import {
 } from '../../../assets/icon';
 import { getReviewsUser } from '../../../api/Reviews';
 import dayjs from 'dayjs';
+import UserReviewCard from '../UserReviewCard';
 
 const UserReview = () => {
   const userId = useParams();
@@ -23,18 +24,6 @@ const UserReview = () => {
   useEffect(() => {
     fetchMyReviews();
   }, []);
-
-  //모달
-  const [form, setForm] = useState();
-  const [modalOpen, setModalOpen] = useState(false);
-  const closeModal = () => {
-    setModalOpenM(false);
-    setModalOpenD(false);
-  };
-
-  const onClick = () => {
-    navigate(`/detail/${movieId.id}`);
-  };
 
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,32 +51,20 @@ const UserReview = () => {
   return (
     <>
       <p className={styles.category}>
-        <span className={styles.text}>
-          작성한 리뷰 (수정,삭제 대신 코멘트 쪽 누르면 디테일로 넘어가게!! )
-        </span>
+        <span className={styles.text}>작성한 리뷰</span>
       </p>
       <section className={styles.wrapper}>
         <ul className={styles.ul}>
           {records.map((data, i) => {
             return (
               <li className={styles.li} key={i}>
-                <section className={styles.screen} onClick={onClick}>
-                  <aside className={styles.top}>
-                    <div className={styles.left}>
-                      <p className={styles.title}>{data.movie.title}</p>
-                      <p className={styles.createdAt}>
-                        {dayjs(data.createdAt).format('YYYY.MM.DD')}
-                      </p>
-                    </div>
-                    <div className={styles.right}>
-                      <SolidStarIcon className={styles.star} />
-                      {data.score}
-                    </div>
-                  </aside>
-                  <Link to={`/detail/${data.movie?.id}`}>
-                    <main>{data.content}</main>
-                  </Link>
-                </section>
+                <UserReviewCard
+                  title={data.movie.title}
+                  createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
+                  movieId={data.movie.id}
+                  content={data.content}
+                  score={data.score}
+                />
               </li>
             );
           })}
