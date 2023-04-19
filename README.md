@@ -29,7 +29,7 @@
 |주양아<br>(FE, Team lead)|이인국<br>(FE)|구성미<br>(FE)|신현중<br>(FE)|                      
 | :--: | :--: | :--: | :--: |
 | <img src="https://cdn.discordapp.com/attachments/1090912771551539210/1090913577608679474/image.png" height="100" width="100"> | <img src="https://cdn.discordapp.com/attachments/793349137596284930/1097386861791559710/ae34bba849941470.jpeg?width=800&height=785" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912798348943460/image.png?width=870&height=842" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090913004033421372/image.png?width=642&height=595" height="100" width="100"> | <img src="https://media.discordapp.net/attachments/1090912771551539210/1090912919249752124/image.png?width=817&height=810" height="100" width="100"> |
-| <p align="left">**Pages**<br/>- 상세페이지<br/>- 검색페이지 <br /><br/>**Features**<br/>- 댓글,답글 CRUD<br/>- 좋아요, 북마크 CRUD <br/> - 공감, 비공감 CRUD<br/>- 영화 검색</p> | <p align="left">**Pages**<br/>- 메인 홈페이지<br/>- 프리뷰 페이지<br/><br/>**Features**<br/>- framer-motion 애니메이션 <br/> - react-slick 구현<br/> </p> | <p align="left">**Pages**<br/>- 홈페이지<br/>- 마이페이지<br/>- 유저페이지<br/><br/>**Features**<br/>- react-slick 구현<br/>- 리뷰 조회,수정,삭제 <br/>- 사용자 조회,수정<br/>- 페이지네이션 </p> | <p align="left">**Pages**<br/>- 회원 로그인/회원가입<br/>- 관리자 로그인/회원가입<br/>- BackOffice 페이지<br /><br/>**Features**<br/>- Sign in/up 기능<br/>- 영화,리뷰,유저 수정, 삭제<br/>- 페이지네이션<br /></p> |
+| <p align="left">**Pages**<br/>- 상세페이지<br/>- 검색페이지 <br /><br/>**Features**<br/>- 댓글,답글 CRUD<br/>- 좋아요, 북마크 CRUD <br/> - 공감, 비공감 CRUD<br/>- 영화 검색</p> | <p align="left">**Pages**<br/>- 메인 홈페이지<br/>- 프리뷰 페이지<br/><br/>**Features**<br/>- framer-motion 애니메이션 <br/> - react-slick 구현<br/> </p> | <p align="left">**Pages**<br/>- 홈페이지<br/>- 마이페이지<br/>- 유저페이지<br/><br/>**Features**<br/>- react-slick 구현<br/>- 리뷰 조회,수정,삭제 <br/>- 사용자 조회,수정<br/>- 페이지네이션 </p> | <p align="left">**Pages**<br/>- 회원 로그인/회원가입<br/>- 관리자 로그인/회원가입<br/>- BackOffice 페이지<br /><br/>**Features**<br/>- Sign in/up 기능<br/>- 영화,리뷰,유저 수정, 삭제<br/>- 페이지네이션<br />- modal 기능</p> |
 
 
 
@@ -71,16 +71,16 @@ AWS|
 
 <br/>
 
-## 구현 기능 (Front-end & Back-end)
+## 구현 기능 ( Front-end )
 
 
 | |페이지 및 기능 구현| 설명 | 담당 개발자 |
 | :--: | :--: | :--: | :--: |
 |Main Page|![Main Page](https://user-images.githubusercontent.com/122377401/232974475-da31f4ba-88d7-426d-8052-7e2790befba7.gif)| - react-slick 캐러셀 구현 <br/>마우스 오버 시 평점확인 <br/>클릭 시 해당영화 프리뷰 | **FRONT-END** </br> `이인국`,`구성미` </br>|
 |Preview|![Preview](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| - react-slick을 이용한 랭킹케러셀 </br> - 마우스 오버 시 평점확인 </br> - 클릭시 해당영화 프리뷰 | **FRONT-END** </br> `이인국` </br> |
-|Products Page |![Products Page](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| - react-slick을 이용한 상품 캐러셀 구현 </br> - kakao map을 이용한 장소 마커 표시, 클릭시 해당 장소 정보 열람 가능 | **FRONT-END** </br> `이진혁` </br> **BACK-END** </br> `신인혁`|
-|Detail Page|![Detail Page](https://user-images.githubusercontent.com/122377401/232982321-8ef0b3b5-24f0-4b96-9292-de65df648279.gif)| - queryString 을 활용한 필터링 기능 구현 | **FRONT-END** </br> `주양아` |
-|Main Page<br/>- category| ![Wishlist Page](https://user-images.githubusercontent.com/122377401/232978373-51b5a1a3-d897-44c2-ac3f-02b6c0a1aee6.gif)| - 카테고리별 캐러셀 구현 <br /> - 호버시 좋아요 기능 구현 |  **FRONT-END** </br> `이인국` </br> |
+|Detail Page|![Detail Page](https://user-images.githubusercontent.com/122377401/232982321-8ef0b3b5-24f0-4b96-9292-de65df648279.gif)| - 댓글,답글 기능 구현 </br> - 좋아요 , 북마크 구현 </br> - 공감 , 비공감 구현 | **FRONT-END** </br> `주양아` |
+|Detail page2 |![Detail page2](https://user-images.githubusercontent.com/122377401/232979198-0e4eddbb-8ad9-4a4e-ae9b-922a22f34656.gif)| - 댓글,답글 기능 구현 <br/> - 호감도 체크 구현 <br/>- 댓글 정렬 기능  | **FRONT-END** </br> `주양아` </br> |
+|My Page<br/>| ![My Page](https://user-images.githubusercontent.com/122377401/232978373-51b5a1a3-d897-44c2-ac3f-02b6c0a1aee6.gif)| - 카테고리별 캐러셀 구현 <br /> - 호버시 좋아요 기능 구현 |  **FRONT-END** </br> `구성미` </br> |
 | Mypage |![Mypage](https://k.kakaocdn.net/dn/EF9G3/btrQ0G5czKh/5RenKR0VA4T4GkW31cxlZ0/img.gif)| - 마이페이지 설명 |**FRONT-END** </br>`최규흠` </br> **BACK-END** </br> `박은송` |
 |Host Page|![Host Page](https://k.kakaocdn.net/dn/EDwtn/btrQ6IAkJuM/ojLgUrvbYTXfrjtWVDQeXk/img.gif)| - 상품 등록을 위한 단계별 Tab bar 구현 </br> - kakao map을 커스텀하여 키워드 검색시 해당 키워드와 관련이 있는 장소를 리스팅하고 마커로 표시  </br> - 누리님 부분 설명 | **FRONT-END** </br> `김온누리` </br> `이진혁` </br> **BACK-END** </br> `박은송` |
 | List Page |![List Page](https://k.kakaocdn.net/dn/RKB9l/btrQ0uX7ncr/AU1uF4rM4EE5CiW8wSphsk/img.gif)| - 유저가 등록한 상품들을 조회 및 삭제 기능 </br> - 해당 상품 클릭시 상품에 대한 detail page로 이동 | **FRONT-END** </br> `이진혁` </br> **BACK-END** </br> `박은송` |
