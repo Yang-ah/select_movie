@@ -99,6 +99,7 @@ const BackOfficeUsers = () => {
         await deleteUsers(element);
       }
       alert('회원 일괄 삭제 완료');
+      setSelectedIDs([]);
       responseData();
       onSearch();
     } catch (err) {

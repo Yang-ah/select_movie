@@ -94,6 +94,7 @@ const BackOfficeReviews = () => {
         await deleteReviewAdmin(element);
       }
       alert('리뷰 일괄 삭제 완료');
+      setSelectedIDs([]);
       responseData();
       onSearch();
     } catch (err) {

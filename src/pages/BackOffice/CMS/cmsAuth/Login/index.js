@@ -111,12 +111,11 @@ const CMSLogin = () => {
             value={form.password}
             onChange={onChange}
           />
-
-          <Button className={styles.button} onClick={showModal}>
-            관리자 회원가입
-          </Button>
           <Button className={styles.button} type="submit" form="loginForm">
             관리자 로그인
+          </Button>
+          <Button className={styles.button} onClick={showModal}>
+            관리자 회원가입
           </Button>
         </form>
       </section>
