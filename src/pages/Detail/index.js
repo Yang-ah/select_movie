@@ -106,6 +106,7 @@ const Detail = () => {
             <ReviewInput
               id={id}
               disabled={!isLogin}
+              //NOTE: props로 넘기는 함수 / 값 => 함수 : useCallback, 값 : useMemo
               placeholder={inputPlaceholder()}
               fetchReviews={fetchReviews}
               userName={inputUsername()}
