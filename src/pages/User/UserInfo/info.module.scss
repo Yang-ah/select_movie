@@ -21,6 +21,12 @@
     align-items: center;
     justify-content: center;
     background-color: c.$C_ORANGE;
+
+    .userIcon {
+      fill: rgb(255, 223, 165);
+      height: 60%;
+      width: 60%;
+    }
   }
 }
 

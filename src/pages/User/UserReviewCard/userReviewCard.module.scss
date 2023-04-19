@@ -34,35 +34,27 @@
   position: absolute;
   z-index: -2;
   margin: auto;
-  bottom: 10%;
+  bottom: 0%;
 
   width: 90%;
-  height: 50%;
+  height: 20%;
   font-size: 24px;
   white-space: nowrap;
 
-  .upper {
-    @include m.flex(space-between, flex-start);
-    .icon {
-      width: 50%;
-      margin: 4px;
-      padding: 4px;
-      fill: white;
-    }
-  }
   .lower {
     width: 80%;
-    height: 80%;
+    height: 20px;
+
     margin: auto;
     display: flex;
     justify-content: right;
     align-items: center;
     flex-direction: row;
-    font-size: 8px;
+    font-size: 12px;
 
     .icon {
       margin: 0 5px;
-      width: 12px;
+      width: 16px;
       height: 12px;
       fill: white;
     }

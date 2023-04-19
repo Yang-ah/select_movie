@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './reviewCard.module.scss';
-import { SolidStarIcon, ModifyIcon, TrashIcon } from '../../../assets/icon';
+import {
+  SolidStarIcon,
+  ModifyIcon,
+  TrashIcon,
+  DoubleChevronRightIcon,
+} from '../../../assets/icon';
 
 import useMe from '../../../hooks/useMe';
 import { isLoginAtom } from '../../../atom';
@@ -18,6 +23,11 @@ const Review = ({
   score,
   fetchMyReviews,
 }) => {
+  const navigate = useNavigate();
+  const onClickComment = () => {
+    navigate(`/detail/${movieId}`);
+  };
+
   const [postForm, setPostForm] = useState({
     content: '',
     score: '',
@@ -80,22 +90,30 @@ const Review = ({
   return (
     <section className={styles.screen}>
       <article className={styles.layerUp}>
-        <button
-          className={styles.fixModal}
-          type="button"
-          name="modify"
-          onClick={onClickModify}
-        >
-          <ModifyIcon className={styles.icon} />
-        </button>
-        <button
-          className={styles.deleteModal}
-          type="button"
-          name="delete"
-          onClick={onClickDelete}
-        >
-          <TrashIcon className={styles.icon} />
-        </button>
+        <div className={styles.upper}>
+          <button
+            className={styles.fixModal}
+            type="button"
+            name="modify"
+            onClick={onClickModify}
+          >
+            <ModifyIcon className={styles.icon} />
+          </button>
+          <button
+            className={styles.deleteModal}
+            type="button"
+            name="delete"
+            onClick={onClickDelete}
+          >
+            <TrashIcon className={styles.icon} />
+          </button>
+        </div>
+        <div className={styles.lower} onClick={onClickComment}>
+          <span className={styles.text}>자세히</span>
+          <button className={styles.moveDetail} type="button" name="move">
+            <DoubleChevronRightIcon className={styles.icon} />
+          </button>
+        </div>
       </article>
       <article className={styles.layerDown}>
         <aside className={styles.top}>

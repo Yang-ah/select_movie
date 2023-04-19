@@ -21,7 +21,10 @@ const Info = () => {
 
   return (
     <section className={styles.info}>
-      <div className={styles.profile}>🙂</div>
+      <div className={styles.profile}>
+        {' '}
+        <UserIcon className={styles.userIcon} />
+      </div>
       <div className={styles.text}>
         <li className={styles.left}>
           <a className={styles.name}>

@@ -53,6 +53,7 @@ const MyReview = () => {
               <li className={styles.li} key={i}>
                 <Review
                   title={data.movie.title}
+                  movieId={data.movie.id}
                   createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
                   content={data.content}
                   score={data.score}
