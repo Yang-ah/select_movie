@@ -5,7 +5,7 @@ import Chart from '../Chart';
 import dayjs from 'dayjs';
 import { deleteMovieLike, getMovie, postMovieLike } from '../../../api/Movies';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../atom';
+import { isLoginAtom } from '../../../status';
 import {
   BookmarkIcon,
   HeartIcon,

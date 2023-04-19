@@ -9,11 +9,11 @@ import {
 } from '../../../assets/icon';
 
 import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../atom';
+import { isLoginAtom } from '../../../status';
 import { useRecoilValue } from 'recoil';
 import { deleteReview, getReviewsMe, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';
-import { ReviewModal } from './reviewModal';
+import { ReviewModal } from './ReviewModal';
 const Review = ({
   title,
   createdAt,

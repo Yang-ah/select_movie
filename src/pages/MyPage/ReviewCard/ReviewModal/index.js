@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import cx from 'classnames';
-import styles from './reviewModal.modal.module.scss';
-import { Button } from '../../../components';
+import styles from './reviewModal.module.scss';
+import { Button } from '../../../../components';
 
 export const ReviewModal = ({
   className,
