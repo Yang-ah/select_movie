@@ -98,7 +98,7 @@ AWS|
 |My & User |![My & User](https://user-images.githubusercontent.com/122377401/233072422-e4ffc00a-c2bb-4833-bdea-f9e70e922801.png)| 
 |BackOffice |![BackOffice](https://user-images.githubusercontent.com/122377401/233072414-091c8f1a-a03b-447e-b267-d7197ab1aa42.png)| 
 
-| |각 기능별 배치|
+ |각 기능별 배치|
 | :--: | :--: | :--: | :--: | :--: |
 |Common||
 |Home & Preview|| 
