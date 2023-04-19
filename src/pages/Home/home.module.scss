@@ -13,6 +13,8 @@
   }
 
   .genreTitle {
+    display: inline-block;
+    width: fit-content;
     margin: 60px 0 8px 12px;
     font-size: 28px;
     border-bottom: 2px solid c.$C_WHITE_80;
