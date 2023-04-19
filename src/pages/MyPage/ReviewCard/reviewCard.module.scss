@@ -52,18 +52,19 @@
   }
   .lower {
     width: 80%;
-    height: 80%;
+    height: 60%;
     margin: auto;
     display: flex;
     justify-content: right;
     align-items: center;
     flex-direction: row;
-    font-size: 8px;
+    font-size: 14px;
 
     .icon {
       margin: 0 5px;
-      width: 12px;
-      height: 12px;
+      margin-top: 4px;
+      width: 16px;
+      height: 16px;
       fill: white;
     }
   }
