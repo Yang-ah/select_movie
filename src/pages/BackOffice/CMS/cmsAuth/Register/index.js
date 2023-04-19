@@ -76,7 +76,6 @@ const Register = (setModalOpen) => {
         saveTokens(data);
         setResistorModalOpen(false);
         alert('관리자 회원가입을 성공했습니다.');
-        console.log(ModalOpen);
       }
     } catch(err) { //서버에서 주는 에러 메세지 띄우기 
       const errData = err.response.data;

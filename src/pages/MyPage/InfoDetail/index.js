@@ -12,7 +12,6 @@ const InfoDetail = () => {
   const fetchUserInfoDetail = async () => {
     const response = await getUsersMeInfo();
     setUserInfoDetail(response.data);
-    console.log('디테일', response.data);
   };
 
   useEffect(() => {

@@ -29,7 +29,6 @@ const Info = () => {
   const showModal = () => {
     setModalOpen(true);
   };
-  console.log('info', { modalOpen, userInfo });
 
   useEffect(() => {
     fetchUserInfo();

@@ -11,7 +11,6 @@ const Info = () => {
 
   const fetchUserDetail = async () => {
     const response = await getUserDetail(userId.id);
-    console.log('인포:', response.data);
     setUserData(response.data);
   };
 

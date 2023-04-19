@@ -18,7 +18,6 @@ const UserReview = () => {
   const fetchMyReviews = async () => {
     const response = await getReviewsUser(userId.id);
     setReviews(response.data);
-    console.log('reviews', response.data);
   };
 
   useEffect(() => {

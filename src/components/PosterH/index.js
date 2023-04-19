@@ -27,7 +27,6 @@ export const PosterH = ({ movie, id, onModalClick, callback }) => {
     } else {
       setIsLiked(false);
     }
-    // console.log('like', isLogin && response.data.isLiked);
   };
 
 

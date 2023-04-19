@@ -27,7 +27,6 @@ const MyReview = () => {
   const fetchMyReviews = async () => {
     const response = await getReviewsMe(1, 20);
     setReviews(response.data.data);
-    console.log('reviews', response.data.data);
   };
 
   //모달
@@ -74,7 +73,6 @@ const MyReview = () => {
   const onClickDelete = () => {
     setModalOpenM(false);
     setModalOpenD(true);
-    console.log(modalOpenD);
   };
   const onClickDeleteReview = async (e) => {
     e.preventDefault();

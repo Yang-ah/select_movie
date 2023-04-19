@@ -60,13 +60,12 @@ export const HomeCarousel = ({ GenreId }) => {
     const num = moviesGenre.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
     setMovieId(moviesGenre.data[num]); //data값에 아이디값 대입
-    console.log(moviesGenre.data[num]);
   };
 
   const onModalClose = () => {
     setIsShow(false);
   };
-
+  
   const settings = {
     dot: false,
     arrow: false,
@@ -109,12 +108,10 @@ export const MyCarousel = () => {
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
     setMoviesLike(response.data);
-    console.log('좋아요 리스트', response.data);
   };
   const fetchMoviesMark = async () => {
     const response = await getBookmarksPage(1, 20);
     setMoviesMark(response.data.data);
-    console.log('북마크 리스트', response.data.data);
   };
 
   useEffect(() => {
@@ -178,12 +175,10 @@ export const UserCarousel = () => {
   const fetchUserLike = async () => {
     const response = await getMoviesUserLike(userId.id);
     setMoviesLike(response.data);
-    console.log('좋아요:', response.data);
   };
   const fetchUserBookmark = async () => {
     const response = await getUserBookmarksPage(userId.id);
     setMoviesMark(response.data);
-    console.log('북마크:', response.data);
   };
 
   useEffect(() => {

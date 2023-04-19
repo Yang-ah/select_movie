@@ -47,7 +47,6 @@ const MovieModal = ({ onModalClose ,movieId }) => {
     } else {
       setIsLiked(false);
     }
-    // console.log('like', isLogin && response.data.isLiked);
   };
 
   const fetchBookmarks = async () => {
@@ -62,7 +61,6 @@ const MovieModal = ({ onModalClose ,movieId }) => {
       setIsBookmarked(false);
     }
 
-    //  console.log('bookmark', isLogin && bookmarkIdArr.includes(id));
   };
 
   const onClickButton = async (e) => {
@@ -90,7 +88,6 @@ const MovieModal = ({ onModalClose ,movieId }) => {
 
   const fetchReviews = async () => {
     const response = await getReviewsMovie(movieId.id);
-    //  console.log(response.data);
     setReviews(response.data);
 
   };

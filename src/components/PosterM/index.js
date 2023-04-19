@@ -23,13 +23,11 @@ export const PosterHeart = ({ index, callback }) => {
   const offLike = async () => {
     const response = await deleteMovieLike(index.id);
     setIsLiked(false);
-    console.log('클릭', setIsLiked);
     callback && callback();
   };
 
   const onClick = () => {
     !isLiked ? onLike() : offLike();
-    console.log('온클릭', isLiked);
   };
 
   useEffect(() => {
@@ -82,13 +80,11 @@ export const PosterBookmark = ({ id, title, postImage, callback }) => {
   const offBookmark = async () => {
     const response = await deleteBookmark(id);
     setIsMarked(false);
-    console.log('setIsMarked', setIsMarked);
     callback && callback();
   };
 
   const onClick = () => {
     !isMarekd ? onBookmark() : offBookmark();
-    console.log('onclick', isMarekd);
   };
 
   useEffect(() => {

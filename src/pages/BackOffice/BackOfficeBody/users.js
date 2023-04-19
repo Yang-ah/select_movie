@@ -40,7 +40,6 @@ const BackOfficeUsers = () => {
       users:usersCount.data.count, 
       reviews:reviewsCount.data.count,
     });
-    //console.log(reviewsCount.data.count);
   };
 
   const onSearch = async (e) => {

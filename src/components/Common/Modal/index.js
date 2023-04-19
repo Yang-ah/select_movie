@@ -35,8 +35,6 @@ const Modal = ({
       document.removeEventListener("mousedown", handler);
     };
   });
-  //console.log(`컴포넌트 모달오픈${modalOpen1}`)
-  //if(modalOpen1===false){return null}
   return (
     <CSSTransition
       in={modalOpen1}
