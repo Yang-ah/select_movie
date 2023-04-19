@@ -100,8 +100,6 @@ const MovieModal = ({ onModalClose, movieId }) => {
     return user.nickName ?? user.name ?? '닉네임없음';
   };
 
-  //ㅇ
-
   const backdropVariants = {
     visible: { opacity: 1, scale: 1 },
     hidden: { opacity: 0, scale: 0.3, backgroundColor: 'rgba(0, 0, 0, 0.5)' },
@@ -266,9 +264,10 @@ const MovieModal = ({ onModalClose, movieId }) => {
                   <DoubleChevronRightIcon />
                 </div>
               </div>
-              {reviews?.slice(0, 2).map((review) => {
+              {reviews?.slice(0, 2).map((review, index) => {
                 return (
                   <Preview
+                    key={index + review.user.id}
                     userName={setUserName(review.user)}
                     date={dayjs(review.createdAt).format('YYYY.MM.DD')}
                     comment={review.content}
@@ -279,7 +278,6 @@ const MovieModal = ({ onModalClose, movieId }) => {
               <div className={styles.starBox}>
                 <p className={styles.starTitle}>평균평점</p>
                 <p className={styles.starNum}>
-                  {' '}
                   <SolidStarIcon
                     className={styles.star}
                     height={'30px'}
@@ -299,5 +297,3 @@ const MovieModal = ({ onModalClose, movieId }) => {
 };
 
 export default MovieModal;
-
-//  {movieId.averageScore} 평균평점

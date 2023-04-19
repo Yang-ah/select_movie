@@ -28,6 +28,10 @@ const Stars = ({ movieId, onChange, className, value = 0 }) => {
 
   useEffect(() => {
     setClickedStarIndex(value);
+  }, [value]);
+
+  useEffect(() => {
+    setClickedStarIndex(value);
   }, [movieId]);
 
   return (

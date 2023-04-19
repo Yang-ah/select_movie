@@ -59,6 +59,7 @@ export const RankingCarousel = () => {
             {moviesTop &&
               moviesTop.data.map((movie, idx) => (
                 <div
+                  key={movie.id}
                   className={
                     idx === slideIndex ? styles.slideActive : styles.slideBefore
                   }
