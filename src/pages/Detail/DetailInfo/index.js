@@ -5,7 +5,7 @@ import Chart from '../Chart';
 import dayjs from 'dayjs';
 import { deleteMovieLike, getMovie, postMovieLike } from '../../../api/Movies';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../atom';
+import { isLoginAtom } from '../../../status';
 import {
   BookmarkIcon,
   HeartIcon,
@@ -31,7 +31,6 @@ const DetailInfo = ({ id }) => {
 
     if (isLogin) {
       setIsLiked(response.data.isLiked);
-      // console.log('like', isLogin && response.data.isLiked);
     } else {
       setIsLiked(false);
     }
@@ -51,7 +50,6 @@ const DetailInfo = ({ id }) => {
   };
 
   const onClickButton = async (e) => {
-    //   console.log(isLiked);
     if (!isLogin) {
       return alert('로그인 후 이용 가능합니다!');
     }

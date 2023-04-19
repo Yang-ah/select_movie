@@ -16,7 +16,6 @@ const BOpageNation = ({
 }) => {
   const maxNum = 10;
   const lastPage = Math.ceil(pageNationNumber / maxNum);
-  //console.log(lastPage);
   const [navNum, setNavNum] = useState({
     start: 1,
     end: maxNum,

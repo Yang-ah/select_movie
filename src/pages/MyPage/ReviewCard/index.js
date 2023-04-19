@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './reviewCard.module.scss';
-import { SolidStarIcon, ModifyIcon, TrashIcon } from '../../../assets/icon';
+import {
+  SolidStarIcon,
+  ModifyIcon,
+  TrashIcon,
+  DoubleChevronRightIcon,
+} from '../../../assets/icon';
 
 import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../atom';
+import { isLoginAtom } from '../../../status';
 import { useRecoilValue } from 'recoil';
 import { deleteReview, getReviewsMe, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';
-import Button from '../../../components/Common/Button';
-import { ModifyModal, DeleteModal } from '../ReviewBox/reviewModal';
+import { ReviewModal } from './reviewModal';
 const Review = ({
   title,
   createdAt,
+  movieId,
   reviewId,
   content,
   score,
   fetchMyReviews,
 }) => {
+  const navigate = useNavigate();
+  const onClickComment = () => {
+    navigate(`/detail/${movieId}`);
+  };
+
   const [postForm, setPostForm] = useState({
     content: '',
     score: '',
@@ -40,12 +50,6 @@ const Review = ({
   const isMyReview = async () => {
     const response = await getReviewsMe(movieId);
     response.data && setIsUserMe(response.data.user.id === written);
-  };
-
-  const onClickModifyReview = async () => {
-    await deleteReview(reviewId);
-    await fetchMyReviews();
-    setModifyModalOpen(false);
   };
 
   const onClickDelete = () => {
@@ -86,22 +90,30 @@ const Review = ({
   return (
     <section className={styles.screen}>
       <article className={styles.layerUp}>
-        <button
-          className={styles.fixModal}
-          type="button"
-          name="modify"
-          onClick={onClickModify}
-        >
-          <ModifyIcon className={styles.icon} />
-        </button>
-        <button
-          className={styles.deleteModal}
-          type="button"
-          name="delete"
-          onClick={onClickDelete}
-        >
-          <TrashIcon className={styles.icon} />
-        </button>
+        <div className={styles.upper}>
+          <button
+            className={styles.fixModal}
+            type="button"
+            name="modify"
+            onClick={onClickModify}
+          >
+            <ModifyIcon className={styles.icon} />
+          </button>
+          <button
+            className={styles.deleteModal}
+            type="button"
+            name="delete"
+            onClick={onClickDelete}
+          >
+            <TrashIcon className={styles.icon} />
+          </button>
+        </div>
+        <div className={styles.lower} onClick={onClickComment}>
+          <span className={styles.text}>자세히</span>
+          <button className={styles.moveDetail} type="button" name="move">
+            <DoubleChevronRightIcon className={styles.icon} />
+          </button>
+        </div>
       </article>
       <article className={styles.layerDown}>
         <aside className={styles.top}>
@@ -116,9 +128,9 @@ const Review = ({
         </aside>
         <div className={styles.content}>{content}</div>
       </article>
-      <ModifyModal
+      <ReviewModal
         className={styles.modifyModal}
-        modalOpen1={modifyModalOpen}
+        modalOpen={modifyModalOpen}
         setModalOpen={setModifyModalOpen}
         buttonChildren="수정"
         onClick={onPatchReview}
@@ -137,16 +149,16 @@ const Review = ({
             />
           </div>
         </main>
-      </ModifyModal>
-      <DeleteModal
+      </ReviewModal>
+      <ReviewModal
         className={styles.deleteModal}
-        modalOpen1={deleteModalOpen}
+        modalOpen={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}
         buttonChildren="삭제"
         onClick={onClickDeleteReview}
       >
         리뷰를 삭제하시겠습니까?
-      </DeleteModal>
+      </ReviewModal>
     </section>
   );
 };

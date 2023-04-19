@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/Auth';
 import { isValidateEmail } from '../../../utils';
 import { useSetRecoilState } from 'recoil';
-import { isLoginAtom } from '../../../atom';
+import { isLoginAtom } from '../../../status';
 import { Button } from '../../../components';
 
 const Login = () => {

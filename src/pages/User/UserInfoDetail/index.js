@@ -9,7 +9,6 @@ const InfoDetail = () => {
   const [userData, setUserData] = useState();
   const fetchUserDetail = async () => {
     const response = await getUserInfo(userId.id);
-    console.log('인포디테일:', response.data);
     setUserData(response.data);
   };
 

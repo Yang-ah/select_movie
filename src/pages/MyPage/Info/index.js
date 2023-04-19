@@ -29,7 +29,6 @@ const Info = () => {
   const showModal = () => {
     setModalOpen(true);
   };
-  console.log('info', { modalOpen, userInfo });
 
   useEffect(() => {
     fetchUserInfo();
@@ -37,7 +36,9 @@ const Info = () => {
 
   return (
     <section className={styles.info}>
-      <div className={styles.profile}>🙂</div>
+      <div className={styles.profile}>
+        <UserIcon className={styles.userIcon} />
+      </div>
       <div className={styles.text}>
         <div className={styles.left}>
           <li className={styles.name}>{me && me.name}</li>

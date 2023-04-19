@@ -5,7 +5,7 @@ import cx from 'classnames';
 import dayjs from 'dayjs';
 import Input from '../../../components/Common/Input';
 import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../atom';
+import { isLoginAtom } from '../../../status';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { createReviewComment } from '../../../api/Reviews';

@@ -11,7 +11,7 @@ import {
   AdminLoginModalOpen,
   backOfficeTotalCount,
   isLoginAtom,
-} from '../../../atom';
+} from '../../../status';
 import { useRecoilState } from 'recoil';
 
 const BackOfficeHeader = ({ path }) => {

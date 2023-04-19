@@ -11,7 +11,6 @@ const Info = () => {
 
   const fetchUserDetail = async () => {
     const response = await getUserDetail(userId.id);
-    console.log('인포:', response.data);
     setUserData(response.data);
   };
 
@@ -22,10 +21,11 @@ const Info = () => {
   return (
     <section className={styles.info}>
       <div className={styles.profile}>
-        {/* <UserIcon className={styles.icon} /> */}
+        {' '}
+        <UserIcon className={styles.userIcon} />
       </div>
-      <div className={styles.top}>
-        <li className={styles.text}>
+      <div className={styles.text}>
+        <li className={styles.left}>
           <a className={styles.name}>
             {userData?.nickname} ( {userData?.name} )
           </a>

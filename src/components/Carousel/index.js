@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
-import { useRecoilValue } from 'recoil';
-import useMe from '../../hooks/useMe';
-import { isLoginAtom } from '../../atom';
 
-import {
-  getMoviesGenre,
-  getMoviesMeLike,
-  getMoviesUserLike,
-} from '../../api/Movies';
-import {
-  getMyBookmarks,
-  getBookmarksPage,
-  getUserBookmarksPage,
-} from '../../api/Bookmarks';
+import { getMoviesMeLike, getMoviesUserLike } from '../../api/Movies';
+import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
 
 import {
   CaretLeftIcon,
@@ -27,7 +16,7 @@ import styles from './myCarousel.module.scss';
 import './carousel.scss';
 
 import { PosterH } from '../PosterH';
-import { PosterM, PosterHeart, PosterBookmark } from '../PosterM';
+import { PosterHeart, PosterBookmark } from '../PosterM';
 import { PosterU } from '../PosterU';
 import MovieModal from '../MovieModal';
 
@@ -60,7 +49,6 @@ export const HomeCarousel = ({ GenreId }) => {
     const num = moviesGenre.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
     setMovieId(moviesGenre.data[num]); //data값에 아이디값 대입
-    console.log(moviesGenre.data[num]);
   };
 
   const onModalClose = () => {
@@ -109,12 +97,10 @@ export const MyCarousel = () => {
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
     setMoviesLike(response.data);
-    console.log('좋아요 리스트', response.data);
   };
   const fetchMoviesMark = async () => {
     const response = await getBookmarksPage(1, 20);
     setMoviesMark(response.data.data);
-    console.log('북마크 리스트', response.data.data);
   };
 
   useEffect(() => {
@@ -156,13 +142,7 @@ export const MyCarousel = () => {
         <Slider {...settings}>
           {moviesMark &&
             moviesMark?.map((index) => (
-              <PosterBookmark
-                className={styles.bookMark}
-                id={index.movie.id}
-                title={index.movie.title}
-                postImage={index.movie.postImage}
-                callback={fetchMoviesMark}
-              />
+              <PosterBookmark index={index.movie} callback={fetchMoviesMark} />
             ))}
         </Slider>
       </div>
@@ -178,12 +158,10 @@ export const UserCarousel = () => {
   const fetchUserLike = async () => {
     const response = await getMoviesUserLike(userId.id);
     setMoviesLike(response.data);
-    console.log('좋아요:', response.data);
   };
   const fetchUserBookmark = async () => {
     const response = await getUserBookmarksPage(userId.id);
     setMoviesMark(response.data);
-    console.log('북마크:', response.data);
   };
 
   useEffect(() => {
@@ -221,12 +199,7 @@ export const UserCarousel = () => {
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesMark.map((index) => (
-            <PosterBookmark
-              className={styles.bookMark}
-              id={index.movie.id}
-              title={index.movie.title}
-              postImage={index.movie.postImage}
-            />
+            <PosterBookmark className={styles.bookMark} index={index.movie} />
           ))}
         </Slider>
       </div>

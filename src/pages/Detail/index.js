@@ -7,7 +7,7 @@ import { getReviewsMovie } from '../../api/Reviews';
 import RelatedCard from './RelatedCard';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../atom';
+import { isLoginAtom } from '../../status';
 import useMe from '../../hooks/useMe';
 import Accordion from './Accordion';
 import ReviewInput from '../../components/Comment/ReviewInput';

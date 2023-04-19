@@ -7,7 +7,7 @@ import { getUsers, deleteUsers, getUsersCount } from '../../../api/Users';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOuserModal from './BOmodal/BOuserModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
-import { backOfficeTotalCount } from '../../../atom';
+import { backOfficeTotalCount } from '../../../status';
 import { useRecoilState } from 'recoil';
 import { getReviewsCount } from '../../../api/Reviews';
 
@@ -36,11 +36,11 @@ const BackOfficeUsers = () => {
     const usersCount = await getUsersCount();
     const reviewsCount = await getReviewsCount();
     onSetData(response1.data.data, response1.data.paging.total);
-    setTotalCount({...totalCount, 
-      users:usersCount.data.count, 
-      reviews:reviewsCount.data.count,
+    setTotalCount({
+      ...totalCount,
+      users: usersCount.data.count,
+      reviews: reviewsCount.data.count,
     });
-    //console.log(reviewsCount.data.count);
   };
 
   const onSearch = async (e) => {
@@ -55,7 +55,6 @@ const BackOfficeUsers = () => {
     onSetData(response2.data.data, response2.data.paging.total);
   };
 
-  
   const showModal = (item, index) => {
     return () => {
       setSelectedIDs([item.id]);

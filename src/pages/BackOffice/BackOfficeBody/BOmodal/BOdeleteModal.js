@@ -41,7 +41,6 @@ const BOdeleteModal = ({
     setModalOpen2(false);
     responseData();
   };
-  console.log(ID);
   const onSubmit = async (e) => {
     //NOTE: 새로고침 방지
     e.preventDefault();

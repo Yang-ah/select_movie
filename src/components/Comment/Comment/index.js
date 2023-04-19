@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { HeaderLeft } from '../_shared';
 import useMe from '../../../hooks/useMe';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../atom';
+import { isLoginAtom } from '../../../status';
 import { useEffect, useState } from 'react';
 import { ModifyIcon, TrashIcon } from '../../../assets/icon';
 import Modal from '../../Common/Modal';
