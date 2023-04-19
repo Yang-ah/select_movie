@@ -105,3 +105,11 @@ AWS|
 |Detail Page|| 
 |My & User || 
 |BackOffice || 
+
+| 기능별 배치 |  |  |  |  |
+| :--: | :--: | :--: | :--: | :--: |
+| Common | | | | |
+| Home & Preview | | | | |
+| Detail Page | | | | |
+| My & User | | | | |
+| BackOffice | | | | |
