@@ -2,11 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import cx from 'classnames';
 import styles from './infoModal.module.scss';
-import useMe from '../../../hooks/useMe';
-import { patchUser } from '../../../api/Users';
-import { Button, Input } from '../../../components';
-import { TrashIcon } from '../../../assets/icon';
-import { getUsersMeInfo } from '../../../api/Users';
+import useMe from '../../../../hooks/useMe';
+import { patchUser } from '../../../../api/Users';
+import { Button, Input } from '../../../../components';
+import { getUsersMeInfo } from '../../../../api/Users';
 
 const InfoModal = ({
   className,

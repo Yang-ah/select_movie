@@ -4,7 +4,7 @@ import styles from './info.module.scss';
 import useMe from '../../../hooks/useMe';
 
 import { getUsersMeInfo } from '../../../api/Users';
-import InfoModal from './infoModal';
+import InfoModal from './InfoModal';
 import { UserIcon, SettingIcon } from '../../../assets/icon';
 
 const Info = () => {
