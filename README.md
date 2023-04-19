@@ -99,7 +99,7 @@ AWS|
 |BackOffice |![BackOffice](https://user-images.githubusercontent.com/122377401/233072414-091c8f1a-a03b-447e-b267-d7197ab1aa42.png)| 
 
 | |각 기능별 배치|
-| :--: | :--: | :--: | :--: | :--: |
+| :--: | :--: |
 |Common||
 |Home & Preview|| 
 |Detail Page|| 
