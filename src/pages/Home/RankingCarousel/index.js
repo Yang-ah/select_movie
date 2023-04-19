@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { getMoviesTop } from '../../api/Movies';
-import { useNavigate } from 'react-router-dom';
-import styles from './ranking.module.scss';
+import { getMoviesTop } from '../../../api/Movies';
+import styles from './rankingCarousel.module.scss';
 
-import PosterL from '../PosterL';
-import MovieModal from '../MovieModal';
+import PosterRanking from '../../../components/PosterRanking';
+import MovieModal from '../../../components/MovieModal';
 
 export const RankingCarousel = () => {
-  const navigate = useNavigate;
   const [isShow, setIsShow] = useState(false);
   const [moviesTop, setMoviesTop] = useState({ data: [] });
   const [movieId, setMovieId] = useState(null);
@@ -56,7 +54,6 @@ export const RankingCarousel = () => {
         />
       )}
       <div className={styles.ranking}>
-        
         <div className={styles.slider}>
           <Slider {...settings}>
             {moviesTop &&
@@ -67,7 +64,7 @@ export const RankingCarousel = () => {
                   }
                 >
                   <p className={styles.rankingNum}>{idx + 1}</p>
-                  <PosterL
+                  <PosterRanking
                     key={movie.id}
                     title={movie.title}
                     id={movie.id}

@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 
-import { getMoviesMeLike, getMoviesUserLike } from '../../api/Movies';
+import {
+  getMoviesGenre,
+  getMoviesMeLike,
+  getMoviesUserLike,
+} from '../../api/Movies';
+
 import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
 
 import {
@@ -15,9 +20,9 @@ import {
 import styles from './myCarousel.module.scss';
 import './carousel.scss';
 
-import { PosterH } from '../PosterH';
-import { PosterHeart, PosterBookmark } from '../PosterM';
-import { PosterU } from '../PosterU';
+import { PosterHome } from '../PosterHome';
+import { PosterHeart, PosterBookmark } from '../PosterMy';
+import { PosterUser } from '../PosterUser';
 import MovieModal from '../MovieModal';
 
 export const PrevArrow = (props) => {
@@ -77,7 +82,7 @@ export const HomeCarousel = ({ GenreId }) => {
       )}
       <Slider {...settings}>
         {moviesGenre?.data.map((movie) => (
-          <PosterH
+          <PosterHome
             key={movie.id}
             movie={movie}
             onModalClick={onModalClick}
@@ -188,7 +193,7 @@ export const UserCarousel = () => {
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesLike.map((index) => (
-            <PosterU key={index.id} index={index} />
+            <PosterUser key={index.id} index={index} />
           ))}
         </Slider>
       </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './poster.module.scss';
+import styles from './posterUser.module.scss';
 
 import { SolidHeartIcon, SolidBookmarkIcon } from '../../assets/icon';
 
-export const PosterU = ({ index }) => {
+export const PosterUser = ({ index }) => {
   return (
     <article className={styles.wrapper}>
       <div className={styles.screen}>

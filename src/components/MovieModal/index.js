@@ -57,6 +57,8 @@ const MovieModal = ({ onModalClose, movieId }) => {
     } else {
       setIsBookmarked(false);
     }
+
+    //  console.log('bookmark', isLogin && bookmarkIdArr.includes(id));
   };
 
   const onClickButton = async (e) => {

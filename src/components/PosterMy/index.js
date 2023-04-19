@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './poster.module.scss';
+import styles from './posterMy.module.scss';
 import useMe from '../../hooks/useMe';
 import { postMovieLike, deleteMovieLike } from '../../api/Movies';
 import { postBookmark, deleteBookmark } from '../../api/Bookmarks';
