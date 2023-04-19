@@ -85,7 +85,6 @@ AWS|
 | User Page |![User Page](https://user-images.githubusercontent.com/122377401/233066451-9f1ae44d-0de6-4d7f-90a4-77066ff62cc2.gif)| - 타 사용자 리뷰 및 댓글 확인 기능 |**FRONT-END** </br>`구성미` </br>|
 |Backoffice Page|![Backoffice Page](https://user-images.githubusercontent.com/122377401/233066447-3f488a89-ebf8-4365-89ae-f4e715eaa5d5.gif)| -  영화,리뷰,유저 수정, 삭제 구현 </br> - 페이지네이션<br/> 구현  </br> - modal 기능<br/> 구현 | **FRONT-END** </br> `신현중`|
 | Login Page |![Login Page](https://user-images.githubusercontent.com/122377401/233066447-3f488a89-ebf8-4365-89ae-f4e715eaa5d5.gif)| - Sign in/up 기능| **FRONT-END** </br> `신현중` |
-<br/><br/>
 <br/>
 
 ## Wireframe
