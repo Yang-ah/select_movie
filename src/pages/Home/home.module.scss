@@ -2,7 +2,7 @@
 
 .wrapper {
   background-color: c.$C_BACKGROUND;
-  color: rgba(255, 255, 255, 0.8);
+  color: c.$C_WHITE_80;
   font-weight: 800;
   font-size: 24px;
   padding: 20px 10px;
@@ -13,9 +13,11 @@
   }
 
   .genreTitle {
-    margin: 40px 0 0 12px;
+    margin: 60px 0 8px 12px;
     font-size: 28px;
-    letter-spacing: 5%;
+    border-bottom: 2px solid c.$C_WHITE_80;
+    padding-bottom: 12px;
+
     > span {
       color: c.$C_WHITE;
     }

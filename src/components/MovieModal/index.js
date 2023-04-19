@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './modal.module.scss';
+import styles from './movieModal.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { deleteMovieLike, getMovie, postMovieLike } from '../../api/Movies';
