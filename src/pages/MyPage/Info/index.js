@@ -4,8 +4,8 @@ import styles from './info.module.scss';
 import useMe from '../../../hooks/useMe';
 
 import { getUsersMeInfo } from '../../../api/Users';
-import InfoModal from './InfoModal';
 import { UserIcon, SettingIcon } from '../../../assets/icon';
+import InfoModal from './InfoModal';
 
 const Info = () => {
   const { me, onGetMe } = useMe();
