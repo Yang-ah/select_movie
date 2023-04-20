@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./rankingTitle.module.scss";
-import { motion, useIsPresent } from "framer-motion";
 
 const RankingTitle = () =>{
 

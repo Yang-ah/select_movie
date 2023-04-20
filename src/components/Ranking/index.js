@@ -8,7 +8,6 @@ import PosterL from '../PosterL';
 import MovieModal from '../MovieModal';
 
 export const RankingCarousel = () => {
-  const navigate = useNavigate;
   const [isShow, setIsShow] = useState(false);
   const [moviesTop, setMoviesTop] = useState({ data: [] });
   const [movieId, setMovieId] = useState(null);
