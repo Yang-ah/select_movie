@@ -3,12 +3,16 @@ import styles from './backOfficeBody.module.scss';
 import cx from 'classnames';
 import { Button, Input, Modal } from '../../../components';
 import { CheckIcon, SearchIcon, TrashIcon } from '../../../assets/icon';
-import { deleteReviewAdmin, getReviews, getReviewsCount } from '../../../api/Reviews';
+import {
+  deleteReviewAdmin,
+  getReviews,
+  getReviewsCount,
+} from '../../../api/Reviews';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOreviewModal from './BOmodal/BOreviewModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
 import { useRecoilState } from 'recoil';
-import { backOfficeTotalCount } from '../../../atom';
+import { backOfficeTotalCount } from '../../../status';
 
 const title = ['작성일', '작성자', '작성내용', '더보기', '삭제'];
 const LIMIT = 10;
@@ -34,9 +38,7 @@ const BackOfficeReviews = () => {
     const response1 = await getReviews(pageNumber, LIMIT);
     const responseCount = await getReviewsCount();
     onSetData(response1.data.data, response1.data.paging.total);
-    setTotalCount({...totalCount, 
-      reviews:responseCount.data.count,
-    });
+    setTotalCount({ ...totalCount, reviews: responseCount.data.count });
   };
 
   const onSearch = async (e) => {
@@ -94,6 +96,7 @@ const BackOfficeReviews = () => {
         await deleteReviewAdmin(element);
       }
       alert('리뷰 일괄 삭제 완료');
+      setSelectedIDs([]);
       responseData();
       onSearch();
     } catch (err) {

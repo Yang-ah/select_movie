@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import styles from "./poster.module.scss";
-import { SolidStarIcon, SolidHeartIcon } from "../../assets/icon";
+import React, { useState } from 'react';
+import styles from './posterRanking.module.scss';
+import { SolidStarIcon } from '../../assets/icon';
 
-const PosterL = ({ title , postImage , onModalClick , id  , rating , movieId, movie}) => {
-  const [getAver , setGetAver] = useState(movie.averageScore) 
+const PosterRanking = ({ title, postImage, onModalClick, id, movie }) => {
+  const [getAver, setGetAver] = useState(movie.averageScore);
 
   return (
-    <div className={styles.wrapper} onClick={() => onModalClick(id)} >
+    <div className={styles.wrapper} onClick={() => onModalClick(id)}>
       <div className={styles.screen}>
         <article className={styles.layerUp}>
           <div className={styles.title}>{title}</div>
@@ -17,11 +17,11 @@ const PosterL = ({ title , postImage , onModalClick , id  , rating , movieId, mo
             </div>
           </div>
         </article>
-        <article className={styles.layerDown} >
+        <article className={styles.layerDown}>
           <img className={styles.postImage} src={postImage} alt={title} />
         </article>
       </div>
     </div>
   );
 };
-export default PosterL;
+export default PosterRanking;

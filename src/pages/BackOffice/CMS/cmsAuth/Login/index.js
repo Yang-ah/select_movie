@@ -7,7 +7,11 @@ import { adminlogin } from '../../../../../api/Auth';
 import { isValidateEmail } from '../../../../../utils';
 //recoil
 import { useSetRecoilState, useRecoilState } from 'recoil';
-import { AdminLoginModalOpen,AdminResistorModalOpen, isLoginAtom } from '../../../../../atom';
+import {
+  AdminLoginModalOpen,
+  AdminResistorModalOpen,
+  isLoginAtom,
+} from '../../../../../status';
 
 import CmsModal from '../../cmsModal';
 import { AdminRegisterPage } from '..';
@@ -18,8 +22,10 @@ const CMSLogin = () => {
   //recoil
   const setIsLogin = useSetRecoilState(isLoginAtom);
   const setAdminLoginModalOpen = useSetRecoilState(AdminLoginModalOpen);
-  const [adminResistorModalOpen,setResistorModalOpen] = useRecoilState(AdminResistorModalOpen);
- 
+  const [adminResistorModalOpen, setResistorModalOpen] = useRecoilState(
+    AdminResistorModalOpen,
+  );
+
   const [form, setForm] = useState({
     userId: '',
     password: '',
@@ -83,7 +89,7 @@ const CMSLogin = () => {
       }
     } catch (err) {
       const errData = err.response.data;
-        alert(errData.message);
+      alert(errData.message);
     }
   };
 
@@ -111,12 +117,11 @@ const CMSLogin = () => {
             value={form.password}
             onChange={onChange}
           />
-
-          <Button className={styles.button} onClick={showModal}>
-            관리자 회원가입
-          </Button>
           <Button className={styles.button} type="submit" form="loginForm">
             관리자 로그인
+          </Button>
+          <Button className={styles.button} onClick={showModal}>
+            관리자 회원가입
           </Button>
         </form>
       </section>

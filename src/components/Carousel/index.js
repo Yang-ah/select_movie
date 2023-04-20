@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
-import { useRecoilValue } from 'recoil';
-import useMe from '../../hooks/useMe';
-import { isLoginAtom } from '../../atom';
 
 import {
   getMoviesGenre,
   getMoviesMeLike,
   getMoviesUserLike,
 } from '../../api/Movies';
-import {
-  getMyBookmarks,
-  getBookmarksPage,
-  getUserBookmarksPage,
-} from '../../api/Bookmarks';
+
+import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
 
 import {
   CaretLeftIcon,
@@ -26,9 +20,9 @@ import {
 import styles from './myCarousel.module.scss';
 import './carousel.scss';
 
-import { PosterH } from '../PosterH';
-import { PosterM, PosterHeart, PosterBookmark } from '../PosterM';
-import { PosterU } from '../PosterU';
+import { PosterHome } from '../PosterHome';
+import { PosterHeart, PosterBookmark } from '../PosterMy';
+import { PosterUser } from '../PosterUser';
 import MovieModal from '../MovieModal';
 
 export const PrevArrow = (props) => {
@@ -65,7 +59,7 @@ export const HomeCarousel = ({ GenreId }) => {
   const onModalClose = () => {
     setIsShow(false);
   };
-  
+
   const settings = {
     dot: false,
     arrow: false,
@@ -88,7 +82,7 @@ export const HomeCarousel = ({ GenreId }) => {
       )}
       <Slider {...settings}>
         {moviesGenre?.data.map((movie) => (
-          <PosterH
+          <PosterHome
             key={movie.id}
             movie={movie}
             onModalClick={onModalClick}
@@ -153,7 +147,11 @@ export const MyCarousel = () => {
         <Slider {...settings}>
           {moviesMark &&
             moviesMark?.map((index) => (
-              <PosterBookmark index={index.movie} callback={fetchMoviesMark} />
+              <PosterBookmark
+                key={index.movie}
+                index={index.movie}
+                callback={fetchMoviesMark}
+              />
             ))}
         </Slider>
       </div>
@@ -199,7 +197,7 @@ export const UserCarousel = () => {
       <div className={styles.mywrap}>
         <Slider {...settings}>
           {moviesLike.map((index) => (
-            <PosterU key={index.id} index={index} />
+            <PosterUser key={index.id} index={index} />
           ))}
         </Slider>
       </div>

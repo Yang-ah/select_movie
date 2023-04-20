@@ -7,7 +7,7 @@ import { getReviewsMovie } from '../../api/Reviews';
 import RelatedCard from './RelatedCard';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../atom';
+import { isLoginAtom } from '../../status';
 import useMe from '../../hooks/useMe';
 import Accordion from './Accordion';
 import ReviewInput from '../../components/Comment/ReviewInput';
@@ -106,6 +106,7 @@ const Detail = () => {
             <ReviewInput
               id={id}
               disabled={!isLogin}
+              //NOTE: props로 넘기는 함수 / 값 => 함수 : useCallback, 값 : useMemo
               placeholder={inputPlaceholder()}
               fetchReviews={fetchReviews}
               userName={inputUsername()}

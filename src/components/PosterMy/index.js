@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './poster.module.scss';
+import styles from './posterMy.module.scss';
 import useMe from '../../hooks/useMe';
 import { postMovieLike, deleteMovieLike } from '../../api/Movies';
 import { postBookmark, deleteBookmark } from '../../api/Bookmarks';
@@ -72,7 +72,6 @@ export const PosterBookmark = ({ index, callback }) => {
   const { me, onGetMe } = useMe();
   const [isMarekd, setIsMarked] = useState(true);
   const [mark, setMark] = useState(true);
-  const buttonRef = useRef();
 
   const onBookmark = async () => {
     const response = await postBookmark(index.id);
@@ -81,7 +80,7 @@ export const PosterBookmark = ({ index, callback }) => {
 
   const offBookmark = async () => {
     const response = await deleteBookmark(index.id);
-    buttonRef.current.setIsMarked = false;
+
     callback && callback();
   };
 
@@ -104,7 +103,7 @@ export const PosterBookmark = ({ index, callback }) => {
       <div className={styles.screen}>
         <article className={styles.layerUp}>
           <div className={styles.title}>{index?.title}</div>
-          <button ref={buttonRef} onClick={onClick}>
+          <button onClick={onClick}>
             {mark === true ? (
               <SolidBookmarkIcon className={styles.icon} />
             ) : (

@@ -17,7 +17,7 @@
 */
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Input } from '../../../../components';
-import styles from './BOmovieModal.module.scss';
+import styles from './BOdeleteModal.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import cx from 'classnames';
 import { deleteUser } from '../../../../api/Users';
@@ -109,7 +109,6 @@ const BOdeleteModal = ({
           <header className={styles.title}>안내</header>
           <div className={styles.content}>
             <ul className={styles.inputForm}>
-              <li>ID : {ID}</li>
               <li>삭제하시겠습니까?</li>
             </ul>
           </div>

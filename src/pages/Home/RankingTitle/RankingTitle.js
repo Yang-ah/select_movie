@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./rankingTitle.module.scss";
 
 const RankingTitle = () =>{
 

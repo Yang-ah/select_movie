@@ -11,7 +11,7 @@ import {
   AdminLoginModalOpen,
   backOfficeTotalCount,
   isLoginAtom,
-} from '../../../atom';
+} from '../../../status';
 import { useRecoilState } from 'recoil';
 
 const BackOfficeHeader = ({ path }) => {
@@ -57,7 +57,7 @@ const BackOfficeHeader = ({ path }) => {
   const logout = () => {
     localStorage.clear();
     setIsLogin(false);
-    alert('로그아웃 되었습니다');
+    navigate(`/auth/admin`);
   };
 
   useEffect(() => {
