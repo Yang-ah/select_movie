@@ -1,13 +1,12 @@
-@use "../../styles/constants/" as c;
-@use "../../styles/mixins" as m;
+@use '../../styles/constants/' as c;
+@use '../../styles/mixins' as m;
 
 $HEADER_INFO_PADDING_L: 40px;
 $HEADER_INFO_PADDING_M: 20px;
 $HEADER_INFO_PADDING_S: 12px;
 $HEADER_INFO_PADDING: 20px;
 
-
-.modal {  
+.modal {
   @include m.flex();
   width: 100%;
   height: 100%;
@@ -28,12 +27,11 @@ $HEADER_INFO_PADDING: 20px;
     border-radius: 20px;
     box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
 
-
-    .starBox{
+    .starBox {
       @include m.flex(flex-end);
       position: absolute;
-      top : 60%;
-      left : 75%;
+      top: 60%;
+      left: 75%;
       justify-content: center;
       align-items: center;
       width: 150px;
@@ -43,18 +41,16 @@ $HEADER_INFO_PADDING: 20px;
       box-shadow: 2px 2px 2px 2px gray;
       flex-direction: column;
 
-      .starTitle{
+      .starTitle {
         font-size: 25px;
         color: c.$C_BLACK;
       }
 
-      .starNum{
+      .starNum {
         font-size: 47px;
         color: c.$C_BLACK;
       }
     }
-
-
 
     .popupBackground {
       border-radius: 20px;
@@ -72,154 +68,152 @@ $HEADER_INFO_PADDING: 20px;
     > .popupBody {
       display: flex;
       column-gap: 50px;
-
     }
   }
 }
 .headerContentWrap {
-    @include m.flex(flex-start, flex-start);
-      
-      .thumbUrl {
-        margin-top: 20px;
-        width: 200px;
-        border: 2px solid c.$C_WHITE;
-        border-radius: 5px;
-        box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
-        object-position: center;
-        object-fit: cover;
-      }
-      
-      .leftWrap {
-        margin-right: 60px;
-      
-        .buttonWrap {
-          @include m.flex();
-          padding: 8px 0;
-      
-           .button {
-            font-weight: 800;
-            width: 88px;
-            height: 40px;
-            font-size: 16px;
-      
-            &:hover > svg {
-              transform: translateY(-2px) scale(1.1);
-            }
-      
-            > svg {
-              width: 12px;
-              margin-left: 4px;
-              transition: 0.2s transform ease-in;
-            }
-      
-            &:first-of-type {
-              margin-right: 12px;
-            }
-      
-            &:last-of-type {
-              > svg {
-                width: 16px;
-              }
-            }
-          }
-        }
-      }
-      
-      .rightWrap {
-        max-width: 650px;
-        height: 300px;
-        @include m.flex(space-between, flex-start, column);
-        
-        
-      
-        > header {
-          width: 100%;
-          font-weight: 600;
-          padding-bottom: $HEADER_INFO_PADDING;
-          border-bottom: 1px solid white;
-          margin-bottom: $HEADER_INFO_PADDING;
-          > .title {
-            font-size: 36px;
-            margin-right: 12px;
-          }
-          > .runtime {
-            margin-right: 4px;
-          }
-        }
-      
-        .info {
-          width: 100%;
-          max-height: 420px;
-          overflow-y: scroll;
-      
-          > article {
-            width: 100%;
-            padding-bottom: $HEADER_INFO_PADDING;
-            color: c.$C_WHITE_80;
-            font-size: 15px;
-      
-            > h3 {
-              font-size: 18px;
-              font-weight: 600;
-              margin: 0 8px 6px 0;
-              color: white;
-              letter-spacing: 0.5px;
-            }
-      
-            .plot {
-              width: 100%;
-              letter-spacing: 1px;
-              font-size: 14px;
-            
+  @include m.flex(flex-start, flex-start);
 
+  .thumbUrl {
+    margin-top: 20px;
+    width: 200px;
+    border: 2px solid c.$C_WHITE;
+    border-radius: 5px;
+    box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
+    object-position: center;
+    object-fit: cover;
+  }
 
-            }
-            .staffs{
-              letter-spacing: 20px;
-              font-size: 14px;
-            }
-          }
-        }
-      }
-      
-      .starWrap {
-        @include m.flex();
+  .leftWrap {
+    margin-right: 60px;
+
+    .buttonWrap {
+      @include m.flex();
+      padding: 8px 0;
+
+      .button {
+        font-weight: 800;
+        width: 88px;
+        height: 40px;
         font-size: 16px;
-        font-weight: 600;
-        > span {
-          padding-right: 8px;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover > svg {
+          transform: translateY(-2px) scale(1.1);
         }
+
         > svg {
-          width: 18px;
-          fill: c.$C_STAR;
+          width: 12px;
+          margin-left: 4px;
+          transition: 0.2s transform ease-in;
+        }
+
+        &:first-of-type {
+          margin-right: 12px;
+        }
+
+        &:last-of-type {
+          > svg {
+            width: 16px;
+          }
         }
       }
-    }
-
-  .close {
-    position: absolute;
-    right: 30px;
-    top: 20px;
-    font-size: 40px;
-    height: 60px;
-    width: 60px;
-    border: 1px solid c.$C_BLACK;
-    background-color: c.$C_BLACK;
-    opacity: 70%;
-    color: #fff;
-    border-radius: 100%;
-    text-align: center;
-    line-height: 50px;
-    cursor: pointer;
-    &:hover {
-      transform :rotate(180deg);
-      transition: .5s;
     }
   }
 
-  .moveSection{
+  .rightWrap {
+    max-width: 650px;
+    height: 300px;
+    @include m.flex(space-between, flex-start, column);
 
-  .moveDetail{
+    > header {
+      width: 100%;
+      font-weight: 600;
+      padding-bottom: $HEADER_INFO_PADDING;
+      border-bottom: 1px solid white;
+      margin-bottom: $HEADER_INFO_PADDING;
+      > .title {
+        font-size: 36px;
+        margin-right: 12px;
+      }
+      > .runtime {
+        margin-right: 4px;
+      }
+    }
+
+    .info {
+      width: 100%;
+      max-height: 420px;
+      overflow-y: scroll;
+
+      > article {
+        width: 100%;
+        padding-bottom: $HEADER_INFO_PADDING;
+        color: c.$C_WHITE_80;
+        font-size: 15px;
+
+        > h3 {
+          font-size: 18px;
+          font-weight: 600;
+          margin: 0 8px 6px 0;
+          color: white;
+          letter-spacing: 0.5px;
+        }
+
+        .plot {
+          width: 100%;
+          font-size: 14px;
+          letter-spacing: 2px;
+          line-height: 110%;
+        }
+        .staffs {
+          letter-spacing: 20px;
+          word-spacing: 5px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .starWrap {
+    @include m.flex();
+    font-size: 16px;
+    font-weight: 600;
+    > span {
+      padding-right: 8px;
+    }
+    > svg {
+      width: 18px;
+      fill: c.$C_STAR;
+    }
+  }
+}
+
+.close {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  font-size: 40px;
+  height: 60px;
+  width: 60px;
+  border: 1px solid c.$C_BLACK;
+  background-color: c.$C_BLACK;
+  opacity: 70%;
+  color: #fff;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  &:hover {
+    transform: rotate(180deg);
+    transition: 0.5s;
+  }
+}
+
+.moveSection {
+  .moveDetail {
     position: absolute;
     top: 40%;
     right: -25%;
@@ -234,28 +228,24 @@ $HEADER_INFO_PADDING: 20px;
     animation-iteration-count: infinite;
     animation-delay: 0.5s;
 
-    &:hover{
-      transition: .5s;
+    &:hover {
+      transition: 0.5s;
       opacity: 100%;
-      
     }
-
-
   }
 
-
-  @keyframes shake{
-    0%{
-        right : -225px;
-        transform: .5s;
-      }
-      50%{
-        right : -205px;
-        transform: .5s;
-      }
-      100%{
-        right : -225px;
-        transform: .5s;
-      }
+  @keyframes shake {
+    0% {
+      right: -225px;
+      transform: 0.5s;
+    }
+    50% {
+      right: -205px;
+      transform: 0.5s;
+    }
+    100% {
+      right: -225px;
+      transform: 0.5s;
+    }
   }
-  }
+}

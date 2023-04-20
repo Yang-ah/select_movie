@@ -8,11 +8,18 @@
   cursor: pointer;
 
   > .profileIcon {
-    background-color: pink;
+    background-color: c.$C_ORANGE;
     padding: 12px;
-    font-size: 24px;
+
     border-radius: 50%;
     margin-right: 8px;
+
+    .userIcon {
+      fill: rgb(255, 223, 165);
+      height: 20px;
+      width: 20px;
+      // 기존 font-size: 24px 기준으로 설정했음.
+    }
   }
 
   > .profileText {
@@ -21,7 +28,7 @@
     > .userName {
       font-size: 20px;
       font-weight: 600;
-      padding-bottom: 4px;
+      padding-bottom: 8px;
       &:hover {
         text-decoration: underline;
       }
