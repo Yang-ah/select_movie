@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './reviewCard.module.scss';
 import {
   SolidStarIcon,
@@ -7,18 +7,13 @@ import {
   TrashIcon,
   DoubleChevronRightIcon,
 } from '../../../assets/icon';
-
 import useMe from '../../../hooks/useMe';
 import { isLoginAtom } from '../../../status';
 import { useRecoilValue } from 'recoil';
-import {
-  deleteReview,
-  getMyReview,
-  getReviewsMe,
-  patchReview,
-} from '../../../api/Reviews';
+import { deleteReview, getMyReview, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';
 import { ReviewModal } from './ReviewModal';
+
 const Review = ({
   title,
   createdAt,
@@ -50,6 +45,7 @@ const Review = ({
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   useEffect(() => {
     isMyReview();
+    onGetMe();
   }, [isLogin, me]);
 
   const isMyReview = async () => {

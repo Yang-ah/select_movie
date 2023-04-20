@@ -1,0 +1,184 @@
+@use '../../styles/constants' as c;
+@use '../../styles/mixins' as m;
+
+//Ranking
+.wrapperR {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  position: relative;
+
+  .screenR {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover,
+    :active {
+      .layerDownR {
+        opacity: 0.2;
+        transition: 0.5s;
+        transform: translateY(-10px);
+      }
+      .layerUpR {
+        .bottomR {
+          z-index: 999;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  .layerUpR {
+    z-index: -2;
+    width: 95%;
+    white-space: nowrap;
+    .titleR {
+      text-align: center;
+      justify-content: center;
+
+      position: absolute;
+      bottom: 50%;
+      margin: 0 auto;
+      z-index: -2;
+      width: 95%;
+
+      font-size: 24px;
+      overflow: hidden;
+      color: c.$C_WHITE;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bottomR {
+      @include m.flex(flex-end, flex-end);
+      position: absolute;
+      top: 5%;
+      right: 8%;
+      width: 90%;
+
+      white-space: nowrap;
+      .ratingR {
+        font-size: 40px;
+        white-space: nowrap;
+        color: white;
+        .starR {
+          margin-right: 5%;
+          fill: c.$C_STAR;
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  .layerDownR {
+    position: relative;
+    .postImageR {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+}
+
+//Home
+.wrapperH {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  position: relative;
+
+  .screenH {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    cursor: pointer;
+
+    &:hover,
+    :active {
+      .postImageH {
+        opacity: 0.5;
+        transition: 0.5s;
+        transform: translateY(-10px);
+      }
+      .layerUpH {
+        z-index: 5;
+        .iconH {
+          &:hover,
+          :active {
+            z-index: 999;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+
+  .layerUpH {
+    z-index: -2;
+    width: 90%;
+    height: 80%;
+    left: 5%;
+    top: 10%;
+    position: absolute;
+    white-space: nowrap;
+    .titleH {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      z-index: -2;
+      width: 95%;
+      height: 80%;
+      padding-top: 80px;
+      font-size: 26px;
+      font-weight: bold;
+      color: c.$C_WHITE;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .bodyContentsH {
+      @include m.flex(space-between);
+    }
+    .ratingH {
+      @include m.flex(flex-start);
+      margin-top: 10%;
+      font-size: 30px;
+      white-space: nowrap;
+      color: white;
+
+      .starH {
+        margin-right: 5%;
+        fill: c.$C_STAR;
+        height: 30px;
+      }
+    }
+
+    .iconH {
+      margin-top: 7%;
+      height: 22px;
+      width: 22px;
+      margin-right: -3%;
+      fill: c.$C_HEART;
+      background: none;
+    }
+  }
+
+  .layerDownH {
+    position: relative;
+
+    .postImageH {
+      width: 100%;
+      /* min-height: 200px;
+      max-height: 300px; */
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+}

@@ -9,3 +9,16 @@
 .sectionBody {
   width: 500px;
 }
+
+.carousel {
+  height: 230px; //기본크기. 수정X.
+  margin-bottom: 10px;
+  .textWrap {
+    height: 30px;
+  }
+  .text {
+    font-size: 22px;
+    font-weight: 500;
+    box-shadow: inset 0 -6px 0 rgba(255, 166, 0, 0.6);
+  }
+}

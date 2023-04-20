@@ -1,14 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import styles from './posterHome.module.scss';
+import React, { useState, useEffect } from 'react';
+import styles from './posterRanking.module.scss';
+
 import { getMovie, postMovieLike, deleteMovieLike } from '../../api/Movies';
-
 import { SolidStarIcon, HeartIcon, SolidHeartIcon } from '../../assets/icon';
-
 import Button from '../Common/Button';
 import { useRecoilValue } from 'recoil';
 import { isLoginAtom } from '../../status';
 
-export const PosterHome = ({ movie, id, onModalClick, callback }) => {
+export const PosterRanking = ({
+  title,
+  postImage,
+  onModalClick,
+  id,
+  movie,
+}) => {
+  const [getAver, setGetAver] = useState(movie.averageScore);
+  return (
+    <div className={styles.wrapperR} onClick={() => onModalClick(id)}>
+      <div className={styles.screenR}>
+        <article className={styles.layerUpR}>
+          <div className={styles.titleR}>{title}</div>
+          <div className={styles.bottomR}>
+            <div className={styles.ratingR}>
+              <SolidStarIcon className={styles.starR} />
+              <p className={styles.starNumR}>{getAver?.toFixed(1)}</p>
+            </div>
+          </div>
+        </article>
+        <article className={styles.layerDownR}>
+          <img className={styles.postImageR} src={postImage} alt={title} />
+        </article>
+      </div>
+    </div>
+  );
+};
+
+export const PosterCategory = ({ movie, id, onModalClick, callback }) => {
   const isLogin = useRecoilValue(isLoginAtom);
   const [movieDetail, setMovieDetail] = useState();
   const [isLiked, setIsLiked] = useState(false);
@@ -42,25 +69,28 @@ export const PosterHome = ({ movie, id, onModalClick, callback }) => {
   }, [movie.id]);
 
   return (
-    <article className={styles.wrapper}>
-      <div className={styles.screen}>
-        <article className={styles.layerUp}>
-          <div className={styles.title} onClick={() => onModalClick(movie?.id)}>
+    <article className={styles.wrapperH}>
+      <div className={styles.screenH}>
+        <article className={styles.layerUpH}>
+          <div
+            className={styles.titleH}
+            onClick={() => onModalClick(movie?.id)}
+          >
             {movie?.title}
           </div>
-          <div className={styles.bodyContents}>
-            <div className={styles.rating}>
+          <div className={styles.bodyContentsH}>
+            <div className={styles.ratingH}>
               <SolidStarIcon
-                className={styles.star}
+                className={styles.starH}
                 height={'30px'}
                 fill="yellow"
               />
-              <p className={styles.starNum}>{getAver?.toFixed(1)}</p>
+              <p className={styles.starNumH}>{getAver?.toFixed(1)}</p>
             </div>
             <Button
               option="third"
               name="isLiked"
-              className={styles.icon}
+              className={styles.iconH}
               onClick={onClickButton}
             >
               {isLiked ? (
@@ -71,9 +101,9 @@ export const PosterHome = ({ movie, id, onModalClick, callback }) => {
             </Button>
           </div>
         </article>
-        <article className={styles.layerDown}>
+        <article className={styles.layerDownH}>
           <img
-            className={styles.postImage}
+            className={styles.postImageH}
             src={movie?.postImage}
             alt={movie?.title}
           />
@@ -82,5 +112,3 @@ export const PosterHome = ({ movie, id, onModalClick, callback }) => {
     </article>
   );
 };
-
-export default PosterHome;

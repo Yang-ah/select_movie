@@ -42,58 +42,47 @@ const MyReview = () => {
   };
 
   return (
-    <>
-      <p className={styles.category}>
-        <span className={styles.text}>작성한 리뷰</span>
-      </p>
-      <section className={styles.wrapper}>
-        <ul className={styles.ul}>
-          {records.map((data, i) => {
-            return (
-              <li className={styles.li} key={i}>
-                <Review
-                  title={data.movie.title}
-                  movieId={data.movie.id}
-                  createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
-                  content={data.content}
-                  score={data.score}
-                  reviewId={data.id}
-                  fetchMyReviews={fetchMyReviews}
-                />
-              </li>
-            );
-          })}
-        </ul>
-
-        <ul className={styles.pagination}>
-          <li className={styles.prevIcon}>
-            <ChevronLeftIcon
-              className={styles.Icon}
-              onClick={onClickPrevPage}
-            />
-          </li>
-
-          {numbers.map((number, i) => (
-            <li
-              className={cx(styles.page, {
-                [styles.currentPage]: number === currentPage,
-              })}
-              key={i}
-              onClick={() => onChangePage(number)}
-            >
-              {number}
+    <section className={styles.wrapper}>
+      <ul className={styles.ul}>
+        {records.map((data, i) => {
+          return (
+            <li className={styles.li} key={i}>
+              <Review
+                title={data.movie.title}
+                movieId={data.movie.id}
+                createdAt={dayjs(data.createdAt).format('YYYY.MM.DD')}
+                content={data.content}
+                score={data.score}
+                reviewId={data.id}
+                fetchMyReviews={fetchMyReviews}
+              />
             </li>
-          ))}
+          );
+        })}
+      </ul>
 
-          <li className={styles.nextIcon}>
-            <ChevronRightIcon
-              className={styles.Icon}
-              onClick={onClickNextPage}
-            />
+      <ul className={styles.pagination}>
+        <li className={styles.prevIcon}>
+          <ChevronLeftIcon className={styles.Icon} onClick={onClickPrevPage} />
+        </li>
+
+        {numbers.map((number, i) => (
+          <li
+            className={cx(styles.page, {
+              [styles.currentPage]: number === currentPage,
+            })}
+            key={i}
+            onClick={() => onChangePage(number)}
+          >
+            {number}
           </li>
-        </ul>
-      </section>
-    </>
+        ))}
+
+        <li className={styles.nextIcon}>
+          <ChevronRightIcon className={styles.Icon} onClick={onClickNextPage} />
+        </li>
+      </ul>
+    </section>
   );
 };
 

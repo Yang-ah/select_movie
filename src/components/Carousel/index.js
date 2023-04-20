@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
-
 import {
+  getMoviesTop,
   getMoviesGenre,
   getMoviesMeLike,
   getMoviesUserLike,
 } from '../../api/Movies';
-
 import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
-
 import {
   CaretLeftIcon,
   CaretRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  SolidHeartIcon,
+  SolidBookmarkIcon,
 } from '../../assets/icon';
-
-import styles from './myCarousel.module.scss';
 import './carousel.scss';
-
-import { PosterHome } from '../PosterHome';
-import { PosterHeart, PosterBookmark } from '../PosterMy';
+import styles from './rankingCarousel.module.scss';
+import { PosterRanking, PosterCategory } from '../PosterHome';
 import { PosterUser } from '../PosterUser';
 import MovieModal from '../MovieModal';
 
@@ -33,6 +30,83 @@ export const PrevArrow = (props) => {
 export const NextArrow = (props) => {
   const { className, onClick } = props;
   return <div className={className} onClick={onClick} />;
+};
+
+export const RankingCarousel = () => {
+  const [isShow, setIsShow] = useState(false);
+  const [moviesTop, setMoviesTop] = useState({ data: [] });
+  const [movieId, setMovieId] = useState(null);
+
+  const fetchMoviesTop = async () => {
+    const response = await getMoviesTop();
+    setMoviesTop(response.data);
+  };
+
+  useEffect(() => {
+    fetchMoviesTop();
+  }, []);
+
+  const onModalClick = (id) => {
+    const num = moviesTop.data.findIndex((item) => item.id === id); // id값 추출
+    setIsShow(true);
+    setMovieId(moviesTop.data[num]); //data값에 아이디값 대입
+  };
+
+  const onModalClose = () => {
+    setIsShow(false);
+  };
+
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const settings = {
+    centerMode: true,
+    centerPadding: '0px',
+    dot: false,
+    arrow: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 3, //몇개씩 보여줌?,
+    beforeChange: (current, next) => setSlideIndex(next),
+  };
+
+  return (
+    <>
+      {isShow && (
+        <MovieModal
+          onModalClose={onModalClose}
+          onModalClick={onModalClick}
+          movieId={movieId}
+        />
+      )}
+      <div className={styles.ranking}>
+        <div className={styles.slider}>
+          <Slider {...settings}>
+            {moviesTop &&
+              moviesTop.data.map((movie, idx) => (
+                <div
+                  key={movie.id}
+                  className={
+                    idx === slideIndex ? styles.slideActive : styles.slideBefore
+                  }
+                >
+                  <p className={styles.rankingNum}>{idx + 1}</p>
+                  <PosterRanking
+                    key={movie.id}
+                    title={movie.title}
+                    id={movie.id}
+                    postImage={movie.postImage}
+                    onModalClick={onModalClick}
+                    movieId={movieId}
+                    movie={movie}
+                  />
+                </div>
+              ))}
+          </Slider>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export const HomeCarousel = ({ GenreId }) => {
@@ -82,7 +156,7 @@ export const HomeCarousel = ({ GenreId }) => {
       )}
       <Slider {...settings}>
         {moviesGenre?.data.map((movie) => (
-          <PosterHome
+          <PosterCategory
             key={movie.id}
             movie={movie}
             onModalClick={onModalClick}
@@ -95,85 +169,34 @@ export const HomeCarousel = ({ GenreId }) => {
   );
 };
 
-export const MyCarousel = () => {
-  const [moviesLike, setMoviesLike] = useState([]);
-  const [moviesMark, setMoviesMark] = useState();
+export const UserCarousel = ({ name }) => {
+  const userId = useParams();
+  const [myLike, setMyLike] = useState([]);
+  const [myMark, setMyMark] = useState();
+  const [userLike, setUserLike] = useState([]);
+  const [userMark, setUserMark] = useState([]);
 
   const fetchMoviesLike = async () => {
     const response = await getMoviesMeLike();
-    setMoviesLike(response.data);
+    setMyLike(response.data);
   };
   const fetchMoviesMark = async () => {
     const response = await getBookmarksPage(1, 20);
-    setMoviesMark(response.data.data);
+    setMyMark(response.data.data);
+  };
+
+  const fetchUserLike = async () => {
+    const response = await getMoviesUserLike(userId.id);
+    setUserLike(response.data);
+  };
+  const fetchUserBookmark = async () => {
+    const response = await getUserBookmarksPage(userId.id);
+    setUserMark(response.data);
   };
 
   useEffect(() => {
     fetchMoviesLike();
     fetchMoviesMark();
-  }, []);
-
-  const settings = {
-    dots: false,
-    arrows: true,
-    infinite: false,
-    speed: 600,
-    slidesToShow: 6,
-    slidesToScroll: 5,
-    prevArrow: <ChevronLeftIcon />,
-    nextArrow: <ChevronRightIcon />,
-  };
-
-  return (
-    <>
-      <p className={styles.category}>
-        <span className={styles.text}>좋아하는 컨텐츠</span>
-      </p>
-      <div className={styles.mywrap}>
-        <Slider {...settings}>
-          {moviesLike.map((index) => (
-            <PosterHeart
-              key={index.id}
-              index={index}
-              callback={fetchMoviesLike}
-            />
-          ))}
-        </Slider>
-      </div>
-      <p className={styles.category}>
-        <span className={styles.text}>북마크 한 컨텐츠</span>
-      </p>
-      <div className={styles.mywrap}>
-        <Slider {...settings}>
-          {moviesMark &&
-            moviesMark?.map((index) => (
-              <PosterBookmark
-                key={index.movie}
-                index={index.movie}
-                callback={fetchMoviesMark}
-              />
-            ))}
-        </Slider>
-      </div>
-    </>
-  );
-};
-
-export const UserCarousel = () => {
-  const userId = useParams();
-  const [moviesLike, setMoviesLike] = useState([]);
-  const [moviesMark, setMoviesMark] = useState([]);
-
-  const fetchUserLike = async () => {
-    const response = await getMoviesUserLike(userId.id);
-    setMoviesLike(response.data);
-  };
-  const fetchUserBookmark = async () => {
-    const response = await getUserBookmarksPage(userId.id);
-    setMoviesMark(response.data);
-  };
-
-  useEffect(() => {
     fetchUserLike();
     fetchUserBookmark();
   }, []);
@@ -191,27 +214,66 @@ export const UserCarousel = () => {
 
   return (
     <>
-      <p className={styles.category}>
-        <span className={styles.text}>좋아하는 컨텐츠</span>
-      </p>
-      <div className={styles.mywrap}>
-        <Slider {...settings}>
-          {moviesLike.map((index) => (
-            <PosterUser key={index.id} index={index} />
-          ))}
-        </Slider>
-      </div>
+      {name === 'myLike' && (
+        <div name="myLike">
+          <Slider {...settings}>
+            {myLike.map((index) => (
+              <PosterUser
+                type="like"
+                key={index.id}
+                index={index}
+                callback={fetchMoviesLike}
+              />
+            ))}
+          </Slider>
+        </div>
+      )}
 
-      <p className={styles.category}>
-        <span className={styles.text}>북마크 한 컨텐츠</span>
-      </p>
-      <div className={styles.mywrap}>
-        <Slider {...settings}>
-          {moviesMark.map((index) => (
-            <PosterBookmark className={styles.bookMark} index={index.movie} />
-          ))}
-        </Slider>
-      </div>
+      {name === 'myMark' && (
+        <div name="myMark">
+          <Slider {...settings}>
+            {myMark &&
+              myMark?.map((index) => (
+                <PosterUser
+                  type="mark"
+                  key={index.movie}
+                  index={index.movie}
+                  callback={fetchMoviesMark}
+                />
+              ))}
+          </Slider>
+        </div>
+      )}
+
+      {name === 'userLike' && (
+        <div>
+          <Slider {...settings}>
+            {userLike.map((index) => (
+              <PosterUser
+                type="like"
+                key={index.id}
+                index={index}
+                children={<SolidHeartIcon />}
+              />
+            ))}
+          </Slider>
+        </div>
+      )}
+
+      {name === 'userMark' && (
+        <div>
+          <Slider {...settings}>
+            {userMark.map((index) => (
+              <PosterUser
+                type="mark"
+                key={index.movie}
+                index={index.movie}
+                children={<SolidBookmarkIcon />}
+              />
+            ))}
+          </Slider>
+        </div>
+      )}
     </>
   );
 };

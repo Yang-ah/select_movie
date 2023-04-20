@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './home.module.scss';
 import RankingTitle from './RankingTitle';
-import { RankingCarousel } from './RankingCarousel';
-import { HomeCarousel } from '../../components/Carousel';
+import { RankingCarousel, HomeCarousel } from '../../components/Carousel';
 // import { motion, useIsPresent } from 'framer-motion';
 
 const Home = () => {

@@ -21,7 +21,6 @@ const Info = () => {
   return (
     <section className={styles.info}>
       <div className={styles.profile}>
-        {' '}
         <UserIcon className={styles.userIcon} />
       </div>
       <div className={styles.text}>

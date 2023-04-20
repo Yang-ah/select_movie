@@ -1,8 +1,5 @@
-import { Outlet, useLocation } from 'react-router-dom';
-
+import { Outlet } from 'react-router-dom';
 import styles from './layout.module.scss';
-import { useEffect } from 'react';
-
 import Header from './Header';
 import Footer from './Footer';
 

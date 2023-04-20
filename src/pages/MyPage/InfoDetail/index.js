@@ -28,7 +28,9 @@ const InfoDetail = () => {
       <div className={styles.rating}>
         <p className={styles.top}>⭐ 평균 평점 ⭐</p>
         {!!userInfoDetail?.averageScore ? (
-          <p className={styles.middle}>{userInfoDetail?.averageScore.toFixed(1)}</p>
+          <p className={styles.middle}>
+            {userInfoDetail?.averageScore.toFixed(1)}
+          </p>
         ) : (
           <p className={styles.middle}>0</p>
         )}
@@ -41,4 +43,3 @@ const InfoDetail = () => {
   );
 };
 export default InfoDetail;
-

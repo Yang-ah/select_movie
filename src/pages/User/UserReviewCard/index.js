@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './userReviewCard.module.scss';
 import { SolidStarIcon, DoubleChevronRightIcon } from '../../../assets/icon';
 
