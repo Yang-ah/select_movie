@@ -12,7 +12,7 @@ import BOpageNation from './BOpageNation/BOpageNation';
 import BOreviewModal from './BOmodal/BOreviewModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
 import { useRecoilState } from 'recoil';
-import { backOfficeTotalCount } from '../../../status';
+import { backOfficeTotalCount } from '../../../state';
 
 const title = ['작성일', '작성자', '작성내용', '더보기', '삭제'];
 const LIMIT = 10;

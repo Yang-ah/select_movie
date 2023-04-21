@@ -8,7 +8,7 @@ import {
   DoubleChevronRightIcon,
 } from '../../../assets/icon';
 import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../status';
+import { isLoginAtom } from '../../../state';
 import { useRecoilValue } from 'recoil';
 import { deleteReview, getMyReview, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';

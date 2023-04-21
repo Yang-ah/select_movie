@@ -11,7 +11,7 @@ import {
   AdminLoginModalOpen,
   AdminResistorModalOpen,
   isLoginAtom,
-} from '../../../../../status';
+} from '../../../../../state';
 
 import CmsModal from '../../cmsModal';
 import { AdminRegisterPage } from '..';

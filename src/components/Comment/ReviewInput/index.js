@@ -4,7 +4,7 @@ import Stars from '../../Common/Stars';
 import { HeaderLeft } from '../_shared';
 import styles from './reviewInput.module.scss';
 import { createReview } from '../../../api/Reviews';
-import { isLoginAtom } from '../../../status';
+import { isLoginAtom } from '../../../state';
 import { useRecoilValue } from 'recoil';
 
 const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {

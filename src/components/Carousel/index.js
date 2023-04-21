@@ -18,9 +18,9 @@ import {
 } from '../../assets/icon';
 import './carousel.scss';
 import styles from './rankingCarousel.module.scss';
-import { PosterRanking, PosterCategory } from '../PosterHome';
-import { PosterUser } from '../PosterUser';
-import MovieModal from '../MovieModal';
+import { PosterRanking, PosterCategory } from './PosterHome';
+import { PosterUser } from './PosterUser';
+import PreviewModal from '../../pages/Home/PreviewModal';
 
 export const PrevArrow = (props) => {
   const { className, onClick } = props;
@@ -73,7 +73,7 @@ export const RankingCarousel = () => {
   return (
     <>
       {isShow && (
-        <MovieModal
+        <PreviewModal
           onModalClose={onModalClose}
           onModalClick={onModalClick}
           movieId={movieId}
@@ -148,7 +148,7 @@ export const HomeCarousel = ({ GenreId }) => {
   return (
     <div>
       {isShow && (
-        <MovieModal
+        <PreviewModal
           onModalClose={onModalClose}
           onModalClick={onModalClick}
           movieId={movieId}

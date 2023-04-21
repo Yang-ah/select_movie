@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './movieModal.module.scss';
+import styles from './previewModal.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { deleteMovieLike, getMovie, postMovieLike } from '../../api/Movies';
+import { deleteMovieLike, getMovie, postMovieLike } from '../../../api/Movies';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../status';
+import { isLoginAtom } from '../../../state';
 
 import {
   BookmarkIcon,
@@ -13,22 +13,20 @@ import {
   SolidHeartIcon,
   SolidStarIcon,
   DoubleChevronRightIcon,
-} from '../../assets/icon';
+} from '../../../assets/icon';
 import {
   postBookmark,
   deleteBookmark,
   getMyBookmarks,
-} from '../../api/Bookmarks';
+} from '../../../api/Bookmarks';
 
-import Button from '../Common/Button';
+import Button from '../../../components/Common/Button';
 import dayjs from 'dayjs';
 
-import { Preview } from '../Comment';
-import { getReviewsMovie } from '../../api/Reviews';
+import { Preview } from '../../../components/Comment';
+import { getReviewsMovie } from '../../../api/Reviews';
 
-const MovieModal = ({ onModalClose, movieId }) => {
-  //북마크 관련내용
-
+const PreviewModal = ({ onModalClose, movieId }) => {
   const isLogin = useRecoilValue(isLoginAtom);
   const [movieDetail, setMovieDetail] = useState();
   const [isLiked, setIsLiked] = useState(false);
@@ -296,4 +294,4 @@ const MovieModal = ({ onModalClose, movieId }) => {
   );
 };
 
-export default MovieModal;
+export default PreviewModal;

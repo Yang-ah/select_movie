@@ -3,7 +3,7 @@ import styles from './header.module.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, SearchInput } from '../../Common';
 import { useRecoilState } from 'recoil';
-import { isLoginAtom } from '../../../status';
+import { isLoginAtom } from '../../../state';
 import { LogoutIcon, UserIcon } from '../../../assets/icon';
 import useMe from '../../../hooks/useMe';
 

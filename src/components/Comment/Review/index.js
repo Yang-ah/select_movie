@@ -3,7 +3,7 @@ import styles from './review.module.scss';
 import cx from 'classnames';
 import { HeaderLeft, HeaderRightRating, HeaderRightButtons } from '../_shared';
 import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../status';
+import { isLoginAtom } from '../../../state';
 import { useRecoilValue } from 'recoil';
 import { ModifyIcon, TrashIcon } from '../../../assets/icon';
 import Modal from '../../Common/Modal';

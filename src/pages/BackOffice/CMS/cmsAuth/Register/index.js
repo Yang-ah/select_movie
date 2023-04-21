@@ -5,7 +5,7 @@ import { Button, Input } from '../../../../../components';
 import { useNavigate } from 'react-router-dom';
 import { adminRegister } from '../../../../../api/Auth';
 import { saveTokens, isValidateEmail } from '../../../../../utils';
-import { AdminResistorModalOpen } from '../../../../../status';
+import { AdminResistorModalOpen } from '../../../../../state';
 import { useRecoilState } from 'recoil';
 
 const Register = (setModalOpen) => {

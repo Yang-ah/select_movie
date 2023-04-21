@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { ShareIcon, UserIcon } from '../../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../../status';
+import { isLoginAtom } from '../../../../state';
 
 // header > 왼쪽 프로필 공통
 const HeaderLeft = ({ className, type, userName, date, writtenId }) => {

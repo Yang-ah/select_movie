@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import styles from './posterRanking.module.scss';
+import styles from './posterHome.module.scss';
 
-import { getMovie, postMovieLike, deleteMovieLike } from '../../api/Movies';
-import { SolidStarIcon, HeartIcon, SolidHeartIcon } from '../../assets/icon';
-import Button from '../Common/Button';
+import { getMovie, postMovieLike, deleteMovieLike } from '../../../api/Movies';
+import { SolidStarIcon, HeartIcon, SolidHeartIcon } from '../../../assets/icon';
+import Button from '../../Common/Button';
 import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../status';
+import { isLoginAtom } from '../../../state';
 
 export const PosterRanking = ({
   title,

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './posterMy.module.scss';
-import useMe from '../../hooks/useMe';
-import { postMovieLike, deleteMovieLike } from '../../api/Movies';
-import { postBookmark, deleteBookmark } from '../../api/Bookmarks';
-import { SolidHeartIcon, SolidBookmarkIcon } from '../../assets/icon';
+import styles from './posterUser.module.scss';
+import useMe from '../../../hooks/useMe';
+import { postMovieLike, deleteMovieLike } from '../../../api/Movies';
+import { postBookmark, deleteBookmark } from '../../../api/Bookmarks';
+import { SolidHeartIcon, SolidBookmarkIcon } from '../../../assets/icon';
 
-//NOTE: 쓰이는 곳 폴더에 넣는 것이 더 좋습니다.
-
+/** myPage, userPage Poster */
 export const PosterUser = ({ type, index, callback }) => {
   const navigate = useNavigate();
   const onClickPoster = () => {

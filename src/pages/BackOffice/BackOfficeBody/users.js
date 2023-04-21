@@ -7,7 +7,7 @@ import { getUsers, deleteUsers, getUsersCount } from '../../../api/Users';
 import BOpageNation from './BOpageNation/BOpageNation';
 import BOuserModal from './BOmodal/BOuserModal';
 import BOdeleteModal from './BOmodal/BOdeleteModal';
-import { backOfficeTotalCount } from '../../../status';
+import { backOfficeTotalCount } from '../../../state';
 import { useRecoilState } from 'recoil';
 import { getReviewsCount } from '../../../api/Reviews';
 
