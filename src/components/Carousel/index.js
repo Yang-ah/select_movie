@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
+import { PosterRanking, PosterCategory } from './PosterHome';
 import { useParams } from 'react-router-dom';
+import { PosterUser } from './PosterUser';
 import Slider from 'react-slick';
+import PreviewModal from '../../pages/Home/PreviewModal';
+import './carousel.scss';
+import styles from './rankingCarousel.module.scss';
+
 import {
   getMoviesTop,
   getMoviesGenre,
   getMoviesMeLike,
   getMoviesUserLike,
 } from '../../api/Movies';
-import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
+
 import {
   CaretLeftIcon,
   CaretRightIcon,
@@ -16,44 +23,22 @@ import {
   SolidHeartIcon,
   SolidBookmarkIcon,
 } from '../../assets/icon';
-import './carousel.scss';
-import styles from './rankingCarousel.module.scss';
-import { PosterRanking, PosterCategory } from './PosterHome';
-import { PosterUser } from './PosterUser';
-import PreviewModal from '../../pages/Home/PreviewModal';
-
-export const PrevArrow = (props) => {
-  const { className, onClick } = props;
-  return <div className={className} onClick={onClick} />;
-};
-
-export const NextArrow = (props) => {
-  const { className, onClick } = props;
-  return <div className={className} onClick={onClick} />;
-};
 
 export const RankingCarousel = () => {
   const [isShow, setIsShow] = useState(false);
   const [moviesTop, setMoviesTop] = useState({ data: [] });
   const [movieId, setMovieId] = useState(null);
+  const onModalClose = () => setIsShow(false);
 
   const fetchMoviesTop = async () => {
     const response = await getMoviesTop();
     setMoviesTop(response.data);
   };
 
-  useEffect(() => {
-    fetchMoviesTop();
-  }, []);
-
   const onModalClick = (id) => {
     const num = moviesTop.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
     setMovieId(moviesTop.data[num]); //data값에 아이디값 대입
-  };
-
-  const onModalClose = () => {
-    setIsShow(false);
   };
 
   const [slideIndex, setSlideIndex] = useState(0);
@@ -69,6 +54,10 @@ export const RankingCarousel = () => {
     slidesToShow: 3, //몇개씩 보여줌?,
     beforeChange: (current, next) => setSlideIndex(next),
   };
+
+  useEffect(() => {
+    fetchMoviesTop();
+  }, []);
 
   return (
     <>
@@ -114,24 +103,17 @@ export const HomeCarousel = ({ GenreId }) => {
   const [isShow, setIsShow] = useState(false);
   const [moviesGenre, setMoviesGenre] = useState({ data: [] });
   const [movieId, setMovieId] = useState(null);
+  const onModalClose = () => setIsShow(false);
 
   const fetchMoviesGenre = async () => {
     const responseAction = await getMoviesGenre(1, GenreId);
     setMoviesGenre(responseAction.data);
   };
 
-  useEffect(() => {
-    fetchMoviesGenre();
-  }, []);
-
   const onModalClick = (id) => {
     const num = moviesGenre.data.findIndex((item) => item.id === id); // id값 추출
     setIsShow(true);
     setMovieId(moviesGenre.data[num]); //data값에 아이디값 대입
-  };
-
-  const onModalClose = () => {
-    setIsShow(false);
   };
 
   const settings = {
@@ -144,6 +126,10 @@ export const HomeCarousel = ({ GenreId }) => {
     prevArrow: <CaretLeftIcon />,
     nextArrow: <CaretRightIcon />,
   };
+
+  useEffect(() => {
+    fetchMoviesGenre();
+  }, []);
 
   return (
     <div>
@@ -194,13 +180,6 @@ export const UserCarousel = ({ name }) => {
     setUserMark(response.data);
   };
 
-  useEffect(() => {
-    fetchMoviesLike();
-    fetchMoviesMark();
-    fetchUserLike();
-    fetchUserBookmark();
-  }, []);
-
   const settings = {
     dots: false,
     arrows: true,
@@ -211,6 +190,13 @@ export const UserCarousel = ({ name }) => {
     prevArrow: <ChevronLeftIcon />,
     nextArrow: <ChevronRightIcon />,
   };
+
+  useEffect(() => {
+    fetchMoviesLike();
+    fetchMoviesMark();
+    fetchUserLike();
+    fetchUserBookmark();
+  }, []);
 
   return (
     <>

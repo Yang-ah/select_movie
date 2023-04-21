@@ -1,74 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { deleteMovieLike } from '../../../api/Movies';
+import { deleteBookmark } from '../../../api/Bookmarks';
+import { SolidHeartIcon, SolidBookmarkIcon } from '../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import styles from './posterUser.module.scss';
 import useMe from '../../../hooks/useMe';
-import { postMovieLike, deleteMovieLike } from '../../../api/Movies';
-import { postBookmark, deleteBookmark } from '../../../api/Bookmarks';
-import { SolidHeartIcon, SolidBookmarkIcon } from '../../../assets/icon';
 
 /** myPage, userPage Poster */
 export const PosterUser = ({ type, index, callback }) => {
   const navigate = useNavigate();
-  const onClickPoster = () => {
-    navigate(`/detail/${index?.id}`);
-  };
+  const onClickPoster = () => navigate(`/detail/${index?.id}`);
 
   const { me, onGetMe } = useMe();
-  const [isLiked, setIsLiked] = useState(true);
-  const [like, setLike] = useState(true);
-  const [isMarekd, setIsMarked] = useState(true);
-  const [mark, setMark] = useState(true);
 
-  const onLike = async () => {
-    const response = await postMovieLike(index.id);
-    setIsLiked(true);
-  };
   const offLike = async () => {
-    const response = await deleteMovieLike(index.id);
-    setIsLiked(false);
+    await deleteMovieLike(index.id);
     callback && callback();
   };
 
-  const onBookmark = async () => {
-    const response = await postBookmark(index.id);
-    setIsMarked(true);
-  };
   const offBookmark = async () => {
-    const response = await deleteBookmark(index.id);
-    setIsMarked(false);
+    await deleteBookmark(index.id);
     callback && callback();
   };
 
-  const onCLickIcon = async (e) => {
+  const onClickIcon = async (e) => {
     if (!me) {
       return;
     }
     const { name } = e.currentTarget;
+
     if (name === 'unLike') {
-      !isLiked ? onLike() : offLike();
+      offLike();
     }
     if (name === 'unBookmark') {
-      !isMarekd ? onBookmark() : offBookmark();
+      offBookmark();
     }
   };
 
   useEffect(() => {
-    setIsLiked(index?.isLiked ?? true);
-    setLike(isLiked);
-    setIsMarked(index?.isMarekd ?? true);
-    setMark(isMarekd);
     onGetMe();
-  }, [index, isLiked, isMarekd]);
+  }, [index]);
 
   return (
     <article className={styles.wrapper}>
       <div className={styles.screen}>
         <article className={styles.layerUp}>
           <div className={styles.title}>{index?.title}</div>
-          <button name="unLike" onClick={onCLickIcon}>
+          <button name="unLike" onClick={onClickIcon}>
             {type === 'like' && <SolidHeartIcon className={styles.icon} />}
           </button>
-          <button name="unBookmark" onClick={onCLickIcon}>
+          <button name="unBookmark" onClick={onClickIcon}>
             {type === 'mark' && <SolidBookmarkIcon className={styles.icon} />}
           </button>
         </article>

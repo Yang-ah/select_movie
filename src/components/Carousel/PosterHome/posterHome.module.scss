@@ -24,7 +24,7 @@
       .layerUpR {
         .bottomR {
           z-index: 999;
-          transform: scale(1.2);
+          //  transform: scale(1.2);
         }
       }
     }
@@ -107,6 +107,11 @@
       .layerUpH {
         z-index: 5;
         .iconH {
+          > svg {
+            width: 32px;
+            height: 32px;
+            fill: red;
+          }
           &:hover,
           :active {
             z-index: 999;

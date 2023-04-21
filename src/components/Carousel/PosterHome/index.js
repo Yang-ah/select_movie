@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './posterHome.module.scss';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../../state';
+import Button from '../../Common/Button';
 
 import { getMovie, postMovieLike, deleteMovieLike } from '../../../api/Movies';
 import { SolidStarIcon, HeartIcon, SolidHeartIcon } from '../../../assets/icon';
-import Button from '../../Common/Button';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../state';
 
 export const PosterRanking = ({
   title,
@@ -14,16 +14,19 @@ export const PosterRanking = ({
   id,
   movie,
 }) => {
-  const [getAver, setGetAver] = useState(movie.averageScore);
+  const onClick = () => onModalClick(id);
+
   return (
-    <div className={styles.wrapperR} onClick={() => onModalClick(id)}>
+    <div className={styles.wrapperR} onClick={onClick}>
       <div className={styles.screenR}>
         <article className={styles.layerUpR}>
           <div className={styles.titleR}>{title}</div>
           <div className={styles.bottomR}>
             <div className={styles.ratingR}>
               <SolidStarIcon className={styles.starR} />
-              <p className={styles.starNumR}>{getAver?.toFixed(1)}</p>
+              <p className={styles.starNumR}>
+                {movie.averageScore?.toFixed(1)}
+              </p>
             </div>
           </div>
         </article>
@@ -35,16 +38,12 @@ export const PosterRanking = ({
   );
 };
 
-export const PosterCategory = ({ movie, id, onModalClick, callback }) => {
+export const PosterCategory = ({ movie, onModalClick }) => {
   const isLogin = useRecoilValue(isLoginAtom);
-  const [movieDetail, setMovieDetail] = useState();
   const [isLiked, setIsLiked] = useState(false);
-  const [getAver, setGetAver] = useState(movie.averageScore);
 
   const fetchMovieData = async () => {
     const response = await getMovie(movie.id);
-    setMovieDetail(response.data);
-
     if (isLogin) {
       setIsLiked(response.data.isLiked);
     } else {
@@ -52,17 +51,15 @@ export const PosterCategory = ({ movie, id, onModalClick, callback }) => {
     }
   };
 
-  const onClickButton = async (e) => {
+  const onClickLike = async (e) => {
     if (!isLogin) {
       return alert('로그인 후 이용 가능합니다!');
     }
-    const { name } = e.currentTarget;
-
-    if (name === 'isLiked') {
-      isLiked ? await deleteMovieLike(movie.id) : await postMovieLike(movie.id);
-      setIsLiked((cur) => !cur);
-    }
+    isLiked ? await deleteMovieLike(movie.id) : await postMovieLike(movie.id);
+    setIsLiked((cur) => !cur);
   };
+
+  const onClick = () => onModalClick(movie?.id);
 
   useEffect(() => {
     fetchMovieData();
@@ -72,10 +69,7 @@ export const PosterCategory = ({ movie, id, onModalClick, callback }) => {
     <article className={styles.wrapperH}>
       <div className={styles.screenH}>
         <article className={styles.layerUpH}>
-          <div
-            className={styles.titleH}
-            onClick={() => onModalClick(movie?.id)}
-          >
+          <div className={styles.titleH} onClick={onClick}>
             {movie?.title}
           </div>
           <div className={styles.bodyContentsH}>
@@ -85,19 +79,17 @@ export const PosterCategory = ({ movie, id, onModalClick, callback }) => {
                 height={'30px'}
                 fill="yellow"
               />
-              <p className={styles.starNumH}>{getAver?.toFixed(1)}</p>
+              <p className={styles.starNumH}>
+                {movie.averageScore?.toFixed(1)}
+              </p>
             </div>
             <Button
               option="third"
               name="isLiked"
               className={styles.iconH}
-              onClick={onClickButton}
+              onClick={onClickLike}
             >
-              {isLiked ? (
-                <SolidHeartIcon height={'35px'} fill="red" />
-              ) : (
-                <HeartIcon height={'35px'} fill="red" />
-              )}
+              {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
             </Button>
           </div>
         </article>
