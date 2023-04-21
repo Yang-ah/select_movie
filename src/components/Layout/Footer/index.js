@@ -8,7 +8,6 @@ const Footer = () => {
   const needFixed =
     location.pathname === '/my' || location.pathname.includes('/user');
 
-  console.log({ location });
   return (
     <footer className={cx(styles.wrap, { [styles.fixed]: needFixed })}>
       <div className={styles.left}>

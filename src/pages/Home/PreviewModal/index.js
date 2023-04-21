@@ -189,12 +189,12 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                         className={styles.button}
                         onClick={onClickButton}
                       >
-                        북마크
                         {isBookmarked ? (
                           <SolidBookmarkIcon />
                         ) : (
                           <BookmarkIcon />
                         )}
+                        북마크
                       </Button>
                       <Button
                         option="secondary"
@@ -202,8 +202,8 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                         className={styles.button}
                         onClick={onClickButton}
                       >
-                        좋아요
                         {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+                        좋아요
                       </Button>
                     </div>
                   </div>

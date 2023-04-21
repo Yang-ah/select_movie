@@ -106,7 +106,7 @@ $HEADER_INFO_PADDING: 20px;
 
         > svg {
           width: 12px;
-          margin-left: 4px;
+          margin-right: 4px;
           transition: 0.2s transform ease-in;
         }
 
@@ -169,9 +169,11 @@ $HEADER_INFO_PADDING: 20px;
           line-height: 110%;
         }
         .staffs {
-          letter-spacing: 20px;
-          word-spacing: 5px;
-          font-size: 14px;
+          > span {
+            letter-spacing: 2px;
+            font-size: 14px;
+            padding-right: 4px;
+          }
         }
       }
     }

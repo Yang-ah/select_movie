@@ -5,12 +5,19 @@
 .left {
   @include m.flex();
   height: 100%;
-  cursor: pointer;
+
+  &:not(.preview) {
+    cursor: pointer;
+    .userName:hover {
+      text-decoration: underline;
+    }
+  }
 
   > .profileIcon {
+    @include m.flex();
     background-color: c.$C_ORANGE;
-    padding: 12px;
-
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     margin-right: 8px;
 
@@ -18,22 +25,16 @@
       fill: rgb(255, 223, 165);
       height: 20px;
       width: 20px;
-      // 기존 font-size: 24px 기준으로 설정했음.
     }
   }
 
   > .profileText {
     height: 100%;
-
     > .userName {
       font-size: 20px;
       font-weight: 600;
       padding-bottom: 8px;
-      &:hover {
-        text-decoration: underline;
-      }
     }
-
     > .date {
       font-size: 12px;
     }
@@ -50,18 +51,17 @@
 
 // type = comment & preview 일 때, 스타일 변화
 .left {
-  // type = preview는 프로필 아이콘 배경색 변경
-  &.preview {
-    .profileIcon {
-      background-color: rgba(1, 1, 1, 0.1);
-    }
-  }
-
   &.comment,
   &.preview {
     .profileIcon {
-      padding: 8px;
+      width: 36px;
+      height: 36px;
       font-size: 20px;
+
+      > svg {
+        width: 16px;
+        height: 16px;
+      }
     }
 
     .profileText {

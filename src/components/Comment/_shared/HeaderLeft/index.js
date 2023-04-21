@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isLoginAtom } from '../../../../state';
 
-// header > 왼쪽 프로필 공통
 const HeaderLeft = ({ className, type, userName, date, writtenId }) => {
   const navigate = useNavigate();
   const isLogin = useRecoilValue(isLoginAtom);
@@ -14,15 +13,12 @@ const HeaderLeft = ({ className, type, userName, date, writtenId }) => {
     if (type === 'preview') {
       return;
     }
-
     if (type === 'reviewInput' && !isLogin) {
       return navigate('/auth/login');
     }
-
     if (type === 'reviewInput' && isLogin) {
       return navigate('/my');
     }
-
     navigate(`/user/${writtenId}`);
   };
 
@@ -31,7 +27,6 @@ const HeaderLeft = ({ className, type, userName, date, writtenId }) => {
       className={cx(styles.left, styles[type], className)}
       onClick={onClick}
     >
-      {/* type: comment 경우, 답글 화살표 아이콘 넣기 */}
       {type === 'comment' && <ShareIcon className={styles.IShare} />}
 
       <p className={styles.profileIcon}>
