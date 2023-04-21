@@ -1,6 +1,0 @@
-테스트 유저
-a@a.com / a
-
-관리자 로그인 
-admin@a.com / admin
-
