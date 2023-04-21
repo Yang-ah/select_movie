@@ -43,10 +43,6 @@ const Review = ({
   });
   const [modifyModalOpen, setModifyModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  useEffect(() => {
-    isMyReview();
-    onGetMe();
-  }, [isLogin, me]);
 
   const isMyReview = async () => {
     //NOTE: getReviewsMe => getMyReview 로 수정
@@ -88,6 +84,12 @@ const Review = ({
       score: me?.score,
     });
   }, []);
+
+  useEffect(() => {
+    isMyReview();
+    onGetMe();
+  }, []);
+  // }, [isLogin, me]); NOTE : 무한랜더링
 
   return (
     <section className={styles.screen}>

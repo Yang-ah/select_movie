@@ -1,6 +1,11 @@
 @use '../../../styles/constants' as c;
 @use '../../../styles/mixins' as m;
 
+.fixed {
+  position: fixed;
+  bottom: 0;
+}
+
 .wrap {
   @include m.flex(space-between);
   width: 100%;
