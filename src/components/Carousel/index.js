@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
 import { PosterRanking, PosterCategory } from './PosterHome';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { PosterUser } from './PosterUser';
 import Slider from 'react-slick';
-import PreviewModal from '../../pages/Home/PreviewModal';
+import PreviewModal from './PreviewModal';
 import './carousel.scss';
 import styles from './rankingCarousel.module.scss';
 
@@ -156,9 +156,14 @@ export const HomeCarousel = ({ GenreId }) => {
 };
 
 export const UserCarousel = ({ name }) => {
+  const location = useLocation();
+  const isMyPage = location.pathname === '/my';
+  const isUserPage = location.pathname.includes('/user');
+
   const userId = useParams();
   const [myLike, setMyLike] = useState([]);
   const [myMark, setMyMark] = useState();
+
   const [userLike, setUserLike] = useState([]);
   const [userMark, setUserMark] = useState([]);
 
@@ -192,10 +197,10 @@ export const UserCarousel = ({ name }) => {
   };
 
   useEffect(() => {
-    fetchMoviesLike();
-    fetchMoviesMark();
-    fetchUserLike();
-    fetchUserBookmark();
+    isMyPage && fetchMoviesLike();
+    isMyPage && fetchMoviesMark();
+    isUserPage && fetchUserLike();
+    isUserPage && fetchUserBookmark();
   }, []);
 
   return (

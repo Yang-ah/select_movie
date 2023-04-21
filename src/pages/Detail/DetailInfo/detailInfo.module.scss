@@ -61,7 +61,7 @@ $HEADER_INFO_PADDING: 20px;
       height: 48px;
       font-size: 16px;
       font-weight: 500;
-      background-color: #232c4d;
+      background-color: c.$C_NAVY;
 
       &:hover > svg {
         transform: translateY(-1px) scale(1.1);

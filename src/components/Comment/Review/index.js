@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+import { HeaderLeft, HeaderRightRating, HeaderRightButtons } from '../_shared';
+import { deleteReview, getMyReview, patchReview } from '../../../api/Reviews';
+import { ModifyIcon, TrashIcon } from '../../../assets/icon';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../../state';
+import Button from '../../Common/Button';
+import useMe from '../../../hooks/useMe';
+import Modal from '../../Common/Modal';
+import Stars from '../../Common/Stars';
 import styles from './review.module.scss';
 import cx from 'classnames';
-import { HeaderLeft, HeaderRightRating, HeaderRightButtons } from '../_shared';
-import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../state';
-import { useRecoilValue } from 'recoil';
-import { ModifyIcon, TrashIcon } from '../../../assets/icon';
-import Modal from '../../Common/Modal';
-import { deleteReview, getMyReview, patchReview } from '../../../api/Reviews';
-import Stars from '../../Common/Stars';
-import Button from '../../Common/Button';
 
 const Review = ({
   comment,
@@ -18,7 +18,6 @@ const Review = ({
   rating,
   reviewId,
   written,
-  className,
   fetchReviews,
   movieId,
 }) => {
@@ -31,14 +30,13 @@ const Review = ({
     content: comment,
     score: rating,
   });
+  const onClickModify = () => setCanModify(true);
+  const onClickDelete = () => setModalOpen(true);
 
   const isMyReview = async () => {
     const response = await getMyReview(movieId);
     response.data && setIsUserMe(response.data.user.id === written);
   };
-
-  const onClickModify = () => setCanModify(true);
-  const onClickDelete = () => setModalOpen(true);
 
   const onClickDeleteReview = async () => {
     await deleteReview(reviewId);

@@ -51,7 +51,7 @@
   max-height: 200vh;
   overflow: scroll;
   position: relative;
-  border-radius: 4px;
+  border-radius: c.$S_RADIUS_SMALL;
 
   > h3 {
     @include m.flex();

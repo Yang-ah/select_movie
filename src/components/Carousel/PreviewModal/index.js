@@ -1,11 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './previewModal.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { deleteMovieLike, getMovie, postMovieLike } from '../../../api/Movies';
-import { useRecoilValue } from 'recoil';
-import { isLoginAtom } from '../../../state';
-
 import {
   BookmarkIcon,
   HeartIcon,
@@ -19,23 +12,48 @@ import {
   deleteBookmark,
   getMyBookmarks,
 } from '../../../api/Bookmarks';
-
-import Button from '../../../components/Common/Button';
+import { deleteMovieLike, getMovie, postMovieLike } from '../../../api/Movies';
+import { motion, AnimatePresence } from 'framer-motion';
+import { getReviewsMovie } from '../../../api/Reviews';
+import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { isLoginAtom } from '../../../state';
+import { Preview } from '../../Comment';
+import Button from '../../Common/Button';
+import styles from './previewModal.module.scss';
 import dayjs from 'dayjs';
 
-import { Preview } from '../../../components/Comment';
-import { getReviewsMovie } from '../../../api/Reviews';
-
 const PreviewModal = ({ onModalClose, movieId }) => {
+  const navigate = useNavigate();
   const isLogin = useRecoilValue(isLoginAtom);
-  const [movieDetail, setMovieDetail] = useState();
+  const modalRef = useRef(null);
+  const [reviews, setReviews] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [getAver, setGetAver] = useState(movieId.averageScore);
+
+  const {
+    title,
+    postImage,
+    runtime,
+    releasedAt,
+    plot,
+    actors,
+    genres,
+    staffs,
+    company,
+  } = movieId;
+
+  const setUserName = (user) => {
+    return user.nickName ?? user.name ?? '닉네임없음';
+  };
+
+  const fetchReviews = async () => {
+    const response = await getReviewsMovie(movieId.id);
+    setReviews(response.data);
+  };
 
   const fetchMovieData = async () => {
     const response = await getMovie(movieId.id);
-    setMovieDetail(response.data);
 
     if (isLogin) {
       setIsLiked(response.data.isLiked);
@@ -55,8 +73,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     } else {
       setIsBookmarked(false);
     }
-
-    //  console.log('bookmark', isLogin && bookmarkIdArr.includes(id));
   };
 
   const onClickButton = async (e) => {
@@ -80,24 +96,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     }
   };
 
-  //리뷰관련 내용
-
-  const [reviews, setReviews] = useState([]);
-
-  const fetchReviews = async () => {
-    const response = await getReviewsMovie(movieId.id);
-    setReviews(response.data);
-  };
-  useEffect(() => {
-    fetchMovieData();
-    fetchBookmarks();
-    fetchReviews();
-  }, [movieId.id]);
-
-  const setUserName = (user) => {
-    return user.nickName ?? user.name ?? '닉네임없음';
-  };
-
   const backdropVariants = {
     visible: { opacity: 1, scale: 1 },
     hidden: { opacity: 0, scale: 0.3, backgroundColor: 'rgba(0, 0, 0, 0.5)' },
@@ -114,30 +112,10 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     },
   };
 
-  const navigate = useNavigate();
-  const [isMyState, setMyState] = useState({
-    isLiked: false,
-    isBookmarked: false,
-  });
-
-  const {
-    title,
-    postImage,
-    runtime,
-    releasedAt,
-    plot,
-    actors,
-    genres,
-    staffs,
-    company,
-  } = movieId;
-  ``;
-  const modalRef1 = useRef(null);
-
   useEffect((onModalClose) => {
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
-      if (modalRef1.current && !modalRef1.current.contains(event.target)) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
         onModalClose = { onModalClose };
       }
     };
@@ -149,12 +127,16 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     };
   });
 
-  //NOTE: tag depth가 조금 깊다~
+  useEffect(() => {
+    fetchMovieData();
+    fetchBookmarks();
+    fetchReviews();
+  }, [movieId.id]);
 
   return (
     <AnimatePresence initial="hidden" animate="visible" exit="exit">
       <div className={styles.modal_overlay}>
-        <div ref={modalRef1} className={styles.modal}>
+        <div ref={modalRef} className={styles.modal}>
           <motion.div
             variants={backdropVariants}
             initial="hidden"
@@ -276,17 +258,13 @@ const PreviewModal = ({ onModalClose, movieId }) => {
               <div className={styles.starBox}>
                 <p className={styles.starTitle}>평균평점</p>
                 <p className={styles.starNum}>
-                  <SolidStarIcon
-                    className={styles.star}
-                    height={'30px'}
-                    fill="yellow"
-                  />
-                  {getAver?.toFixed(1)}
+                  <SolidStarIcon className={styles.star} />
+                  {movieId?.averageScore?.toFixed(1)}
                 </p>
               </div>
             </div>
 
-            {movieId.averageScore}
+            {movieId?.averageScore}
           </motion.div>
         </div>
       </div>

@@ -1,13 +1,12 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import cx from 'classnames';
 import { ChevronDown } from '../../../assets/icon';
 import styles from './dropdown.module.scss';
+import cx from 'classnames';
 
-// items: [{title:string, value:string},{...}]
-const Dropdown = ({ className, items, value, orderBy, setOrderBy }) => {
+/** items: [{title:string, value:string},{...}]  */
+const Dropdown = ({ className, items, orderBy, setOrderBy }) => {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-
   const onClickDropdown = () => setIsOpen(!isOpen);
 
   useEffect(() => {

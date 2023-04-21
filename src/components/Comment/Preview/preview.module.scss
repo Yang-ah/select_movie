@@ -10,7 +10,7 @@
   margin-bottom: 20px;
   background-color: c.$C_WHITE;
   box-shadow: 2px 2px 4px 1px #333;
-  border-radius: 4px;
+  border-radius: c.$S_RADIUS_SMALL;
 
   > header {
     @include m.flex(space-between, flex-start);

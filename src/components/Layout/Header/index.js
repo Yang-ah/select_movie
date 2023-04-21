@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import styles from './header.module.scss';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LogoutIcon, UserIcon } from '../../../assets/icon';
 import { Button, SearchInput } from '../../Common';
 import { useRecoilState } from 'recoil';
 import { isLoginAtom } from '../../../state';
-import { LogoutIcon, UserIcon } from '../../../assets/icon';
 import useMe from '../../../hooks/useMe';
+import styles from './header.module.scss';
 
 const Header = () => {
-  const { me } = useMe();
   const navigate = useNavigate();
+  const { me } = useMe();
 
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [keyword, setKeyword] = useState('');

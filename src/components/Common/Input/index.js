@@ -1,6 +1,6 @@
-import React, { memo } from "react";
-import cx from "classnames";
-import styles from "./input.module.scss";
+import React, { memo } from 'react';
+import styles from './input.module.scss';
+import cx from 'classnames';
 
 const Input = ({ className, label, errorText, onChange, ...props }) => {
   return (

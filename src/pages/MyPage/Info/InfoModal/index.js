@@ -24,7 +24,7 @@ const InfoModal = ({
     description: '',
   });
   const fetchUserInfo = async () => {
-    const response = await getUsersMeInfo();
+    await getUsersMeInfo();
   };
 
   const onChange = (e) => {
@@ -32,10 +32,6 @@ const InfoModal = ({
     setPostForm({ ...postForm, [name]: value });
   };
 
-  const onReset = (e) => {
-    const { name } = e.currentTarget;
-    setPostForm({ ...postForm, [name]: '' });
-  };
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -124,10 +120,6 @@ const InfoModal = ({
                 maxLength={100}
               />
             </ul>
-            {/*<button className={styles.deleteUser}>
-              <TrashIcon />
-              계정을 삭제하시겠습니까?
-    </button>*/}
           </main>
 
           <footer className={styles.buttonBox}>
@@ -136,9 +128,7 @@ const InfoModal = ({
               children={'취소'}
               onClick={closeModal}
             />
-            {/* <Button className={styles.resetButton} onClick={onReset}>
-              초기화
-            </Button> */}
+
             <Button
               className={styles.deleteButton}
               children={buttonChildren}

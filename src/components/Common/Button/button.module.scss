@@ -5,59 +5,25 @@
   @include m.flex();
   min-width: 60px;
   min-height: 32px;
-  background-color: c.$C_ORANGE;
-  color: c.$C_WHITE;
   padding: 0 12px;
+  background-color: c.$C_ORANGE;
   border-radius: c.$S_RADIUS;
-  border: 1px solid c.$C_WHITE;
-  cursor: pointer;
   border: 1px solid transparent;
+  color: c.$C_WHITE;
+  cursor: pointer;
 
-  /* &:hover {
-    background-color: c.$C_WHITE;
-    border: 1px solid c.$C_ORANGE;
-    color: c.$C_ORANGE;
-  }
-*/
   &.secondary {
-    background-color: #232c4d;
-
+    background-color: c.$C_NAVY;
     color: c.$C_WHITE;
-
     > svg {
       fill: c.$C_WHITE;
     }
-
-   &.third{
-
-    color: c.$C_HEART
-
-   } 
-
-    /* &:hover {
-      background-color: c.$C_ORANGE;
-      color: c.$C_WHITE;
-      > svg {
-        fill: c.$C_WHITE;
-      }
-    }*/
   }
 
   &.comment {
-    background-color: #232c4d;
-
-    /* &:hover {
-      border: none;
-      background-color: #232c4d;
-      color: c.$C_WHITE;
-    }*/
+    background-color: c.$C_NAVY;
   }
 
-  /*  &:hover {
-    background-color: c.$C_WHITE;
-    color: c.$C_PURPLE1;
-    border: 1px solid c.$C_PURPLE1;
-  }*/
   &.third {
     background-color: c.$C_ORANGE;
     color: c.$C_WHITE;

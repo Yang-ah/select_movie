@@ -2,15 +2,9 @@ import React from 'react';
 import styles from './home.module.scss';
 import RankingTitle from './RankingTitle';
 import { RankingCarousel, HomeCarousel } from '../../components/Carousel';
-// import { motion, useIsPresent } from 'framer-motion';
 
 const Home = () => {
-  //  const isPresent = useIsPresent();
-
   return (
-    /* <motion.div
-    animate={{y : 100}}
-  > */
     <section className={styles.wrapper}>
       <article className={styles.ranking}>
         <RankingTitle />
@@ -54,7 +48,6 @@ const Home = () => {
         <HomeCarousel GenreId="360b5842-fc83-4ea9-a7fa-0d62017b975b" />
       </article>
     </section>
-    /*  </motion.div> */
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './reviewCard.module.scss';
 import {
@@ -7,10 +7,8 @@ import {
   TrashIcon,
   DoubleChevronRightIcon,
 } from '../../../assets/icon';
-import useMe from '../../../hooks/useMe';
-import { isLoginAtom } from '../../../state';
-import { useRecoilValue } from 'recoil';
-import { deleteReview, getMyReview, patchReview } from '../../../api/Reviews';
+
+import { deleteReview, patchReview } from '../../../api/Reviews';
 import Stars from '../../../components/Common/Stars';
 import { ReviewModal } from './ReviewModal';
 
@@ -24,44 +22,22 @@ const Review = ({
   fetchMyReviews,
 }) => {
   const navigate = useNavigate();
-  const onClickComment = () => {
-    navigate(`/detail/${movieId}`);
-  };
+  const onClickComment = () => navigate(`/detail/${movieId}`);
+  const onClickDelete = () => setDeleteModalOpen(true);
+  const onClickModify = () => setModifyModalOpen(true);
 
-  const [postForm, setPostForm] = useState({
+  const [modifyModalOpen, setModifyModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [modifiedReview, setModifiedReview] = useState({
     content: '',
     score: '',
   });
 
-  const { me, onGetMe } = useMe();
-  const isLogin = useRecoilValue(isLoginAtom);
-  const [isUserMe, setIsUserMe] = useState(false);
-  const [canModify, setCanModify] = useState(false);
-  const [modifiedReview, setModifiedReview] = useState({
-    content: me?.content,
-    score: me?.score,
-  });
-  const [modifyModalOpen, setModifyModalOpen] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
-  const isMyReview = async () => {
-    //NOTE: getReviewsMe => getMyReview 로 수정
-    const response = await getMyReview(movieId);
-    response.data && setIsUserMe(response.data.user.id === written);
-  };
-
-  const onClickDelete = () => {
-    setDeleteModalOpen(true);
-  };
   const onClickDeleteReview = async () => {
     await deleteReview(reviewId);
     await fetchMyReviews();
     setDeleteModalOpen(false);
     return alert(`[ ` + title + ` ] 이/가 삭제되었습니다!`);
-  };
-
-  const onClickModify = () => {
-    setModifyModalOpen(true);
   };
 
   const onChangeModifiedReview = (e) => {
@@ -74,22 +50,8 @@ const Review = ({
   const onPatchReview = async () => {
     await patchReview(reviewId, modifiedReview);
     await fetchMyReviews();
-    setCanModify(false);
     setModifyModalOpen(false);
   };
-
-  useEffect(() => {
-    setPostForm({
-      content: me?.content,
-      score: me?.score,
-    });
-  }, []);
-
-  useEffect(() => {
-    isMyReview();
-    onGetMe();
-  }, []);
-  // }, [isLogin, me]); NOTE : 무한랜더링
 
   return (
     <section className={styles.screen}>

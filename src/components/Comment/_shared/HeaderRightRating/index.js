@@ -1,7 +1,7 @@
-import styles from "./headerRightRating.module.scss";
-import { SolidStarIcon } from "../../../../assets/icon";
+import { SolidStarIcon } from '../../../../assets/icon';
+import styles from './headerRightRating.module.scss';
 
-export const HeaderRightRating = ({ rating }) => {
+const HeaderRightRating = ({ rating }) => {
   return (
     <p className={styles.rating}>
       <SolidStarIcon />

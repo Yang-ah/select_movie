@@ -1,6 +1,5 @@
-import styles from './headerRightButtons.module.scss';
-import cx from 'classnames';
 import { ThumbsUpIcon, ThumbsDownIcon } from '../../../../assets/icon';
+import { useEffect, useState } from 'react';
 import {
   createReviewHate,
   createReviewLike,
@@ -8,8 +7,9 @@ import {
   deleteReviewLike,
   getReviewDetail,
 } from '../../../../api/Reviews';
-import { useEffect, useState } from 'react';
+import styles from './headerRightButtons.module.scss';
 import useMe from '../../../../hooks/useMe';
+import cx from 'classnames';
 
 const HeaderRightButtons = ({ reviewId }) => {
   const { me } = useMe();

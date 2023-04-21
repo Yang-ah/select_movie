@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import styles from './infoDetail.module.scss';
-import useMe from '../../../hooks/useMe';
 import { getUsersMeInfo } from '../../../api/Users';
+import styles from './infoDetail.module.scss';
 
 const InfoDetail = () => {
-  const { me, onGetMe } = useMe();
-  const { id } = useParams();
   const [userInfoDetail, setUserInfoDetail] = useState();
 
   const fetchUserInfoDetail = async () => {
@@ -16,8 +12,7 @@ const InfoDetail = () => {
 
   useEffect(() => {
     fetchUserInfoDetail();
-    onGetMe();
-  }, [id]);
+  }, []);
 
   return (
     <section className={styles.category}>

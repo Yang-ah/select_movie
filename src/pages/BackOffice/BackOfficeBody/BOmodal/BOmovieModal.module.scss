@@ -1,5 +1,5 @@
-@use "../../../../styles/constants" as c;
-@use "../../../../styles/mixins" as m;
+@use '../../../../styles/constants' as c;
+@use '../../../../styles/mixins' as m;
 
 .overlay {
   @include m.flex();
@@ -42,32 +42,31 @@
     height: calc(100% - 70px);
     width: 80%;
     color: c.$C_WHITE;
-    >.inputForm{
+    > .inputForm {
       width: 100%;
     }
   }
 }
-.inputForm{
+.inputForm {
   width: 100%;
 
-  >.inputClass{
+  > .inputClass {
     max-height: 80px;
   }
 
-  >.labelText {
+  > .labelText {
     font-size: 12px;
     color: c.$C_WHITE;
   }
-  >.textArea {
+  > .textArea {
     width: 100%;
     min-height: 200px;
     border: 1px solid c.$C_WHITE;
-    border-radius: 4px;
+    border-radius: c.$S_RADIUS_SMALL;
     padding: 12px;
     margin: 4px 0px;
   }
 }
-
 
 .buttonBox {
   display: flex;

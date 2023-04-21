@@ -49,6 +49,10 @@ $HEADER_INFO_PADDING: 20px;
       .starNum {
         font-size: 47px;
         color: c.$C_BLACK;
+        > svg {
+          height: 30px;
+          fill: yellow;
+        }
       }
     }
 

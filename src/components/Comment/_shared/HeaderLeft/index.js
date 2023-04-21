@@ -1,10 +1,11 @@
-import styles from './headerLeft.module.scss';
-import cx from 'classnames';
 import { ShareIcon, UserIcon } from '../../../../assets/icon';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isLoginAtom } from '../../../../state';
+import { useNavigate } from 'react-router-dom';
+import styles from './headerLeft.module.scss';
+import cx from 'classnames';
 
+/** type : review, reviewInput, comment, preview */
 const HeaderLeft = ({ className, type, userName, date, writtenId }) => {
   const navigate = useNavigate();
   const isLogin = useRecoilValue(isLoginAtom);

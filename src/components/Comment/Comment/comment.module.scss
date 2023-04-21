@@ -60,14 +60,14 @@
     padding: 4px;
     margin: 4px;
     border: none;
-    border-radius: 4px;
+    border-radius: c.$S_RADIUS_SMALL;
     font-size: 16px;
   }
 
   > button {
     width: 60px;
     height: 76px;
-    border-radius: 4px;
+    border-radius: c.$S_RADIUS_SMALL;
     color: white;
     font-size: 16px;
     transition: 0.1s background-color ease-in;

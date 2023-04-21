@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import Button from '../../Common/Button';
-import Stars from '../../Common/Stars';
+import { useRecoilValue } from 'recoil';
+import { isLoginAtom } from '../../../state';
+import { createReview } from '../../../api/Reviews';
 import { HeaderLeft } from '../_shared';
 import styles from './reviewInput.module.scss';
-import { createReview } from '../../../api/Reviews';
-import { isLoginAtom } from '../../../state';
-import { useRecoilValue } from 'recoil';
+import Button from '../../Common/Button';
+import Stars from '../../Common/Stars';
 
 const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
   const isLogin = useRecoilValue(isLoginAtom);
@@ -26,7 +26,7 @@ const ReviewInput = ({ id, fetchReviews, userName, date, ...props }) => {
     if (newReview.content.length < 10) {
       return alert('리뷰를 10자 이상 입력해주세요.');
     }
-    //NOTE: 리뷰 등록이 완성되면 리뷰 목록을 다시 불러온다. (동기작업)
+
     await createReview(id, newReview);
     await fetchReviews();
     setNewReview({

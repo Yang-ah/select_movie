@@ -7,7 +7,7 @@
   margin-bottom: 20px;
   color: c.$C_WHITE;
   border: 1px solid c.$C_WHITE_10;
-  border-radius: 4px;
+  border-radius: c.$S_RADIUS_SMALL;
 }
 
 // 로그아웃 상태 : 댓글 작성창에 뜨는 문구
@@ -47,7 +47,7 @@
   > .input {
     flex-grow: 1;
     background-color: c.$C_WHITE_10;
-    border-radius: 4px;
+    border-radius: c.$S_RADIUS_SMALL;
 
     > input {
       width: 100%;
@@ -61,7 +61,7 @@
   > button {
     width: 52px;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: c.$S_RADIUS_SMALL;
     background-color: c.$C_WHITE_10;
     transition: 0.2s background-color ease-in, 0.2s color ease-in;
 
