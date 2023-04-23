@@ -4,7 +4,7 @@
 - **`Project duration` :** 2023.03.13 - 2023.04.14
 - **`Team members` :** 주양아(팀장), 이인국, 구성미, 신현중
 - **`Link` :** http://test123bukit.s3-website.ap-northeast-2.amazonaws.com/
-- **`Service overview`:** [서비스 메뉴얼] ((https://docs.google.com/presentation/d/1_39FyGsa1KkkKXAu64_Ennuz7S1vAVaz81CvAqWM3-o/edit?usp=sharing))
+- **`Service overview`:** [서비스 메뉴얼] (https://docs.google.com/presentation/d/1_39FyGsa1KkkKXAu64_Ennuz7S1vAVaz81CvAqWM3-o/edit?usp=sharing)
 - **`Pages overview`:** [화면 정의서(Figma)](https://url.kr/ticnfe), [화면 정의서(PDF)](https://url.kr/mlzo8y)
 - **`Functional Requirement`:** [사용자 요구사항 정의서](https://url.kr/2inmsa)
 - **`Functional Test`:** [개발자 테스트 문서](https://url.kr/s5aoxf)
