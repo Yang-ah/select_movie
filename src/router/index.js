@@ -16,7 +16,9 @@ import {
 import { Layout } from '../components';
 import CMSLogin from '../pages/BackOffice/CMS/cmsAuth/Login';
 
+
 const route = (
+
   <Route element={<Layout />}>
     <Route path="/" element={<HomePage />} />
     <Route path="detail/:id" element={<DetailPage />} />
