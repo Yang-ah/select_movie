@@ -102,7 +102,7 @@ const Review = ({
         <main className={styles.modifyMain}>
           <Stars
             className={styles.star}
-            value={modifiedReview.score * 2}
+            value={modifiedReview.score}
             onChange={setModifiedReview}
           />
           <div className={styles.inputWrap}>
