@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './home.module.scss';
 import RankingTitle from './RankingTitle';
 import { RankingCarousel, HomeCarousel } from '../../components/Carousel';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 const Variants = {
   initial : {
     opacity : 0,
@@ -20,17 +20,25 @@ const Variants = {
   },
 }
 
-
 const Home = () => {
   
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+    
+  });
 
   return (
     <section className={styles.wrapper}>
       <RankingTitle />
         <motion.div
+        className="progressBar"
         variants={Variants}
         initial="initial"
         animate="visible"
+        style={{ y: scrollY, damping: 100 , scaleX  }}
         >
       <article className={styles.ranking}>
         <RankingCarousel /> 

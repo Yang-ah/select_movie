@@ -33,7 +33,6 @@
     "recoil": "^0.7.7",
     "sass": "^1.59.2",
     "scss": "^0.2.4",
-    "styled-components": "^5.3.10",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"
   },

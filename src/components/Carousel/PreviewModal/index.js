@@ -146,7 +146,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
 
 
   return (
-        <div ref={modalRef} className={styles.modal}>
+        <div ref={modalRef} className={styles.modal} onClick={onModalClose}>
             <div className={styles.popup}>
               <img
                 className={styles.popupBackground}
