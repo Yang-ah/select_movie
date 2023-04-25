@@ -6,7 +6,7 @@ import cx from 'classnames';
 const Footer = () => {
   const location = useLocation();
   const needFixed =
-    location.pathname === '/my' || location.pathname.includes('/user');
+    location.pathname === '/my' || location.pathname.includes('/user/');
 
   return (
     <footer className={cx(styles.wrap, { [styles.fixed]: needFixed })}>
