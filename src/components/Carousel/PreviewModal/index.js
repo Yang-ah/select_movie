@@ -96,10 +96,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     }
   };
 
-    const backdropVariants = {
-      visible: { opacity: 1, scale: 1 },
-      hidden: { opacity: 0, scale: 0.3, backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-    };
     const modalVariants = {
       hidden: {
         y: 150,
@@ -109,16 +105,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
         y: 0,
         opacity: 1,
         transition: { type: 'spring', delayduration: 0.5, bounce: 0.4 },
-      },
-      leaving: {
-        opacity: 0,
-        position: "fixed",
-        top: "-100vh",
-        left: "50%",
-        transform: "translate(-50%, 0) scale(0.8)",
-        transition: {
-          duration: 0.2,
-        },
       },
     };
 
@@ -157,7 +143,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                 variants={modalVariants}
                 initial="hidden"
                 animate="visible"
-                exit="exit"
               >
                 <div className={styles.headerContentWrap}>
                   <div className={styles.leftWrap}>

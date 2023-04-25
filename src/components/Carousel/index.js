@@ -8,7 +8,6 @@ import PreviewModal from './PreviewModal';
 import './carousel.scss';
 import styles from './rankingCarousel.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components';
 
 import {
   getMoviesTop,
@@ -80,6 +79,7 @@ export const RankingCarousel = () => {
       transform: "translate(-50%, -50%) scale(1)",
       transition: {
         duration: 0.2,
+        bounce: 0.9,
       },
     },
     leaving: {
