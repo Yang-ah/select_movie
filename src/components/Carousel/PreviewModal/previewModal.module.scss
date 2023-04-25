@@ -8,15 +8,13 @@ $HEADER_INFO_PADDING: 20px;
 
 .modal {
   @include m.flex();
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.46);
-  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.45);
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
   .popup {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     width: 900px;
@@ -26,6 +24,7 @@ $HEADER_INFO_PADDING: 20px;
     transform: translate(-50%, -50%);
     border-radius: 20px;
     box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
+    z-index: 999;
 
     .starBox {
       @include m.flex(flex-end);

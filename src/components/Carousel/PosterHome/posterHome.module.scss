@@ -23,7 +23,7 @@
       }
       .layerUpR {
         .bottomR {
-          z-index: 999;
+          z-index: 900;
           //  transform: scale(1.2);
         }
       }
@@ -114,7 +114,7 @@
           }
           &:hover,
           :active {
-            z-index: 999;
+            z-index: 900;
             transform: scale(1.1);
           }
         }

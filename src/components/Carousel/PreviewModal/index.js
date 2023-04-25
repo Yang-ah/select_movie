@@ -96,21 +96,32 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     }
   };
 
-  const backdropVariants = {
-    visible: { opacity: 1, scale: 1 },
-    hidden: { opacity: 0, scale: 0.3, backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-  };
-  const modalVariants = {
-    hidden: {
-      y: 150,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: 'spring', delayduration: 0.5, bounce: 0.4 },
-    },
-  };
+    const backdropVariants = {
+      visible: { opacity: 1, scale: 1 },
+      hidden: { opacity: 0, scale: 0.3, backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+    };
+    const modalVariants = {
+      hidden: {
+        y: 150,
+        opacity: 0,
+      },
+      visible: {
+        y: 0,
+        opacity: 1,
+        transition: { type: 'spring', delayduration: 0.5, bounce: 0.4 },
+      },
+      leaving: {
+        opacity: 0,
+        position: "fixed",
+        top: "-100vh",
+        left: "50%",
+        transform: "translate(-50%, 0) scale(0.8)",
+        transition: {
+          duration: 0.2,
+        },
+      },
+    };
+
 
   useEffect((onModalClose) => {
     const handler = (event) => {
@@ -133,17 +144,9 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     fetchReviews();
   }, [movieId.id]);
 
+
   return (
-    <AnimatePresence initial="hidden" animate="visible" exit="exit">
-      <div className={styles.modal_overlay}>
         <div ref={modalRef} className={styles.modal}>
-          <motion.div
-            variants={backdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="modal"
-          >
             <div className={styles.popup}>
               <img
                 className={styles.popupBackground}
@@ -155,7 +158,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="modal"
               >
                 <div className={styles.headerContentWrap}>
                   <div className={styles.leftWrap}>
@@ -265,10 +267,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
             </div>
 
             {movieId?.averageScore}
-          </motion.div>
         </div>
-      </div>
-    </AnimatePresence>
   );
 };
 

@@ -4,6 +4,8 @@ import RankingTitle from './RankingTitle';
 import { RankingCarousel, HomeCarousel } from '../../components/Carousel';
 
 const Home = () => {
+  
+
   return (
     <section className={styles.wrapper}>
       <article className={styles.ranking}>
