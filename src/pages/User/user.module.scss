@@ -10,8 +10,8 @@
   width: 500px;
 }
 
-.carousel {
-  height: 230px; //기본크기. 수정X.
+.contents {
+  min-height: 230px; //기본크기. 수정X.
   margin-bottom: 10px;
   .textWrap {
     height: 30px;

@@ -45,6 +45,7 @@
 //nav
 .pagination {
   margin-top: 20px;
+  margin-bottom: 40px;
   height: 100%;
   color: c.$C_ARROW;
   fill: c.$C_ARROW;
@@ -57,8 +58,9 @@
   :active,
   :focus,
   ::after {
-    transform: scale(1.2);
+    transform: scale(1.1);
     cursor: pointer;
+    fill: orange;
   }
 
   li {
