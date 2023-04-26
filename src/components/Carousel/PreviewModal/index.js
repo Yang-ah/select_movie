@@ -6,6 +6,7 @@ import {
   SolidHeartIcon,
   SolidStarIcon,
   DoubleChevronRightIcon,
+  Close,
 } from '../../../assets/icon';
 import {
   postBookmark,
@@ -96,36 +97,17 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     }
   };
 
-  const backdropVariants = {
-    visible: { opacity: 1, scale: 1 },
-    hidden: { opacity: 0, scale: 0.3, backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-  };
-  const modalVariants = {
-    hidden: {
-      y: 150,
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: 'spring', delayduration: 0.5, bounce: 0.4 },
-    },
-  };
-
-  useEffect((onModalClose) => {
-    const handler = (event) => {
-      // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onModalClose = { onModalClose };
-      }
+    const modalVariants = {
+      hidden: {
+        y: 150,
+        opacity: 0,
+      },
+      visible: {
+        y: 0,
+        opacity: 1,
+        transition: { type: 'spring', delayduration: 0.5, bounce: 0.4 },
+      },
     };
-    // 이벤트 핸들러 등록
-    document.addEventListener('mousedown', handler);
-    return () => {
-      // 이벤트 핸들러 해제
-      document.removeEventListener('mousedown', handler);
-    };
-  });
 
   useEffect(() => {
     fetchMovieData();
@@ -133,18 +115,13 @@ const PreviewModal = ({ onModalClose, movieId }) => {
     fetchReviews();
   }, [movieId.id]);
 
+
   return (
-    <AnimatePresence initial="hidden" animate="visible" exit="exit">
-      <div className={styles.modal_overlay}>
-        <div ref={modalRef} className={styles.modal}>
-          <motion.div
-            variants={backdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="modal"
-          >
-            <div className={styles.popup}>
+    <main>
+        <div className={styles.modal} onClick={onModalClose} />
+            <div ref={modalRef} className={styles.popup}
+            style={{ zIndex : 999 }}
+            >
               <img
                 className={styles.popupBackground}
                 src={postImage}
@@ -154,8 +131,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                 variants={modalVariants}
                 initial="hidden"
                 animate="visible"
-                exit="exit"
-                className="modal"
               >
                 <div className={styles.headerContentWrap}>
                   <div className={styles.leftWrap}>
@@ -230,7 +205,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                 </div>
               </motion.div>
               <p className={styles.close} onClick={onModalClose}>
-                x
+                <Close />
               </p>
               <div className={styles.moveSection}>
                 <div
@@ -240,10 +215,18 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                       to: true,
                     });
                   }}
-                >
+                > 
                   <DoubleChevronRightIcon />
+                  <p className={styles.moveText}>Detail Page</p>
                 </div>
               </div>
+              {reviews.length === 0 && (
+                <div className={styles.emptyText}>
+                  <p>텅</p>
+                  <p>첫 리뷰를 남겨보세요✨</p>
+                </div>
+              )}
+        
               {reviews?.slice(0, 2).map((review, index) => {
                 return (
                   <Preview
@@ -264,11 +247,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
               </div>
             </div>
 
-            {movieId?.averageScore}
-          </motion.div>
-        </div>
-      </div>
-    </AnimatePresence>
+            </main>
   );
 };
 

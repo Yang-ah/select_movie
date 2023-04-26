@@ -8,15 +8,15 @@ $HEADER_INFO_PADDING: 20px;
 
 .modal {
   @include m.flex();
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.46);
-  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.45);
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 900;
+}
   .popup {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     width: 900px;
@@ -26,6 +26,7 @@ $HEADER_INFO_PADDING: 20px;
     transform: translate(-50%, -50%);
     border-radius: 20px;
     box-shadow: 5px 2px 2px rgba(0, 0, 0, 0.33);
+    z-index: 999;
 
     .starBox {
       @include m.flex(flex-end);
@@ -74,7 +75,6 @@ $HEADER_INFO_PADDING: 20px;
       column-gap: 50px;
     }
   }
-}
 .headerContentWrap {
   @include m.flex(flex-start, flex-start);
 
@@ -166,22 +166,29 @@ $HEADER_INFO_PADDING: 20px;
           letter-spacing: 0.5px;
         }
 
+
         .plot {
           width: 100%;
           font-size: 14px;
           letter-spacing: 2px;
           line-height: 110%;
+          
         }
-        .staffs {
+        .staffs,
+        .genres {
+          width: 100%;
+        
           > span {
-            letter-spacing: 2px;
-            font-size: 14px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
             padding-right: 4px;
+            font-size: 14px;
           }
         }
       }
     }
   }
+
 
   .starWrap {
     @include m.flex();
@@ -210,10 +217,10 @@ $HEADER_INFO_PADDING: 20px;
   color: #fff;
   border-radius: 100%;
   text-align: center;
-  line-height: 50px;
+  line-height: 48px;
   cursor: pointer;
   &:hover {
-    transform: rotate(180deg);
+    transform: rotate( 180deg );
     transition: 0.5s;
   }
 }
@@ -238,6 +245,9 @@ $HEADER_INFO_PADDING: 20px;
       transition: 0.5s;
       opacity: 100%;
     }
+    .moveText{
+      font-size: 70px;
+    }
   }
 
   @keyframes shake {
@@ -253,5 +263,18 @@ $HEADER_INFO_PADDING: 20px;
       right: -225px;
       transform: 0.5s;
     }
+  }
+}
+
+.emptyText {
+  @include m.flex(center, center, column);
+  width: 100%;
+  padding: 140px 0;
+  color : c.$C_LOGO;  
+  > p:first-of-type {
+    
+    font-family: 'Black Han Sans';
+    font-size: 100px;
+    padding-bottom: 4px;
   }
 }

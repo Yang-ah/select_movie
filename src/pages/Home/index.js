@@ -2,13 +2,45 @@ import React from 'react';
 import styles from './home.module.scss';
 import RankingTitle from './RankingTitle';
 import { RankingCarousel, HomeCarousel } from '../../components/Carousel';
+import { motion, useScroll, useSpring } from 'framer-motion';
+const Variants = {
+  initial : {
+    opacity : 0,
+    y : 100,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  visible : {
+    opacity : 1,
+    y : 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+}
 
 const Home = () => {
+  
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <section className={styles.wrapper}>
+      <RankingTitle />
+        <motion.div
+        className="progressBar"
+        variants={Variants}
+        initial="initial"
+        animate="visible"
+        style={{ y: scrollY, damping: 100 , scaleX  }}
+        >
       <article className={styles.ranking}>
-        <RankingTitle />
-        <RankingCarousel />
+        <RankingCarousel /> 
       </article>
 
       <article className={styles.category}>
@@ -47,6 +79,7 @@ const Home = () => {
         </h2>
         <HomeCarousel GenreId="360b5842-fc83-4ea9-a7fa-0d62017b975b" />
       </article>
+      </motion.div>
     </section>
   );
 };

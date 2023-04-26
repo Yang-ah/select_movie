@@ -9,7 +9,6 @@
 
   .titleBox {
     @include m.flex();
-    position: relative;
     height: 220px;
     font-size: 70px;
     animation: flicker 1.5s infinite alternate;
@@ -29,7 +28,7 @@
   }
 
   .caption {
-    @include m.flex(center, center);
+    @include m.flex();
     font-size: 30px;
     animation: flicker 1.5s infinite alternate;
     margin-top: -50px;

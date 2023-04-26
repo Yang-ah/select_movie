@@ -7,6 +7,7 @@ import Slider from 'react-slick';
 import PreviewModal from './PreviewModal';
 import './carousel.scss';
 import styles from './rankingCarousel.module.scss';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import {
   getMoviesTop,
@@ -58,16 +59,63 @@ export const RankingCarousel = () => {
   useEffect(() => {
     fetchMoviesTop();
   }, []);
+  
+  const modalVariants = {
+    initial: {
+      opacity: 0,
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
+      transition: {
+        duration: 0.2,
+      },
+    },
+    visible: {
+      opacity: 1,
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%) scale(1)",
+      transition: {
+        duration: 0.2,
+        bounce: 0.9,
+      },
+    },
+    leaving: {
+      opacity: 0,
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
 
   return (
     <>
+     <AnimatePresence>
       {isShow && (
+        <div className={styles.overlay} >
+           <motion.div
+            variants={modalVariants}
+            initial="initial"
+            animate="visible"
+            exit="leaving"
+            style={{zIndex : 999}}
+          >
         <PreviewModal
           onModalClose={onModalClose}
           onModalClick={onModalClick}
           movieId={movieId}
         />
+         </motion.div>
+        </div>
       )}
+    </AnimatePresence>
       <div className={styles.ranking}>
         <div className={styles.slider}>
           <Slider {...settings}>
@@ -131,15 +179,60 @@ export const HomeCarousel = ({ GenreId }) => {
     fetchMoviesGenre();
   }, []);
 
+  const modalVariants = {
+    initial: {
+      opacity: 0,
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
+      transition: {
+        duration: 0.2,
+      },
+    },
+    visible: {
+      opacity: 1,
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%) scale(1)",
+      transition: {
+        duration: 0.2,
+      },
+    },
+    leaving: {
+      opacity: 0,
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
   return (
-    <div>
+    <>
+     <AnimatePresence>
       {isShow && (
+        <div className={styles.overlay} >
+           <motion.div
+            variants={modalVariants}
+            initial="initial"
+            animate="visible"
+            exit="leaving"
+            style={{zIndex : 999}}
+          >
         <PreviewModal
           onModalClose={onModalClose}
           onModalClick={onModalClick}
           movieId={movieId}
         />
+         </motion.div>
+        </div>
       )}
+    </AnimatePresence>
       <Slider {...settings}>
         {moviesGenre?.data.map((movie) => (
           <PosterCategory
@@ -151,7 +244,7 @@ export const HomeCarousel = ({ GenreId }) => {
           />
         ))}
       </Slider>
-    </div>
+    </>
   );
 };
 

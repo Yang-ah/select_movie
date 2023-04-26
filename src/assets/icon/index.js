@@ -52,3 +52,6 @@ export { ReactComponent as TrashIcon } from './trash-can.svg';
 
 // 수정
 export { ReactComponent as ModifyIcon } from './solid-pen-to-square.svg';
+
+// 엑스
+export { ReactComponent as Close } from './close.svg';
