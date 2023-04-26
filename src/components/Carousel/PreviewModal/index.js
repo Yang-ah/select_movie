@@ -6,6 +6,7 @@ import {
   SolidHeartIcon,
   SolidStarIcon,
   DoubleChevronRightIcon,
+  Close,
 } from '../../../assets/icon';
 import {
   postBookmark,
@@ -108,7 +109,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
       },
     };
 
-
+/*
   useEffect((onModalClose) => {
     const handler = (event) => {
       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
@@ -123,6 +124,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
       document.removeEventListener('mousedown', handler);
     };
   });
+  */
 
   useEffect(() => {
     fetchMovieData();
@@ -132,8 +134,11 @@ const PreviewModal = ({ onModalClose, movieId }) => {
 
 
   return (
-        <div ref={modalRef} className={styles.modal} onClick={onModalClose}>
-            <div className={styles.popup}>
+    <main>
+        <div className={styles.modal} onClick={onModalClose} />
+            <div ref={modalRef} className={styles.popup}
+            style={{ zIndex : 999 }}
+            >
               <img
                 className={styles.popupBackground}
                 src={postImage}
@@ -217,7 +222,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                 </div>
               </motion.div>
               <p className={styles.close} onClick={onModalClose}>
-                x
+                <Close />
               </p>
               <div className={styles.moveSection}>
                 <div
@@ -231,6 +236,13 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                   <DoubleChevronRightIcon />
                 </div>
               </div>
+              {reviews.length === 0 && (
+                <div className={styles.empty}>
+                  <p>텅</p>
+                  <p>첫 리뷰를 남겨보세요✨</p>
+                </div>
+              )}
+        
               {reviews?.slice(0, 2).map((review, index) => {
                 return (
                   <Preview
@@ -251,8 +263,7 @@ const PreviewModal = ({ onModalClose, movieId }) => {
               </div>
             </div>
 
-            {movieId?.averageScore}
-        </div>
+            </main>
   );
 };
 

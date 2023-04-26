@@ -13,6 +13,8 @@ $HEADER_INFO_PADDING: 20px;
   left: 0%;
   width: 100vw;
   height: 100vh;
+  z-index: 900;
+}
   .popup {
     position: absolute;
     top: 50%;
@@ -73,7 +75,6 @@ $HEADER_INFO_PADDING: 20px;
       column-gap: 50px;
     }
   }
-}
 .headerContentWrap {
   @include m.flex(flex-start, flex-start);
 
@@ -165,6 +166,7 @@ $HEADER_INFO_PADDING: 20px;
           letter-spacing: 0.5px;
         }
 
+
         .plot {
           width: 100%;
           font-size: 14px;
@@ -179,6 +181,17 @@ $HEADER_INFO_PADDING: 20px;
           }
         }
       }
+    }
+  }
+
+  > .empty {
+    @include m.flex(center, center, column);
+    width: 100%;
+    padding: 40px 0;
+    > p:first-of-type {
+      font-family: 'Black Han Sans';
+      font-size: 120px;
+      padding-bottom: 4px;
     }
   }
 
@@ -212,7 +225,7 @@ $HEADER_INFO_PADDING: 20px;
   line-height: 50px;
   cursor: pointer;
   &:hover {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
     transition: 0.5s;
   }
 }
