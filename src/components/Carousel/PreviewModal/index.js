@@ -109,23 +109,6 @@ const PreviewModal = ({ onModalClose, movieId }) => {
       },
     };
 
-/*
-  useEffect((onModalClose) => {
-    const handler = (event) => {
-      // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onModalClose = { onModalClose };
-      }
-    };
-    // 이벤트 핸들러 등록
-    document.addEventListener('mousedown', handler);
-    return () => {
-      // 이벤트 핸들러 해제
-      document.removeEventListener('mousedown', handler);
-    };
-  });
-  */
-
   useEffect(() => {
     fetchMovieData();
     fetchBookmarks();
@@ -232,12 +215,13 @@ const PreviewModal = ({ onModalClose, movieId }) => {
                       to: true,
                     });
                   }}
-                >
+                > 
                   <DoubleChevronRightIcon />
+                  <p className={styles.moveText}>Detail Page</p>
                 </div>
               </div>
               {reviews.length === 0 && (
-                <div className={styles.empty}>
+                <div className={styles.emptyText}>
                   <p>텅</p>
                   <p>첫 리뷰를 남겨보세요✨</p>
                 </div>

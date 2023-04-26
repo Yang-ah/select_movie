@@ -4,6 +4,7 @@ import cx from 'classnames';
 
 const Preview = ({ comment, userName, date, rating, className }) => {
   return (
+    
     <section className={cx(styles.wrap, className)}>
       <header>
         <HeaderLeft type="preview" userName={userName} date={date} />
@@ -12,6 +13,7 @@ const Preview = ({ comment, userName, date, rating, className }) => {
 
       <main>{comment}</main>
     </section>
+    
   );
 };
 
