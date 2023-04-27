@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { getUsersMe } from '../api/Users';
 
 const useMe = () => {
-  const token = localStorage.getItem('ACCESS_TOKEN');
-  if (!token) return;
 
   const [me, setMe] = useState(null);
 
