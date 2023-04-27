@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getUsersMe } from '../api/Users';
-//NOTE: 커스텀 훅
 
-//NOTE: return에 setMe를 같이 내보내기
 const useMe = () => {
+  const token = localStorage.getItem('ACCESS_TOKEN');
+  if (!token) return;
+
   const [me, setMe] = useState(null);
 
   const onGetMe = async () => {
