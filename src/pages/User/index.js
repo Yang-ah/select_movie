@@ -24,7 +24,7 @@ const User = () => {
     <section className={styles.wrap}>
       <UserInfo />
       <UserInfoDetail />
-      <article className={styles.carousel}>
+      <article className={styles.contents}>
         <p className={styles.textWrap}>
           <span className={styles.text}>
             {userData?.nickname} 님이 좋아하는 컨텐츠
@@ -32,7 +32,7 @@ const User = () => {
         </p>
         <UserCarousel name="userLike" />
       </article>
-      <article className={styles.carousel}>
+      <article className={styles.contents}>
         <p className={styles.textWrap}>
           <span className={styles.text}>
             {userData?.nickname} 님이 북마크 한 컨텐츠
@@ -40,7 +40,7 @@ const User = () => {
         </p>
         <UserCarousel name="userMark" />
       </article>
-      <article className={styles.carousel}>
+      <article className={styles.contents}>
         <p className={styles.textWrap}>
           <span className={styles.text}>
             {userData?.nickname} 님이 작성한 리뷰
