@@ -36,7 +36,6 @@
 
 |주양아<br>(FE, Team lead)|이인국<br>(FE)|구성미<br>(FE)|신현중<br>(FE)|                      
 | :--: | :--: | :--: | :--: |
-| <img src="https://user-images.githubusercontent.com/122377401/233068514-ef9b71de-e75c-4f5a-8dda-7c6c107861dc.jpg" height="220" width="200"> | <img src="https://user-images.githubusercontent.com/122377401/233068509-b6392661-ad76-4bf9-a00f-f76ee0b537d0.jpeg" height="220" width="200"> | <img src="https://user-images.githubusercontent.com/122377401/233068500-fb726978-cdb5-495c-aa8d-ed64e0e354d3.png" height="220" width="200"> | <img src="https://user-images.githubusercontent.com/122377401/233068507-3fa2d2bc-df02-48df-84ce-8c5f58891502.jpg" height="220" width="200"> | |
 | <p align="left">**Pages**<br/>- 상세페이지<br/>- 검색페이지 <br /><br/>**Features**<br/>- 댓글,답글 CRUD<br/>- 좋아요, 북마크 CRUD <br/> - 공감, 비공감 CRUD<br/>- 영화 검색</p> | <p align="left">**Pages**<br/>- 메인 홈페이지<br/>- 프리뷰 페이지<br/><br/>**Features**<br/>- framer-motion 애니메이션 <br/> - react-slick 구현<br/> </p> | <p align="left">**Pages**<br/>- 홈페이지<br/>- 마이페이지<br/>- 유저페이지<br/><br/>**Features**<br/>- react-slick 구현<br/>- 리뷰 조회,수정,삭제 <br/>- 사용자 조회,수정<br/>- 페이지네이션 </p> | <p align="left">**Pages**<br/>- 회원 로그인/회원가입<br/>- 관리자 로그인/회원가입<br/>- BackOffice 페이지<br /><br/>**Features**<br/>- Sign in/up 기능<br/>- 영화,리뷰,유저 수정, 삭제<br/>- 페이지네이션<br />- modal 기능</p> |
 
 
