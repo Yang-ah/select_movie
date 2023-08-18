@@ -1,3 +1,8 @@
+# 리팩토링 (23.08.17~)
+-[ ] CI/CD, AWS 재배포
+-[ ] 최적화 
+
+---
 # 무비셀렉터
 애정하는 영화 리뷰 및 평점 등록 사이트<br />
 - **`Team name` :** 무비셀렉터 ( 영화 평점사이트 제작 )
@@ -8,7 +13,6 @@
 - **`Pages overview`:** [화면 정의서(Figma)](https://url.kr/ticnfe), [화면 정의서(PDF)](https://url.kr/mlzo8y)
 - **`Functional Requirement`:** [사용자 요구사항 정의서](https://url.kr/2inmsa)
 - **`Functional Test`:** [개발자 테스트 문서](https://url.kr/s5aoxf)
-- **`API Specification`:** [API 명세서](https://url.kr/tebgc2)
 
 <br/>
 
