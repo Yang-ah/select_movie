@@ -1,7 +1,8 @@
 ## 리팩토링 (23.08.17~)
 
 - [x] CI/CD, AWS 재배포
-- [ ] 최적화
+- [ ] 최적화 & Fix Error
+- [ ] TypeScript 마이그레이션
 
 <br>
 
