@@ -38,19 +38,9 @@ export const PosterRanking = ({
   );
 };
 
-export const PosterCategory = ({ movie, onModalClick }) => {
+export const PosterCategory = ({ movie, onModalClick, isLikedProp }) => {
   const isLogin = useRecoilValue(isLoginAtom);
-  const [isLiked, setIsLiked] = useState(false);
-
-  // const fetchMovieData = async () => {
-  //   const response = await getMovie(movie.id);
-  //   console.log(response);
-  //   if (isLogin) {
-  //     setIsLiked(response.data.isLiked);
-  //   } else {
-  //     setIsLiked(false);
-  //   }
-  // };
+  const [isLiked, setIsLiked] = useState(isLikedProp);
 
   const onClickLike = async (e) => {
     if (!isLogin) {
@@ -61,10 +51,6 @@ export const PosterCategory = ({ movie, onModalClick }) => {
   };
 
   const onClick = () => onModalClick(movie?.id);
-
-  // useEffect(() => {
-  //   fetchMovieData();
-  // }, [movie.id]);
 
   return (
     <article className={styles.wrapperH}>
@@ -90,8 +76,8 @@ export const PosterCategory = ({ movie, onModalClick }) => {
               className={styles.iconH}
               onClick={onClickLike}
             >
-              {/* {isLiked ? <SolidHeartIcon /> : <HeartIcon />} */}
-              <HeartIcon />
+              {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
+              {/* <HeartIcon /> */}
             </Button>
           </div>
         </article>
