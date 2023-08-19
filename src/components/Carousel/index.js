@@ -19,11 +19,21 @@ import {
 import {
   CaretLeftIcon,
   CaretRightIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
   SolidHeartIcon,
   SolidBookmarkIcon,
 } from "../../assets/icon";
+
+const LeftArrow = (props) => {
+  const { currentSlide, slideCount, ...remainingProps } = props;
+
+  return <CaretLeftIcon {...remainingProps} />;
+};
+
+const RightArrow = (props) => {
+  const { currentSlide, slideCount, ...remainingProps } = props;
+
+  return <CaretRightIcon {...remainingProps} />;
+};
 
 export const RankingCarousel = () => {
   const [isShow, setIsShow] = useState(false);
@@ -170,8 +180,8 @@ export const HomeCarousel = ({ GenreId }) => {
     speed: 600,
     slidesToShow: 6,
     slidesToScroll: 5,
-    prevArrow: <CaretLeftIcon />,
-    nextArrow: <CaretRightIcon />,
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
   };
 
   useEffect(() => {
@@ -284,8 +294,8 @@ export const UserCarousel = ({ name }) => {
     speed: 600,
     slidesToShow: 6,
     slidesToScroll: 5,
-    prevArrow: <ChevronLeftIcon />,
-    nextArrow: <ChevronRightIcon />,
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
   };
 
   useEffect(() => {
