@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { getBookmarksPage, getUserBookmarksPage } from '../../api/Bookmarks';
-import { PosterRanking, PosterCategory } from './PosterHome';
-import { useLocation, useParams } from 'react-router-dom';
-import { PosterUser } from './PosterUser';
-import Slider from 'react-slick';
-import PreviewModal from './PreviewModal';
-import './carousel.scss';
-import styles from './rankingCarousel.module.scss';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { getBookmarksPage, getUserBookmarksPage } from "../../api/Bookmarks";
+import { PosterRanking, PosterCategory } from "./PosterHome";
+import { useLocation, useParams } from "react-router-dom";
+import { PosterUser } from "./PosterUser";
+import Slider from "react-slick";
+import PreviewModal from "./PreviewModal";
+import "./carousel.scss";
+import styles from "./rankingCarousel.module.scss";
+import { motion, AnimatePresence } from "framer-motion";
 
 import {
   getMoviesTop,
   getMoviesGenre,
   getMoviesMeLike,
   getMoviesUserLike,
-} from '../../api/Movies';
+} from "../../api/Movies";
 
 import {
   CaretLeftIcon,
@@ -23,7 +23,7 @@ import {
   ChevronRightIcon,
   SolidHeartIcon,
   SolidBookmarkIcon,
-} from '../../assets/icon';
+} from "../../assets/icon";
 
 export const RankingCarousel = () => {
   const [isShow, setIsShow] = useState(false);
@@ -46,7 +46,7 @@ export const RankingCarousel = () => {
 
   const settings = {
     centerMode: true,
-    centerPadding: '0px',
+    centerPadding: "0px",
     dot: false,
     arrow: false,
     infinite: true,
@@ -63,20 +63,20 @@ export const RankingCarousel = () => {
   const modalVariants = {
     initial: {
       opacity: 0,
-      position: 'fixed',
-      top: '-100vh',
-      left: '50%',
-      transform: 'translate(-50%, 0) scale(0.8)',
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
       transition: {
         duration: 0.2,
       },
     },
     visible: {
       opacity: 1,
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%) scale(1)',
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%) scale(1)",
       transition: {
         duration: 0.2,
         bounce: 0.9,
@@ -84,10 +84,10 @@ export const RankingCarousel = () => {
     },
     leaving: {
       opacity: 0,
-      position: 'fixed',
-      top: '-100vh',
-      left: '50%',
-      transform: 'translate(-50%, 0) scale(0.8)',
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
       transition: {
         duration: 0.2,
       },
@@ -181,36 +181,35 @@ export const HomeCarousel = ({ GenreId }) => {
   const modalVariants = {
     initial: {
       opacity: 0,
-      position: 'fixed',
-      top: '-100vh',
-      left: '50%',
-      transform: 'translate(-50%, 0) scale(0.8)',
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
       transition: {
         duration: 0.2,
       },
     },
     visible: {
       opacity: 1,
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%) scale(1)',
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%) scale(1)",
       transition: {
         duration: 0.2,
       },
     },
     leaving: {
       opacity: 0,
-      position: 'fixed',
-      top: '-100vh',
-      left: '50%',
-      transform: 'translate(-50%, 0) scale(0.8)',
+      position: "fixed",
+      top: "-100vh",
+      left: "50%",
+      transform: "translate(-50%, 0) scale(0.8)",
       transition: {
         duration: 0.2,
       },
     },
   };
-  console.log(moviesGenre);
   return (
     <>
       <AnimatePresence>
@@ -250,8 +249,8 @@ export const HomeCarousel = ({ GenreId }) => {
 
 export const UserCarousel = ({ name }) => {
   const location = useLocation();
-  const isMyPage = location.pathname === '/my';
-  const isUserPage = location.pathname.includes('/user');
+  const isMyPage = location.pathname === "/my";
+  const isUserPage = location.pathname.includes("/user");
 
   const userId = useParams();
   const [myLike, setMyLike] = useState([]);
@@ -298,7 +297,7 @@ export const UserCarousel = ({ name }) => {
 
   return (
     <>
-      {name === 'myLike' && (
+      {name === "myLike" && (
         <div name="myLike">
           <Slider {...settings}>
             {myLike.map((index) => (
@@ -313,7 +312,7 @@ export const UserCarousel = ({ name }) => {
         </div>
       )}
 
-      {name === 'myMark' && (
+      {name === "myMark" && (
         <div name="myMark">
           <Slider {...settings}>
             {myMark &&
@@ -329,7 +328,7 @@ export const UserCarousel = ({ name }) => {
         </div>
       )}
 
-      {name === 'userLike' && (
+      {name === "userLike" && (
         <div>
           <Slider {...settings}>
             {userLike.map((index) => (
@@ -344,7 +343,7 @@ export const UserCarousel = ({ name }) => {
         </div>
       )}
 
-      {name === 'userMark' && (
+      {name === "userMark" && (
         <div>
           <Slider {...settings}>
             {userMark.map((index) => (

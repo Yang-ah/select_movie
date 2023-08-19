@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 import { getUsersMe } from '../api/Users';
 
 const useMe = () => {
-
   const [me, setMe] = useState(null);
 
   const onGetMe = async () => {
-    const me = await getUsersMe();
-    if (me.data) {
-      setMe(me.data);
+    if (!localStorage.getItem('ACCESS_TOKEN')) {
+      return;
+    }
+
+    const response = await getUsersMe();
+    if (response.data) {
+      setMe(response.data);
     }
   };
 
