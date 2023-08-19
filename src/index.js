@@ -1,20 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
 
-import reportWebVitals from "./reportWebVitals";
-import rootRouter from "./router";
+import reportWebVitals from './reportWebVitals';
+import rootRouter from './router';
 
-import "./styles/global.scss";
-import { RecoilRoot } from "recoil";
+import './styles/global.scss';
+import { RecoilRoot } from 'recoil';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RecoilRoot>
     <React.StrictMode>
       <RouterProvider router={rootRouter} />
     </React.StrictMode>
-  </RecoilRoot>
+  </RecoilRoot>,
 );
 
 reportWebVitals();
