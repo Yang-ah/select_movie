@@ -42,6 +42,7 @@ export const PosterCategory = ({ movie, onModalClick, isLikedProp }) => {
   const isLogin = useRecoilValue(isLoginAtom);
   const [isLiked, setIsLiked] = useState(isLikedProp);
 
+
   const onClickLike = async (e) => {
     if (!isLogin) {
       return alert('로그인 후 이용 가능합니다!');
@@ -51,6 +52,7 @@ export const PosterCategory = ({ movie, onModalClick, isLikedProp }) => {
   };
 
   const onClick = () => onModalClick(movie?.id);
+
 
   return (
     <article className={styles.wrapperH}>
@@ -78,6 +80,7 @@ export const PosterCategory = ({ movie, onModalClick, isLikedProp }) => {
             >
               {isLiked ? <SolidHeartIcon /> : <HeartIcon />}
               {/* <HeartIcon /> */}
+
             </Button>
           </div>
         </article>

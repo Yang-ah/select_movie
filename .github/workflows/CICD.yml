@@ -3,7 +3,7 @@ name: CI/CD-11th
 on:
   push:
     branches:
-      - main
+      - refactor
 
 jobs:
   cicd:
@@ -11,13 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: 'main'
+          ref: 'refactor'
       - run: |
           echo "REACT_APP_API_URL=$REACT_APP_API_URL" >> .env
         env:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-      - run: npm ci
-      - run: npm run build
+      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn run build
       - name: deploy to s3
         uses: jakejarvis/s3-sync-action@master
         with:
