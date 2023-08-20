@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './accordion.module.scss';
 import { ChevronUp } from '../../../assets/icon';
 import cx from 'classnames';
@@ -17,8 +17,6 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
   const navigate = useNavigate();
 
   const [isClicked, setIsClicked] = useState(false);
-  // TODO: 불필요한 state 제거
-  const [reviewComments, setReviewComments] = useState([]);
   const [newReviewComment, setNewReviewComment] = useState({
     content: '',
   });
@@ -41,12 +39,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
     await createReviewComment(review.id, newReviewComment);
     await fetchReviews();
     setNewReviewComment({ content: '' });
-    setReviewComments(review.comments);
   };
-
-  useEffect(() => {
-    setReviewComments(review.comments);
-  }, [review.comments]);
 
   return (
     <li className={cx(styles.accordionWrap)}>
@@ -95,7 +88,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
           </button>
 
           <article className={styles.commentWrap}>
-            {reviewComments.map((comment) => {
+            {review.comments.map((comment) => {
               return (
                 <Comment
                   key={comment.id}
