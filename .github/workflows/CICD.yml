@@ -3,7 +3,7 @@ name: CI/CD-11th
 on:
   push:
     branches:
-      - main
+      - refactor
 
 jobs:
   cicd:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: 'main'
+          ref: 'refactor'
       - run: |
           echo "REACT_APP_API_URL=$REACT_APP_API_URL" >> .env
         env:

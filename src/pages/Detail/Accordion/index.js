@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './accordion.module.scss';
 import { ChevronUp } from '../../../assets/icon';
 import cx from 'classnames';
@@ -17,7 +17,6 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
   const navigate = useNavigate();
 
   const [isClicked, setIsClicked] = useState(false);
-  const [reviewComments, setReviewComments] = useState([]);
   const [newReviewComment, setNewReviewComment] = useState({
     content: '',
   });
@@ -32,7 +31,6 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
     return user.nickname ?? user.name ?? '닉네임없음';
   };
 
-  // 리뷰의 '댓글' 등록 버튼 클릭 이벤트
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!newReviewComment.content) {
@@ -41,17 +39,10 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
     await createReviewComment(review.id, newReviewComment);
     await fetchReviews();
     setNewReviewComment({ content: '' });
-    setReviewComments(review.comments);
   };
 
-  useEffect(() => {
-    setReviewComments(review.comments);
-  }, [review.comments]);
-
-  // jsx
   return (
     <li className={cx(styles.accordionWrap)}>
-      {/* 리뷰 */}
       <Review
         userName={setUserName(review.user)}
         comment={review.content}
@@ -63,7 +54,6 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
         fetchReviews={fetchReviews}
       />
 
-      {/* 로그인 상태의 댓글 input */}
       {isLogin && (
         <form className={styles.commentInputWrap} onSubmit={onSubmit}>
           <p className={styles.userName}>{me && setUserName(me)}</p>
@@ -79,14 +69,12 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
         </form>
       )}
 
-      {/* 로그아웃 상태의 댓글 input */}
       {isLogin || (
         <div className={styles.logout} onClick={onClickLogin}>
           ✨ 로그인 후 댓글 작성 가능합니다.
         </div>
       )}
 
-      {/* 댓글 accordion */}
       {review.comments.length === 0 || (
         <>
           <button
@@ -100,7 +88,7 @@ const Accordion = ({ review, movieId, fetchReviews }) => {
           </button>
 
           <article className={styles.commentWrap}>
-            {reviewComments.map((comment) => {
+            {review.comments.map((comment) => {
               return (
                 <Comment
                   key={comment.id}
