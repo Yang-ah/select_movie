@@ -34,6 +34,9 @@ const Review = ({
   const onClickDelete = () => setModalOpen(true);
 
   const isMyReview = async () => {
+    if (!isLogin) {
+      return;
+    }
     const response = await getMyReview(movieId);
     response.data && setIsUserMe(response.data.user.id === written);
   };

@@ -37,6 +37,9 @@ const DetailInfo = ({ id }) => {
   };
 
   const fetchBookmarks = async () => {
+    if (!isLogin) {
+      return;
+    }
     const response = await getMyBookmarks();
     const bookmarkIdArr = response.data.map((dataArr) => {
       return dataArr.movie.id;
